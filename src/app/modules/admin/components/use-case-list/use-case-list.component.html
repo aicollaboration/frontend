@@ -1,16 +1,23 @@
-<div class="content-layout fullwidth-standard-normal-scroll">
+<div class=" content-layout fullwidth-standard-normal-scroll">
     <div class="main">
+        <!--
         <h1>Kein Ahnung welcher Use case?</h1>
         <ul>
             <li>Jetzt Termin vereinbaren</li>
             <li>Video anschauen</li>
             <li>Filter nutzen</li>
         </ul>
+        -->
+        <div class="header">
+            <h2>Customer analytics</h2>
+            <h1>Segmentation</h1>
+        </div>
 
         <div *ngFor="let category of categories">
             <h1>{{ category.title }}</h1>
             <div class="cards">
-                <treo-card class="flex flex-col max-w-80 w-full filter-shopping" *ngFor="let useCase of category.useCases">
+                <treo-card class="flex flex-col max-w-80 w-full filter-shopping"
+                    *ngFor="let useCase of category.useCases">
                     <div class="relative">
                         <div class="absolute flex flex-col top-0 right-0 p-3">
                             <button mat-icon-button>
@@ -22,7 +29,7 @@
                                 </mat-icon>
                             </button>
                         </div>
-                        <img class="object-cover" src="assets/images/cards/sneakers-01-320x200.jpg">
+                        <img class="object-cover" [src]="useCase.image">
                     </div>
                     <div class="m-8 mb-0">
                         <div class="flex flex-col">
@@ -42,11 +49,13 @@
             </div>
         </div>
 
+        <!--
         <h1>Kein Ahnung welcher Use case?</h1>
         <ul>
             <li>Jetzt Termin vereinbaren</li>
             <li>Video anschauen</li>
             <li>Filter nutzen</li>
         </ul>
+        -->
     </div>
 </div>

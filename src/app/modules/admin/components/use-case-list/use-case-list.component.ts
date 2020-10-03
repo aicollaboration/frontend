@@ -14,57 +14,57 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Segmentation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Lifetime value',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/image_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Churn analytics',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/question_answering.jpg',
         description: ``,
       },
       {
         title: 'Cross selling',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Upselling',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Market basket analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Product bundling',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Recommendation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Next best action',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Sentiment analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Voice of customer',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ]
@@ -73,52 +73,52 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Customer segmentation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Customer profile',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Personalization',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Customer driven marketing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Marketing Mix',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Return on Invest',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Attribution modeling',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Performance attribution',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Product portfolio management',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Brand equity',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -127,77 +127,77 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Marketing sizing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Forecasting',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Market opportunity analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Trend analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Market news',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Needs assessment',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Value chain analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Pricing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Market entry strategy',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Competitor analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Survey analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Market segmentation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Customer loyality',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Brand equity',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Product development',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -206,57 +206,57 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'A/B Testing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Multivariate testing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Conversion rate optimization',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Attribution modeling',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Performance attribution',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Website audit',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Mobile & Website Tracking',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'eCommerce analytics',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Lead generation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Search engine optimization',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Analytics setup & implementation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -265,32 +265,32 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Opinion mining',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Sentiment analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Brand monitoring',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Competitive analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Lead generation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Trend analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -299,12 +299,12 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Text summarization',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Question answering',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -313,22 +313,22 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Dynamic pricing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Promotional pricing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Profitability analysis',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Value based pricing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -337,7 +337,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Demand forecasting',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -349,12 +349,12 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Transport logistics',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Order picking optimization',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -363,12 +363,12 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Fraud detection',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: `Health, Bank, Insurance`,
       },
       {
         title: 'Credit risk management',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -377,32 +377,32 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'Smart cities',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Smart manufacturing',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Smart healthcare',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Predictive maintenance',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Smart aviation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
       {
         title: 'Smart transportation',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       },
     ],
@@ -411,7 +411,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],
@@ -420,7 +420,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],
@@ -429,7 +429,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],
@@ -438,7 +438,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],
@@ -447,7 +447,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],
@@ -456,7 +456,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],
@@ -465,7 +465,7 @@ export class UseCaseListComponent {
     useCases: [
       {
         title: 'title',
-        image: '/assets/segmentation.png',
+        image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
       }
     ],

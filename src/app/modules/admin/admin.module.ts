@@ -10,10 +10,12 @@ import { UseCaseListComponent } from 'app/modules/admin/components/use-case-list
 import { SharedModule } from 'app/shared/shared.module';
 import { AdminOverviewComponent } from './components/admin-overview/admin-overview.component';
 import { ProjectSelectorComponent } from './components/project-selector/project-selector.component';
+import { UseCaseDetailComponent } from './components/use-case-detail/use-case-detail.component';
 
 @NgModule({
     declarations: [
         UseCaseListComponent,
+        UseCaseDetailComponent,
         AdminOverviewComponent,
         ProjectSelectorComponent,
     ],

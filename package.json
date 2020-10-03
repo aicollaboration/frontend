@@ -39,6 +39,7 @@
         "@fullcalendar/moment": "4.4.2",
         "@fullcalendar/rrule": "4.4.2",
         "@fullcalendar/timegrid": "4.4.2",
+        "@ngrx/component-store": "^10.0.0",
         "apexcharts": "3.19.3",
         "crypto-js": "3.3.0",
         "highlight.js": "10.1.1",

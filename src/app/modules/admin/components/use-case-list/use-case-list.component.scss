@@ -23,3 +23,16 @@ treo-card {
 	$warn: map-get($theme, warn);
 	$is-dark: map-get($theme, is-dark);
 }
+
+use-cases {
+	.main {
+		background-color: #ddeef2;
+		padding-top: 0 !important;
+	}
+	.header {
+		background-image: url('/assets/illustrations/1.svg');
+		background-repeat: no-repeat;
+		background-position: 0px -120px;
+		height: 350px;
+	}
+}
