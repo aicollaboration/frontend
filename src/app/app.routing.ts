@@ -7,7 +7,6 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
-
     {
         path: '',
         pathMatch: 'full',
@@ -23,8 +22,12 @@ export const appRoutes: Route[] = [
     // Auth routes (guest)
     {
         path: '',
-        canActivate: [NoAuthGuard],
-        canActivateChild: [NoAuthGuard],
+        canActivate: [
+            NoAuthGuard,
+        ],
+        canActivateChild: [
+            NoAuthGuard,
+        ],
         component: LayoutComponent,
         data: {
             layout: 'empty'
@@ -56,8 +59,12 @@ export const appRoutes: Route[] = [
     // Auth routes (logged in)
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        canActivate: [
+            AuthGuard,
+        ],
+        canActivateChild: [
+            AuthGuard,
+        ],
         component: LayoutComponent,
         data: {
             layout: 'empty'
@@ -92,8 +99,12 @@ export const appRoutes: Route[] = [
     // Admin routes
     {
         path: '',
-        canActivate: [AuthGuard],
-        canActivateChild: [AuthGuard],
+        canActivate: [
+            AuthGuard,
+        ],
+        canActivateChild: [
+            AuthGuard,
+        ],
         component: LayoutComponent,
         resolve: {
             initialData: InitialDataResolver,
@@ -109,8 +120,17 @@ export const appRoutes: Route[] = [
             },
 
             // 404 & Catch all
-            // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
-            // {path: '**', redirectTo: '404-not-found'}
+            /*
+            {
+                path: '404-not-found', 
+                pathMatch: 'full', 
+                loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)
+            },
+            {
+                path: '**', 
+                redirectTo: '404-not-found'
+            }
+            */
         ]
     },
 ];

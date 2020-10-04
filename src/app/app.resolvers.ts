@@ -12,11 +12,9 @@ export class InitialDataResolver implements Resolve<any>
     /**
      * Constructor
      *
-     * @param {HttpClient} _httpClient
+     * @param {HttpClient} httpClient
      */
-    constructor(
-        private _httpClient: HttpClient
-    ) {
+    constructor(private httpClient: HttpClient) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -28,8 +26,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @private
      */
-    private _loadMessages(): Observable<any> {
-        return this._httpClient.get('api/common/messages');
+    private loadMessages(): Observable<any> {
+        return this.httpClient.get('api/common/messages');
     }
 
     /**
@@ -37,8 +35,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @private
      */
-    private _loadNavigation(): Observable<any> {
-        return this._httpClient.get('api/common/navigation');
+    private loadNavigation(): Observable<any> {
+        return this.httpClient.get('api/common/navigation');
     }
 
     /**
@@ -46,8 +44,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @private
      */
-    private _loadNotifications(): Observable<any> {
-        return this._httpClient.get('api/common/notifications');
+    private loadNotifications(): Observable<any> {
+        return this.httpClient.get('api/common/notifications');
     }
 
     /**
@@ -55,8 +53,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @private
      */
-    private _loadShortcuts(): Observable<any> {
-        return this._httpClient.get('api/common/shortcuts');
+    private loadShortcuts(): Observable<any> {
+        return this.httpClient.get('api/common/shortcuts');
     }
 
     /**
@@ -64,8 +62,8 @@ export class InitialDataResolver implements Resolve<any>
      *
      * @private
      */
-    private _loadUser(): Observable<any> {
-        return this._httpClient.get('api/common/user');
+    private loadUser(): Observable<any> {
+        return this.httpClient.get('api/common/user');
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -78,39 +76,36 @@ export class InitialDataResolver implements Resolve<any>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
+    public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
         return forkJoin([
 
             // Messages
-            this._loadMessages(),
+            this.loadMessages(),
 
             // Navigation data
-            this._loadNavigation(),
+            this.loadNavigation(),
 
             // Notifications
-            this._loadNotifications(),
+            this.loadNotifications(),
 
             // Shortcuts
-            this._loadShortcuts(),
+            this.loadShortcuts(),
 
             // User
-            this._loadUser()
-        ]).pipe(
-            map((data) => {
-
-                return {
-                    messages: data[0].messages,
-                    navigation: {
-                        compact: data[1].compact,
-                        default: data[1].default,
-                        futuristic: data[1].futuristic,
-                        horizontal: data[1].horizontal
-                    },
-                    notifications: data[2].notifications,
-                    shortcuts: data[3].shortcuts,
-                    user: data[4].user
-                };
-            })
-        );
+            this.loadUser()
+        ]).pipe(map((data) => {
+            return {
+                messages: data[0].messages,
+                navigation: {
+                    compact: data[1].compact,
+                    default: data[1].default,
+                    futuristic: data[1].futuristic,
+                    horizontal: data[1].horizontal
+                },
+                notifications: data[2].notifications,
+                shortcuts: data[3].shortcuts,
+                user: data[4].user
+            };
+        }));
     }
 }

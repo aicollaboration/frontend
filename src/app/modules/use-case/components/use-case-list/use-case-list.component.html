@@ -8,6 +8,12 @@
             <li>Filter nutzen</li>
         </ul>
         -->
+        <div *ngIf="errors$ | async as errors">
+            <ul *ngIf="errors.length > 0">
+                <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+        </div>
+
         <div class="cards">
             <treo-card class="flex flex-col max-w-80 w-full filter-shopping" *ngFor="let useCase of useCases$ | async">
                 <div class="relative">

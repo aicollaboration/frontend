@@ -5,22 +5,18 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 
 @Injectable()
-export class AuthService
-{
+export class AuthService {
     // Private
-    private _authenticated: boolean;
+    private authenticated: boolean;
 
     /**
      * Constructor
      *
-     * @param {HttpClient} _httpClient
+     * @param {HttpClient} httpClient
      */
-    constructor(
-        private _httpClient: HttpClient
-    )
-    {
+    constructor(private httpClient: HttpClient) {
         // Set the defaults
-        this._authenticated = false;
+        this.authenticated = false;
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -30,13 +26,11 @@ export class AuthService
     /**
      * Setter & getter for access token
      */
-    set accessToken(token: string)
-    {
+    set accessToken(token: string) {
         localStorage.setItem('access_token', token);
     }
 
-    get accessToken(): string
-    {
+    get accessToken(): string {
         return localStorage.getItem('access_token');
     }
 
@@ -49,38 +43,31 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(credentials: { email: string, password: string }): Observable<any>
-    {
+    public signIn(credentials: { email: string, password: string }): Observable<any> {
         // Throw error, if the user is already logged in
-        if ( this._authenticated )
-        {
+        if (this.authenticated) {
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
-            switchMap((response: any) => {
+        return this.httpClient.post('api/auth/sign-in', credentials).pipe(switchMap((response: any) => {
 
-                // Store the access token in the local storage
-                this.accessToken = response.access_token;
+            // Store the access token in the local storage
+            this.accessToken = response.access_token;
 
-                // Set the authenticated flag to true
-                this._authenticated = true;
+            // Set the authenticated flag to true
+            this.authenticated = true;
 
-                // Return a new observable with the response
-                return of(response);
-            })
-        );
+            // Return a new observable with the response
+            return of(response);
+        }));
     }
 
     /**
      * Sign in using the access token
      */
-    signInUsingToken(): Observable<any>
-    {
+    signInUsingToken(): Observable<any> {
         // Renew token
-        return this._httpClient.post('api/auth/refresh-access-token', {
-            access_token: this.accessToken
-        }).pipe(
+        return this.httpClient.post('api/auth/refresh-access-token', { access_token: this.accessToken }).pipe(
             catchError(() => {
 
                 // Return false
@@ -92,7 +79,7 @@ export class AuthService
                 this.accessToken = response.access_token;
 
                 // Set the authenticated flag to true
-                this._authenticated = true;
+                this.authenticated = true;
 
                 // Return true
                 return of(true);
@@ -103,13 +90,12 @@ export class AuthService
     /**
      * Sign out
      */
-    signOut(): Observable<any>
-    {
+    public signOut(): Observable<any> {
         // Remove the access token from the local storage
         localStorage.removeItem('access_token');
 
         // Set the authenticated flag to false
-        this._authenticated = false;
+        this.authenticated = false;
 
         // Return the observable
         return of(true);
@@ -118,23 +104,19 @@ export class AuthService
     /**
      * Check the authentication status
      */
-    check(): Observable<boolean>
-    {
+    public check(): Observable<boolean> {
         // Check if the user is logged in
-        if ( this._authenticated )
-        {
+        if (this.authenticated) {
             return of(true);
         }
 
         // Check the access token availability
-        if ( !this.accessToken )
-        {
+        if (!this.accessToken) {
             return of(false);
         }
 
         // Check the access token expire date
-        if ( AuthUtils.isTokenExpired(this.accessToken) )
-        {
+        if (AuthUtils.isTokenExpired(this.accessToken)) {
             return of(false);
         }
 

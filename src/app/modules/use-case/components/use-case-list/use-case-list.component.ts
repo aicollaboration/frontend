@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { UseCaseModel } from '../../models/use-case.model';
 import { loadUseCasesAction } from '../../state/use-case.actions';
-import { getUseCases, State } from '../../state/use-case.reducer';
+import { getErrors, getUseCases, State } from '../../state/use-case.reducer';
 
 @Component({
   selector: 'use-cases',
@@ -14,12 +14,14 @@ import { getUseCases, State } from '../../state/use-case.reducer';
 })
 export class UseCaseListComponent implements OnInit {
   public useCases$: Observable<UseCaseModel[]>;
+  public errors$: Observable<string[]>;
 
   public constructor(private store: Store<State>) {
   }
 
   public ngOnInit(): void {
     this.useCases$ = this.store.select(getUseCases);
+    this.errors$ = this.store.select(getErrors);
 
     this.store.dispatch(loadUseCasesAction());
   }
