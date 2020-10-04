@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { UseCaseModel } from '../../models/use-case.model';
-import { getShow, getUseCases, State } from '../../reducers/use-case.reducer';
-import { loadUseCases, toggleUseCaseAction } from '../../state/use-case.actions';
+import { loadUseCasesAction } from '../../state/use-case.actions';
+import { getUseCases, State } from '../../state/use-case.reducer';
 
 @Component({
   selector: 'use-cases',
@@ -21,14 +21,6 @@ export class UseCaseListComponent implements OnInit {
   public ngOnInit(): void {
     this.useCases$ = this.store.select(getUseCases);
 
-    this.store.dispatch(loadUseCases());
-
-    this.store.select(getShow).subscribe(show => {
-      console.log(show);
-    });
-  }
-
-  public toggle(): void {
-    this.store.dispatch(toggleUseCaseAction());
+    this.store.dispatch(loadUseCasesAction());
   }
 }

@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UseCaseModel } from '../../models/use-case.model';
-import { getUseCase, State } from '../../reducers/use-case.reducer';
-import { loadUseCase } from '../../state/use-case.actions';
+import { loadUseCaseAction } from '../../state/use-case.actions';
+import { getUseCase, State } from '../../state/use-case.reducer';
 
 @Component({
     selector: 'use-cases',
@@ -32,7 +32,7 @@ export class UseCaseDetailComponent implements OnInit {
         );
 
         this.route.params.subscribe(params => {
-            this.store.dispatch(loadUseCase({ useCaseId: params.id }));
+            this.store.dispatch(loadUseCaseAction({ useCaseId: params.id }));
         });
     }
 }

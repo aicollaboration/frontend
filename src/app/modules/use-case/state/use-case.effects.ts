@@ -3,27 +3,27 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { UseCaseService } from '../services/use-case.service';
-import { loadUseCase, loadUseCaseFailure, loadUseCases, loadUseCasesFailure, loadUseCasesSuccess, loadUseCaseSuccess } from './use-case.actions';
+import { loadUseCaseAction, loadUseCasesAction, errorAction, loadUseCasesSuccessAction, loadUseCaseSuccessAction } from './use-case.actions';
 
 @Injectable()
 export class UseCaseEffects {
     public loadUseCases$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(loadUseCases),
+            ofType(loadUseCasesAction),
             mergeMap(() => this.useCaseService.getUseCases().pipe(
-                map(useCases => loadUseCasesSuccess({ useCases })),
-                catchError(error => of(loadUseCasesFailure({ error })))
+                map(useCases => loadUseCasesSuccessAction({ useCases })),
+                catchError(error => of(errorAction({ errors: [error] })))
             ))
         );
     });
 
     public loadUseCase$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(loadUseCase),
+            ofType(loadUseCaseAction),
             switchMap((value, index) => {
                 return this.useCaseService.getUseCase(value.useCaseId).pipe(
-                    map(useCase => loadUseCaseSuccess({ useCase })),
-                    catchError(error => of(loadUseCaseFailure({ error })))
+                    map(useCase => loadUseCaseSuccessAction({ useCase })),
+                    catchError(error => of(errorAction({ errors: [error] })))
                 );
             })
         );

@@ -1,41 +1,22 @@
 import { createAction, props } from '@ngrx/store';
 import { UseCaseModel } from '../models/use-case.model';
 
-export const toggleUseCaseAction = createAction(
-    '[Use Case] Toggle'
-);
-export const setCurrentUseCaseAction = createAction(
-    '[Use Case] Set current use-case',
-    props<{ useCase: UseCaseModel }>()
-);
-export const clearCurrentUseCaseAction = createAction(
-    '[Use Case] Clear current use-case'
-);
-export const initializeCurrentUseCaseAction = createAction(
-    '[Use Case] Init current use-case'
-);
-
-export const loadUseCases = createAction(
+export const loadUseCasesAction = createAction(
     '[Use cases] load'
 );
-export const loadUseCasesSuccess = createAction(
+export const loadUseCasesSuccessAction = createAction(
     '[Use cases] load successful',
     props<{ useCases: UseCaseModel[] }>()
 );
-export const loadUseCasesFailure = createAction(
-    '[Use cases] load failure',
-    props<{ error: string }>()
-);
-
-export const loadUseCase = createAction(
+export const loadUseCaseAction = createAction(
     '[Use cases] load use case',
     props<{ useCaseId: number }>()
 );
-export const loadUseCaseSuccess = createAction(
+export const loadUseCaseSuccessAction = createAction(
     '[Use cases] load use case success',
     props<{ useCase: UseCaseModel }>()
 );
-export const loadUseCaseFailure = createAction(
-    '[Use cases] load use case failure',
-    props<{ error: string }>()
+export const errorAction = createAction(
+    '[Use cases] error action',
+    props<{ errors: string[] }>()
 );

@@ -7,8 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { TreoCardModule } from '@treo/components/card';
 import { UseCaseDetailComponent } from './components/use-case-detail/use-case-detail.component';
 import { UseCaseListComponent } from './components/use-case-list/use-case-list.component';
-import { useCaseReducer } from './reducers/use-case.reducer';
 import { UseCaseEffects } from './state/use-case.effects';
+import { useCaseReducer } from './state/use-case.reducer';
 import { routes } from './use-case-routing.module';
 
 @NgModule({
