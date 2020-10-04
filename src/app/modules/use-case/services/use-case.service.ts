@@ -1,21 +1,65 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
-import { CategoryModel } from '../../models/category.model';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { UseCaseModel } from '../models/use-case.model';
 
-@Component({
-  selector: 'use-cases',
-  templateUrl: './use-case-list.component.html',
-  styleUrls: ['./use-case-list.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+@Injectable({
+  providedIn: 'root'
 })
-export class UseCaseListComponent {
-  public categories: CategoryModel[] = [{
+export class UseCaseService {
+  public useCases: UseCaseModel[] = [{
+    id: 1,
+    title: 'Customer Segmentation',
+    image: 'assets/images/cases/customer_segmentation.jpg',
+    description: ``,
+    category: {
+      title: 'Customer analytics',
+      slug: `customer-analytics`
+    }
+  }, {
+    id: 2,
+    title: 'Image Segmentation',
+    image: 'assets/images/cases/image_segmentation.jpg',
+    description: ``,
+    category: {
+      title: 'User analytics',
+      slug: `user-analytics`
+    }
+  }, {
+    id: 3,
+    title: 'Question answering',
+    image: 'assets/images/cases/question_answering.jpg',
+    description: ``,
+    category: {
+      title: 'Text analytics',
+      slug: `text-analytics`
+    }
+  }];
+
+  public getUseCases(): Observable<UseCaseModel[]> {
+    return of(this.useCases);
+  }
+
+  public getUseCase(useCaseId: number): Observable<UseCaseModel> {
+    const useCaseOfUndefined = this.useCases.find(useCase => useCase.id == useCaseId);
+
+    if (useCaseOfUndefined) {
+      return of(useCaseOfUndefined);
+    }
+
+    throw new Error(`Use case with id ${useCaseId} not available`);
+  }
+}
+
+
+/*
+[{
     title: 'Customer analytics',
     useCases: [
       {
         title: 'Segmentation',
         image: 'assets/images/cases/customer_segmentation.jpg',
         description: ``,
+        category: ``
       },
       {
         title: 'Lifetime value',
@@ -469,5 +513,5 @@ export class UseCaseListComponent {
         description: ``,
       }
     ],
-  }];
-}
+  }]
+*/

@@ -101,12 +101,16 @@ export const appRoutes: Route[] = [
         children: [
             {
                 path: 'admin',
-                loadChildren: () => import('app/modules/admin/admin.module').then(m => m.AdminModule)
-            }
+                loadChildren: () => import('app/modules/admin/admin.module').then(m => m.AdminModule),
+            },
+            {
+                path: 'use-cases',
+                loadChildren: () => import('app/modules/use-case/use-case.module').then(module => module.UseCaseModule),
+            },
 
             // 404 & Catch all
             // {path: '404-not-found', pathMatch: 'full', loadChildren: () => import('app/modules/admin/pages/errors/error-404/error-404.module').then(m => m.Error404Module)},
             // {path: '**', redirectTo: '404-not-found'}
         ]
-    }
+    },
 ];

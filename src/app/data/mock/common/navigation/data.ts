@@ -13,7 +13,7 @@ export const defaultNavigation: TreoNavigationItem[] = [
                 id: 'starter.example',
                 title: 'Use cases',
                 type: 'basic',
-                link: '/admin/use-cases'
+                link: '/use-cases'
             },
         ]
     }
@@ -62,7 +62,7 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         title: 'Use cases',
         type: 'basic',
         icon: 'apps',
-        link: '/admin/use-cases'
+        link: '/use-cases'
     },
     
 ];
