@@ -1,17 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
-import { MarkdownModule } from 'ngx-markdown';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TreoModule } from '@treo';
-import { TreoConfigModule } from '@treo/services/config';
 import { TreoMockApiModule } from '@treo/lib/mock-api';
-import { CoreModule } from 'app/core/core.module';
-import { appConfig } from 'app/core/config/app.config';
-import { mockDataServices } from 'app/data/mock';
-import { LayoutModule } from 'app/layout/layout.module';
+import { TreoConfigModule } from '@treo/services/config';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
+import { appConfig } from 'app/core/config/app.config';
+import { CoreModule } from 'app/core/core.module';
+import { mockDataServices } from 'app/data/mock';
+import { LayoutModule } from 'app/layout/layout.module';
+import { environment } from 'environments/environment';
+import { MarkdownModule } from 'ngx-markdown';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -23,6 +28,7 @@ const routerConfig: ExtraOptions = {
         AppComponent
     ],
     imports: [
+        CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
@@ -39,7 +45,16 @@ const routerConfig: ExtraOptions = {
         LayoutModule,
 
         // 3rd party modules
-        MarkdownModule.forRoot({})
+        MarkdownModule.forRoot({}),
+
+        // ngrx
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            name: 'AI Platform',
+            maxAge: 25,
+            logOnly: environment.production
+        }),
+        EffectsModule.forRoot([]),
     ],
     bootstrap: [
         AppComponent

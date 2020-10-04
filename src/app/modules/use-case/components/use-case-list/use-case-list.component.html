@@ -1,0 +1,52 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="main">
+        <!--
+        <h1>Kein Ahnung welcher Use case?</h1>
+        <ul>
+            <li>Jetzt Termin vereinbaren</li>
+            <li>Video anschauen</li>
+            <li>Filter nutzen</li>
+        </ul>
+        -->
+        <div class="cards">
+            <treo-card class="flex flex-col max-w-80 w-full filter-shopping" *ngFor="let useCase of useCases$ | async">
+                <div class="relative">
+                    <div class="absolute flex flex-col top-0 right-0 p-3">
+                        <button mat-icon-button>
+                            <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
+                            </mat-icon>
+                        </button>
+                    </div>
+                    <img class="object-cover" [src]="useCase.image">
+                </div>
+                <div class="m-8 mb-0">
+                    <div class="flex flex-col">
+                        <div class="text-2xl leading-tight">{{ useCase.title }}</div>
+                    </div>
+                    <hr class="border-b my-6">
+                    <div class="flex items-center text-md">
+                        {{ useCase.summary }}
+                    </div>
+                    <div class="mt-6 -mx-8">
+                        <button
+                            class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
+                            mat-flat-button color="primary" [routerLink]="['/use-cases', useCase.id]">Show</button>
+                    </div>
+                </div>
+            </treo-card>
+        </div>
+
+        <!--
+        <h1>Kein Ahnung welcher Use case?</h1>
+        <ul>
+            <li>Jetzt Termin vereinbaren</li>
+            <li>Video anschauen</li>
+            <li>Filter nutzen</li>
+        </ul>
+        -->
+    </div>
+</div>

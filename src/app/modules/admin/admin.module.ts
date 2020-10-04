@@ -4,30 +4,24 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
-import { TreoCardModule } from '@treo/components/card';
-import { routes } from 'app/modules/admin/admin-routing.module';
-import { UseCaseListComponent } from 'app/modules/admin/components/use-case-list/use-case-list.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { routes } from './admin-routing.module';
 import { AdminOverviewComponent } from './components/admin-overview/admin-overview.component';
 import { ProjectSelectorComponent } from './components/project-selector/project-selector.component';
-import { UseCaseDetailComponent } from './components/use-case-detail/use-case-detail.component';
 
 @NgModule({
     declarations: [
-        UseCaseListComponent,
-        UseCaseDetailComponent,
         AdminOverviewComponent,
         ProjectSelectorComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
-        SharedModule,
         MatIconModule,
+        SharedModule,
         MatDividerModule,
         MatMenuModule,
-        TreoCardModule,
         MatDialogModule,
-    ]
+    ],
 })
 export class AdminModule {
 }
