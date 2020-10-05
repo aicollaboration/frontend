@@ -1,4 +1,4 @@
-# Treo - Admin template and Starter project for Angular
+# AI Platform v2
 
 ## Development server
 

@@ -16,7 +16,6 @@ import { getUseCase, State } from '../../state/use-case.reducer';
 })
 export class UseCaseDetailComponent implements OnInit {
     public useCase$: Observable<UseCaseModel>;
-    public useCase: UseCaseModel;
 
     public constructor(
         private route: ActivatedRoute,
@@ -25,11 +24,7 @@ export class UseCaseDetailComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.useCase$ = this.store.select(getUseCase).pipe(
-            tap(useCase => {
-                this.useCase = useCase;
-            })
-        );
+        this.useCase$ = this.store.select(getUseCase);
 
         this.route.params.subscribe(params => {
             this.store.dispatch(loadUseCaseAction({ useCaseId: params.id }));
