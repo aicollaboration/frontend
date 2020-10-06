@@ -3,25 +3,50 @@ import { TreoNavigationItem } from '@treo/components/navigation';
 
 export const defaultNavigation: TreoNavigationItem[] = [
     {
-        id: 'starter',
-        title: 'Admin',
-        subtitle: 'Treo Starter Kit',
+        id: 'products',
+        title: 'Products',
         type: 'group',
         icon: 'apps',
         children: [
             {
-                id: 'starter.example',
+                id: 'products.example',
                 title: 'Use cases',
                 type: 'basic',
                 link: '/use-cases'
+            },
+        ]
+    },
+    {
+        id: 'solutions',
+        title: 'Solutions',
+        type: 'group',
+        icon: 'apps',
+        children: [
+            {
+                id: 'solutions.by-use-case',
+                title: 'By Use Case',
+                type: 'basic',
+                link: '/solutions/by-use-case'
+            },
+            {
+                id: 'solutions.industry',
+                title: 'By Industry',
+                type: 'basic',
+                link: '/solutions/by-industry'
+            },
+            {
+                id: 'solutions.by-organisation-type',
+                title: 'By Organisation Type',
+                type: 'basic',
+                link: '/solutions/by-organisation-type'
             },
         ]
     }
 ];
 export const compactNavigation: TreoNavigationItem[] = [
     {
-        id: 'starter',
-        title: 'Starter',
+        id: 'products',
+        title: 'products',
         type: 'aside',
         icon: 'apps',
         children: [] // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
@@ -29,40 +54,56 @@ export const compactNavigation: TreoNavigationItem[] = [
 ];
 export const futuristicNavigation: TreoNavigationItem[] = [
     {
-        id: 'starter.example',
+        id: 'products.example',
         title: 'Example component',
         type: 'basic',
         icon: 'heroicons:chart-pie',
         link: '/example'
     },
     {
-        id: 'starter.dummy.1',
+        id: 'products.dummy.1',
         title: 'Dummy menu item #1',
         icon: 'heroicons:calendar',
         type: 'basic'
     },
     {
-        id: 'starter.dummy.2',
+        id: 'products.dummy.2',
         title: 'Dummy menu item #1',
         icon: 'heroicons:user-group',
         type: 'basic'
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
-    /*
     {
-        id: 'starter',
-        title: 'Anwendungsfälle',
+        id: 'products',
+        title: 'Products',
         type: 'group',
-        icon: 'apps',
+        icon: 'category',
         children: [] // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
     },
-    */
     {
-        title: 'Use cases',
+        id: 'solutions',
+        title: 'Solutions',
+        type: 'group',
+        icon: 'emoji_objects',
+        children: [] // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
+    },
+    {
+        title: 'Documentation',
         type: 'basic',
-        icon: 'apps',
+        icon: 'menu_book',
         link: '/use-cases'
     },
-    
+    {
+        title: 'Learn',
+        type: 'basic',
+        icon: 'school',
+        link: '/use-cases'
+    },
+    {
+        title: 'Partners',
+        type: 'basic',
+        icon: 'group',
+        link: '/use-cases'
+    },
 ];

@@ -44,7 +44,7 @@ export class ModernLayoutComponent implements OnInit, OnDestroy
         this._unsubscribeAll = new Subject();
 
         // Set the defaults
-        this.fixedHeader = false;
+        this.fixedHeader = true;
         this.fixedFooter = false;
     }
 
