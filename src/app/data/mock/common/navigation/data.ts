@@ -10,9 +10,9 @@ export const defaultNavigation: TreoNavigationItem[] = [
         children: [
             {
                 id: 'products.example',
-                title: 'Use cases',
+                title: 'Overview',
                 type: 'basic',
-                link: '/use-cases'
+                link: '/products'
             },
         ]
     },
@@ -22,6 +22,12 @@ export const defaultNavigation: TreoNavigationItem[] = [
         type: 'group',
         icon: 'apps',
         children: [
+            {
+                id: 'solutions',
+                title: 'Overview',
+                type: 'basic',
+                link: '/solutions'
+            },
             {
                 id: 'solutions.by-use-case',
                 title: 'By Use Case',
