@@ -126,6 +126,18 @@ export const appRoutes: Route[] = [
                 path: 'use-cases',
                 loadChildren: () => import('app/modules/use-case/use-case.module').then(module => module.UseCaseModule),
             },
+            {
+                path: 'documentations',
+                loadChildren: () => import('app/modules/documentation/documentation.module').then(module => module.DocumentationModule),
+            },
+            {
+                path: 'learn',
+                loadChildren: () => import('app/modules/learn/learn.module').then(module => module.LearnModule),
+            },
+            {
+                path: 'partners',
+                loadChildren: () => import('app/modules/partner/partner.module').then(module => module.PartnerModule),
+            },
 
             // 404 & Catch all
             /*

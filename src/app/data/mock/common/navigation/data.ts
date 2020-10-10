@@ -98,18 +98,18 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         title: 'Documentation',
         type: 'basic',
         icon: 'menu_book',
-        link: '/use-cases'
+        link: '/documentations'
     },
     {
         title: 'Learn',
         type: 'basic',
         icon: 'school',
-        link: '/use-cases'
+        link: '/learn'
     },
     {
         title: 'Partners',
         type: 'basic',
         icon: 'group',
-        link: '/use-cases'
+        link: '/partners'
     },
 ];

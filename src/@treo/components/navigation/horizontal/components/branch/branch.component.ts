@@ -16,19 +16,19 @@ export class TreoHorizontalNavigationBranchItemComponent implements OnInit, OnDe
 {
     // Child
     @Input()
-    child: boolean;
+    public child: boolean;
 
     // Item
     @Input()
-    item: TreoNavigationItem;
+    public item: TreoNavigationItem;
 
     // Mat menu
     @ViewChild('matMenu', {static: true})
-    matMenu: MatMenu;
+    public matMenu: MatMenu;
 
     // Name
     @Input()
-    name: string;
+    public name: string;
 
     // Private
     private _treoHorizontalNavigationComponent: TreoHorizontalNavigationComponent;

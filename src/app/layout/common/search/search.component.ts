@@ -7,15 +7,14 @@ import { debounceTime, filter, map, takeUntil } from 'rxjs/operators';
 import { TreoAnimations } from '@treo/animations/public-api';
 
 @Component({
-    selector     : 'search',
-    templateUrl  : './search.component.html',
-    styleUrls    : ['./search.component.scss'],
+    selector: 'search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    exportAs     : 'treoSearch',
-    animations   : TreoAnimations
+    exportAs: 'treoSearch',
+    animations: TreoAnimations
 })
-export class SearchComponent implements OnInit, OnDestroy
-{
+export class SearchComponent implements OnInit, OnDestroy {
     results: any[] | null;
     searchControl: FormControl;
 
@@ -47,8 +46,7 @@ export class SearchComponent implements OnInit, OnDestroy
         private _elementRef: ElementRef,
         private _httpClient: HttpClient,
         private _renderer2: Renderer2
-    )
-    {
+    ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
 
@@ -71,11 +69,9 @@ export class SearchComponent implements OnInit, OnDestroy
      * @param value
      */
     @Input()
-    set appearance(value: 'basic' | 'bar')
-    {
+    set appearance(value: 'basic' | 'bar') {
         // If the value is the same, return...
-        if ( this._appearance === value )
-        {
+        if (this._appearance === value) {
             return;
         }
 
@@ -97,8 +93,7 @@ export class SearchComponent implements OnInit, OnDestroy
         this._renderer2.addClass(this._elementRef.nativeElement, appearanceClassName);
     }
 
-    get appearance(): 'basic' | 'bar'
-    {
+    get appearance(): 'basic' | 'bar' {
         return this._appearance;
     }
 
@@ -107,11 +102,9 @@ export class SearchComponent implements OnInit, OnDestroy
      *
      * @param value
      */
-    set opened(value: boolean)
-    {
+    set opened(value: boolean) {
         // If the value is the same, return...
-        if ( this._opened === value )
-        {
+        if (this._opened === value) {
             return;
         }
 
@@ -119,20 +112,17 @@ export class SearchComponent implements OnInit, OnDestroy
         this._opened = value;
 
         // If opened...
-        if ( value )
-        {
+        if (value) {
             // Add opened class
             this._renderer2.addClass(this._elementRef.nativeElement, 'search-opened');
         }
-        else
-        {
+        else {
             // Remove opened class
             this._renderer2.removeClass(this._elementRef.nativeElement, 'search-opened');
         }
     }
 
-    get opened(): boolean
-    {
+    get opened(): boolean {
         return this._opened;
     }
 
@@ -142,19 +132,16 @@ export class SearchComponent implements OnInit, OnDestroy
      * @param value
      */
     @ViewChild('searchInput')
-    set searchInput(value: MatFormField)
-    {
+    set searchInput(value: MatFormField) {
         // Return if the appearance is basic, since we don't want
         // basic search to be focused as soon as the page loads
-        if ( this.appearance === 'basic' )
-        {
+        if (this.appearance === 'basic') {
             return;
         }
 
         // If the value exists, it means that the search input
         // is now in the DOM and we can focus on the input..
-        if ( value )
-        {
+        if (value) {
             // Give Angular time to complete the change detection cycle
             setTimeout(() => {
 
@@ -171,35 +158,32 @@ export class SearchComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Subscribe to the search field value changes
-        this.searchControl.valueChanges
-            .pipe(
-                debounceTime(this.debounce),
-                takeUntil(this._unsubscribeAll),
-                map((value) => {
+        this.searchControl.valueChanges.pipe(
+            debounceTime(this.debounce),
+            takeUntil(this._unsubscribeAll),
+            map((value) => {
 
-                    // Set the search results to null if there is no value or
-                    // the length of the value is smaller than the minLength
-                    // so the autocomplete panel can be closed
-                    if ( !value || value.length < this.minLength )
-                    {
-                        this.results = null;
-                    }
+                // Set the search results to null if there is no value or
+                // the length of the value is smaller than the minLength
+                // so the autocomplete panel can be closed
+                if (!value || value.length < this.minLength) {
+                    this.results = null;
+                }
 
-                    // Continue
-                    return value;
-                }),
-                filter((value) => {
+                // Continue
+                return value;
+            }),
+            filter((value) => {
 
-                    // Filter out undefined/null/false statements and also
-                    // filter out the values that are smaller than minLength
-                    return value && value.length >= this.minLength;
-                })
-            )
+                // Filter out undefined/null/false statements and also
+                // filter out the values that are smaller than minLength
+                return value && value.length >= this.minLength;
+            })
+        )
             .subscribe((value) => {
-                this._httpClient.post('api/common/search', {query: value})
+                this._httpClient.post('api/common/search', { query: value })
                     .subscribe((response: any) => {
                         this.results = response.results;
                     });
@@ -209,8 +193,7 @@ export class SearchComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
@@ -225,15 +208,12 @@ export class SearchComponent implements OnInit, OnDestroy
      *
      * @param event
      */
-    onKeydown(event): void
-    {
+    onKeydown(event): void {
         // Listen for escape to close the search
         // if the appearance is 'bar'
-        if ( this.appearance === 'bar' )
-        {
+        if (this.appearance === 'bar') {
             // Escape
-            if ( event.keyCode === 27 )
-            {
+            if (event.keyCode === 27) {
                 // Close the search
                 this.close();
             }
@@ -244,11 +224,9 @@ export class SearchComponent implements OnInit, OnDestroy
      * Open the search
      * Used in 'bar'
      */
-    open(): void
-    {
+    open(): void {
         // Return, if it's already opened
-        if ( this.opened )
-        {
+        if (this.opened) {
             return;
         }
 
@@ -260,11 +238,9 @@ export class SearchComponent implements OnInit, OnDestroy
      * Close the search
      * * Used in 'bar'
      */
-    close(): void
-    {
+    close(): void {
         // Return, if it's already closed
-        if ( !this.opened )
-        {
+        if (!this.opened) {
             return;
         }
 
