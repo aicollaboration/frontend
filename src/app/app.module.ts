@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
@@ -59,6 +62,11 @@ const routerConfig: ExtraOptions = {
 
         // amplify
         AmplifyUIAngularModule,
+        
+        // Forms
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
     ],
     bootstrap: [
         AppComponent,

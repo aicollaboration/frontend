@@ -18,6 +18,12 @@ export class ProductService {
     image: 'assets/images/cases/customer_segmentation.jpg',
     description: ``,
     category: this.customerAnalyticsCategory,
+  }, {
+    id: 2,
+    title: 'Risk based testing',
+    image: 'assets/images/cases/customer_segmentation.jpg',
+    description: ``,
+    category: this.customerAnalyticsCategory,
   }];
 
   public getProducts(): Observable<ProductModel[]> {

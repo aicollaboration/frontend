@@ -1,4 +1,25 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="header">
+        <div class="left">
+            <div class="breadcrumb">
+                <span class="path">asdfsad</span>
+                <!--
+                <span class="separator">/</span>
+                <span class="path">LEFT SIDEBAR</span>
+                <span class="separator">/</span>
+                <span class="path">FULLHEIGHT</span>
+                -->
+            </div>
+            <h1>asdfasdf</h1>
+        </div>
+
+        <div class="right">
+            <button mat-flat-button color="primary" (click)="openCreationDialog()">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Create product</span>
+            </button>
+        </div>
+    </div>
     <div class="main">
         <!--
         <h1>Kein Ahnung welcher Use case?</h1>
@@ -15,7 +36,8 @@
         </div>
 
         <div class="cards">
-            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'" *ngFor="let product of products$ | async" [routerLink]="['/products', product.id]">
+            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
+                *ngFor="let product of products$ | async" [routerLink]="['/products', product.id]">
                 <div class="relative">
                     <div class="absolute flex flex-col top-0 right-0 p-3">
                         <button mat-icon-button>
