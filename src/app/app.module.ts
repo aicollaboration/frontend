@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
+import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -55,9 +56,12 @@ const routerConfig: ExtraOptions = {
             logOnly: environment.production
         }),
         EffectsModule.forRoot([]),
+
+        // amplify
+        AmplifyUIAngularModule,
     ],
     bootstrap: [
-        AppComponent
+        AppComponent,
     ]
 })
 export class AppModule {
