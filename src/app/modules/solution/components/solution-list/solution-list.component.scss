@@ -1,0 +1,32 @@
+@import 'treo';
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
+}
+
+solutions {
+	.main {
+		background-color: #ddeef2;
+		padding-top: 0 !important;
+
+		.cards {
+			display: flex;
+			align-items: flex-start;
+			flex-wrap: wrap;
+			margin: 0 -16px;
+
+			treo-card {
+				margin: 16px;
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+
+	.viewer {
+		width: 50%;
+		height: 95vh;
+	}
+	.insights {
+		width: 50%;
+
+		#pdfQueryInput {
+			background-color: grey;
+			width: 100%;
+			padding: 18px;
+			font-size: 22px;
+		}
+	}
+}
+
+.pdf-viewer-wrap {
+	display: flex;
+	height: 95vh;
+
+	.pdf-viewer-controls-wrap {
+		width: 20%;
+
+		.pdf-viewer-viewer-window {
+			width: 80%;
+			overflow: auto;
+		}
+
+		.pdf-viewer-controls {
+			overflow: auto;
+		}
+
+		.pdfv-control {
+			padding: 10px;
+
+			button {
+				padding: 5px 10px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+		}
+	}
+}

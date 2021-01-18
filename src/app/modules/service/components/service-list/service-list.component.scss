@@ -1,0 +1,41 @@
+@import 'treo';
+
+.cards {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin: 0 -16px;
+}
+
+.card {
+	cursor: pointer;
+}
+
+treo-card {
+	margin: 16px;
+}
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
+}
+
+services {
+	.main {
+		background-color: #ddeef2;
+		padding-top: 0 !important;
+	}
+	.header {
+		background-image: url('/assets/illustrations/1.svg');
+		background-repeat: no-repeat;
+		background-position: 0px -120px;
+		height: 350px;
+	}
+}

@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "restApi",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/items"
+        }
+    ],
+    "resourceName": "RestAPI",
+    "apiName": "RestAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "restApi"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-aiplatform-dev-195527-authRole",
+        "unAuthRoleName": "amplify-aiplatform-dev-195527-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "restApi",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+  "hosted-zone:account=507200175629:domainName=aiplatform.space:region=eu-central-1": {
+    "Id": "/hostedzone/Z0563199160P33R2F1FOY",
+    "Name": "aiplatform.space."
+  },
+  "availability-zones:account=507200175629:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ],
+  "availability-zones:account=120722027694:region=eu-central-1": [
+    "eu-central-1a",
+    "eu-central-1b",
+    "eu-central-1c"
+  ]
+}

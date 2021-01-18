@@ -1,0 +1,119 @@
+<mat-tab-group [@.disabled]="true">
+    <mat-tab label="Overview">
+        <div class="container">
+            <input (change)="onFileSelected()" type="file" id="file">
+        </div>
+        <hr>
+        <div class="container">
+            <div class="viewer">
+                <pdf-viewer [src]="pdfSrc" [render-text]="renderText" [render-text-mode]="renderTextMode"
+                    [rotation]="rotation" [zoom]="zoom" [zoom-scale]="zoomScale" [original-size]="originalSize"
+                    [fit-to-page]="fitToPage" [show-all]="showAll" [autoresize]="autoresize"
+                    [show-borders]="showBorders" (after-load-complete)="onLoadComplete($event)"
+                    (page-rendered)="pageRendered($event)" (text-layer-rendered)="textLayerRendered($event)"
+                    (error)="onError($event)" (on-progress)="onProgress($event)">
+                </pdf-viewer>
+            </div>
+            <div class="insights">
+                <h1>{{ metadata['dc:title'] }} ({{ totalPages}} pages)</h1>
+                <h3>Search</h3>
+                <div class="">
+                    <input #queryInp id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
+                        (input)="searchQueryChanged($event.target.value)"
+                        (keyup.enter)="searchQueryChanged(queryInp.value)">
+                </div>
+
+                <h3>Table of contents</h3>
+                <pdf-table-of-contents [tree]="tree"></pdf-table-of-contents>
+
+                <h3>Metadata</h3>
+                <ul>
+                    <li *ngFor="let item of metadata | keyvalue"><b>{{ item.key }}</b>: {{ item.value }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!--
+        <div class="pdf-viewer-wrap">
+            <div class="pdf-viewer-controls-wrap">
+                <div class="pdf-viewer-controls">
+                    <div class="pdfv-control" *ngIf="renderText">
+                        Search:
+                        <input #queryInp id="pdfQueryInput" type="text" placeholder="Search..." [value]="pdfQuery"
+                            (input)="searchQueryChanged($event.target.value)"
+                            (keyup.enter)="searchQueryChanged(queryInp.value)">
+                    </div>
+                    <div class="pdfv-control">
+                        Select PDF:
+                        <input (change)="onFileSelected()" type="file" id="file">
+                        <div>Total Pages:{{totalPages}}</div>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="originalSize = !originalSize">[original-size]="{{originalSize}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="fitToPage = !fitToPage">[fit-to-page]="{{fitToPage}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="showAll = !showAll">[show-all]="{{showAll}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="autoresize = !autoresize">[autoresize]="{{autoresize}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="showBorders = !showBorders">[show-borders]="{{showBorders}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="renderText = !renderText">[render-text]="{{renderText}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        Render Text Mode
+                        <select name="renderTextMode" [(ngModel)]="renderTextMode">
+                            <option [value]="o" *ngFor="let o of renderTextModes">{{o}}</option>
+                        </select>
+                        <button (click)="renderTextMode = !renderTextMode">[render-text-mode]="{{renderTextMode}}"</button>
+                    </div>
+                    <div class="pdfv-control">
+                        <button (click)="zoomOut()">-</button> <button (click)="zoomIn()">+</button>
+                        zoom (*{{zoom}})
+                    </div>
+                    <div class="pdfv-control">
+                        zoom-scale
+                        <select name="zoomScales" [(ngModel)]="zoomScale">
+                            <option [value]="o" *ngFor="let o of zoomScales">{{o}}</option>
+                        </select>
+                    </div>
+
+                    <div class="pdfv-control">
+                        <button (click)="rotateDoc()"></button>
+                        Rotation (*{{rotation}}°)
+                    </div>
+                </div>
+            </div>
+
+            <div class="pdf-viewer-viewer-window">
+                <pdf-viewer [src]="pdfSrc" [render-text]="renderText" [render-text-mode]="renderTextMode"
+                    [rotation]="rotation" [zoom]="zoom" [zoom-scale]="zoomScale" [original-size]="originalSize"
+                    [fit-to-page]="fitToPage" [show-all]="showAll" [autoresize]="autoresize"
+                    [show-borders]="showBorders" (after-load-complete)="onLoadComplete($event)"
+                    (page-rendered)="pageRendered($event)" (text-layer-rendered)="textLayerRendered($event)"
+                    (error)="onError($event)" (on-progress)="onProgress($event)">
+                </pdf-viewer>
+            </div>
+
+        </div>
+        -->
+    </mat-tab>
+    <mat-tab label="Features">
+        Features
+    </mat-tab>
+    <mat-tab label="Pricing">
+        Pricing
+    </mat-tab>
+    <mat-tab label="FAQs">
+        FAQs
+    </mat-tab>
+    <mat-tab label="Resources">
+        Resources
+    </mat-tab>
+</mat-tab-group>

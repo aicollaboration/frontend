@@ -1,0 +1,21 @@
+<div class="content-layout fullwidth-tabs-normal-scroll" *ngIf="service$ | async as service">
+    <div class="header">
+        <div class="left">
+            <div class="breadcrumb">
+                <span class="path">Services</span>
+                <span class="separator">/</span>
+                <span class="path">{{ service.category.title }}</span>
+            </div>
+            <h1>{{ service.title }}</h1>
+            <h3>{{ service.subtitle }}</h3>
+        </div>
+
+        <div class="right">
+
+        </div>
+    </div>
+
+    <div class="main">
+        <service-loader [service]="service"></service-loader>
+    </div>
+</div>

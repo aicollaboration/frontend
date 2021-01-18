@@ -1,0 +1,17 @@
+<div class="content-layout fullwidth-basic-normal-scroll">
+    <div class="main">
+        <div class="header">
+
+        </div>
+        <div class="faqs">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let question of questions">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>{{ question.question }}</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    {{ question.answer }}
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="content-layout fullwidth-tabs-normal-scroll" *ngIf="solution$ | async as solution">
+    <div class="header">
+        <div class="left">
+            <div class="breadcrumb">
+                <span class="path">Solutions</span>
+                <span class="separator">/</span>
+                <span class="path">{{ solution.category.title }}</span>
+            </div>
+            <h1>{{ solution.title }}</h1>
+            <h3>{{ solution.subtitle }}</h3>
+        </div>
+
+        <div class="right">
+
+            <button mat-flat-button color="primary" (click)="openCreationDialog()">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Deploy solution</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main">
+        <mat-tab-group [@.disabled]="true">
+            <mat-tab label="Overview">
+                <solution-overview [solution]="solution"></solution-overview>
+            </mat-tab>
+            <mat-tab label="Features">
+                Features
+            </mat-tab>
+            <mat-tab label="Pricing">
+                Pricing
+            </mat-tab>
+            <mat-tab label="FAQs">
+                FAQs
+            </mat-tab>
+            <mat-tab label="Resources">
+                Resources
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

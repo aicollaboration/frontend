@@ -1,0 +1,58 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="header">
+        <div class="left">
+            <h1>Solutions</h1>
+        </div>
+
+        <div class="right">
+            <button class="mr-4" mat-flat-button [routerLink]="['/solutions', 'create']">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Create solution</span>
+            </button>
+            <button mat-flat-button color="primary" [routerLink]="['/problems', 'submit']">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Submit problem</span>
+            </button>
+        </div>
+    </div>
+    <div class="main">
+        <div *ngIf="errors$ | async as errors">
+            <ul *ngIf="errors.length > 0">
+                <li *ngFor="let error of errors">{{ error }}</li>
+            </ul>
+        </div>
+
+        <div class="cards">
+            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'" *ngFor="let solution of solutions$ | async" [routerLink]="['/solutions', 'detail', solution.objectId]">
+                <div class="relative">
+                    <div class="absolute flex flex-col top-0 right-0 p-3">
+                        <button mat-icon-button>
+                            <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
+                            </mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
+                            </mat-icon>
+                        </button>
+                    </div>
+                    <img class="object-cover" [src]="solution.image" *ngIf="solution.image">
+                </div>
+                <div class="m-8 mb-0">
+                    <div class="flex flex-col">
+                        <div class="text-2xl leading-tight">{{ solution.title }}</div>
+                    </div>
+                    <div class="flex items-center text-md" *ngIf="solution.description">
+                        <hr class="border-b my-6">
+                        {{ solution.description }}
+                    </div>
+                    <div class="mt-6 -mx-8">
+                        <button
+                            class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
+                            mat-flat-button color="primary">Show</button>
+                    </div>
+                </div>
+            </treo-card>
+        </div>
+
+    </div>
+</div>

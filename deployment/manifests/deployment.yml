@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aicp-frontend
+spec:
+  selector:
+    matchLabels:
+      app: aicp-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: aicp-frontend
+    spec:
+      containers:
+      - name: aicp-frontend
+        image: okteto.dev/aicp-frontend:latest
+        ports:
+        - containerPort: 80

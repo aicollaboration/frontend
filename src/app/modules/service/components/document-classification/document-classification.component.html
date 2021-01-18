@@ -1,0 +1,66 @@
+<mat-tab-group [@.disabled]="true">
+    <mat-tab label="Overview">
+        <form [formGroup]="form" class="flex flex-col overflow-hidden">
+            <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+                <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                    <p class="text-lg font-medium">Text</p>
+                    <p class="text-secondary mb-6">
+                        Define the context in which you want to search for the answer to your question
+                    </p>
+                </div>
+                <div class="flex-auto min-w-64">
+                    <div class="flex">
+                        <mat-form-field class="flex-auto">
+                            <mat-label>Text to classify</mat-label>
+                            <textarea matInput formControlName="text" class="h-40"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <mat-divider class="mt-4 mb-12"></mat-divider>
+
+            <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+                <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                    <p class="text-lg font-medium">Category</p>
+                    <p class="text-secondary mb-6">
+                        The following answer was found in the context
+                    </p>
+                </div>
+                <div class="flex-auto min-w-64">
+                    <div class="flex text-3xl">{{ answer }}</div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
+                <button mat-button>
+                    Cancel
+                </button>
+                <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [class.spinner]="loading"
+                    [disabled]="loading" (click)="classify()">
+                    Classify document
+                </button>
+            </div>
+        </form>
+    </mat-tab>
+    <mat-tab label="API">
+        <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+            <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                <p class="text-lg font-medium">Angular API</p>
+                <p class="text-secondary mb-6">
+                    Define the context in which you want to search for the answer to your question
+                </p>
+            </div>
+            <div class="flex-auto min-w-64">
+                <div class="flex">
+                    <code>const url = `http://45c5dc40-default-fargateek-91b6-1077349412.eu-central-1.elb.amazonaws.com/`;
+const path = `api/1.0/predict`;
+const response = this.httpClient.post(url + path, {{ '{' }} context: '', question: '' });
+</code>
+                </div>
+            </div>
+        </div>
+
+        <mat-divider class="mt-4 mb-12"></mat-divider>
+    </mat-tab>
+</mat-tab-group>
