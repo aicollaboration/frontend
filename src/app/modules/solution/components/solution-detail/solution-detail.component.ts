@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { SolutionModel } from '../../models/solution.model';
 import { loadSolutionAction } from '../../state/solution.actions';
 import { getSolution, State } from '../../state/solution.reducer';
+import { SolutionDeploymentComponent } from '../solution-deployment/solution-deployment.component';
 
 @Component({
     selector: 'solution',
