@@ -25,6 +25,7 @@ deploy-kubernetes:
     - master
   stage: deploy
   script:
+    - echo $CLUSTER_NAME
     - kubectl config set-cluster "$CLUSTER_NAME" --server="$URL" --insecure-skip-tls-verify=true
     - kubectl config set-credentials "$USER" --token="$TOKEN"
     - kubectl config set-context "$CONTEXT" --cluster="$CLUSTER_NAME" --user="$USER"
