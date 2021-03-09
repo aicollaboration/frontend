@@ -149,6 +149,10 @@ export const appRoutes: Route[] = [
                 path: 'partners',
                 loadChildren: () => import('app/modules/partner/partner.module').then(module => module.PartnerModule),
             },
+            {
+                path: 'events',
+                loadChildren: () => import('app/modules/event/event.module').then(module => module.EventModule),
+            },
 
             // 404 & Catch all
             /*
