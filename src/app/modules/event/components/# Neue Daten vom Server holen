@@ -1,0 +1,12 @@
+# Neue Daten vom Server holen
+git pull
+
+
+# Daten zur lokalen stage hinzufügen
+git add .
+
+# Daten zum lokalen Comit hinzufügen
+git commit -m "Nachricht"
+
+# Daten zum Server senden
+git push
