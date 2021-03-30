@@ -1,7 +1,0 @@
-{
-    "tableName": "rest",
-    "partitionKeyName": "id",
-    "partitionKeyType": "S",
-    "sortKeyName": "title",
-    "sortKeyType": "S"
-}
