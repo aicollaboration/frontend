@@ -50,6 +50,7 @@
     "@nlpjs/core": "^4.14.0",
     "@nlpjs/lang-de": "^4.14.0",
     "@schematics/angular": "^9.1.8",
+    "@supabase/supabase-js": "^1.4.2",
     "apexcharts": "3.19.3",
     "aws-amplify": "^3.3.3",
     "aws-sdk": "^2.771.0",
