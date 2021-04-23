@@ -1,17 +1,13 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TreoAnimations } from '@treo/animations';
 import { AuthService } from 'app/core/auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import Backendless from 'backendless';
-
-
 
 @Component({
     selector: 'auth-sign-in',
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     animations: TreoAnimations
 })
 export class AuthSignInComponent implements OnInit {
@@ -21,33 +17,23 @@ export class AuthSignInComponent implements OnInit {
     /**
      * Constructor
      *
-     * @param {ActivatedRoute} activatedRoute
      * @param {AuthService} authService
      * @param {FormBuilder} formBuilder
      * @param {Router} router
      */
     constructor(
-        private activatedRoute: ActivatedRoute,
         private authService: AuthService,
         private formBuilder: FormBuilder,
         private router: Router
     ) {
-        // Set the defaults
         this.message = null;
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
     ngOnInit(): void {
         // Create the form
         this.signInForm = this.formBuilder.group({
-            email: ['tobias.oberrauch@cgi.com'],
-            password: ['yxcyxcyxc'],
+            email: ['tobias.oberrauch@gmx.de'],
+            password: ['123123'],
             rememberMe: ['']
         });
     }
@@ -59,7 +45,7 @@ export class AuthSignInComponent implements OnInit {
     /**
      * Sign in
      */
-    signIn(): void {
+    async signIn() {
         // Disable the form
         this.signInForm.disable();
 
@@ -70,9 +56,11 @@ export class AuthSignInComponent implements OnInit {
         const credentials = this.signInForm.value;
 
         // Sign in
-        this.authService.signIn(credentials).then((loggedInUser) => {
-            this.router.navigateByUrl('/solutions');
-        }).catch((error) => {
+        try {
+            const user = await this.authService.signIn(credentials.email, credentials.password);
+            // this.router.navigate(['/solutions']);
+            window.location.pathname = "/solutions";
+        } catch (error) {
             this.message = {
                 appearance: 'outline',
                 content: error,
@@ -82,6 +70,6 @@ export class AuthSignInComponent implements OnInit {
             };
 
             this.signInForm.enable();
-        })
+        }
     }
 }

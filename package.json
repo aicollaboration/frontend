@@ -4,7 +4,7 @@
   "license": "https://themeforest.net/licenses/standard",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4000 --open",
+    "start": "ng serve --port 4100 --open",
     "start:mem": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng serve --open",
     "build": "ng build",
     "build:prod": "ng build --prod",
@@ -50,7 +50,7 @@
     "@nlpjs/core": "^4.14.0",
     "@nlpjs/lang-de": "^4.14.0",
     "@schematics/angular": "^9.1.8",
-    "@supabase/supabase-js": "^1.4.2",
+    "@supabase/supabase-js": "^1.11.7",
     "apexcharts": "3.19.3",
     "aws-amplify": "^3.3.3",
     "aws-sdk": "^2.771.0",

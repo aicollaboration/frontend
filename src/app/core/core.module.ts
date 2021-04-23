@@ -11,11 +11,13 @@ import { AuthService } from 'app/core/auth/auth.service';
     ],
     providers: [
         AuthService,
+        /*
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true,
         }
+        */
     ]
 })
 export class CoreModule {

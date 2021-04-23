@@ -17,20 +17,20 @@ export class AuthSignOutComponent implements OnInit, OnDestroy {
     countdownMapping: any;
 
     // Private
-    private _unsubscribeAll: Subject<any>;
+    private unsubscribeAll: Subject<any>;
 
     /**
      * Constructor
      *
-     * @param {AuthService} _authService
-     * @param {Router} _router
+     * @param {AuthService} authService
+     * @param {Router} router
      */
     constructor(
-        private _authService: AuthService,
-        private _router: Router
+        private authService: AuthService,
+        private router: Router
     ) {
         // Set the private default
-        this._unsubscribeAll = new Subject();
+        this.unsubscribeAll = new Subject();
 
         // Set the defaults
         this.countdown = 5;
@@ -49,26 +49,24 @@ export class AuthSignOutComponent implements OnInit, OnDestroy {
      */
     ngOnInit(): void {
         // Sign out
-        this._authService.signOut();
+        this.authService.signOut();
 
         // Get the duration
         const duration = this.countdown;
 
         // Redirect after the countdown
-        interval(1000)
-            .pipe(
-                take(duration),
-                takeUntil(this._unsubscribeAll)
-            )
-            .subscribe(() => {
-                this.countdown--;
+        interval(1000).pipe(
+            take(duration),
+            takeUntil(this.unsubscribeAll)
+        ).subscribe(() => {
+            this.countdown--;
+        },
+            () => {
             },
-                () => {
-                },
-                () => {
-                    this._router.navigate(['sign-in']);
-                }
-            );
+            () => {
+                this.router.navigate(['sign-in']);
+            }
+        );
     }
 
     /**
@@ -76,8 +74,8 @@ export class AuthSignOutComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
     }
 
 
