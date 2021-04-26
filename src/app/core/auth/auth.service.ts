@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '@supabase/gotrue-js';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { Observable, of } from 'rxjs';
-import { SupabaseService } from './supabase.service';
 
 @Injectable()
 export class AuthService {

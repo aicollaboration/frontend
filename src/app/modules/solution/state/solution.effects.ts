@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
-import { SolutionService } from '../services/solution.service';
 import { loadSolutionAction, loadSolutionsAction, errorAction, loadSolutionsSuccessAction, loadSolutionSuccessAction } from './solution.actions';
+import { SolutionService } from '../services/solution.service';
 
 @Injectable()
 export class SolutionEffects {
