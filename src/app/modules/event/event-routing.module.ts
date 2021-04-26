@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LearnOverviewComponent } from './components/learn-overview.component';
+import { EventOverviewComponent } from './components/event-overview/event-overview.component';
 
-export const routes: Routes = [{
+const routes: Routes = [{
     path: '',
-    component: LearnOverviewComponent,
+    component: EventOverviewComponent,
 }];
 
 @NgModule({
@@ -12,6 +12,6 @@ export const routes: Routes = [{
         RouterModule.forChild(routes),
     ],
 })
-export class LearnRoutingModule {
+export class EventRoutingModule {
 
 }

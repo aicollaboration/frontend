@@ -130,9 +130,9 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         link: '/learn'
     },
     {
-        title: 'Partners',
+        title: 'Events',
         type: 'basic',
         icon: 'group',
-        link: '/partners'
+        link: '/events'
     },
 ];

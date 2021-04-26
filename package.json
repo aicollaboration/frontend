@@ -50,8 +50,12 @@
     "@nlpjs/core": "^4.14.0",
     "@nlpjs/lang-de": "^4.14.0",
     "@schematics/angular": "^9.1.8",
+<<<<<<< HEAD
     "@supabase/supabase-js": "^1.11.7",
     "apexcharts": "3.19.3",
+=======
+    "apexcharts": "^3.25.0",
+>>>>>>> 6623a1051a47eebf2ac276323abd771af270dbe5
     "aws-amplify": "^3.3.3",
     "aws-sdk": "^2.771.0",
     "backendless": "^6.1.5",
@@ -76,7 +80,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.1",
-    "@angular/cli": "10.0.0",
+    "@angular/cli": "^10.2.3",
     "@angular/compiler-cli": "10.0.1",
     "@angular/language-service": "10.0.1",
     "@types/crypto-js": "3.1.47",

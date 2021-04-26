@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="content-layout fullwidth-basic-normal-scroll">
 
 
@@ -40,21 +41,32 @@
 
             </div>
 
+=======
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="header">
+        <div class="left">
+            <h1>Documentation</h1>
+>>>>>>> 6623a1051a47eebf2ac276323abd771af270dbe5
         </div>
 
-        <div class="faqs">
-            <h2>Most frequently asked questions</h2>
-            <h6>Here are the most frequently asked questions you may check before getting started</h6>
-
-            <mat-accordion>
-                <mat-expansion-panel *ngFor="let faq of faqCategory">
-                    <mat-expansion-panel-header [collapsedHeight]="'56px'">
-                        <mat-panel-title>{{faq.question}}</mat-panel-title>
-                    </mat-expansion-panel-header>
-                    {{faq.answer}}
-                </mat-expansion-panel>
-            </mat-accordion>
+        <div class="right">
+            <button class="mr-4" mat-flat-button [routerLink]="['/solutions', 'create']">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Create solution</span>
+            </button>
+            <button mat-flat-button color="primary" [routerLink]="['/problems', 'submit']">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Submit problem</span>
+            </button>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 
+=======
+    <div class="main">
+        MAIN
+
+    </div>
+</div>
+>>>>>>> 6623a1051a47eebf2ac276323abd771af270dbe5
