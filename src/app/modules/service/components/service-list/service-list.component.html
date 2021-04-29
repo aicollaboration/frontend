@@ -14,7 +14,7 @@
     <div class="main">
         <div class="cards">
             <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
-                *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.objectId]">
+                *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.id]">
                 <div class="relative">
                     <div class="absolute flex flex-col top-0 right-0 p-3">
                         <button mat-icon-button>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="m-8 mb-0">
                     <div class="flex flex-col">
-                        <div class="text-2xl leading-tight">{{ service.title }}</div>
+                        <div class="text-2xl leading-tight">{{ service.name }}</div>
                     </div>
                     <div *ngIf="service.description">
                         <hr class="border-b my-6">

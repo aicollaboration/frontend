@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import Backendless from 'backendless';
-import { from, Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { ServiceModel } from '../models/service.model';
 
 @Injectable({
@@ -17,9 +17,10 @@ export class ServiceService {
         this.supabase = createClient(supabaseUrl, supabaseKey);
     }
     
-    public getServices(): Observable<ServiceModel[]> {
-        debugger;
-        return from(Backendless.Data.of('services').find<ServiceModel>());
+    public async getServices() {
+        const { data, error } = await this.supabase.from<ServiceModel>('Services').select('*');
+ 
+        return data;
     }
 
     public getService(serviceId: string): Observable<ServiceModel> {
