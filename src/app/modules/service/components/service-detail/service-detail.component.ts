@@ -1,3 +1,4 @@
+import { ServiceModel } from './../../models/service.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -13,7 +14,7 @@ import { getServiceSelector, State } from '../../state/service.reducer';
     ],
 })
 export class ServiceDetailComponent implements OnInit {
-    public service$: Observable<object>;
+    public service$: Observable<ServiceModel>;
 
     public constructor(
         private route: ActivatedRoute,

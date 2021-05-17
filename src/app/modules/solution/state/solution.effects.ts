@@ -10,24 +10,20 @@ export class SolutionEffects {
     public loadSolutions$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(loadSolutionsAction),
-            mergeMap(() => this.solutionService.getSolutions().pipe(
+            switchMap(() => this.solutionService.getSolutions()),
                 map(solutions => loadSolutionsSuccessAction({ solutions })),
                 catchError(error => of(errorAction({ errors: [error] })))
-            ))
-        );
+         );
     });
 
-    public loadSolution$ = createEffect(() => {
+    public loadService$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(loadSolutionAction),
-            switchMap((value, index) => {
-                return this.solutionService.getSolution(value.solutionId).pipe(
-                    map(solution => loadSolutionSuccessAction({ solution })),
-                    catchError(error => of(errorAction({ errors: [error] })))
+            switchMap(action => this.solutionService.getSolution(action.solutionId)),
+            map(solution => loadSolutionSuccessAction({ solution })),
+            catchError(error => of(errorAction({ errors: [error] })))
                 );
-            })
-        );
-    });
+      });
 
     constructor(private actions$: Actions, private solutionService: SolutionService) {
 

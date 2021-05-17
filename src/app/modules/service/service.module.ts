@@ -33,16 +33,21 @@ import { ServiceDetailComponent } from './components/service-detail/service-deta
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { ServiceLoaderComponent } from './components/service-loader/service-loader.component';
 import { ServiceLoaderDirective } from './components/service-loader/service-loader.directive';
+import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
 import { TextSummarizationComponent } from './components/text-summarization/text-summarization.component';
 import { WebsiteAuditComponent } from './components/website-audit/website-audit.component';
 import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 
 @NgModule({
     declarations: [
         ServiceListComponent,
         ServiceDetailComponent,
+        ServiceEditorComponent,
         ServiceLoaderComponent,
         ServiceCreationComponent,
         PdfAnalyzerComponent,
@@ -87,6 +92,10 @@ import { serviceReducer } from './state/service.reducer';
         MatDialogModule,
         ReactiveFormsModule,
         MatFormFieldModule,
+
+       // dropzone
+        NgxDropzoneModule,
+        DragDropModule,
 
         StoreModule.forFeature('services', serviceReducer),
         EffectsModule.forFeature([ServiceEffects]),

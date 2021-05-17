@@ -4,15 +4,19 @@
             <div class="breadcrumb">
                 <span class="path">Services</span>
                 <span class="separator">/</span>
-                <span class="path">{{ service.category.title }}</span>
+           <!----    <span class="path">{{ service.category.name }}</span> -->
             </div>
-            <h1>{{ service.title }}</h1>
-            <h3>{{ service.subtitle }}</h3>
+            <h1>{{ service.name }}</h1>
+       <!--   <h3>{{ service.subtitle }}</h3>  -->
         </div>
 
         <div class="right">
-
+            <button mat-flat-button color="primary" [routerLink]="['/services', 'edit', service.id]">
+                <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
+                <span class="ml-2">Edit service</span>
+            </button>
         </div>
+
     </div>
 
     <div class="main">

@@ -9,6 +9,7 @@ import { ServiceModel } from '../models/service.model';
 })
 export class ServiceService {
     private supabase: SupabaseClient;
+    supabaseURL: any;
 
     constructor() {
         const supabaseUrl = 'https://exrcpfgiopxnpdbziykr.supabase.co';
@@ -23,12 +24,14 @@ export class ServiceService {
         return data;
     }
 
-    public getService(serviceId: string): Observable<ServiceModel> {
-        return from(Backendless.Data.of('services').findById<ServiceModel>(serviceId, { relations: ['category'] }));
+    public async getService(serviceId: string) {
+       const { data, error } = await this.supabase.from<ServiceModel>('Services').select("*").eq('id', serviceId)
+     return data[0];
     }
 
     public async createService(service: any) {
-        const { data, error } = await this.supabase.from('Services').insert([service]);
+       debugger;
+        const { data, error } = await this.supabase.from<ServiceModel>('Services').insert([service]);
 
         if (error) {
             throw error;
@@ -37,8 +40,8 @@ export class ServiceService {
         return data;
     }
 
-    public async updateService(service: any, id: number) {
-        const { data, error } = await this.supabase.from('Services').update(service).eq('id', id);
+    public async updateService(service: any, serviceId: string) {
+        const { data, error } = await this.supabase.from('Services').update(service).eq('id', serviceId);
 
         if (error) {
             throw error;

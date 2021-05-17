@@ -17,19 +17,20 @@ export class SolutionService {
       this.supabase = createClient(supabaseUrl, supabaseKey);
   }
 
-  public getSolutions(): Observable<SolutionModel[]> {
-    const queryBuilder = Backendless.DataQueryBuilder.create();
-    queryBuilder.setPageSize(100);
+  public async getSolutions() {
+    const { data, error } = await this.supabase.from<SolutionModel>('Solutions').select('*');
 
-    return from(Backendless.Data.of('solutions').find<SolutionModel>(queryBuilder));
+    return data;
   }
 
-  public getSolution(solutionId: string): Observable<SolutionModel> {
-    return from(Backendless.Data.of('solutions').findById<SolutionModel>(solutionId, { relations: ['category'] }));
+  public async getSolution(solutionId: string) {
+  const { data, error } = await this.supabase.from<SolutionModel>('Solutions').select("*").eq('id', solutionId)
+
+  return data[0];
   }
 
-  public async createSolution(Solution: any) {
-      const { data, error } = await this.supabase.from('Solutions').insert([Solution]);
+  public async createSolution(solution: any) {
+      const { data, error } = await this.supabase.from('Solutions').insert([solution]);
 
       if (error) {
           throw error;
@@ -38,8 +39,8 @@ export class SolutionService {
       return data;
   }
 
-  public async updateSolution(Solution: any, id: number) {
-      const { data, error } = await this.supabase.from('Solutions').update(Solution).eq('id', id);
+  public async updateSolution(solution: any, solutionId: string) {
+      const { data, error } = await this.supabase.from('Solutions').update(solution).eq('id', solutionId);
 
       if (error) {
           throw error;

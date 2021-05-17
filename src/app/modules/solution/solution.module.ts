@@ -14,6 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTreeModule } from '@angular/material/tree';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -24,6 +25,7 @@ import { ProblemSubmitterComponent } from './components/problem-submitter/proble
 import { SolutionCreationComponent } from './components/solution-creation/solution-creation.component';
 import { SolutionDetailOverviewComponent } from './components/solution-detail-overview/solution-detail-overview.component';
 import { SolutionDetailComponent } from './components/solution-detail/solution-detail.component';
+import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
@@ -35,6 +37,7 @@ import { solutionReducer } from './state/solution.reducer';
         SolutionDetailComponent,
         SolutionDetailOverviewComponent,
         SolutionCreationComponent,
+        SolutionEditorComponent,
         ProblemSubmitterComponent,
     ],
     imports: [
@@ -55,6 +58,7 @@ import { solutionReducer } from './state/solution.reducer';
         MatDividerModule,
         MatRadioModule,
         MatTabsModule,
+        MatTreeModule,
 
         // Forms
         FormsModule,
