@@ -6,7 +6,6 @@
         </div>
     </div>
   
-
     <div class="main">
         <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
             <mat-form-field>
@@ -18,19 +17,13 @@
                 <textarea matInput formControlName="description" rows="5"></textarea> 
             </mat-form-field>
             
- <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
-            <mat-form-field>
-                <mat-label>Which problem should be solved?</mat-label>
-                <input matInput formControlName="problem" required maxlength="250" type="text">
-            </mat-form-field>
-        -->
-
+ 
             <div class="actions">
                 <div class="buttons">
                     <button class="save-button" mat-stroked-button type="submit" (click)="updateService()">

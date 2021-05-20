@@ -11,14 +11,13 @@
         <form [formGroup]="solutionForm" (ngSubmit)="onSubmit()">
             <mat-form-field>
                 <mat-label>Title</mat-label>
-                <input matInput [(ngModel)]="solution.name"formControlName="name" required maxlength="250" type="text"> 
+                <input matInput formControlName="name" required maxlength="250" type="text"> 
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <textarea matInput [(ngModel)]="solution.description" formControlName="description" required rows="5"></textarea> 
+                <textarea matInput formControlName="description" required rows="5"></textarea> 
             </mat-form-field>
             
- <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
@@ -27,9 +26,8 @@
             </ngx-dropzone>
             <mat-form-field>
                 <mat-label>Which problem should be solved?</mat-label>
-                <input matInput formControlName="problem" required maxlength="250" type="text">
+                <input matInput formControlName="file" required maxlength="250" type="text">
             </mat-form-field>
-        -->
 
             <div class="actions">
                 <div class="buttons">

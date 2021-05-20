@@ -23,10 +23,14 @@ export class ServiceEditorComponent implements OnInit {
     public service: ServiceModel;
     public serviceModel = new ServiceModel();
     private serviceId: string;
+    public files: File[] = [];
+    public path : string;
+    bucket : string;
 
     public serviceForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
+        file: new FormControl(''),
        // img: new FormControl(''),
     });
 
@@ -36,17 +40,14 @@ export class ServiceEditorComponent implements OnInit {
         private store: Store<State>,
      ) {}
 
-
     ngOnInit(): void {
         this.service$ = this.store.select(getServiceSelector);
 
     this.service$.subscribe(serviceModel => {
-        //debugger;
-        if (serviceModel) {
+         if (serviceModel) {
             this.serviceForm.patchValue(serviceModel)
         }
     })
-
         this.route.params.subscribe(params => {
             this.serviceId = params.id;
             this.store.dispatch(loadServiceAction({ serviceId: params.id }));
@@ -57,10 +58,37 @@ export class ServiceEditorComponent implements OnInit {
         console.warn(this.serviceForm.value);
     }
 
+
     updateService() {
         debugger;
-        this.serviceService.updateService(this.serviceForm.value, this.serviceId).then(data => {
+        this.uploadFile();
+     /*   this.serviceService.updateService(this.serviceForm.value, this.serviceId).then(data => {
             console.log(data)
         });
+        */
     }
+
+    public saveAndClose(): void {
+
+    }
+
+    public onSelect(event): void {
+        console.log(event);
+        this.files.push(...event.addedFiles);
+    }
+
+    public onRemove(event): void {
+        console.log(event);
+        this.files.splice(this.files.indexOf(event), 1);
+    }
+ 
+    public uploadFile() {
+    debugger;
+
+        this.serviceService.uploadFile( this.files[0].name, this.files[0]).then(data => {
+           debugger;
+            console.log(data);
+        });
+   }
+
 }

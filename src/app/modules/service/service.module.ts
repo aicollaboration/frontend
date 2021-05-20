@@ -42,7 +42,6 @@ import { serviceReducer } from './state/service.reducer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
 @NgModule({
     declarations: [
         ServiceListComponent,

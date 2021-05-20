@@ -23,10 +23,12 @@ export class SolutionEditorComponent implements OnInit {
     public solution: SolutionModel;
     public solutionModel = new SolutionModel();
     private solutionId: string;
+    public files: File[] = [];
 
     public solutionForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
+        file: new FormControl(''),
        // img: new FormControl(''),
     });
 
@@ -38,6 +40,12 @@ export class SolutionEditorComponent implements OnInit {
 
     ngOnInit(): void {
         this.solution$ = this.store.select(getSolution);
+
+    this.solution$.subscribe(serviceModel => {
+        if (serviceModel) {
+           this.solutionForm.patchValue(serviceModel)
+       }
+   })
         this.route.params.subscribe(params => {
             this.solutionId = params.id;
             this.store.dispatch(loadSolutionAction({ solutionId: params.id }));
@@ -48,10 +56,28 @@ export class SolutionEditorComponent implements OnInit {
         console.warn(this.solutionForm.value);
     }
 
+    public saveAndClose(): void {
+
+    }
+
+    public onSelect(event): void {
+        console.log(event);
+        this.files.push(...event.addedFiles);
+    }
+
+    public onRemove(event): void {
+        console.log(event);
+        this.files.splice(this.files.indexOf(event), 1);
+    }
+    
     updateSolution() {
         debugger;
         this.solutionService.updateSolution(this.solutionForm.value, this.solutionId).then(data => {
             console.log(data)
         });
+    }
+    
+    uploadFile() {
+
     }
 }
