@@ -94,15 +94,13 @@ export const futuristicNavigation: TreoNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
-    /*
     {
         id: 'products',
         title: 'Products',
-        type: 'group',
+        type: 'basic',
         icon: 'category',
-        children: [] // This will be filled from defaultNavigation so we don't have to manage multiple sets of the same navigation
+        link: '/products'
     },
-    */
     {
         id: 'solutions',
         title: 'Solutions',
@@ -117,6 +115,7 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         icon: 'code',
         link: '/services',
     },
+    /*
     {
         title: 'Documentation',
         type: 'basic',
@@ -135,4 +134,5 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         icon: 'group',
         link: '/events'
     },
+    */
 ];

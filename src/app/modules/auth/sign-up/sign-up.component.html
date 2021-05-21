@@ -55,6 +55,23 @@
                         </mat-error>
                     </mat-form-field>
 
+                    <mat-label>Your role</mat-label><br />
+                    <mat-radio-group class="flex flex-col" [color]="'primary'" [value]="'just-good'">
+                        <mat-radio-button class="mb-2" [value]="'everything'">
+                            Fachexperte
+                        </mat-radio-button>
+                        <mat-radio-button class="mb-2" [value]="'just-good'">
+                            KI-Experte (Data scientist, data engineer, data analyst)
+                        </mat-radio-button>
+                        <mat-radio-button [value]="'no-push'">
+                            C-Level
+                        </mat-radio-button>
+                        <mat-radio-button [value]="'no-push'">
+                            Product owner & project leader
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <br /><br />
+
                     <!-- Field footer -->
                     <div class="field-footer">
                         <mat-checkbox [color]="'primary'" [formControlName]="'agreements'">

@@ -1,9 +1,9 @@
 import { Component, HostBinding, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
+import { TreoNavigationService } from '@treo/components/navigation';
+import { TreoMediaWatcherService } from '@treo/services/media-watcher';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { TreoMediaWatcherService } from '@treo/services/media-watcher';
-import { TreoNavigationService } from '@treo/components/navigation';
 
 @Component({
     selector: 'modern-layout',

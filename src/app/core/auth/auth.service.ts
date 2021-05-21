@@ -20,7 +20,7 @@ export class AuthService {
             throw new Error('User is already logged in.');
         }
 
-        const { user, error } = await this.supabase.auth.signIn({ email, password });
+        const { user, error, session } = await this.supabase.auth.signIn({ email, password });
 
         if (error) {
             throw error;
@@ -66,5 +66,9 @@ export class AuthService {
     get isAuthenticated(): boolean {
         console.log(`get isAuthenticated: ${this.authenticated}`);
         return this.authenticated;
+    }
+
+    get user() {
+        return this.supabase.auth.user();
     }
 }
