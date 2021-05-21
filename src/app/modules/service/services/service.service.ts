@@ -59,4 +59,33 @@ export class ServiceService {
 
         return data;
     }
+
+    public async uploadFile(/*bucket: string ,*/ path : string, files: File) {
+           //const file = event.target.files[0]
+         const { data, error } = await this.supabase.storage.from('Services').upload('path', files);
+         if (error) {
+            throw error;
+        }
+
+        return data;
+   }
+/*
+    async createBucket() {
+        const { data, error } = await this.supabase.storage.createBucket('files');
+        if (error) {
+            throw error;
+        }
+
+        return data;
+      }
+    
+      async getBucket() {
+        const { data, error } = await this.supabase.storage.getBucket('files');
+        if (error) {
+            throw error;
+        }
+
+        return data;
+      }
+   */   
 }
