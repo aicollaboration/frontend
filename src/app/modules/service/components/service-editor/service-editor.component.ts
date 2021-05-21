@@ -1,13 +1,13 @@
-import { Component, ViewEncapsulation, OnInit } from "@angular/core";
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { ServiceModel } from "../../models/service.model";
-import { ServiceService } from '../../services/service.service';
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { ServiceModel } from "../../models/service.model";
+import { ServiceService } from '../../services/service.service';
 import { loadServiceAction } from '../../state/service.actions';
 import { getServiceSelector, State } from '../../state/service.reducer';
-
+import yaml from 'js-yaml';
 
 @Component({
     selector: 'service-editor',
@@ -24,52 +24,66 @@ export class ServiceEditorComponent implements OnInit {
     public serviceModel = new ServiceModel();
     private serviceId: string;
     public files: File[] = [];
-    public path : string;
-    bucket : string;
+    public path: string;
+    public bucket: string;
 
     public serviceForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
         file: new FormControl(''),
-       // img: new FormControl(''),
     });
 
     constructor(
         private serviceService: ServiceService,
         private route: ActivatedRoute,
         private store: Store<State>,
-     ) {}
+    ) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.service$ = this.store.select(getServiceSelector);
 
-    this.service$.subscribe(serviceModel => {
-         if (serviceModel) {
-            this.serviceForm.patchValue(serviceModel)
-        }
-    })
+        this.service$.subscribe(serviceModel => {
+            if (serviceModel) {
+                this.loadService(serviceModel)
+            }
+        })
         this.route.params.subscribe(params => {
             this.serviceId = params.id;
             this.store.dispatch(loadServiceAction({ serviceId: params.id }));
         });
     }
 
-    onSubmit() {
-        console.warn(this.serviceForm.value);
+    public async loadService(serviceModel: ServiceModel) {
+        this.serviceForm.patchValue(serviceModel);
+
+        if (serviceModel.file) {
+            const foo = await this.serviceService.getFile(serviceModel.file);
+        }
+        
     }
 
+    public async onSubmit() {
+        const service: ServiceModel = {
+            ...this.serviceForm.value,
+        };
 
-    updateService() {
-        debugger;
-        this.uploadFile();
-     /*   this.serviceService.updateService(this.serviceForm.value, this.serviceId).then(data => {
-            console.log(data)
-        });
+        if (this.files.length > 0) {
+            const file = await this.serviceService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
+            service.file = file.Key;
+        }
+
+        // verarbeitung von api.yml
+        /*
+        const apiInput = this.serviceForm.value['api'];
+        const obj = yaml.load(apiInput);
+        const api = JSON.stringify(obj, null, 2);
+        service.api = api;
         */
-    }
 
-    public saveAndClose(): void {
-
+        this.serviceService.updateService(service, this.serviceId).then(data => {
+            // @todo success
+            this.store.dispatch(loadServiceAction({ serviceId: this.serviceId }));
+        });
     }
 
     public onSelect(event): void {
@@ -81,14 +95,4 @@ export class ServiceEditorComponent implements OnInit {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
     }
- 
-    public uploadFile() {
-    debugger;
-
-        this.serviceService.uploadFile( this.files[0].name, this.files[0]).then(data => {
-           debugger;
-            console.log(data);
-        });
-   }
-
 }

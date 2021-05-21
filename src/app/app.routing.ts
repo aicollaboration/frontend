@@ -7,13 +7,11 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
-    /*
     {
         path: '',
         pathMatch: 'full',
         redirectTo: 'dashboard'
     },
-    */
     {
         path: 'signed-in-redirect',
         pathMatch: 'full',
@@ -34,10 +32,12 @@ export const appRoutes: Route[] = [
             layout: 'empty'
         },
         children: [
+            /*
             {
                 path: '',
                 loadChildren: () => import('app/modules/content/home/home.module').then(module => module.HomeModule),
             },
+            */
             {
                 path: 'confirmation-required',
                 loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)

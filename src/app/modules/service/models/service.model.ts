@@ -4,7 +4,7 @@ export class ServiceModel {
     public id: string;
     public name: string;
     public image?: string;
-    public file?: File;
+    public file?: string;
     public description?: string;
     public category?: CategoryModel;
 }

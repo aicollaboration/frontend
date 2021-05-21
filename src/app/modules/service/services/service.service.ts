@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Bucket } from '@supabase/supabase-js/dist/main/lib/storage';
 import Backendless from 'backendless';
 import { from, Observable, of } from 'rxjs';
 import { ServiceModel } from '../models/service.model';
@@ -17,20 +18,20 @@ export class ServiceService {
 
         this.supabase = createClient(supabaseUrl, supabaseKey);
     }
-    
+
     public async getServices() {
         const { data, error } = await this.supabase.from<ServiceModel>('Services').select('*');
- 
+
         return data;
     }
 
     public async getService(serviceId: string) {
-       const { data, error } = await this.supabase.from<ServiceModel>('Services').select("*").eq('id', serviceId)
-     return data[0];
+        const { data, error } = await this.supabase.from<ServiceModel>('Services').select("*").eq('id', serviceId)
+        return data[0];
     }
 
     public async createService(service: any) {
-       debugger;
+        debugger;
         const { data, error } = await this.supabase.from<ServiceModel>('Services').insert([service]);
 
         if (error) {
@@ -60,32 +61,21 @@ export class ServiceService {
         return data;
     }
 
-    public async uploadFile(/*bucket: string ,*/ path : string, files: File) {
-           //const file = event.target.files[0]
-         const { data, error } = await this.supabase.storage.from('Services').upload('path', files);
-         if (error) {
-            throw error;
-        }
-
-        return data;
-   }
-/*
-    async createBucket() {
-        const { data, error } = await this.supabase.storage.createBucket('files');
+    public async uploadFile(path: string, file: File) {
+        const { data, error } = await this.supabase.storage.from('Services').upload(path, file);
         if (error) {
             throw error;
         }
 
         return data;
-      }
-    
-      async getBucket() {
-        const { data, error } = await this.supabase.storage.getBucket('files');
+    }
+
+    public async getFile(path: string) {
+        const { data, error } = await this.supabase.storage.from('Services').list();
         if (error) {
             throw error;
         }
 
         return data;
-      }
-   */   
+    }
 }
