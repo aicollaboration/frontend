@@ -58,4 +58,23 @@ export class SolutionService {
 
       return data;
   }
+
+  
+  public async uploadFile(path: string, file: File) {
+    const { data, error } = await this.supabase.storage.from('Solutions').upload(path, file);
+    if (error) {
+        throw error;
+    }
+
+    return data;
+  }
+
+    public async getFile(path: string) {
+    const { data, error } = await this.supabase.storage.from('Solutions').list();
+    if (error) {
+        throw error;
+    }
+
+    return data;
+  }
 }

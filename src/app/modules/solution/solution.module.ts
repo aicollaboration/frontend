@@ -30,6 +30,7 @@ import { SolutionListComponent } from './components/solution-list/solution-list.
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
+import { TreoMessageModule } from '@treo/components/message';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { solutionReducer } from './state/solution.reducer';
         // Treo
         TreoCardModule,
         TreoNavigationModule,
+        TreoMessageModule,
 
         // Material UI
         MatButtonModule,

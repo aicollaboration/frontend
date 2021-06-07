@@ -6,5 +6,6 @@ export class ServiceModel {
     public image?: string;
     public file?: string;
     public description?: string;
+    public api?: string;
     public category?: CategoryModel;
 }

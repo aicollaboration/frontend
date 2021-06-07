@@ -1,3 +1,5 @@
+import { MatSort } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -41,6 +43,7 @@ import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TreoMessageModule } from '@treo/components/message';
 
 @NgModule({
     declarations: [
@@ -56,7 +59,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         TextSummarizationComponent,
         WebsiteAuditComponent,
         DocumentClassificationComponent,
-
+        
         EmptyComponent,
         ServiceLoaderDirective,
     ],
@@ -72,6 +75,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         // Treo
         TreoCardModule,
         TreoNavigationModule,
+        TreoMessageModule,
 
         // Material UI
         MatButtonModule,
@@ -84,6 +88,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
         MatRadioModule,
         MatTabsModule,
         MatTreeModule,
+        MatTableModule,
+     //   MatSort,
 
         // Forms
         FormsModule,

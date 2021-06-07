@@ -24,26 +24,26 @@ export class SolutionEditorComponent implements OnInit {
     public solutionModel = new SolutionModel();
     private solutionId: string;
     public files: File[] = [];
+    messageTrue: boolean = false; 
 
     public solutionForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
         file: new FormControl(''),
-       // img: new FormControl(''),
     });
 
-    constructor(
+    public constructor(
         private solutionService: SolutionService,
         private route: ActivatedRoute,
         private store: Store<State>
     ) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.solution$ = this.store.select(getSolution);
 
-    this.solution$.subscribe(serviceModel => {
-        if (serviceModel) {
-           this.solutionForm.patchValue(serviceModel)
+        this.solution$.subscribe(solutionModel => {
+        if (solutionModel) {
+            this.loadSolution(solutionModel)
        }
    })
         this.route.params.subscribe(params => {
@@ -52,12 +52,30 @@ export class SolutionEditorComponent implements OnInit {
         });
     }
 
-    onSubmit() {
-        console.warn(this.solutionForm.value);
+    public async loadSolution(solutionModel: SolutionModel) {
+        this.solutionForm.patchValue(solutionModel);
+
+        if (solutionModel.file) {
+            const foo = await this.solutionService.getFile(solutionModel.file);
+        }        
     }
 
-    public saveAndClose(): void {
+    public async onSubmit() {
+        debugger;
+        const solution: SolutionModel = {
+            ...this.solutionForm.value,
+        };
 
+        if (this.files.length > 0) {
+            const file = await this.solutionService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
+            solution.file = file.Key;
+        }
+              
+        this.solutionService.updateSolution(solution, this.solutionId).then(data => {
+            // @todo success
+            this.store.dispatch(loadSolutionAction({ solutionId: this.solutionId }));
+            this.messageTrue=true;
+        });
     }
 
     public onSelect(event): void {
@@ -70,14 +88,4 @@ export class SolutionEditorComponent implements OnInit {
         this.files.splice(this.files.indexOf(event), 1);
     }
     
-    updateSolution() {
-        debugger;
-        this.solutionService.updateSolution(this.solutionForm.value, this.solutionId).then(data => {
-            console.log(data)
-        });
-    }
-    
-    uploadFile() {
-
-    }
 }

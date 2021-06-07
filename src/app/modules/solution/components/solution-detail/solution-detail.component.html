@@ -4,29 +4,31 @@
             <div class="breadcrumb">
                 <span class="path">Solutions</span>
                 <span class="separator">/</span>
-    <!--            <span class="path">{{ solution.category.name }}</span> -->
+        <!--    <span class="path">{{ solution.category.name }}</span> -->
             </div>
             <h1>{{ solution.name }}</h1>
          <!--   <h3>{{ solution.subtitle }}</h3> -->
         </div>
 
         <div class="right">
-            <button mat-flat-button color="primary" (click)="openCreationDialog()">
+         <!--   <button mat-flat-button color="primary" (click)="openCreationDialog()">
                 <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
                 <span class="ml-2">Create product</span>
             </button>
+         -->
             <button mat-flat-button color="primary" [routerLink]="['/solutions', 'edit', solution.id]">
                 <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
                 <span class="ml-2">Edit solution</span>
             </button>
         </div>
     </div>
-
+   
     <div class="main">
         <mat-tab-group [@.disabled]="true">
-            <mat-tab label="Overview">
+          <mat-tab label="Overview">
                 <solution-overview [solution]="solution"></solution-overview>
             </mat-tab>
+             <!--  
             <mat-tab label="Features">
                 Features
             </mat-tab>
@@ -38,7 +40,8 @@
             </mat-tab>
             <mat-tab label="Resources">
                 Resources
-            </mat-tab>
+            </mat-tab>   -->
         </mat-tab-group>
     </div>
+  
 </div>

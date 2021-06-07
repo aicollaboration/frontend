@@ -24,16 +24,16 @@ export class ServiceEditorComponent implements OnInit {
     public serviceModel = new ServiceModel();
     private serviceId: string;
     public files: File[] = [];
-    public path: string;
-    public bucket: string;
-
+    messageTrue: boolean = false; 
+    
     public serviceForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
+        api: new FormControl(''),
         file: new FormControl(''),
     });
 
-    constructor(
+    public constructor(
         private serviceService: ServiceService,
         private route: ActivatedRoute,
         private store: Store<State>,
@@ -71,18 +71,16 @@ export class ServiceEditorComponent implements OnInit {
             const file = await this.serviceService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
             service.file = file.Key;
         }
-
-        // verarbeitung von api.yml
-        /*
+      
         const apiInput = this.serviceForm.value['api'];
         const obj = yaml.load(apiInput);
         const api = JSON.stringify(obj, null, 2);
         service.api = api;
-        */
-
+        
         this.serviceService.updateService(service, this.serviceId).then(data => {
             // @todo success
             this.store.dispatch(loadServiceAction({ serviceId: this.serviceId }));
+            this.messageTrue=true;
         });
     }
 
@@ -95,4 +93,5 @@ export class ServiceEditorComponent implements OnInit {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
     }
+    
 }

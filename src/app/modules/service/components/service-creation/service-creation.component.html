@@ -10,31 +10,36 @@
         <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
             <mat-form-field>
                 <mat-label>Title</mat-label>
-                <input matInput formControlName="name" required maxlength="250" type="text">
+                <input matInput formControlName="name" maxlength="250" type="text" required>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description" rows="5" required></textarea>
-            </mat-form-field> <!--
+                <textarea matInput formControlName="description" rows="10" required></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>API</mat-label>
+                <textarea matInput formControlName="api" rows="14"></textarea> 
+            </mat-form-field>
             <ngx-dropzone (change)="onSelect($event)">
-                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                <ngx-dropzone-label>File upload</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
-            <mat-form-field>
-                <mat-label>Which problem should be solved?</mat-label>
-                <input matInput formControlName="problem" required maxlength="250" type="text">
-            </mat-form-field>
-        -->
 
             <div class="actions">
                 <div class="buttons">
-                    <button class="save-button" mat-stroked-button type="submit" (click)="addService()">
+                    <button class="save-button" mat-stroked-button type="submit">
                         <mat-icon [svgIcon]="'save'"></mat-icon>
                         <span>Create Service</span>
                     </button>
                 </div>
+            </div>
+
+            <div class="messages" *ngIf="messageTrue">
+                <treo-message [type]="'success'" [appearance]="'border'">
+                  <span treoMessageTitle>You created a Service successfully!</span>
+                </treo-message>
             </div>
         </form>
         <div class="helper">

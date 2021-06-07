@@ -1,5 +1,9 @@
 @import 'treo';
 
+treo-message {
+	margin: 16px;
+}
+
 @include treo-theme {
 	$background: map-get($theme, background);
 	$foreground: map-get($theme, foreground);
@@ -13,11 +17,12 @@ service-editor {
 	.main {
 		display: flex;
 		flex-direction: row;
-
+		
 		form {
 			display: flex;
 			flex: 1 1 auto;
 			flex-direction: column;
+
 
 			.actions {
 				margin-top: 32px;
@@ -52,7 +57,45 @@ service-editor {
 				}
 			}
 		}
-
+				.container{
+					display: flex;
+					flex: 1 1 auto;
+					flex-direction: column;
+		
+				 
+				width:100%;
+			
+			.mat-header-row {
+				width: 100%;
+			}
+			
+			.mat-row {
+				width: 100%;
+			}
+	
+			.matColumnDef-id {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+			.mat-column-name {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+			.mat-column-description {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+			.mat-column-api {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+				.th , td {
+					width:100px !important; 
+					border-collapse: collapse;
+					padding: 5px;
+				  }
+				}
+				
 		.helper {
 			width: 30%;
 		}

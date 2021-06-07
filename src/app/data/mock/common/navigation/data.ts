@@ -94,13 +94,13 @@ export const futuristicNavigation: TreoNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
-    {
+   /* {
         id: 'products',
         title: 'Products',
         type: 'basic',
         icon: 'category',
         link: '/products'
-    },
+    }, */
     {
         id: 'solutions',
         title: 'Solutions',

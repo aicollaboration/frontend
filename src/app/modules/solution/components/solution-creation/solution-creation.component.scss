@@ -1,5 +1,9 @@
 @import 'treo';
 
+treo-message {
+	margin: 16px;
+}
+
 @include treo-theme {
 	$background: map-get($theme, background);
 	$foreground: map-get($theme, foreground);
