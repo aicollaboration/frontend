@@ -7,7 +7,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
-import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -23,8 +22,6 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { environment } from 'environments/environment';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MarkdownModule } from 'ngx-markdown';
-import { ProductEffects } from './modules/product/state/product.effects';
-import { productReducer } from './modules/product/state/product.reducer';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -57,16 +54,12 @@ const routerConfig: ExtraOptions = {
 
         // ngrx
         StoreModule.forRoot({}),
-        StoreModule.forFeature('products', productReducer),
         StoreDevtoolsModule.instrument({
             name: 'AI Platform',
             maxAge: 25,
             logOnly: environment.production
         }),
-        EffectsModule.forRoot([ProductEffects]),
-
-        // amplify
-        AmplifyUIAngularModule,
+        EffectsModule.forRoot([]),
 
         // Forms
         MatDialogModule,

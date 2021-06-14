@@ -124,10 +124,6 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/admin/admin.module').then(m => m.AdminModule),
             },
             {
-                path: 'products',
-                loadChildren: () => import('app/modules/product/product.module').then(module => module.ProductModule),
-            },
-            {
                 path: 'solutions',
                 loadChildren: () => import('app/modules/solution/solution.module').then(module => module.SolutionModule),
             },
