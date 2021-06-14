@@ -7,7 +7,7 @@ import { getSolution, State } from '../../state/solution.reducer';
 import { loadSolutionAction } from "../../state/solution.actions";
 import { SolutionService } from "../../services/solution.service";
 import { SolutionModel } from "../../models/solution.model";
-
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
     selector: 'solution-editor',
@@ -24,7 +24,15 @@ export class SolutionEditorComponent implements OnInit {
     public solutionModel = new SolutionModel();
     private solutionId: string;
     public files: File[] = [];
-    messageTrue: boolean = false; 
+    editSolutionTrue: boolean = false; 
+    addSolutionTrue: boolean = false; 
+
+    serviceColumns: string[] = ['id', 'solutionId', 'serviceId'];
+    solutionServiceDataSource = new MatTableDataSource([]);
+    public solutionServices = [];
+    list =  {id:'2', solutionId:'2', serviceId:'3' };  
+
+
 
     public solutionForm = new FormGroup({
         name: new FormControl(''),
@@ -33,23 +41,26 @@ export class SolutionEditorComponent implements OnInit {
     });
 
     public constructor(
-        private solutionService: SolutionService,
+        public solutionService: SolutionService,
         private route: ActivatedRoute,
         private store: Store<State>
     ) { }
 
-    public ngOnInit(): void {
+    public async ngOnInit(): Promise<void>{
         this.solution$ = this.store.select(getSolution);
 
         this.solution$.subscribe(solutionModel => {
         if (solutionModel) {
             this.loadSolution(solutionModel)
        }
-   })
+    })
         this.route.params.subscribe(params => {
             this.solutionId = params.id;
             this.store.dispatch(loadSolutionAction({ solutionId: params.id }));
         });
+
+        this.solutionServices =  await this.solutionService.getSolutionServices('22');
+        this.solutionServiceDataSource.data = this.solutionServices;
     }
 
     public async loadSolution(solutionModel: SolutionModel) {
@@ -58,10 +69,9 @@ export class SolutionEditorComponent implements OnInit {
         if (solutionModel.file) {
             const foo = await this.solutionService.getFile(solutionModel.file);
         }        
-    }
+    }S
 
     public async onSubmit() {
-        debugger;
         const solution: SolutionModel = {
             ...this.solutionForm.value,
         };
@@ -74,7 +84,7 @@ export class SolutionEditorComponent implements OnInit {
         this.solutionService.updateSolution(solution, this.solutionId).then(data => {
             // @todo success
             this.store.dispatch(loadSolutionAction({ solutionId: this.solutionId }));
-            this.messageTrue=true;
+            this.editSolutionTrue=true;
         });
     }
 
@@ -88,4 +98,31 @@ export class SolutionEditorComponent implements OnInit {
         this.files.splice(this.files.indexOf(event), 1);
     }
     
+    public addService() {
+        debugger;
+        this.solutionServices.push(this.list);
+        this.solutionServiceDataSource.filter = "";
+        this.addSolutionTrue=true;
+ /*
+        debugger;
+        this.solutionServiceDataSource.data.push(this.list.length + 1);
+         this.solutionServiceDataSource.filter = "";
+/*
+         this.solutionServices =  await this.solutionService.createSolution(model);
+         this.solutionServiceDataSource.data = this.solutionServices;
+
+/*
+        this.solutionServiceDataSource(model). push(model); 
+        this.model = this.solutionServiceDataSource;//add the new model object to the dataSource
+     //   this.solutionServiceDataSource = [...this.solutionServiceDataSource];  //refresh the dataSource
+        this.addSolutionTrue=true;
+       // this.dataSource = [];
+       /*
+
+   this.dataSource = [...this.dataSource];  //refresh the dataSource
+
+        this.dataSource.data.push(this.createNewUser(this.dataSource.data.length + 1));
+    this.dataSource.filter = "";
+    */
+    }
 }

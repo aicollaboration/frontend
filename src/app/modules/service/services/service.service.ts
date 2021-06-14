@@ -30,7 +30,6 @@ export class ServiceService {
     }
 
     public async createService(service: any) {
-        debugger;
         const { data, error } = await this.supabase.from<ServiceModel>('Services').insert([service]);
 
         if (error) {

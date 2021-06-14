@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -31,6 +31,7 @@ import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
 import { TreoMessageModule } from '@treo/components/message';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,9 @@ import { TreoMessageModule } from '@treo/components/message';
         SolutionEditorComponent,
         ProblemSubmitterComponent,
     ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+      ],
     imports: [
         CommonModule,
         FormsModule,
@@ -61,6 +65,7 @@ import { TreoMessageModule } from '@treo/components/message';
         MatRadioModule,
         MatTabsModule,
         MatTreeModule,
+        MatTableModule,
 
         // Forms
         FormsModule,

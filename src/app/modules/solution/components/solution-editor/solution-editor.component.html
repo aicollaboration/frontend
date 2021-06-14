@@ -24,18 +24,59 @@
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
- 
+
             <div class="actions">
                 <div class="buttons">
                     <button class="save-button" mat-stroked-button type="submit">
                         <mat-icon [svgIcon]="'save'"></mat-icon>
                         <span>Save solution</span>
                     </button>
-                </div>
+                <button class="add-button" mat-stroked-button (click)="addService()">
+                <mat-icon [svgIcon]="'add'"></mat-icon>
+                <span>Add Service</span>
+                </button>
+              </div>
             </div>
-            <div class="messages" *ngIf="messageTrue">
+            
+            <table mat-table [dataSource]="solutionServiceDataSource">
+                <!-- Custom column definition to be provided to the wrapper table. -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> Id </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+             
+                <ng-container matColumnDef="solutionId">
+                    <th mat-header-cell *matHeaderCellDef> Solution Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.solutionId}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="serviceId">
+                    <th mat-header-cell *matHeaderCellDef> Service Id </th>
+                    <td mat-cell *matCellDef="let element"> {{element.serviceId}} </td>
+                </ng-container>
+
+                <!-- Custom row definitions to be provided to the wrapper table. -->
+                <tr mat-header-row *matHeaderRowDef="serviceColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: serviceColumns;"></tr>
+              
+                <!-- Row shown when there is no matching data that will be provided to the wrapper table. -->
+                <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data</td>
+                </tr>
+            </table>
+
+            <ul>
+                <li *ngFor="let solutionService of solutionServices"> </li>
+            </ul>
+
+            <div class="messages" *ngIf="editSolutionTrue">
                 <treo-message [type]="'success'" [appearance]="'border'">
                   <span treoMessageTitle>You edited the Solution successfully!</span>     
+             </treo-message>
+             </div>
+             <div class="messages" *ngIf="addSolutionTrue">
+                <treo-message [type]="'success'" [appearance]="'border'">
+                <span treoMessageTitle>You add the Service successfully!</span>     
              </treo-message>
              </div>
         </form>

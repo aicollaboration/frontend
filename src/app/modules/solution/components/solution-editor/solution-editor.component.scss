@@ -23,6 +23,9 @@ solution-editor {
 			flex: 1 1 auto;
 			flex-direction: column;
 
+			.mat-table {
+				margin: 20px 0 20px 0;
+			}
 			.actions {
 				margin-top: 32px;
 
