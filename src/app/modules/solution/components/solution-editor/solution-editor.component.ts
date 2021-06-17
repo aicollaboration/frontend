@@ -28,11 +28,11 @@ export class SolutionEditorComponent implements OnInit {
     public files: File[] = [];
     public editSolutionTrue: boolean = false;
     public addSolutionTrue: boolean = false;
+    public addSolutionServiceTrue: boolean = false;
 
     public serviceColumns: string[] = ['id', 'solutionId', 'serviceId'];
     public solutionServiceDataSource = new MatTableDataSource([]);
     public solutionServices = [];
-    public list = { id: '2', solutionId: '2', serviceId: '3' };
 
     public solutionForm = new FormGroup({
         name: new FormControl(''),
@@ -60,7 +60,7 @@ export class SolutionEditorComponent implements OnInit {
             this.store.dispatch(loadSolutionAction({ solutionId: params.id }));
         });
 
-        this.solutionServices = await this.solutionService.getSolutionServices('22');
+        this.solutionServices = await this.solutionService.getSolutionService();
         this.solutionServiceDataSource.data = this.solutionServices;
     }
 
@@ -104,9 +104,10 @@ export class SolutionEditorComponent implements OnInit {
         
         const dialogRef = this.matDialog.open(SolutionServiceCreationComponent);
         dialogRef.afterClosed().subscribe(result => {
-            console.log('Compose dialog was closed!');
+            console.log('Compose dialog was closed!'); 
+            this.addSolutionServiceTrue=true;
+         
         });
-
 
         /*
         const solutionService = {
@@ -120,6 +121,7 @@ export class SolutionEditorComponent implements OnInit {
         this.solutionServices.push(solutionService);
         this.solutionServiceDataSource.filter = "";
         this.addSolutionTrue = true;
-        */
-    }
+        */    
+       }
+       
 }

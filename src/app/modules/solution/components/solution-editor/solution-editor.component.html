@@ -70,7 +70,7 @@
             </ul>
 
             <div class="messages" *ngIf="editSolutionTrue">
-                <treo-message [type]="'success'" [appearance]="'border'">
+                <treo-message [appearance]="'outline'" [dismissed]="false" [name]="'messageBox1'" [type]="'success'" [appearance]="'border'">
                     <span treoMessageTitle>You edited the Solution successfully!</span>
                 </treo-message>
             </div>
@@ -79,7 +79,13 @@
                     <span treoMessageTitle>You add the Service successfully!</span>
                 </treo-message>
             </div>
+         <div class="messages" *ngIf="addSolutionServiceTrue">
+            <treo-message [appearance]="'outline'" [dismissed]="false" [name]="'messageBox1'" [type]="'success'" [appearance]="'border'">
+                <span treoMessageTitle>You add the Solution-Service successfully!</span>
+            </treo-message>
+        </div>
         </form>
+       
         <div class="helper">
         </div>
     </div>

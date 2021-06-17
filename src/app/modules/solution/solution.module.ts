@@ -32,6 +32,7 @@ import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
 import { TreoMessageModule } from '@treo/components/message';
 import { MatTableModule } from '@angular/material/table';
+import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
 
 @NgModule({
     declarations: [
@@ -40,6 +41,7 @@ import { MatTableModule } from '@angular/material/table';
         SolutionDetailOverviewComponent,
         SolutionCreationComponent,
         SolutionEditorComponent,
+        SolutionServiceCreationComponent,
         ProblemSubmitterComponent,
     ],
     schemas: [

@@ -1,1 +1,44 @@
-<h1>SolutionServiceCreationComponent</h1>
+<div class="content-layout fullwidth-standard-normal-scroll"> <!-- *ngIf="solution$ | async as solution-->
+
+    <div class="header">
+        <div class="left">
+            <h1>Add Solution-Service</h1>
+        </div>
+    </div>
+
+    <div class="main">
+        <form [formGroup]="solutionServiceForm" (ngSubmit)="onSubmit($event)">
+          <!--  <mat-form-field>
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id" required type="text">
+            </mat-form-field> -->
+            <mat-form-field> 
+                <mat-label>Solution Id</mat-label>
+                <textarea matInput formControlName="solutionId" required></textarea>
+            </mat-form-field>
+            <mat-form-field>
+            <mat-label>Service Id</mat-label>
+            <textarea matInput formControlName="serviceId" required></textarea>
+        </mat-form-field>
+
+            <div class="actions">
+                <div class="buttons">
+                    <button class="add-button" mat-stroked-button [mat-dialog-close]="true" tabindex="1" type="submit">
+                        <mat-icon [svgIcon]="'add'"></mat-icon>
+                        <span>Add Service</span>
+                    </button>
+   
+                    <button class="cancel-button" mat-stroked-button mat-dialog-close tabindex="-1">
+                        <mat-icon [svgIcon]="'cancel'"></mat-icon>
+                        <span>Cancel</span>
+                    </button>
+                </div>
+            </div>  
+            <!--
+            <div class="messages" *ngIf="addSolutionServiceTrue">
+                <treo-message [appearance]="'outline'" [dismissed]="false" [name]="'messageBox1'" [type]="'success'" [appearance]="'border'">
+                    <span treoMessageTitle>You add the Solution-Service successfully!1</span>
+            </treo-message>
+        </div>   -->   
+        </form>
+    </div>

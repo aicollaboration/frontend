@@ -1,5 +1,8 @@
 import { Component, ViewEncapsulation } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
+import { SolutionServiceModel } from "../../models/solution-service.model";
 import { SolutionService } from "../../services/solution.service";
+import { SolutionEditorComponent } from "../solution-editor/solution-editor.component";
 
 @Component({
     selector: 'solution-service-creation',
@@ -10,19 +13,26 @@ import { SolutionService } from "../../services/solution.service";
     encapsulation: ViewEncapsulation.None,
 })
 export class SolutionServiceCreationComponent {
-    
+    public addSolutionServiceTrue: boolean = false;
+
+    public solutionServiceForm = new FormGroup({
+        solutionId: new FormControl(''),
+        serviceId: new FormControl(''),
+    });
+
+
     public constructor(
         public solutionService: SolutionService
     ) { }
 
-    public async addService() {
-        const solutionService = {
-            solutionId: '2',
-            serviceId: '3'
+    public async onSubmit(event) {
+        const solutionService: SolutionServiceModel = {
+            ...this.solutionServiceForm.value,
         };
 
+        debugger;
         const data = await this.solutionService.addSolutionService(solutionService);
-        debugger
-
+        this.addSolutionServiceTrue = true; 
     }
+    
 }

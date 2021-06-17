@@ -24,6 +24,13 @@ export class SolutionService {
     return data;
   }
 
+  public async getSolutionService() {
+    const { data, error } = await this.supabase.from('SolutionServices').select("*")
+    if (error) {
+      throw error;
+    }
+    return data;
+  }
 
   public async getSolutionServices(solutionId: string) {
     const { data, error } = await this.supabase.from('SolutionServices').select("*").eq('solutionId', solutionId)
