@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 
@@ -23,25 +24,29 @@ export class SolutionCreationComponent {
         name: new FormControl(''),
         description: new FormControl(''),
         file: new FormControl(''),
-});
+    });
 
-public constructor(private solutionService: SolutionService) { }
+    public constructor(
+        private snackBar: MatSnackBar,
+        private solutionService: SolutionService
+    ) { }
 
-public async onSubmit() {
-    const solution: SolutionModel = {
-        ...this.solutionForm.value,
-    };
+    public async onSubmit() {
+        const solution: SolutionModel = {
+            ...this.solutionForm.value,
+        };
 
-    if (this.files.length > 0) {
-        const file = await this.solutionService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
-        solution.file = file.Key;
-    }
+        if (this.files.length > 0) {
+            const file = await this.solutionService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
+            solution.file = file.Key;
+        }
 
-    this.solutionService.createSolution(this.solutionForm.value)
-          .then(data => {
+        this.solutionService.createSolution(this.solutionForm.value).then(data => {
             console.log(data)
-            this.messageTrue=true;
-        });   
+            this.snackBar.open(`You created a solution successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+        }).catch(error => {
+            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
+        });
     }
 
     public onSelect(event): void {
@@ -53,5 +58,5 @@ public async onSubmit() {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
     }
-    
+
 }

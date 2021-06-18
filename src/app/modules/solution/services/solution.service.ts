@@ -33,7 +33,12 @@ export class SolutionService {
   }
 
   public async getSolutionServices(solutionId: string) {
-    const { data, error } = await this.supabase.from('SolutionServices').select("*").eq('solutionId', solutionId)
+    const query = `
+      id,
+      Solutions(*),
+      Services(*)
+    `;
+    const { data, error } = await this.supabase.from('SolutionServices').select(query).eq('solutionId', solutionId)
     if (error) {
       throw error;
     }

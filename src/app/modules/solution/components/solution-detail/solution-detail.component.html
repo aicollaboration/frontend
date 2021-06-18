@@ -4,18 +4,11 @@
             <div class="breadcrumb">
                 <span class="path">Solutions</span>
                 <span class="separator">/</span>
-        <!--    <span class="path">{{ solution.category.name }}</span> -->
             </div>
             <h1>{{ solution.name }}</h1>
-         <!--   <h3>{{ solution.subtitle }}</h3> -->
         </div>
 
         <div class="right">
-         <!--   <button mat-flat-button color="primary" (click)="openCreationDialog()">
-                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
-                <span class="ml-2">Create product</span>
-            </button>
-         -->
             <button mat-flat-button color="primary" [routerLink]="['/solutions', 'edit', solution.id]">
                 <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
                 <span class="ml-2">Edit solution</span>

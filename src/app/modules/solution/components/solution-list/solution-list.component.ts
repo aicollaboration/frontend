@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SolutionModel } from '../../models/solution.model';
 import { loadSolutionsAction } from '../../state/solution.actions';
-import { getErrors, getSolutions, State } from '../../state/solution.reducer';
+import { getErrorsSelector, getSolutionsSelector, State } from '../../state/solution.reducer';
 import { SolutionCreationComponent } from '../solution-creation/solution-creation.component';
 
 @Component({
@@ -22,8 +22,8 @@ export class SolutionListComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.solutions$ = this.store.select(getSolutions);
-    this.errors$ = this.store.select(getErrors);
+    this.solutions$ = this.store.select(getSolutionsSelector);
+    this.errors$ = this.store.select(getErrorsSelector);
 
     this.store.dispatch(loadSolutionsAction());
   }

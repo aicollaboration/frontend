@@ -16,12 +16,14 @@
                 <mat-label>Description</mat-label>
                 <textarea matInput formControlName="description" rows="5" required></textarea>
             </mat-form-field> 
+            <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>File upload</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
+            -->
 
             <div class="actions">
                 <div class="buttons">
@@ -31,13 +33,6 @@
                     </button>
                 </div>
             </div>
-            <div class="messages" *ngIf="messageTrue">
-                <treo-message [type]="'success'" [appearance]="'border'">
-                  <span treoMessageTitle>You created a Service successfully!</span>
-                </treo-message>
-            </div>
         </form>
-        <div class="helper">
-            </div>
     </div>
 </div>

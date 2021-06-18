@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,12 +13,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { TreoCardModule } from '@treo/components/card';
+import { TreoMessageModule } from '@treo/components/message';
 import { TreoNavigationModule } from '@treo/components/navigation';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ProblemSubmitterComponent } from './components/problem-submitter/problem-submitter.component';
@@ -27,12 +30,10 @@ import { SolutionDetailOverviewComponent } from './components/solution-detail-ov
 import { SolutionDetailComponent } from './components/solution-detail/solution-detail.component';
 import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
+import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
-import { TreoMessageModule } from '@treo/components/message';
-import { MatTableModule } from '@angular/material/table';
-import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,7 @@ import { SolutionServiceCreationComponent } from './components/solution-service-
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
-      ],
+    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -68,6 +69,7 @@ import { SolutionServiceCreationComponent } from './components/solution-service-
         MatTabsModule,
         MatTreeModule,
         MatTableModule,
+        MatSnackBarModule,
 
         // Forms
         FormsModule,

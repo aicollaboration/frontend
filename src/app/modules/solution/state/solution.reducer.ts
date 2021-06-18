@@ -23,19 +23,19 @@ const initialState: SolutionState = {
 
 const getSolutionFeatureState = createFeatureSelector<SolutionState>('solutions');
 
-export const getSolutions = createSelector(
+export const getSolutionsSelector = createSelector(
     getSolutionFeatureState,
     state => state.solutions
 );
-export const getSolution = createSelector(
+export const getSolutionSelector = createSelector(
     getSolutionFeatureState,
     state => state.currentSolution
 );
-export const getErrors = createSelector(
+export const getErrorsSelector = createSelector(
     getSolutionFeatureState,
     state => state.errors
 );
-export const hasErrors = createSelector(
+export const hasErrorsSelector = createSelector(
     getSolutionFeatureState,
     state => state.hasErrors
 );

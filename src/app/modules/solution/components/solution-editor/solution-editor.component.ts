@@ -3,13 +3,14 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getSolution, State } from '../../state/solution.reducer';
+import { getSolutionSelector, State } from '../../state/solution.reducer';
 import { loadSolutionAction } from "../../state/solution.actions";
 import { SolutionService } from "../../services/solution.service";
 import { SolutionModel } from "../../models/solution.model";
 import { MatTableDataSource } from '@angular/material/table';
 import { SolutionServiceCreationComponent } from "../solution-service-creation/solution-service-creation.component";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
     selector: 'solution-editor',
@@ -26,9 +27,6 @@ export class SolutionEditorComponent implements OnInit {
     public solutionModel = new SolutionModel();
     private solutionId: string;
     public files: File[] = [];
-    public editSolutionTrue: boolean = false;
-    public addSolutionTrue: boolean = false;
-    public addSolutionServiceTrue: boolean = false;
 
     public serviceColumns: string[] = ['id', 'solutionId', 'serviceId'];
     public solutionServiceDataSource = new MatTableDataSource([]);
@@ -41,27 +39,30 @@ export class SolutionEditorComponent implements OnInit {
     });
 
     public constructor(
-        public solutionService: SolutionService,
         private matDialog: MatDialog,
         private route: ActivatedRoute,
-        private store: Store<State>
+        private snackBar: MatSnackBar,
+        private solutionService: SolutionService,
+        private store: Store<State>,
     ) { }
 
     public async ngOnInit(): Promise<void> {
-        this.solution$ = this.store.select(getSolution);
+        this.solution$ = this.store.select(getSolutionSelector);
 
         this.solution$.subscribe(solutionModel => {
             if (solutionModel) {
                 this.loadSolution(solutionModel)
             }
         })
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe(async params => {
+            const solutionId = params.id;
+
             this.solutionId = params.id;
-            this.store.dispatch(loadSolutionAction({ solutionId: params.id }));
+            this.store.dispatch(loadSolutionAction({ solutionId }));
+            
+            this.solutionServices = await this.solutionService.getSolutionServices(solutionId);
         });
 
-        this.solutionServices = await this.solutionService.getSolutionService();
-        this.solutionServiceDataSource.data = this.solutionServices;
     }
 
     public async loadSolution(solutionModel: SolutionModel) {
@@ -83,9 +84,10 @@ export class SolutionEditorComponent implements OnInit {
         }
 
         this.solutionService.updateSolution(solution, this.solutionId).then(data => {
-            // @todo success
             this.store.dispatch(loadSolutionAction({ solutionId: this.solutionId }));
-            this.editSolutionTrue = true;
+            this.snackBar.open(`Solution successful updated`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+        }).catch(error => {
+            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });
     }
 
@@ -101,27 +103,15 @@ export class SolutionEditorComponent implements OnInit {
 
     public async addService(event) {
         event.preventDefault();
-        
-        const dialogRef = this.matDialog.open(SolutionServiceCreationComponent);
-        dialogRef.afterClosed().subscribe(result => {
-            console.log('Compose dialog was closed!'); 
-            this.addSolutionServiceTrue=true;
-         
+
+        const dialogRef = this.matDialog.open(SolutionServiceCreationComponent, {
+            data: {
+                solutionId: this.solutionId,
+            },
         });
+        dialogRef.afterClosed().subscribe(async result => {
+            this.solutionServices = await this.solutionService.getSolutionServices(this.solutionId);
+        });
+    }
 
-        /*
-        const solutionService = {
-            solutionId: '2',
-            serviceId: '3'
-        };
-
-        const data = await this.solutionService.addSolutionService(solutionService);
-        debugger
-
-        this.solutionServices.push(solutionService);
-        this.solutionServiceDataSource.filter = "";
-        this.addSolutionTrue = true;
-        */    
-       }
-       
 }

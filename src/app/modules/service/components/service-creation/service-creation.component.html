@@ -14,18 +14,20 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description" rows="10" required></textarea>
+                <textarea matInput formControlName="description" rows="3" required></textarea>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>API</mat-label>
-                <textarea matInput formControlName="api" rows="14"></textarea> 
+                <textarea matInput formControlName="api" rows="30" style="font: 14px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace"></textarea> 
             </mat-form-field>
+            <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>File upload</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
+            -->
 
             <div class="actions">
                 <div class="buttons">
