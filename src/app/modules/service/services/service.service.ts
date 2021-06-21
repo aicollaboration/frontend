@@ -25,7 +25,15 @@ export class ServiceService {
     }
 
     public async getService(serviceId: string) {
-        const { data, error } = await this.supabase.from<ServiceModel>('Services').select("*").eq('id', serviceId)
+        const { data, error } = await this.supabase.from<ServiceModel>('Services').select("*").eq('id', serviceId);
+
+        const service = data[0];
+        const api = JSON.parse(service.api);
+
+        if (error) {
+            throw error;
+        }
+
         return data[0];
     }
 
@@ -36,7 +44,7 @@ export class ServiceService {
             throw error;
         }
 
-        return data;
+        return data[0];
     }
 
     public async updateService(service: any, serviceId: string) {

@@ -1,9 +1,10 @@
 import { Component, ViewEncapsulation } from "@angular/core";
-import { FormGroup, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
+import yaml from 'js-yaml';
 import { ServiceModel } from "../../models/service.model";
 import { ServiceService } from '../../services/service.service';
-import yaml from 'js-yaml';
 
 @Component({
     selector: 'service-creation',
@@ -18,19 +19,22 @@ export class ServiceCreationComponent {
     service: ServiceModel[];
     serviceModel = new ServiceModel();
     public files: File[] = [];
-    messageTrue: boolean = false; 
 
     public serviceForm = new FormGroup({
-        name : new FormControl(''),
-        description : new FormControl(''),
+        name: new FormControl(''),
+        description: new FormControl(''),
         api: new FormControl(''),
         file: new FormControl(''),
     });
 
-    public constructor(private serviceService:ServiceService) { }
-    
+    public constructor(
+        private router: Router,
+        private serviceService: ServiceService,
+        private snackBar: MatSnackBar,
+    ) { }
+
     public async onSubmit() {
-       const service: ServiceModel = {
+        const service: ServiceModel = {
             ...this.serviceForm.value,
         };
 
@@ -43,15 +47,17 @@ export class ServiceCreationComponent {
         const obj = yaml.load(apiInput);
         const api = JSON.stringify(obj, null, 2);
         this.serviceForm.value.api = api;
-  
-        this.serviceService.createService(this.serviceForm.value)
-          .then(data => {
-            console.log(data)
-            this.messageTrue=true;
-        });   
-      }
 
-     public onSelect(event): void {
+        this.serviceService.createService(this.serviceForm.value).then(data => {
+            console.log(data)
+            this.snackBar.open(`You created a service successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+            this.router.navigate(['/services']);
+        }).catch(error => {
+            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
+        });
+    }
+
+    public onSelect(event): void {
         console.log(event);
         this.files.push(...event.addedFiles);
     }
@@ -60,5 +66,5 @@ export class ServiceCreationComponent {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
     }
-    
+
 }

@@ -5,19 +5,70 @@
                 <span class="path">Services</span>
                 <span class="separator">/</span>
             </div>
-            <h1>{{ service.name }}</h1>
+            <h1>{{service.name}}</h1>
+            <h2 *ngIf="api.info.description">{{api.info.description}}</h2>
         </div>
 
         <div class="right">
             <button mat-flat-button color="primary" [routerLink]="['/services', 'edit', service.id]">
                 <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
-                <span class="ml-2">Edit service</span>
+                <span class="ml-2">Edit</span>
             </button>
         </div>
 
     </div>
 
     <div class="main">
+        <mat-tab-group [@.disabled]="true">
+            <mat-tab label="Overview">
+
+                <form [formGroup]="form" class="flex flex-col overflow-hidden">
+                    <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+                        <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                            <p class="text-lg font-medium">Question</p>
+                            <p class="text-secondary mb-6">
+                                Define the context in which you want to search for the answer to your question
+                            </p>
+                        </div>
+                        <div class="flex-auto min-w-64">
+                            <div class="flex">
+                                <mat-form-field class="flex-auto">
+                                    <mat-label>Context</mat-label>
+                                    <textarea matInput formControlName="context" class="h-40"></textarea>
+                                </mat-form-field>
+                            </div>
+                            <div class="flex">
+                                <mat-form-field class="flex-auto">
+                                    <mat-label>Question</mat-label>
+                                    <input matInput formControlName="question">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <mat-divider class="mt-4 mb-12"></mat-divider>
+
+                    <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+                        <div class="gt-xs:max-w-80 gt-xs:pr-12">
+                            <p class="text-lg font-medium">Answer</p>
+                            <p class="text-secondary mb-6">
+                                The following answer was found in the context
+                            </p>
+                        </div>
+                        <div class="flex-auto min-w-64">
+                            <div class="flex text-3xl">{{ response }}</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
+                        <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [class.spinner]="loading"
+                            [disabled]="loading" (click)="ask()">
+                            Ask question
+                        </button>
+                    </div>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
         <!--<pdf-analyzer></pdf-analyzer>-->
     </div>
 </div>

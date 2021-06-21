@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 
@@ -27,6 +28,7 @@ export class SolutionCreationComponent {
     });
 
     public constructor(
+        private router: Router,
         private snackBar: MatSnackBar,
         private solutionService: SolutionService
     ) { }
@@ -42,8 +44,8 @@ export class SolutionCreationComponent {
         }
 
         this.solutionService.createSolution(this.solutionForm.value).then(data => {
-            console.log(data)
             this.snackBar.open(`You created a solution successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+            this.router.navigate(['/solutions']);
         }).catch(error => {
             this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });

@@ -9,22 +9,88 @@
         </div>
 
         <div class="right">
-            <button mat-flat-button color="primary" [routerLink]="['/solutions', 'edit', solution.id]">
+            <button mat-flat-button [routerLink]="['/solutions', 'edit', solution.id]">
                 <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
-                <span class="ml-2">Edit solution</span>
+                <span class="ml-2">Edit</span>
             </button>
+            <!--
+            <button mat-flat-button [routerLink]="['/solutions', 'edit', solution.id]">
+                <mat-icon class="icon-size-18" svgIcon="comment"></mat-icon>
+                <span class="ml-2">Comment</span>
+            </button>
+            <button mat-flat-button [routerLink]="['/solutions', 'edit', solution.id]">
+                <span>Assign</span>
+            </button>
+            -->
         </div>
     </div>
-   
+
     <div class="main">
+        <!--
+        <div class="solution-detail-container">
+            <div>
+                <mat-form-field>
+                    <mat-label>Type</mat-label>
+                    <mat-select panelClass="">
+                        <mat-option *ngFor="let type of types" [value]="type.value">
+                            {{type.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Status</mat-label>
+                    <mat-select panelClass="">
+                        <mat-option *ngFor="let status of statuses" [value]="status.value">
+                            {{status.label}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        -->
+
         <mat-tab-group [@.disabled]="true">
-          <mat-tab label="Overview">
-                <solution-overview [solution]="solution"></solution-overview>
+            <mat-tab label="Overview">
+                <!--<solution-overview [solution]="solution"></solution-overview>-->
             </mat-tab>
-             <!--  
-            <mat-tab label="Features">
-                Features
+            <mat-tab label="Services">
+
+                <div class="cards">
+                    <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
+                        *ngFor="let solutionService of solutionServices"
+                        [routerLink]="['/solutions', 'detail', solutionService.Services.id]">
+                        <div class="relative">
+                            <div class="absolute flex flex-col top-0 right-0 p-3">
+                                <button mat-icon-button>
+                                    <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
+                                    </mat-icon>
+                                </button>
+                                <button mat-icon-button>
+                                    <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
+                                    </mat-icon>
+                                </button>
+                            </div>
+                            <!---  <img class="object-cover" [src]="solutionService.image" *ngIf="solutionService.image"> -->
+                        </div>
+                        <div class="m-8 mb-0">
+                            <div class="flex flex-col">
+                                <div class="text-2xl leading-tight">{{ solutionService.Services.name }}</div>
+                            </div>
+                            <div class="flex items-center text-md" *ngIf="solutionService.Services.description">
+                                <hr class="border-b my-6">
+                                {{ solutionService.Services.description }}
+                            </div>
+                            <div class="mt-6 -mx-8">
+                                <button
+                                    class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
+                                    mat-flat-button color="primary">Show</button>
+                            </div>
+                        </div>
+                    </treo-card>
+                </div>
+
             </mat-tab>
+            <!--  
             <mat-tab label="Pricing">
                 Pricing
             </mat-tab>
@@ -36,5 +102,5 @@
             </mat-tab>   -->
         </mat-tab-group>
     </div>
-  
+
 </div>

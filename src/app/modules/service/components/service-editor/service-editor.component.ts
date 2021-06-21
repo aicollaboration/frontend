@@ -8,6 +8,7 @@ import { ServiceService } from '../../services/service.service';
 import { loadServiceAction } from '../../state/service.actions';
 import { getServiceSelector, State } from '../../state/service.reducer';
 import yaml from 'js-yaml';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
     selector: 'service-editor',
@@ -24,7 +25,6 @@ export class ServiceEditorComponent implements OnInit {
     public serviceModel = new ServiceModel();
     private serviceId: string;
     public files: File[] = [];
-    messageTrue: boolean = false; 
     
     public serviceForm = new FormGroup({
         name: new FormControl(''),
@@ -34,8 +34,9 @@ export class ServiceEditorComponent implements OnInit {
     });
 
     public constructor(
-        private serviceService: ServiceService,
         private route: ActivatedRoute,
+        private serviceService: ServiceService,
+        private snackBar: MatSnackBar,
         private store: Store<State>,
     ) { }
 
@@ -80,7 +81,9 @@ export class ServiceEditorComponent implements OnInit {
         this.serviceService.updateService(service, this.serviceId).then(data => {
             // @todo success
             this.store.dispatch(loadServiceAction({ serviceId: this.serviceId }));
-            this.messageTrue=true;
+            this.snackBar.open(`Solution successful updated`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+        }).catch(error => {
+            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });
     }
 

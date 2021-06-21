@@ -4,6 +4,12 @@
         <div class="left">
             <h1>Edit Service: {{service.name}}</h1>
         </div>
+
+        <div class="right">
+            <button mat-flat-button color="primary" [routerLink]="['/services', 'detail', service.id]">
+                <mat-icon class="icon-size-18" svgIcon="close"></mat-icon>
+            </button>
+        </div>
     </div>
   
     <div class="main">
@@ -14,20 +20,22 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description" rows="10"></textarea> 
+                <textarea matInput formControlName="description" rows="3"></textarea> 
             </mat-form-field>
 
               <mat-form-field>
                 <mat-label>API</mat-label>
-                <textarea matInput formControlName="api" rows="14" readonly></textarea> 
+                <textarea matInput formControlName="api" rows="14" readonly  style="font: 14px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace"></textarea> 
             </mat-form-field>
             
+            <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>File upload</ngx-dropzone-label>
                 <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
                     <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
+            -->
 
             <div class="actions">
                 <div class="buttons">
@@ -36,11 +44,6 @@
                         <span>Update service</span>
                     </button>
                 </div>
-            </div>
-            <div class="messages" *ngIf="messageTrue">
-                <treo-message [type]="'success'" [appearance]="'border'">
-                  <span treoMessageTitle>You edited the Service successfully!</span>     
-                </treo-message>
             </div>
         </form>
         <div class="helper">

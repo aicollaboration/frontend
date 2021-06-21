@@ -14,11 +14,11 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description" rows="3" required></textarea>
+                <textarea matInput formControlName="description" rows="3"></textarea>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>API</mat-label>
-                <textarea matInput formControlName="api" rows="30" style="font: 14px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace"></textarea> 
+                <textarea matInput formControlName="api" rows="30" style="font: 14px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace" required></textarea> 
             </mat-form-field>
             <!--
             <ngx-dropzone (change)="onSelect($event)">
@@ -36,12 +36,6 @@
                         <span>Create Service</span>
                     </button>
                 </div>
-            </div>
-
-            <div class="messages" *ngIf="messageTrue">
-                <treo-message [type]="'success'" [appearance]="'border'">
-                  <span treoMessageTitle>You created a Service successfully!</span>
-                </treo-message>
             </div>
         </form>
         <div class="helper">

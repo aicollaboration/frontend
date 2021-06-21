@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SolutionModel } from '../../models/solution.model';
+import { SolutionService } from '../../services/solution.service';
 import { loadSolutionAction } from '../../state/solution.actions';
 import { getSolutionSelector, State } from '../../state/solution.reducer';
 import { SolutionDeploymentComponent } from '../solution-deployment/solution-deployment.component';
@@ -16,9 +17,23 @@ import { SolutionDeploymentComponent } from '../solution-deployment/solution-dep
 })
 export class SolutionDetailComponent implements OnInit {
     public solution$: Observable<SolutionModel>;
+    public types = [
+        {
+            value: 'value',
+            label: 'label',
+        },
+    ];
+    public statuses = [
+        {
+            value: 'value',
+            label: 'label',
+        },
+    ];
+    public solutionServices = [];
 
     public constructor(
         private route: ActivatedRoute,
+        private solutionService: SolutionService,
         private store: Store<State>,
         private matDialog: MatDialog
     ) {
@@ -30,6 +45,8 @@ export class SolutionDetailComponent implements OnInit {
         this.route.params.subscribe(async params => {
             const solutionId = params.id;
             this.store.dispatch(loadSolutionAction({ solutionId }));
+            
+            this.solutionServices = await this.solutionService.getSolutionServices(solutionId);
         });
     }
 

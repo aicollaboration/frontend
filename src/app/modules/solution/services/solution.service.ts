@@ -69,7 +69,7 @@ export class SolutionService {
       throw error;
     }
 
-    return data;
+    return data[0];
   }
 
   public async updateSolution(solution: any, solutionId: string) {
