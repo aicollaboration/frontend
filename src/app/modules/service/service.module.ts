@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -91,6 +92,7 @@ import { serviceReducer } from './state/service.reducer';
         MatTableModule,
         //   MatSort,
         MatSnackBarModule,
+        MatButtonToggleModule,
 
         // Forms
         FormsModule,

@@ -10,4 +10,5 @@ export class SolutionModel {
   public image?: string;
   public description?: string;
   public category?: CategoryModel;
+  public template: string;
 }

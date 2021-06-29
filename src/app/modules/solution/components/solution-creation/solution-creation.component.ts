@@ -1,8 +1,9 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SolutionModel } from '../../models/solution.model';
+import { SolutionTemplateService } from '../../services/solution-template.service';
 import { SolutionService } from '../../services/solution.service';
 
 
@@ -15,23 +16,39 @@ import { SolutionService } from '../../services/solution.service';
     encapsulation: ViewEncapsulation.None,
 })
 
-export class SolutionCreationComponent {
-    solution: SolutionModel[];
-    solutionModel = new SolutionModel();
+export class SolutionCreationComponent implements OnInit {
+    public solution: SolutionModel[];
+    public solutionModel = new SolutionModel();
     public files: File[] = [];
-    messageTrue: boolean = false;
 
     public solutionForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
-        file: new FormControl(''),
+        template: new FormControl(),
     });
+    public types = [
+        {
+            value: 'app',
+            label: 'App',
+        },
+    ];
+    public templates = [
+        {
+            name: 'Name',
+            description: 'description',
+        },
+    ];
 
     public constructor(
         private router: Router,
         private snackBar: MatSnackBar,
-        private solutionService: SolutionService
+        private solutionService: SolutionService,
+        private solutionTemplateService: SolutionTemplateService,
     ) { }
+
+    public async ngOnInit(): Promise<void> {
+        this.templates = await this.solutionTemplateService.getSolutionTemplates();
+    }
 
     public async onSubmit() {
         const solution: SolutionModel = {
@@ -59,6 +76,18 @@ export class SolutionCreationComponent {
     public onRemove(event): void {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
+    }
+
+    public selectTemplate(template) {
+        if (template.id === this.solutionForm.value.template) {
+            this.solutionForm.patchValue({
+                template: null,
+            });
+        } else {
+            this.solutionForm.patchValue({
+                template: template.id,
+            });
+        }
     }
 
 }

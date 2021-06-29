@@ -5,10 +5,17 @@
         </div>
 
         <div class="right">
-            <button mat-flat-button color="primary" [routerLink]="['/services', 'create']">
-                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
-                <span class="ml-2">Create service</span>
-            </button>
+            <mat-button-toggle-group>
+                <mat-button-toggle mat-flat-button color="primary" [matMenuTriggerFor]="dropdownMenuOne">
+                    <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                    <span class="ml-2">Create</span>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <mat-menu #dropdownMenuOne="matMenu">
+                <button mat-menu-item [routerLink]="['/services', 'create']">Service</button>
+                <!--<button mat-menu-item [routerLink]="['/services', 'create']">API</button>-->
+            </mat-menu>
         </div>
     </div>
     <div class="main">
@@ -35,7 +42,7 @@
                     <div *ngIf="service.description">
                         <hr class="border-b my-6">
                         <div class="flex items-center text-md">
-                            {{ service.description }} 
+                            {{ service.description }}
                         </div>
                     </div>
                     <div class="mt-6 -mx-8">

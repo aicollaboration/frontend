@@ -25,7 +25,9 @@
         </div>
 
         <div class="cards">
-            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'" *ngFor="let solution of solutions$ | async" [routerLink]="['/solutions', 'detail', solution.id]">
+            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
+                *ngFor="let solution of solutions$ | async" [routerLink]="['/solutions', 'detail', solution.id]"
+                matRipple matRippleColor="white">
                 <div class="relative">
                     <div class="absolute flex flex-col top-0 right-0 p-3">
                         <button mat-icon-button>
@@ -37,9 +39,9 @@
                             </mat-icon>
                         </button>
                     </div>
-                  <!---  <img class="object-cover" [src]="solution.image" *ngIf="solution.image"> -->
+                    <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg">
                 </div>
-                <div class="m-8 mb-0">
+                <div class="m-4 mb-0">
                     <div class="flex flex-col">
                         <div class="text-2xl leading-tight">{{ solution.name }}</div>
                     </div>
@@ -49,7 +51,7 @@
                     </div>
                     <div class="mt-6 -mx-8">
                         <button
-                            class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
+                            class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base"
                             mat-flat-button color="primary">Show</button>
                     </div>
                 </div>
