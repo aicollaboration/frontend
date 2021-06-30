@@ -51,6 +51,7 @@ export class UserComponent implements OnInit, OnDestroy {
      */
     @Input()
     set user(value: User) {
+        debugger
         // Save the user
         this._user = value;
 
@@ -67,6 +68,7 @@ export class UserComponent implements OnInit, OnDestroy {
         this.userService.user$
             .pipe(takeUntil(this.unsubscribeAll))
             .subscribe((user: User) => {
+                debugger
                 this._user = user;
             });
     }

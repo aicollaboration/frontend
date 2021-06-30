@@ -10,9 +10,17 @@ spec:
   tls:
   - hosts:
     - aiproduct.io
+    - aicollaboration.com
     secretName: tls-aiproduct.io
   rules:
   - host: aiproduct.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend
+          servicePort: 80
+  - host: aicollaboration.com
     http:
       paths:
       - path: /

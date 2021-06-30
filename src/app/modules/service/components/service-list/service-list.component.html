@@ -5,17 +5,10 @@
         </div>
 
         <div class="right">
-            <mat-button-toggle-group>
-                <mat-button-toggle mat-flat-button color="primary" [matMenuTriggerFor]="dropdownMenuOne">
-                    <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
-                    <span class="ml-2">Create</span>
-                </mat-button-toggle>
-            </mat-button-toggle-group>
-
-            <mat-menu #dropdownMenuOne="matMenu">
-                <button mat-menu-item [routerLink]="['/services', 'create']">Service</button>
-                <!--<button mat-menu-item [routerLink]="['/services', 'create']">API</button>-->
-            </mat-menu>
+            <button class="mr-4" mat-flat-button color="primary" [routerLink]="['/services', 'create']">
+                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
+                <span class="ml-2">Create service</span>
+            </button>
         </div>
     </div>
     <div class="main">

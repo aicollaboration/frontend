@@ -8,10 +8,10 @@ export class AuthService {
     private supabase: SupabaseClient;
 
     constructor() {
-        const supabaseUrl = 'https://exrcpfgiopxnpdbziykr.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNDIwMjQ5NiwiZXhwIjoxOTI5Nzc4NDk2fQ.Z6awBtD8HNl_FWJposOdSLcU8oE2wErlHqiJR4jZKPE';
-
-        this.supabase = createClient(supabaseUrl, supabaseKey);
+        this.supabase = createClient(
+            'https://exrcpfgiopxnpdbziykr.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNDIwMjQ5NiwiZXhwIjoxOTI5Nzc4NDk2fQ.Z6awBtD8HNl_FWJposOdSLcU8oE2wErlHqiJR4jZKPE'
+        );
         this.isAuthenticated = this.supabase.auth.session() ? true : false;
     }
 
@@ -69,6 +69,8 @@ export class AuthService {
     }
 
     get user() {
-        return this.supabase.auth.user();
+        const user = this.supabase.auth.user();
+        debugger
+        return user;
     }
 }
