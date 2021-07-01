@@ -70,7 +70,6 @@ export class AuthService {
 
     get user() {
         const user = this.supabase.auth.user();
-        debugger
         return user;
     }
 }

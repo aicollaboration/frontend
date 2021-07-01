@@ -53,10 +53,8 @@ export class SolutionDetailOverviewComponent implements OnInit {
     }
 
     public update() {
-        debugger
     }
 
     public cancel() {
-        debugger
     }
 }
