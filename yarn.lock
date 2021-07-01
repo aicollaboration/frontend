@@ -7004,6 +7004,13 @@ ngx-markdown@9.1.1:
     marked "^1.1.0"
     prismjs "^1.20.0"
 
+ngx-paypal@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-paypal/-/ngx-paypal-7.0.0.tgz#8e95a738269c1da5f02a7cd2a5f943e98f15f25d"
+  integrity sha512-5kiqJbqZh7ETZy5xGTkbbgey/Oj0oViLZZgpWLPT1H23SoKK5ph+cgAj8orIdZLhHmlOpN60qpuP4lpF+OGx6g==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-quill@11.1.0:
   version "11.1.0"
   resolved "https://registry.yarnpkg.com/ngx-quill/-/ngx-quill-11.1.0.tgz#1f92b9e3f3f43b4877ea46b5b1b9983ed1383680"
