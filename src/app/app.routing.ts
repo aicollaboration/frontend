@@ -8,14 +8,24 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
     {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'dashboard'
-    },
-    {
         path: 'signed-in-redirect',
         pathMatch: 'full',
         redirectTo: 'admin'
+    },
+
+    // Landing routes
+    {
+        path: '',
+        component: LayoutComponent,
+        data: {
+            layout: 'web'
+        },
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
+            },
+        ]
     },
 
     // Auth routes (guest)
@@ -77,21 +87,6 @@ export const appRoutes: Route[] = [
                 path: 'unlock-session',
                 loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule)
             }
-        ]
-    },
-
-    // Landing routes
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {
-                path: 'home',
-                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
-            },
         ]
     },
 

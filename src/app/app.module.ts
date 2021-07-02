@@ -26,7 +26,8 @@ import { EditableModule } from '@ngneat/edit-in-place';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: PreloadAllModules,
+    enableTracing: true,
 };
 
 @NgModule({

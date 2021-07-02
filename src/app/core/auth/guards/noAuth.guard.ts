@@ -23,7 +23,7 @@ export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad {
     private check(): boolean {
         const authenticated = this.authService.check();
         if (authenticated) {
-            this.router.navigate(['']);
+            this.router.navigate(['dashboard']);
 
             return false;
         }

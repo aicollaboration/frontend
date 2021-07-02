@@ -14,6 +14,7 @@ import { DenseLayoutModule } from 'app/layout/layouts/vertical/dense/dense.modul
 import { FuturisticLayoutModule } from 'app/layout/layouts/vertical/futuristic/futuristic.module';
 import { ThinLayoutModule } from 'app/layout/layouts/vertical/thin/thin.module';
 import { SharedModule } from 'app/shared/shared.module';
+import { WebLayoutModule } from './layouts/web/web.module';
 
 const modules = [
     // Empty
@@ -32,7 +33,10 @@ const modules = [
     CompactLayoutModule,
     DenseLayoutModule,
     FuturisticLayoutModule,
-    ThinLayoutModule
+    ThinLayoutModule,
+
+    // Web
+    WebLayoutModule,
 ];
 
 @NgModule({
