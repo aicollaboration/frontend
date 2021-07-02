@@ -1,37 +1,28 @@
-<mat-tab-group [@.disabled]="true">
-    <mat-tab label="Overview">
-    </mat-tab>
-    <mat-tab label="Paypal">
-        <div #paypal></div>
-        <!--
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
--->
-        <a class="btn"
-            href="https://www.paypal.com/signin/authorize?client_id=AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg&response_type=code&scope=openid+email&redirect_uri=http://localhost:4100/auth/paypal">
-            Login old
-        </a>
-        <a class="btn"
-            href="https://www.sandbox.paypal.com/connect?flowEntry=static&client_id=AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg&scope=openid,profile,emailadress&redirect_uri=http://localhost:4100/auth/paypal">Login
-            with Paypal</a>
-        <br /><br />
-        <span id='paypalButton'></span>
-        <script>
-            paypal.use(['login'], function (login) {
-                login.render({
-                    "appid": "AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg",
-                    "authend": "sandbox",
-                    "scopes": "openidprofileemailadress",
-                    "containerid": "paypalButton",
-                    "responseType": "code id_Token",
-                    "locale": "de-de",
-                    "theme": "neutral",
-                    "buttonType": "LWP",
-                    "buttonShape": "rectangle",
-                    "buttonSize": "lg",
-                    "fullPage": "true",
-                    "returnurl": "http://localhost:4100/auth/paypal"
-                });
-            });
-        </script>
-    </mat-tab>
-</mat-tab-group>
+<div class="content-layout fullwidth-tabs-normal-scroll">
+    <div class="header">
+        <div class="left">
+            <div class="breadcrumb">
+                <span class="path">Administration</span>
+                <span class="separator">/</span>
+            </div>
+            <h1>Overview</h1>
+        </div>
+
+        <div class="right">
+        </div>
+
+    </div>
+
+    <div class="main">
+        <nav mat-tab-nav-bar>
+            <a mat-tab-link routerLink="/admin/dashboard" routerLinkActive [active]="rla.isActive" #rla="routerLinkActive">Dashboard</a>
+            <a mat-tab-link routerLink="/admin/users" routerLinkActive [active]="rla.isActive" #rla="routerLinkActive">Users</a>
+            <a mat-tab-link routerLink="/admin/payment" routerLinkActive [active]="rla.isActive" #rla="routerLinkActive">Payment</a>
+        </nav>
+
+        <div class="p-6 sm:p-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
