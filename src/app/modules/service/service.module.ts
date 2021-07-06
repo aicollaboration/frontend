@@ -46,6 +46,9 @@ import { WebsiteAuditComponent } from './components/website-audit/website-audit.
 import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
+import { MaterialTextComponent } from './components/FormComponents/field-input/material-text.component';
+import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
+
 
 @NgModule({
     declarations: [
@@ -65,10 +68,16 @@ import { serviceReducer } from './state/service.reducer';
 
         EmptyComponent,
         ServiceLoaderDirective,
+
+        DynamicChildComponent,
+        MaterialTextComponent,
     ],
     entryComponents: [
         PdfAnalyzerComponent,
         EmptyComponent,
+
+        DynamicChildComponent,
+        MaterialTextComponent,
     ],
     imports: [
         SharedModule,
@@ -114,6 +123,7 @@ import { serviceReducer } from './state/service.reducer';
 
         MatSelectCountryModule,
     ],
+    exports: []
 })
 export class ServiceModule {
 

@@ -25,12 +25,16 @@ export class ServiceDetailComponent implements OnInit {
     ) {
     }
 
+
+// <dynamic componrt api/>
+
+
     public ngOnInit(): void {
         this.service$ = this.store.select(getServiceSelector);
         this.service$.subscribe(service => {
             if (service) {
                 const api = this.api = JSON.parse(service.api);
-                for (let [key, value] of Object.entries(api.paths)) {
+                for (const [key, value] of Object.entries(api.paths)) {
                     console.log(`kv`, key, value);
                 }
             }

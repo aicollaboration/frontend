@@ -1,5 +1,5 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, Input } from "@angular/core";
+import { Component, Input, AfterContentInit } from "@angular/core";
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceModel } from '../../models/service.model';
 
@@ -11,23 +11,33 @@ import { ServiceModel } from '../../models/service.model';
         './service-endpoint.component.scss',
     ],
 })
-export class ServiceEndpointComponent {
+export class ServiceEndpointComponent implements AfterContentInit {
     public response = '';
     public loading = false;
     public form = new FormGroup({
         question: new FormControl(),
         context: new FormControl(),
     });
-
+public responseApiTest;
     @Input()
     public service: ServiceModel;
 
     public constructor(
         private http: HttpClient
     ) {
+
+
     }
 
-    public predict() {
+    public ngAfterContentInit(): void {
+
+    const toJson = JSON.parse(this.service.api);
+    console.log(toJson.components.schemas.Input.properties, 'test');
+    this.responseApiTest = toJson.components.schemas.Input.properties;
+
+    }
+    
+    public predict(): void {
         this.loading = true;
 
         const values = this.form.value;
