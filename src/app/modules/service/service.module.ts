@@ -44,6 +44,9 @@ import { WebsiteAuditComponent } from './components/website-audit/website-audit.
 import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
+import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
+import { InputTextComponent } from './components/forms/input-text/input-text.component';
+import { InputSelectComponent } from './components/forms/input-select/input-select.component';
 
 @NgModule({
     declarations: [
@@ -62,6 +65,9 @@ import { serviceReducer } from './state/service.reducer';
 
         EmptyComponent,
         ServiceLoaderDirective,
+        DynamicChildComponent,
+        InputTextComponent,
+        InputSelectComponent,
     ],
     entryComponents: [
         PdfAnalyzerComponent,
