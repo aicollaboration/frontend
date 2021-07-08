@@ -6,7 +6,9 @@
 
 <mat-form-field
 [formGroup]='form'
+class="row"
 >
+<mat-label>{{ngmodelname}}</mat-label>
   <input
    matInput
    placeholder="test"
@@ -16,6 +18,6 @@
   formControlName="{{ngmodelname}}"
   (ngModelChange)="onChange(ngmodelname, $event, componentData)"
          >
-  
+  <br/>
 </mat-form-field>
 
