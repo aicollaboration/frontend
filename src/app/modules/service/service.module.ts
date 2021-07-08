@@ -48,6 +48,9 @@ import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.
 import { InputTextComponent } from './components/forms/input-text/input-text.component';
 import { InputSelectComponent } from './components/forms/input-select/input-select.component';
 
+
+import { DynamicModule } from './components/dynamic';
+
 @NgModule({
     declarations: [
         ServiceListComponent,
@@ -72,6 +75,7 @@ import { InputSelectComponent } from './components/forms/input-select/input-sele
     entryComponents: [
         PdfAnalyzerComponent,
         EmptyComponent,
+        InputTextComponent
     ],
     imports: [
         SharedModule,
@@ -115,6 +119,7 @@ import { InputSelectComponent } from './components/forms/input-select/input-sele
         PdfViewerModule,
 
         MatSelectCountryModule,
+        DynamicModule.withComponents([InputTextComponent])
     ],
 })
 export class ServiceModule {

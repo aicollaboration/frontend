@@ -22,6 +22,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { environment } from 'environments/environment';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MarkdownModule } from 'ngx-markdown';
+import { DynamicModule } from './modules/service/components/dynamic';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -61,6 +62,9 @@ const routerConfig: ExtraOptions = {
         }),
         EffectsModule.forRoot([]),
 
+        // dynami
+        DynamicModule,
+        
         // Forms
         MatDialogModule,
         ReactiveFormsModule,

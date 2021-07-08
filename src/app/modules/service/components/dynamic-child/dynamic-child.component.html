@@ -1,14 +1,16 @@
 <p>
 
 vimal<br/>
+
+<ng-container *ngFor="let item of components">
+<ng-container 
+*ngComponentOutlet="item.name;appDynamicInputs:item.inputs;appDynamicOutputs:item.outputs;"
+>
+</ng-container>
+</ng-container>
+
     dynamic-child works!
 
 </p>
 
 
-<!-- <ng-container *ngFor="let item of components">
-<ng-container 
-*ngComponentOutlet="item.name;appDynamicInputs:item.inputs;appDynamicOutputs:item.outputs;"
->
-</ng-container>
-</ng-container> -->

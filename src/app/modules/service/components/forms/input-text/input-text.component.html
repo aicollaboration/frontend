@@ -1,1 +1,21 @@
-<p>input-text works!</p>
+<!-- <p>input-text works!
+
+    {{componentData | json}}
+</p> -->
+
+
+<mat-form-field
+[formGroup]='form'
+>
+  <input
+   matInput
+   placeholder="test"
+  [class]=""
+  [(ngModel)]="modelValue"
+  [name]="ngmodelname"
+  formControlName="{{ngmodelname}}"
+  (ngModelChange)="onChange(ngmodelname, $event, componentData)"
+         >
+  
+</mat-form-field>
+

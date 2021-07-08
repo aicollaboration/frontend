@@ -23,9 +23,12 @@
         <mat-tab-group [@.disabled]="true">
             <mat-tab label="Overview">
 
-<app-dynamic-child > </app-dynamic-child>
-                {{service.api}}
-
+                <div *ngIf="!!responseApiTest">
+                    sss <br/>
+                <app-dynamic-child [componentData]="responseApiTest">
+                </app-dynamic-child>
+                    sss <br/>
+                </div>
 
                 <form [formGroup]="form" class="flex flex-col overflow-hidden">
                     <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
