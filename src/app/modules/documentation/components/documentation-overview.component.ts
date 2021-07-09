@@ -18,7 +18,6 @@ export class DocumentationOverviewComponent implements OnInit {
     ngOnInit(): void {
         /*
         this.documentationService.getFaqs().subscribe((faqCategories) => {
-            debugger;
         });
         */
     }

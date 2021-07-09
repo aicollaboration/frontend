@@ -35,7 +35,6 @@ export class SolutionEditorComponent implements OnInit {
     public solutionForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
-        file: new FormControl(''),
     });
 
     public constructor(

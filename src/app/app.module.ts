@@ -23,6 +23,7 @@ import { environment } from 'environments/environment';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MarkdownModule } from 'ngx-markdown';
 import { DynamicModule } from './modules/service/components/dynamic';
+import { EditableModule } from '@ngneat/edit-in-place';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -74,6 +75,8 @@ const routerConfig: ExtraOptions = {
 
         // dropzone
         NgxDropzoneModule,
+
+        EditableModule,
     ],
     bootstrap: [
         AppComponent,

@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTreeModule } from '@angular/material/tree';
 import { RouterModule } from '@angular/router';
+import { EditableModule } from '@ngneat/edit-in-place';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { TreoCardModule } from '@treo/components/card';
@@ -34,6 +36,8 @@ import { SolutionServiceCreationComponent } from './components/solution-service-
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
+import { QuillModule } from 'ngx-quill';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     declarations: [
@@ -70,6 +74,8 @@ import { solutionReducer } from './state/solution.reducer';
         MatTreeModule,
         MatTableModule,
         MatSnackBarModule,
+        MatRippleModule,
+        MatChipsModule,
 
         // Forms
         FormsModule,
@@ -85,6 +91,10 @@ import { solutionReducer } from './state/solution.reducer';
         // dropzone
         NgxDropzoneModule,
         DragDropModule,
+
+        // editable
+        EditableModule,
+        QuillModule.forRoot(),
     ],
 })
 export class SolutionModule {

@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: aiproduct.io
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/tls-acme: "true"
+spec:
+  tls:
+  - hosts:
+    - aiproduct.io
+    - aicollaboration.com
+    secretName: tls-aiproduct.io
+  rules:
+  - host: aiproduct.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend
+          servicePort: 80
+  - host: aicollaboration.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: frontend
+          servicePort: 80

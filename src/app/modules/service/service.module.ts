@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -36,6 +37,7 @@ import { QuestionAnsweringComponent } from './components/question-answering/ques
 import { ServiceCreationComponent } from './components/service-creation/service-creation.component';
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
+import { ServiceEndpointComponent } from './components/service-endpoint/service-endpoint.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { ServiceLoaderComponent } from './components/service-loader/service-loader.component';
 import { ServiceLoaderDirective } from './components/service-loader/service-loader.directive';
@@ -58,6 +60,7 @@ import { DynamicModule } from './components/dynamic';
         ServiceEditorComponent,
         ServiceLoaderComponent,
         ServiceCreationComponent,
+        ServiceEndpointComponent,
         PdfAnalyzerComponent,
         PdfTableOfContentsComponent,
         QuestionAnsweringComponent,
@@ -101,6 +104,7 @@ import { DynamicModule } from './components/dynamic';
         MatTableModule,
         //   MatSort,
         MatSnackBarModule,
+        MatButtonToggleModule,
 
         // Forms
         FormsModule,
