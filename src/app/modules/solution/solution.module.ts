@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -26,6 +27,7 @@ import { TreoCardModule } from '@treo/components/card';
 import { TreoMessageModule } from '@treo/components/message';
 import { TreoNavigationModule } from '@treo/components/navigation';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { QuillModule } from 'ngx-quill';
 import { ProblemSubmitterComponent } from './components/problem-submitter/problem-submitter.component';
 import { SolutionCreationComponent } from './components/solution-creation/solution-creation.component';
 import { SolutionDetailOverviewComponent } from './components/solution-detail-overview/solution-detail-overview.component';
@@ -33,11 +35,10 @@ import { SolutionDetailComponent } from './components/solution-detail/solution-d
 import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
 import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
+import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
-import { QuillModule } from 'ngx-quill';
-import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { MatChipsModule } from '@angular/material/chips';
         SolutionCreationComponent,
         SolutionEditorComponent,
         SolutionServiceCreationComponent,
+        SolutionServiceDetailComponent,
         ProblemSubmitterComponent,
     ],
     schemas: [

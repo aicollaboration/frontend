@@ -2,7 +2,7 @@
     <div class="header">
         <div class="left">
             <h1>Services</h1>
-            <h2>Find and Connect to thousands of services (ai models & algorithms)</h2>
+            <h3>Find and Connect to thousands of services (ai models & algorithms)</h3>
         </div>
 
         <div class="right">
@@ -13,10 +13,10 @@
         </div>
     </div>
     <div class="main">
-        <h3>Discover services</h3>
         <div class="cards">
             <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
-                *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.id]">
+                *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.id]" matRipple
+                matRippleColor="white">
                 <div class="relative">
                     <img class="object-cover" [src]="service.image" *ngIf="service.image">
                 </div>
@@ -31,15 +31,14 @@
                         </div>
                     </div>
                     <div class="my-2 w-full flex justify-between items-center">
+                        <!--
                         <div class="flex flex-col items-center">
-                        <mat-icon>verified_user</mat-icon>
+                            <mat-icon>verified_user</mat-icon>
                         </div>
-                        <div class="flex flex-col items-center">B</div>
+                    -->
                     </div>
                 </div>
             </treo-card>
         </div>
-
-            <h3>Recommended services</h3>
     </div>
 </div>

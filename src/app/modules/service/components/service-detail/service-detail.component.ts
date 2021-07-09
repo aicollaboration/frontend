@@ -1,12 +1,10 @@
-import { ServiceModel } from './../../models/service.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadServiceAction } from '../../state/service.actions';
 import { getServiceSelector, State } from '../../state/service.reducer';
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ServiceModel } from './../../models/service.model';
 
 @Component({
     selector: 'service-detail',

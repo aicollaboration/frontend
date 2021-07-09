@@ -53,7 +53,7 @@ export class SolutionDetailComponent implements OnInit {
         this.solution$ = this.store.select(getSolutionSelector);
 
         this.route.params.subscribe(async params => {
-            const solutionId = this.solutionId = params.id;
+            const solutionId = this.solutionId = params.solutionId;
             this.store.dispatch(loadSolutionAction({ solutionId }));
             
             this.solutionServices = await this.solutionService.getSolutionServices(solutionId);

@@ -28,6 +28,7 @@ import { TreoNavigationModule } from '@treo/components/navigation';
 import { SharedModule } from 'app/shared/shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { QuillModule } from 'ngx-quill';
 import { DocumentClassificationComponent } from './components/document-classification/document-classification.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { GermanQuestionAnsweringComponent } from './components/german-question-answering/german-question-answering.component';
@@ -35,6 +36,7 @@ import { PdfAnalyzerComponent } from './components/pdf-analyzer/pdf-analyzer.com
 import { PdfTableOfContentsComponent } from './components/pdf-table-of-contents/pdf-table-of-contents.component';
 import { QuestionAnsweringComponent } from './components/question-answering/question-answering.component';
 import { ServiceCreationComponent } from './components/service-creation/service-creation.component';
+import { ServiceDetailOverviewComponent } from './components/service-detail-overview/service-detail-overview.component';
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
 import { ServiceEndpointComponent } from './components/service-endpoint/service-endpoint.component';
@@ -51,6 +53,7 @@ import { serviceReducer } from './state/service.reducer';
     declarations: [
         ServiceListComponent,
         ServiceDetailComponent,
+        ServiceDetailOverviewComponent,
         ServiceEditorComponent,
         ServiceLoaderComponent,
         ServiceCreationComponent,
@@ -102,6 +105,7 @@ import { serviceReducer } from './state/service.reducer';
         MatDialogModule,
         ReactiveFormsModule,
         MatFormFieldModule,
+        MatSelectCountryModule,
 
         // dropzone
         NgxDropzoneModule,
@@ -112,7 +116,7 @@ import { serviceReducer } from './state/service.reducer';
 
         PdfViewerModule,
 
-        MatSelectCountryModule,
+        QuillModule.forRoot(),
     ],
 })
 export class ServiceModule {

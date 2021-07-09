@@ -15,7 +15,7 @@ import { UserService } from 'app/layout/common/user/user.service';
 })
 export class UserComponent implements OnInit, OnDestroy {
     @Input()
-    showAvatar: boolean;
+    public showAvatar: boolean;
 
     // Private
     private unsubscribeAll: Subject<any>;
@@ -24,12 +24,12 @@ export class UserComponent implements OnInit, OnDestroy {
     /**
      * Constructor
      *
-     * @param {ChangeDetectorRef} _changeDetectorRef
+     * @param {ChangeDetectorRef} changeDetectorRef
      * @param {Router} router
      * @param {UserService} userService
      */
     constructor(
-        private _changeDetectorRef: ChangeDetectorRef,
+        private changeDetectorRef: ChangeDetectorRef,
         private router: Router,
         private userService: UserService
     ) {

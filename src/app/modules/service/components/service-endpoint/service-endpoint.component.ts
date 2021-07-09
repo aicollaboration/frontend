@@ -22,9 +22,7 @@ export class ServiceEndpointComponent {
     @Input()
     public service: ServiceModel;
 
-    public constructor(
-        private http: HttpClient
-    ) {
+    public constructor(private http: HttpClient) {
     }
 
     public predict() {

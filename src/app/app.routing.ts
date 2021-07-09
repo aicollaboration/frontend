@@ -8,6 +8,11 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
     {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard'
+    },
+    {
         path: 'signed-in-redirect',
         pathMatch: 'full',
         redirectTo: 'admin'

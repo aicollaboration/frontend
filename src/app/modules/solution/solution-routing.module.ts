@@ -5,6 +5,7 @@ import { SolutionCreationComponent } from './components/solution-creation/soluti
 import { SolutionDetailComponent } from './components/solution-detail/solution-detail.component';
 import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
+import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 
 export const routes: Route[] = [
     {
@@ -12,8 +13,12 @@ export const routes: Route[] = [
         component: SolutionListComponent,
     },
     {
-        path: 'detail/:id',
+        path: 'detail/:solutionId',
         component: SolutionDetailComponent,
+    },
+    {
+        path: 'detail/:solutionId/services/:serviceId',
+        component: SolutionServiceDetailComponent,
     },
     {
         path: 'create',

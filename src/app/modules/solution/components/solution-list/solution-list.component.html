@@ -2,6 +2,7 @@
     <div class="header">
         <div class="left">
             <h1>Solutions</h1>
+            <h3>Ready-made solutions including frontend, user management and preconfigured AI services</h3>
         </div>
 
         <div class="right">
@@ -17,6 +18,33 @@
             -->
         </div>
     </div>
+    <!--
+    <div class="header">
+        <div class="left">
+            <form [formGroup]="searchForm">
+                <div class="flex">
+                    <mat-form-field class="flex flex-column mr-4">
+                        <mat-label>Projects</mat-label>
+                        <mat-select multiple formControlName="projects">
+                            <mat-option>Project: all</mat-option>
+                            <mat-option value="1">Project: all</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="flex flex-column">
+                        <mat-label>Branches</mat-label>
+                        <mat-select value="1" multiple formControlName="branches">
+                            <mat-option value="1">Branch: all</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="flex flex-column">
+                        <button type="submit" mat-button color="primary">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="right"></div>
+    </div>
+    -->
     <div class="main">
         <div *ngIf="errors$ | async as errors">
             <ul *ngIf="errors.length > 0">
@@ -29,30 +57,30 @@
                 *ngFor="let solution of solutions$ | async" [routerLink]="['/solutions', 'detail', solution.id]"
                 matRipple matRippleColor="white">
                 <div class="relative">
-                    <div class="absolute flex flex-col top-0 right-0 p-3">
-                        <button mat-icon-button>
-                            <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
-                            </mat-icon>
-                        </button>
-                        <button mat-icon-button>
-                            <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
-                            </mat-icon>
-                        </button>
-                    </div>
                     <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg">
                 </div>
                 <div class="m-4 mb-0">
                     <div class="flex flex-col">
                         <div class="text-2xl leading-tight">{{ solution.name }}</div>
                     </div>
-                    <div class="flex items-center text-md" *ngIf="solution.description">
-                        <hr class="border-b my-6">
-                        {{ solution.description }}
+                    <div *ngIf="solution.description">
+                        <hr class="bor  der-b my-3">
+                        <div class="flex items-center text-md">
+                            {{ solution.description }}
+                        </div>
                     </div>
-                    <div class="mt-6 -mx-8">
-                        <button
-                            class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base"
-                            mat-flat-button color="primary">Show</button>
+                    <div class="my-2 w-full flex">
+                        <!--
+                        <div class="flex flex-col items-center">
+                            <mat-icon>verified_user</mat-icon>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <mat-icon>idea_2</mat-icon>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <mat-icon>update</mat-icon>
+                        </div>
+                        -->
                     </div>
                 </div>
             </treo-card>

@@ -24,21 +24,30 @@ export class SolutionService {
     return data;
   }
 
-  public async getSolutionService() {
-    const { data, error } = await this.supabase.from('SolutionServices').select("*")
+  public async getSolutionService(solutionId: string, serviceId: string) {
+    const query = `
+      id,
+      config,
+      Solutions(*),
+      Services(*)
+    `;
+    const { data, error } = await this.supabase.from('SolutionServices').select(query).eq('solutionId', solutionId).eq('serviceId', serviceId);
+    
     if (error) {
       throw error;
     }
-    return data;
+    
+    return data[0];
   }
 
   public async getSolutionServices(solutionId: string) {
     const query = `
       id,
+      config,
       Solutions(*),
       Services(*)
     `;
-    const { data, error } = await this.supabase.from('SolutionServices').select(query).eq('solutionId', solutionId)
+    const { data, error } = await this.supabase.from('SolutionServices').select(query).eq('solutionId', solutionId);
     if (error) {
       throw error;
     }

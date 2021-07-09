@@ -8,19 +8,18 @@ import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     declarations: [
-        UserComponent
+        UserComponent,
     ],
-    imports     : [
+    imports: [
         MatButtonModule,
         MatDividerModule,
         MatIconModule,
         MatMenuModule,
-        SharedModule
+        SharedModule,
     ],
-    exports     : [
-        UserComponent
+    exports: [
+        UserComponent,
     ]
 })
-export class UserModule
-{
+export class UserModule {
 }
