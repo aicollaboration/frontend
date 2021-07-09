@@ -17,8 +17,8 @@ export class ServiceEndpointComponent implements OnInit {
     public responseApiTest;
 
     public form = new FormGroup({
-        question: new FormControl(),
-        context: new FormControl(),
+        // question: new FormControl(),
+        // context: new FormControl(),
     });
 
     @Input()

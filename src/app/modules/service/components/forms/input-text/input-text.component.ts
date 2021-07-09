@@ -9,27 +9,28 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class InputTextComponent implements OnInit, OnDestroy {
 
    @Input() componentData;
+   @Input() form;
     @Input() data;
 
   //   formName: FormGroup;
     cmpId;
     ngmodelname;
     modelValue;
-    form;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.componentData, 'data', this.data);
-    this.cmpId = this.componentData.key + '1';
-    this.ngmodelname = this.componentData.key + '1';
+    this.cmpId = this.componentData.key;
+    this.ngmodelname = this.componentData.key;
 
     if (this.form) {
        const abc = this.ngmodelname;
+       this.form.addControl(abc, new FormControl());
   
     } else {
         this.form = new FormGroup({});
-        const abc = this.componentData.key + '1';
+        const abc = this.componentData.key;
         this.form.addControl(abc, new FormControl());
         // this.form.controls[this.ngmodelname].setValue('');
         //       this.modelValue = '';

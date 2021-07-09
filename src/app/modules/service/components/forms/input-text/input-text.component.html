@@ -1,23 +1,18 @@
-<!-- <p>input-text works!
 
-    {{componentData | json}}
-</p> -->
+  
+<div class="flex">
+  <mat-form-field class="flex-auto" [formGroup]='form'>
 
-
-<mat-form-field
-[formGroup]='form'
-class="row"
->
 <mat-label>{{ngmodelname}}</mat-label>
-  <input
-   matInput
-   placeholder="test"
-  [class]=""
-  [(ngModel)]="modelValue"
-  [name]="ngmodelname"
-  formControlName="{{ngmodelname}}"
-  (ngModelChange)="onChange(ngmodelname, $event, componentData)"
-         >
-  <br/>
-</mat-form-field>
+<input
+ matInput
+ placeholder="test"
+[class]=""
+[(ngModel)]="modelValue"
+[name]="ngmodelname"
+formControlName="{{ngmodelname}}"
+(ngModelChange)="onChange(ngmodelname, $event, componentData)"
+       >
+  </mat-form-field>
+</div>
 

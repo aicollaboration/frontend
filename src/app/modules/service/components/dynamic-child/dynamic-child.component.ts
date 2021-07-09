@@ -15,7 +15,7 @@ export class DynamicChildComponent implements OnInit {
 
   
   @Input() componentData;
- 
+ @Input() form;
 
    cmpList = {
     'string': InputTextComponent,
@@ -50,7 +50,9 @@ export class DynamicChildComponent implements OnInit {
 
     const inputsDataObj = {
       componentData: componentData,
-      data: 'test'
+      data: 'test',
+      form: this.form
+
     };
 
     const obj = {
