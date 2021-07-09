@@ -3,7 +3,6 @@ import { Component, Input } from "@angular/core";
 import { FormControl, FormGroup } from '@angular/forms';
 import { ServiceModel } from '../../models/service.model';
 
-
 @Component({
     selector: 'service-endpoint',
     templateUrl: './service-endpoint.component.html',

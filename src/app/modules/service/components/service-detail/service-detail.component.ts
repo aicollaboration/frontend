@@ -16,7 +16,7 @@ import { ServiceModel } from './../../models/service.model';
 export class ServiceDetailComponent implements OnInit {
     public service$: Observable<ServiceModel>;
     public api: any;
-
+    
     public constructor(
         private route: ActivatedRoute,
         private store: Store<State>
@@ -25,6 +25,11 @@ export class ServiceDetailComponent implements OnInit {
 
     public ngOnInit(): void {
         this.service$ = this.store.select(getServiceSelector);
+        this.service$.subscribe(service => {
+            if (service) {
+                this.api = JSON.parse(service.api);
+            }
+        });
 
         this.route.params.subscribe(params => {
             this.store.dispatch(loadServiceAction({ serviceId: params.id }));
