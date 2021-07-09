@@ -30,7 +30,10 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { QuillModule } from 'ngx-quill';
 import { DocumentClassificationComponent } from './components/document-classification/document-classification.component';
+import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
 import { EmptyComponent } from './components/empty/empty.component';
+import { InputSelectComponent } from './components/forms/input-select/input-select.component';
+import { InputTextComponent } from './components/forms/input-text/input-text.component';
 import { GermanQuestionAnsweringComponent } from './components/german-question-answering/german-question-answering.component';
 import { PdfAnalyzerComponent } from './components/pdf-analyzer/pdf-analyzer.component';
 import { PdfTableOfContentsComponent } from './components/pdf-table-of-contents/pdf-table-of-contents.component';
@@ -48,12 +51,6 @@ import { WebsiteAuditComponent } from './components/website-audit/website-audit.
 import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
-import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
-import { InputTextComponent } from './components/forms/input-text/input-text.component';
-import { InputSelectComponent } from './components/forms/input-select/input-select.component';
-
-
-import { DynamicModule } from './components/dynamic';
 
 @NgModule({
     declarations: [
@@ -127,7 +124,7 @@ import { DynamicModule } from './components/dynamic';
         PdfViewerModule,
 
         MatSelectCountryModule,
-        DynamicModule.withComponents([InputTextComponent]),
+        // DynamicModule.withComponents([InputTextComponent]),
         QuillModule.forRoot(),
     ],
 })

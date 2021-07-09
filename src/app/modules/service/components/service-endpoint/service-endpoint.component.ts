@@ -22,7 +22,16 @@ export class ServiceEndpointComponent {
     @Input()
     public service: ServiceModel;
 
+    public responseApiTest;
+
     public constructor(private http: HttpClient) {
+    }
+
+    public ngOnInit(): void {
+        const api = JSON.parse(this.service.api);
+
+        console.log(api.components.schemas.Input.properties, 'test');
+        this.responseApiTest = api.components.schemas.Input.properties;
     }
 
     public predict() {

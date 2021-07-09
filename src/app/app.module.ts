@@ -25,7 +25,7 @@ import player from 'lottie-web';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { LottieModule } from 'ngx-lottie';
 import { MarkdownModule } from 'ngx-markdown';
-import { DynamicModule } from './modules/service/components/dynamic';
+// import { DynamicModule } from './modules/service/components/dynamic';
 
 export function playerFactory() {
     return player;
@@ -71,7 +71,7 @@ const routerConfig: ExtraOptions = {
         EffectsModule.forRoot([]),
 
         // dynami
-        DynamicModule,
+        // DynamicModule,
         
         // Forms
         MatDialogModule,

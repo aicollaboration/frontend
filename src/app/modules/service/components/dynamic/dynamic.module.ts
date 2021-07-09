@@ -31,7 +31,7 @@ export class DynamicModule {
   static withComponents(
     components: Type<any>[],
     componentInjector: Type<ComponentInjector> = DynamicComponent,
-  ): ModuleWithProviders {
+  ) {
     return {
       ngModule: DynamicModule,
       providers: [
