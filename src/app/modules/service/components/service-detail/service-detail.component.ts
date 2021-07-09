@@ -1,15 +1,13 @@
-import { ServiceModel } from './../../models/service.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadServiceAction } from '../../state/service.actions';
 import { getServiceSelector, State } from '../../state/service.reducer';
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ServiceModel } from './../../models/service.model';
 
 @Component({
-    selector: 'service',
+    selector: 'service-detail',
     templateUrl: './service-detail.component.html',
     styleUrls: [
         './service-detail.component.scss',
@@ -18,6 +16,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ServiceDetailComponent implements OnInit {
     public service$: Observable<ServiceModel>;
     public api: any;
+<<<<<<< HEAD
     public loading = false;
     public response = '';
     public form = new FormGroup({
@@ -25,9 +24,10 @@ export class ServiceDetailComponent implements OnInit {
         context: new FormControl(),
     });
     public responseApiTest;
+=======
+>>>>>>> master
 
     public constructor(
-        private http: HttpClient,
         private route: ActivatedRoute,
         private store: Store<State>
     ) {
@@ -52,6 +52,7 @@ export class ServiceDetailComponent implements OnInit {
             this.store.dispatch(loadServiceAction({ serviceId: params.id }));
         });
     }
+<<<<<<< HEAD
 
    
 
@@ -112,4 +113,6 @@ export class ServiceDetailComponent implements OnInit {
             }
         });
     }
+=======
+>>>>>>> master
 }

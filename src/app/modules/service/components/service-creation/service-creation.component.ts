@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from "@angular/core";
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import yaml from 'js-yaml';
+import { load } from 'js-yaml';
 import { ServiceModel } from "../../models/service.model";
 import { ServiceService } from '../../services/service.service';
 
@@ -16,9 +16,21 @@ import { ServiceService } from '../../services/service.service';
 })
 
 export class ServiceCreationComponent {
-    service: ServiceModel[];
-    serviceModel = new ServiceModel();
+    public service: ServiceModel;
+    public serviceModel = new ServiceModel();
     public files: File[] = [];
+    public suggestedServices: ServiceModel[] = [
+        {
+            id: '1',
+            name: 'Text summarization',
+            description: 'Text Summarization API provides professional text summarizer service which is based on advanced Natural Language Processing and Machine Learning technologies. It can be used to summarize short important text from the URL or document that user provided.',
+        },
+        {
+            id: '2',
+            name: 'Question Answering',
+            description: 'This service gives answers to queries in natural language.',
+        },
+    ];
 
     public serviceForm = new FormGroup({
         name: new FormControl(''),
@@ -44,7 +56,7 @@ export class ServiceCreationComponent {
         }
 
         const apiInput = this.serviceForm.value['api'];
-        const obj = yaml.load(apiInput);
+        const obj = load(apiInput);
         const api = JSON.stringify(obj, null, 2);
         this.serviceForm.value.api = api;
 
@@ -65,6 +77,28 @@ export class ServiceCreationComponent {
     public onRemove(event): void {
         console.log(event);
         this.files.splice(this.files.indexOf(event), 1);
+    }
+
+    public changeApi(a: any) {
+        const api = this.serviceForm.value.api;
+        if (api.length > 0) {
+            const language = this.detectLanguage(api);
+            console.log(`language ${language}`);
+        }
+    }
+
+    private detectLanguage(code: string) {
+        try {
+            JSON.parse(code);
+            return 'JSON';
+        } catch (e) {
+        }
+        try {
+            load(code);
+            return 'YAML';
+        } catch (e) {
+        }
+        return 'UNKNOWN';
     }
 
 }

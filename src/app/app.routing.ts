@@ -18,6 +18,21 @@ export const appRoutes: Route[] = [
         redirectTo: 'admin'
     },
 
+    // Landing routes
+    {
+        path: '',
+        component: LayoutComponent,
+        data: {
+            layout: 'web'
+        },
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
+            },
+        ]
+    },
+
     // Auth routes (guest)
     {
         path: '',
@@ -32,12 +47,6 @@ export const appRoutes: Route[] = [
             layout: 'empty'
         },
         children: [
-            /*
-            {
-                path: '',
-                loadChildren: () => import('app/modules/content/home/home.module').then(module => module.HomeModule),
-            },
-            */
             {
                 path: 'confirmation-required',
                 loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)
@@ -86,21 +95,6 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // Landing routes
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {
-                path: 'home',
-                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
-            },
-        ]
-    },
-
     // Admin routes
     {
         path: '',
@@ -128,19 +122,11 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/solution/solution.module').then(module => module.SolutionModule),
             },
             {
-                path: 'problems',
-                loadChildren: () => import('app/modules/solution/solution.module').then(module => module.SolutionModule),
-            },
-            {
                 path: 'services',
                 loadChildren: () => import('app/modules/service/service.module').then(module => module.ServiceModule),
             },
             {
-                path: 'use-cases',
-                loadChildren: () => import('app/modules/use-case/use-case.module').then(module => module.UseCaseModule),
-            },
-            {
-                path: 'documentations',
+                path: 'docs',
                 loadChildren: () => import('app/modules/documentation/documentation.module').then(module => module.DocumentationModule),
             },
             {

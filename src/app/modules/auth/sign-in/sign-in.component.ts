@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
 import { TreoAnimations } from '@treo/animations';
 import { AuthService } from 'app/core/auth/auth.service';
 
@@ -11,30 +11,22 @@ import { AuthService } from 'app/core/auth/auth.service';
     animations: TreoAnimations
 })
 export class AuthSignInComponent implements OnInit {
-    signInForm: FormGroup;
-    message: any;
+    public signInForm: FormGroup;
+    public message: any;
 
-    /**
-     * Constructor
-     *
-     * @param {AuthService} authService
-     * @param {FormBuilder} formBuilder
-     * @param {Router} router
-     */
     constructor(
         private authService: AuthService,
         private formBuilder: FormBuilder,
-        private router: Router
+        private route: ActivatedRoute,
     ) {
         this.message = null;
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         // Create the form
         this.signInForm = this.formBuilder.group({
-            email: ['tobias.oberrauch@gmx.de'],
-            password: ['123123'],
-            rememberMe: ['']
+            email: [''],
+            password: [''],
         });
     }
 
@@ -45,7 +37,7 @@ export class AuthSignInComponent implements OnInit {
     /**
      * Sign in
      */
-    async signIn() {
+    public async signIn() {
         // Disable the form
         this.signInForm.disable();
 
@@ -58,12 +50,16 @@ export class AuthSignInComponent implements OnInit {
         // Sign in
         try {
             const user = await this.authService.signIn(credentials.email, credentials.password);
-            // this.router.navigate(['/solutions']);
-            window.location.pathname = "/solutions";
+
+            if (this.route.snapshot.queryParamMap.has('redirectURL')) {
+                window.location.pathname = this.route.snapshot.queryParamMap.get('redirectURL');
+            } else {
+                window.location.pathname = '/dashboard';
+            }
         } catch (error) {
             this.message = {
                 appearance: 'outline',
-                content: error,
+                content: error.message,
                 shake: true,
                 showIcon: false,
                 type: 'error'

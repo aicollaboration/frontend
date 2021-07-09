@@ -11,8 +11,8 @@ import { Subject } from 'rxjs';
     animations: TreoAnimations
 })
 export class AuthSignUpComponent implements OnInit, OnDestroy {
-    message: any;
-    signUpForm: FormGroup;
+    public message: any;
+    public signUpForm: FormGroup;
 
     // Private
     private unsubscribeAll: Subject<any>;
@@ -39,17 +39,18 @@ export class AuthSignUpComponent implements OnInit, OnDestroy {
         this.signUpForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
-            agreements: ['', Validators.requiredTrue]
-        });
+            confirmPassword: [''],
+            agreements: [true, Validators.requiredTrue]
+        }, { validators: this.checkPasswords });
     }
 
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this.unsubscribeAll.next();
         this.unsubscribeAll.complete();
     }
 
-    async signUp(): Promise<void> {
+    public async signUp(): Promise<void> {
         // Do nothing if the form is invalid
         if (this.signUpForm.invalid) {
             return;
@@ -83,5 +84,14 @@ export class AuthSignUpComponent implements OnInit, OnDestroy {
             console.log("error message - " + error.message);
             console.log("error code - " + error.statusCode);
         }
+    }
+
+    private checkPasswords(group: FormGroup) {
+        const password = group.get('password').value;
+        const confirmPassword = group.get('confirmPassword').value;
+
+        console.log(`checkPasswords ${password} ${confirmPassword} ${password === confirmPassword}`);
+
+        return password === confirmPassword ? null : { notSame: true }
     }
 }

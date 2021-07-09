@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
+import { EditableModule } from '@ngneat/edit-in-place';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -20,13 +21,20 @@ import { CoreModule } from 'app/core/core.module';
 import { mockDataServices } from 'app/data/mock';
 import { LayoutModule } from 'app/layout/layout.module';
 import { environment } from 'environments/environment';
+import player from 'lottie-web';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { LottieModule } from 'ngx-lottie';
 import { MarkdownModule } from 'ngx-markdown';
 import { DynamicModule } from './modules/service/components/dynamic';
 
+export function playerFactory() {
+    return player;
+}
+
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: PreloadAllModules,
+    enableTracing: true,
 };
 
 @NgModule({
@@ -74,6 +82,10 @@ const routerConfig: ExtraOptions = {
 
         // dropzone
         NgxDropzoneModule,
+
+        EditableModule,
+
+        LottieModule.forRoot({ player: playerFactory }),
     ],
     bootstrap: [
         AppComponent,

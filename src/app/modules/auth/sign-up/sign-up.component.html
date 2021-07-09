@@ -43,7 +43,7 @@
                     <!-- Password field -->
                     <mat-form-field>
                         <mat-label>Password</mat-label>
-                        <input id="password" matInput type="password" [formControlName]="'password'" #passwordField>
+                        <input id="password" matInput type="password" formControlName="password" #passwordField>
                         <button mat-icon-button
                             (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
                             tabindex="-1" matSuffix>
@@ -55,24 +55,12 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-label>Your role</mat-label><br />
-                    <mat-radio-group class="flex flex-col" [color]="'primary'" [value]="'just-good'">
-                        <mat-radio-button class="mb-2" [value]="'everything'">
-                            Fachexperte
-                        </mat-radio-button>
-                        <mat-radio-button class="mb-2" [value]="'just-good'">
-                            KI-Experte (Data scientist, data engineer, data analyst)
-                        </mat-radio-button>
-                        <mat-radio-button [value]="'no-push'">
-                            C-Level
-                        </mat-radio-button>
-                        <mat-radio-button [value]="'no-push'">
-                            Product owner & project leader
-                        </mat-radio-button>
-                    </mat-radio-group>
-                    <br /><br />
+                    <mat-form-field>
+                        <mat-label>Repeat password</mat-label>
+                        <input id="confirmPassword" matInput type="password" formControlName="confirmPassword">
+                    </mat-form-field>
 
-                    <!-- Field footer -->
+                    <!-- Field footer 
                     <div class="field-footer">
                         <mat-checkbox [color]="'primary'" [formControlName]="'agreements'">
                             <span>I agree to the</span>
@@ -81,6 +69,7 @@
                             <a class="link" [routerLink]="['./']">Privacy Policy</a>
                         </mat-checkbox>
                     </div>
+                    -->
 
                     <!-- Submit button -->
                     <button class="submit-button treo-mat-button-large" mat-flat-button type="button"
