@@ -35,19 +35,6 @@ export class ServiceEndpointComponent implements OnInit {
         this.responseApiTest = api.components.schemas.Input.properties;
     }
 
-    public predict(): void {
-        this.loading = true;
-
-        const values = this.form.value;
-        this.http.post(`http://localhost:5000/api/1.0/predict`, values)
-            .subscribe((response) => {
-                this.response = JSON.stringify(response);
-                this.loading = false;
-            }, (error) => {
-                this.loading = false;
-            });
-    }
-
     public ask(): void {
         this.loading = true;
 

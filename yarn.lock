@@ -7232,7 +7232,7 @@ open@7.3.0:
 
 openapi-types@^9.1.0:
   version "9.1.0"
-  resolved "https://registry.npmjs.org/openapi-types/-/openapi-types-9.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-9.1.0.tgz#a2ab0acc5198c1725f83d7cbe063efd1bcd0479e"
   integrity sha512-mhXh8QN8sbErlxfxBeZ/pzgvmDn443p8CXlxwGSi2bWANZAFvjLPI0PoGjqHW+JdBbXg6uvmvM81WXaweh/SVA==
 
 opn@^5.5.0:
