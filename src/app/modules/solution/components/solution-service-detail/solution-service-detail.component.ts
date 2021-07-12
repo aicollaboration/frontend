@@ -3,7 +3,6 @@ import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { SolutionModel } from "../../models/solution.model";
 import { SolutionService } from "../../services/solution.service";
-import { fromSchema } from '@openapi-contrib/openapi-schema-to-json-schema';
 
 @Component({
     selector: 'solution-service-detail',

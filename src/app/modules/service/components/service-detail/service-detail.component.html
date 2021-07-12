@@ -6,7 +6,7 @@
                 <span class="separator">/</span>
             </div>
             <h1>{{service.name}}</h1>
-            <h2 *ngIf="api.info.description">{{api.info.description}}</h2>
+            <h2 *ngIf="api.info && api.info.description">{{api.info.description}}</h2>
         </div>
 
         <div class="right">

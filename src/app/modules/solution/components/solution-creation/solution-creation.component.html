@@ -23,16 +23,15 @@
                 <textarea matInput formControlName="description" rows="3"></textarea>
             </mat-form-field>
             <br />
+            <!--
 
             <p class="text-lg font-medium">Template</p>
             <p class="text-secondary mb-6"> Set your login preferences, help us personalize your experience and make big
                 account changes here </p>
-            <!--
             <p class="text-secondary text-right">
                 <mat-icon color="primary" class="mr-2">view_list</mat-icon>
                 <mat-icon class="mr-4">view_module</mat-icon>
             </p>
-            -->
 
             <div class="cards">
                 <treo-card matRipple [matRippleColor]=""
@@ -52,6 +51,7 @@
                 </treo-card>
                 <input type="hidden" formControlName="template" />
             </div>
+            -->
             <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>File upload</ngx-dropzone-label>
@@ -63,7 +63,7 @@
 
             <div class="actions">
                 <div class="buttons">
-                    <button class="save-button" color="primary" mat-button type="submit">
+                    <button class="save-button" mat-stroked-button type="submit">
                         <mat-icon [svgIcon]="'save'"></mat-icon>
                         <span>Create solution</span>
                     </button>
