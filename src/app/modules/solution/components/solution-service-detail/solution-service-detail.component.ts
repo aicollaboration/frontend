@@ -28,11 +28,6 @@ export class SolutionServiceDetailComponent implements OnInit {
             this.serviceId = params.serviceId;
 
             const solutionService = await this.solutionService.getSolutionService(this.solutionId, this.serviceId);
-
-            debugger
-
-
-            // fromSchema()
         });
     }
 }

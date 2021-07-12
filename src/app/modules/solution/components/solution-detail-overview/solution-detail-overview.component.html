@@ -3,13 +3,13 @@
         <div class="w-2/3 pr-10">
             <div class="prose prose-sm max-w-3xl">
                 <h3>Description</h3>
-                <editable class="editable">
+                <editable class="editable" (save)="update()" (cancel)="cancel()">
                     <ng-template viewMode>
-                        <div [innerHTML]="content"></div>
+                        <div [innerHTML]="solution.description"></div>
                     </ng-template>
 
                     <ng-template editMode>
-                        <quill-editor [ngModel]="content">
+                        <quill-editor [ngModel]="solution.description">
                             <div quill-editor-toolbar>
                                 <span class="ql-formats">
                                     <button class="ql-bold" [title]="'Bold'"></button>
@@ -42,7 +42,7 @@
             <h3>Status</h3>
             <editable>
                 <ng-template viewMode>
-                    <span>In progress</span>&nbsp;<mat-icon class="icon-size-18">edit</mat-icon>
+                    <span>In progress</span>
                 </ng-template>
                 <ng-template editMode>
                     <mat-select>
@@ -54,7 +54,7 @@
             <h3>Owner</h3>
             <editable>
                 <ng-template viewMode>
-                    <span>Tobias Oberrauch</span>&nbsp;<mat-icon class="icon-size-18">edit</mat-icon>
+                    <span>Tobias Oberrauch</span>
                 </ng-template>
                 <ng-template editMode>
                     <mat-select>
@@ -65,7 +65,7 @@
             <h3>Assignee</h3>
             <editable>
                 <ng-template viewMode>
-                    <span>Tobias Oberrauch</span>&nbsp;<mat-icon class="icon-size-18">edit</mat-icon>
+                    <span>Tobias Oberrauch</span>
                 </ng-template>
                 <ng-template editMode>
                     <mat-select>

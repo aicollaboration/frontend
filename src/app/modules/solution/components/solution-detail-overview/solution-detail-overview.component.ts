@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServiceModel } from 'app/modules/service/models/service.model';
 import { Observable } from 'rxjs';
 import { SolutionModel } from '../../models/solution.model';
@@ -45,7 +46,10 @@ export class SolutionDetailOverviewComponent implements OnInit {
                 </ul>
     `;
 
-    public constructor(private solutionService: SolutionService) {
+    public constructor(
+        private snackBar: MatSnackBar,
+        private solutionService: SolutionService
+    ) {
     }
 
     public async ngOnInit(): Promise<void> {
@@ -53,6 +57,14 @@ export class SolutionDetailOverviewComponent implements OnInit {
     }
 
     public update() {
+        const solution = {
+            description: this.solution.description,
+        };
+        this.solutionService.updateSolution(solution, this.solution.id).then(data => {
+            this.snackBar.open(`Solution successful updated`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+        }).catch(error => {
+            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
+        });
     }
 
     public cancel() {
