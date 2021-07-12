@@ -1,11 +1,4 @@
 <form [formGroup]="form" class="flex flex-col overflow-hidden">
-
-    <h1>@todo Generate the form</h1>
-    <!-- {{service.api}} -->
-
-  
-
-    <mat-divider class="mt-4 mb-12"></mat-divider>
     <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
         <div class="gt-xs:max-w-80 gt-xs:pr-12">
             <p class="text-lg font-medium">Input</p>
@@ -14,12 +7,12 @@
             </p>
         </div>
         <div class="flex-auto min-w-64">
+            <!-- 
             <div *ngIf="!!responseApiTest">
                 <app-dynamic-child [componentData]="responseApiTest" [form]="form">
                 </app-dynamic-child>
-                </div>
-
-            <!-- <div class="flex">
+                </div>-->
+            <div class="flex">
                 <mat-form-field class="flex-auto">
                     <mat-label>Context</mat-label>
                     <textarea matInput formControlName="context" class="h-40"></textarea>
@@ -30,7 +23,7 @@
                     <mat-label>Question</mat-label>
                     <input matInput formControlName="question">
                 </mat-form-field>
-            </div> -->
+            </div>
         </div>
     </div>
 

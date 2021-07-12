@@ -1,8 +1,7 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ServiceModel } from '../../models/service.model';
-
 
 @Component({
     selector: 'service-endpoint',
@@ -23,15 +22,15 @@ export class ServiceEndpointComponent implements OnInit {
 
     @Input()
     public service: ServiceModel;
+
     public constructor(
         private http: HttpClient
     ) {
     }
 
     public ngOnInit(): void {
-
         const api = JSON.parse(this.service.api);
-                
+
         console.log(api.components.schemas.Input.properties, 'test');
         this.responseApiTest = api.components.schemas.Input.properties;
     }
