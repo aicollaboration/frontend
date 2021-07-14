@@ -3,7 +3,9 @@
     <h1>@todo Generate the form</h1>
     <!-- {{service.api}} -->
 
-  
+    {{ serverList | json}}
+
+    {{path | json}}
 
     <mat-divider class="mt-4 mb-12"></mat-divider>
     <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
@@ -17,7 +19,11 @@
             <div *ngIf="!!responseApiTest">
                 <app-dynamic-child [componentData]="responseApiTest" [form]="form">
                 </app-dynamic-child>
-                </div>
+            </div>
+
+            <app-input-select [componentData]="serverList" [form]="form"> </app-input-select>
+
+            <mat-label>Path :  {{path}} </mat-label>
 
             <!-- <div class="flex">
                 <mat-form-field class="flex-auto">
@@ -47,6 +53,7 @@
             <div class="flex text-3xl">{{ response }}</div>
         </div>
     </div>
+
 
     <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
         <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [class.spinner]="loading"

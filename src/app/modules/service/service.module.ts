@@ -78,7 +78,8 @@ import { DynamicModule } from './components/dynamic';
     entryComponents: [
         PdfAnalyzerComponent,
         EmptyComponent,
-        InputTextComponent
+        InputTextComponent,
+        InputSelectComponent
     ],
     imports: [
         SharedModule,

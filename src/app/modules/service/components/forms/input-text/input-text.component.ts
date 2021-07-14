@@ -20,6 +20,7 @@ export class InputTextComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
+    
     console.log(this.componentData, 'data', this.data);
     this.cmpId = this.componentData.key;
     this.ngmodelname = this.componentData.key;
