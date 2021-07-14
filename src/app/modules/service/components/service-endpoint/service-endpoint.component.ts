@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { ServiceModel } from "../../models/service.model";
+=======
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ServiceModel } from '../../models/service.model';
+>>>>>>> 8c8373df07e65c7c850b27c364cf46339ba57f96
 
 @Component({
   selector: "service-endpoint",

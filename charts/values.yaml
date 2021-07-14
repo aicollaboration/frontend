@@ -2,7 +2,4 @@ tag: latest
 
 frontend:
     replicaCount: 1
-    image: 5elementsofai/frontend
-
-imagePullSecrets:
-  - name: gitlab-auth
+    image: aicollaboration/frontend
