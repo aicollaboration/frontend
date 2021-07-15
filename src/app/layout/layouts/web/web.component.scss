@@ -1,0 +1,12 @@
+web-layout {
+	display: block;
+	width: 100%;
+	padding: 0 100px;
+
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+}
