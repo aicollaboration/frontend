@@ -1,7 +1,7 @@
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { ServiceModel } from '../../models/service.model';
+import { HttpClient, HttpEventType } from "@angular/common/http";
+import { Component, Input, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { ServiceModel } from "../../models/service.model";
 
 @Component({
   selector: "service-endpoint",
@@ -13,6 +13,7 @@ export class ServiceEndpointComponent implements OnInit {
   public loading = false;
   public responseApiTest;
   public serverList = {};
+  public pathList = {};
   public path;
 
   public form = new FormGroup({
@@ -40,9 +41,20 @@ export class ServiceEndpointComponent implements OnInit {
     });
 
     this.serverList["key"] = "url";
+    this.serverList["label"] = "server";
     this.serverList["options"] = options;
 
-    this.path = Object.keys(api.paths)[0];
+    const pathOptions = Object.keys(api.paths).map((_path) => {
+      const a = {};
+      a["key"] = _path;
+      a["viewValue"] = _path;
+      a["value"] = _path;
+      return a;
+    });
+
+    this.pathList["key"] = "path";
+     this.pathList["label"] = "path";
+    this.pathList["options"] = pathOptions;
   }
 
   public predict(): void {
@@ -76,42 +88,43 @@ export class ServiceEndpointComponent implements OnInit {
           text: values.context,
         },
       ],
-      language: 'english',
+      language: "english",
       model: {
         id: 2,
-        language: 'english',
-        name: 'bert-english-qa-large',
-        prediction_type: 'span_classification',
+        language: "english",
+        name: "bert-english-qa-large",
+        prediction_type: "span_classification",
       },
     };
-    const observable = this.http.post(url, body, { observe: 'events' });
+    const observable = this.http.post(url, body, { observe: "events" });
     observable.subscribe((uploadEvent) => {
       switch (uploadEvent.type) {
         case HttpEventType.Sent:
-          console.log('uploadEvent#sent ', uploadEvent);
+          console.log("uploadEvent#sent ", uploadEvent);
           break;
         case HttpEventType.UploadProgress:
           console.log(
-            'uploadEvent#uploadProgress: ',
+            "uploadEvent#uploadProgress: ",
             uploadEvent.loaded,
             uploadEvent.total
           );
           break;
         case HttpEventType.User:
-          console.log('uploadEvent#user ', uploadEvent);
+          console.log("uploadEvent#user ", uploadEvent);
           break;
         case HttpEventType.ResponseHeader:
-          console.log('uploadEvent#responseHeader ', uploadEvent);
+          console.log("uploadEvent#responseHeader ", uploadEvent);
           break;
         case HttpEventType.DownloadProgress:
-          console.log('uploadEvent#download ', uploadEvent);
+          console.log("uploadEvent#download ", uploadEvent);
           break;
         case HttpEventType.Response:
-          console.log('uploadEvent#response ', uploadEvent);
+          console.log("uploadEvent#response ", uploadEvent);
           this.response =
-            uploadEvent.body['predictions'][0]['answers'][0]['answer'];
+            uploadEvent.body["predictions"][0]["answers"][0]["answer"];
           this.loading = false;
           break;
+          
       }
     });
   }

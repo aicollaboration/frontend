@@ -1,6 +1,6 @@
 <div class="flex">
   <mat-form-field appearance="fill" class="flex-auto" [formGroup]='form'>
-    <mat-label>Select Server</mat-label>
+    <mat-label>Select {{label}}</mat-label>
     <mat-select placeholder="test" [class]="" [(ngModel)]="modelValue" name="ngmodelname"
       formControlName="{{ngmodelname}}" (ngModelChange)="onChange(ngmodelname, $event, componentData)" [id]='cmpId'>
       <mat-option *ngFor="let dat of datas" [value]="dat.value">
@@ -11,18 +11,3 @@
 </div>
 
 
-<!-- <mat-select
- [id]='cmpId'
- class=""
- name="ng_model_name"
- [(ngModel)]='modelValue'
- formControlName = {{ng_model_name}}
- (ngModelChange)="onChange(ng_model_name,modelValue,componentData,$event)"
- >
-   <mat-option
-   *ngFor="let option of field_option"
-   [value]="option"
-   >
-     {{option.value}}
-   </mat-option>
- </mat-select> -->
