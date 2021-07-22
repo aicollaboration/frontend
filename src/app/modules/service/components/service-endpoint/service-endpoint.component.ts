@@ -1,3 +1,4 @@
+import SwaggerParser from '@apidevtools/swagger-parser';
 import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
@@ -26,6 +27,18 @@ export class ServiceEndpointComponent implements OnInit {
   public constructor(private http: HttpClient) {}
 
   public ngOnInit(): void {
+
+    // SwaggerParser.validate(this.service.api, (err, _api) => {
+    //   if (err) {
+    //     console.error(err);
+    //   }
+    //   else {
+    //     console.log("API name: %s, Version: %s", _api.info.title, _api.info.version);
+    //   }
+    // });
+
+ 
+
     const api = JSON.parse(this.service.api);
 
     this.responseApiTest = api.components.schemas.Input.properties;
