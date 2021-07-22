@@ -3,9 +3,9 @@
     <h1>@todo Generate the form</h1>
     <!-- {{service.api}} -->
 
-    {{ serverList | json}}
+    <!-- {{ serverList | json}} -->
 
-    {{path | json}}
+    <!-- {{path | json}} -->
 
     <mat-divider class="mt-4 mb-12"></mat-divider>
     <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
@@ -21,12 +21,19 @@
                 </app-dynamic-child>
             </div>
 
-             <app-input-select [componentData]="serverList" [form]="form"> </app-input-select> 
-             <app-input-select [componentData]="pathList" [form]="form"> </app-input-select> 
+            <app-input-select [componentData]="serverList" [form]="form"> </app-input-select>
+            <app-input-select [componentData]="pathList" [form]="form"> </app-input-select>
 
         </div>
     </div>
 
+    <!-- <mat-divider class="mt-4 mb-12"></mat-divider> -->
+    <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
+        <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [class.spinner]="loading"
+            [disabled]="loading" (click)="ask()">
+            Run
+        </button>
+    </div>
     <mat-divider class="mt-4 mb-12"></mat-divider>
 
     <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
@@ -37,15 +44,15 @@
             </p>
         </div>
         <div class="flex-auto min-w-64">
-            <div class="flex text-3xl">{{ response }}</div>
+            <div class="flex text-3xl">
+                <ngx-json-viewer [json]="response"></ngx-json-viewer>
+                <!-- {{ response }} -->
+            </div>
+
+
         </div>
     </div>
 
 
-    <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
-        <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [class.spinner]="loading"
-            [disabled]="loading" (click)="ask()">
-            Run
-        </button>
-    </div>
+
 </form>

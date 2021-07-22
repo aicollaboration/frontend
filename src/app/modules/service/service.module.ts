@@ -28,6 +28,8 @@ import { TreoNavigationModule } from '@treo/components/navigation';
 import { SharedModule } from 'app/shared/shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
+
 import { DocumentClassificationComponent } from './components/document-classification/document-classification.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { GermanQuestionAnsweringComponent } from './components/german-question-answering/german-question-answering.component';
@@ -47,8 +49,8 @@ import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
 import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
-import { InputTextComponent } from './components/forms/input-text/input-text.component';
-import { InputSelectComponent } from './components/forms/input-select/input-select.component';
+import { InputTextComponent } from './forms/input-text/input-text.component';
+import { InputSelectComponent } from './forms/input-select/input-select.component';
 
 
 import { DynamicModule } from './components/dynamic';
@@ -106,6 +108,9 @@ import { DynamicModule } from './components/dynamic';
         //   MatSort,
         MatSnackBarModule,
         MatButtonToggleModule,
+
+        // jsonviwer
+        NgxJsonViewerModule,
 
         // Forms
         FormsModule,

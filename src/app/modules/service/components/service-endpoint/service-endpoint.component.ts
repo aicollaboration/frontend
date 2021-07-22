@@ -28,7 +28,6 @@ export class ServiceEndpointComponent implements OnInit {
   public ngOnInit(): void {
     const api = JSON.parse(this.service.api);
 
-    console.log(api.components.schemas.Input.properties, "test");
     this.responseApiTest = api.components.schemas.Input.properties;
 
     // tslint:disable-next-line:no-shadowed-variable
@@ -76,10 +75,9 @@ export class ServiceEndpointComponent implements OnInit {
     this.loading = true;
 
     const values = this.form.value;
-
+    this.path = values.path;
     const url = values.url + this.path;
 
-    console.log(values, "url", url);
     // const url = `https://demos.deepset.ai/models/2/inference`;
     const body = {
       input: [
@@ -121,7 +119,8 @@ export class ServiceEndpointComponent implements OnInit {
         case HttpEventType.Response:
           console.log("uploadEvent#response ", uploadEvent);
           this.response =
-            uploadEvent.body["predictions"][0]["answers"][0]["answer"];
+            uploadEvent.body["predictions"][0]["answers"];
+            // uploadEvent.body["predictions"][0]["answers"][0]["answer"];
           this.loading = false;
           break;
           

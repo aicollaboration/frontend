@@ -2,10 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
   InputTextComponent
-} from '../forms/input-text/input-text.component';
-
-
-
+} from '../../forms/input-text/input-text.component';
 @Component({
   selector: 'app-dynamic-child',
   templateUrl: './dynamic-child.component.html',
