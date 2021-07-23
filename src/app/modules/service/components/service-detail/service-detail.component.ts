@@ -16,7 +16,8 @@ import { ServiceModel } from './../../models/service.model';
 export class ServiceDetailComponent implements OnInit {
     public service$: Observable<ServiceModel>;
     public api: any;
-
+    public responseApiTest;
+    
     public constructor(
         private route: ActivatedRoute,
         private store: Store<State>
@@ -28,9 +29,13 @@ export class ServiceDetailComponent implements OnInit {
         this.service$.subscribe(service => {
             if (service) {
                 const api = this.api = JSON.parse(service.api);
-                for (let [key, value] of Object.entries(api.paths)) {
-                    console.log(`kv`, key, value);
-                }
+                
+                console.log(api.components.schemas.Input.properties, 'test');
+                this.responseApiTest = api.components.schemas.Input.properties;
+
+                // for (let [key, value] of Object.entries(api.paths)) {
+                //     console.log(`kv`, key, value);
+                // }
             }
         });
 

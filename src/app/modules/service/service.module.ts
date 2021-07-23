@@ -28,8 +28,10 @@ import { TreoNavigationModule } from '@treo/components/navigation';
 import { SharedModule } from 'app/shared/shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { QuillModule } from 'ngx-quill';
 import { DocumentClassificationComponent } from './components/document-classification/document-classification.component';
+import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { GermanQuestionAnsweringComponent } from './components/german-question-answering/german-question-answering.component';
 import { PdfAnalyzerComponent } from './components/pdf-analyzer/pdf-analyzer.component';
@@ -45,9 +47,13 @@ import { ServiceLoaderComponent } from './components/service-loader/service-load
 import { ServiceLoaderDirective } from './components/service-loader/service-loader.directive';
 import { TextSummarizationComponent } from './components/text-summarization/text-summarization.component';
 import { WebsiteAuditComponent } from './components/website-audit/website-audit.component';
+import { InputSelectComponent } from './forms/input-select/input-select.component';
+import { InputTextComponent } from './forms/input-text/input-text.component';
 import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
+
+
 
 @NgModule({
     declarations: [
@@ -68,10 +74,15 @@ import { serviceReducer } from './state/service.reducer';
 
         EmptyComponent,
         ServiceLoaderDirective,
+        DynamicChildComponent,
+        InputTextComponent,
+        InputSelectComponent,
     ],
     entryComponents: [
         PdfAnalyzerComponent,
         EmptyComponent,
+        InputTextComponent,
+        InputSelectComponent
     ],
     imports: [
         SharedModule,
@@ -99,6 +110,9 @@ import { serviceReducer } from './state/service.reducer';
         MatSnackBarModule,
         MatButtonToggleModule,
 
+        // jsonviwer
+        NgxJsonViewerModule,
+
         // Forms
         FormsModule,
         MatInputModule,
@@ -115,8 +129,10 @@ import { serviceReducer } from './state/service.reducer';
         EffectsModule.forFeature([ServiceEffects]),
 
         PdfViewerModule,
-
         QuillModule.forRoot(),
+        MatSelectCountryModule,
+        
+        DynamicModule.withComponents([InputTextComponent]),
     ],
 })
 export class ServiceModule {

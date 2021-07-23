@@ -1,0 +1,13 @@
+<div class="flex">
+  <mat-form-field appearance="fill" class="flex-auto" [formGroup]='form'>
+    <mat-label>Select {{label}}</mat-label>
+    <mat-select placeholder="test" [class]="" [(ngModel)]="modelValue" name="ngmodelname"
+      formControlName="{{ngmodelname}}" (ngModelChange)="onChange(ngmodelname, $event, componentData)" [id]='cmpId'>
+      <mat-option *ngFor="let dat of datas" [value]="dat.value">
+        {{dat.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+

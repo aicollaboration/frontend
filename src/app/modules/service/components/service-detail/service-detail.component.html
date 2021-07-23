@@ -5,6 +5,7 @@
                 <span class="path">Services</span>
                 <span class="separator">/</span>
             </div>
+          
             <h1>{{service.name}}</h1>
             <h2 *ngIf="api.info && api.info.description">{{api.info.description}}</h2>
         </div>
@@ -19,6 +20,7 @@
     </div>
 
     <div class="main">
+       
         <mat-tab-group [@.disabled]="true">
             <mat-tab label="Overview">
                 <service-detail-overview [service]="service"></service-detail-overview>
