@@ -19,13 +19,13 @@ export class ServiceService {
     }
 
     public async getServices() {
-        const { data, error } = await this.supabase.from<ServiceModel>('Services').select('*');
+        const { data, error } = await this.supabase.from<ServiceModel>('service').select('*');
 
         return data;
     }
 
     public async getService(serviceId: string) {
-        const { data, error } = await this.supabase.from<ServiceModel>('Services').select("*").eq('id', serviceId);
+        const { data, error } = await this.supabase.from<ServiceModel>('service').select("*").eq('id', serviceId);
 
         const service = data[0];
         const api = JSON.parse(service.api);
@@ -38,7 +38,7 @@ export class ServiceService {
     }
 
     public async createService(service: any) {
-        const { data, error } = await this.supabase.from<ServiceModel>('Services').insert([service]);
+        const { data, error } = await this.supabase.from<ServiceModel>('service').insert([service]);
 
         if (error) {
             throw error;
@@ -48,7 +48,7 @@ export class ServiceService {
     }
 
     public async updateService(service: any, serviceId: string) {
-        const { data, error } = await this.supabase.from('Services').update(service).eq('id', serviceId);
+        const { data, error } = await this.supabase.from('service').update(service).eq('id', serviceId);
 
         if (error) {
             throw error;
@@ -58,7 +58,7 @@ export class ServiceService {
     }
 
     public async deleteService(id: number) {
-        const { data, error } = await this.supabase.from('Services').delete().eq('id', id);
+        const { data, error } = await this.supabase.from('service').delete().eq('id', id);
 
         if (error) {
             throw error;
@@ -68,7 +68,7 @@ export class ServiceService {
     }
 
     public async uploadFile(path: string, file: File) {
-        const { data, error } = await this.supabase.storage.from('Services').upload(path, file);
+        const { data, error } = await this.supabase.storage.from('service').upload(path, file);
         if (error) {
             throw error;
         }
@@ -77,7 +77,7 @@ export class ServiceService {
     }
 
     public async getFile(path: string) {
-        const { data, error } = await this.supabase.storage.from('Services').list();
+        const { data, error } = await this.supabase.storage.from('service').list();
         if (error) {
             throw error;
         }

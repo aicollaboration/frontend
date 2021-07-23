@@ -19,7 +19,7 @@ export class SolutionService {
   }
 
   public async getSolutions() {
-    const { data, error } = await this.supabase.from<SolutionModel>('Solutions').select('*');
+    const { data, error } = await this.supabase.from<SolutionModel>('solution').select('*');
 
     return data;
   }
@@ -28,10 +28,10 @@ export class SolutionService {
     const query = `
       id,
       config,
-      Solutions(*),
-      Services(*)
+      solution(*),
+      service(*)
     `;
-    const { data, error } = await this.supabase.from('SolutionServices').select(query).eq('solutionId', solutionId).eq('serviceId', serviceId);
+    const { data, error } = await this.supabase.from('solution_services').select(query).eq('solutionId', solutionId).eq('serviceId', serviceId);
     
     if (error) {
       throw error;
@@ -42,12 +42,12 @@ export class SolutionService {
 
   public async getSolutionServices(solutionId: string) {
     const query = `
-      id,
-      config,
-      Solutions(*),
-      Services(*)
+    id,
+    config,
+    solution(*),
+    service(*)
     `;
-    const { data, error } = await this.supabase.from('SolutionServices').select(query).eq('solutionId', solutionId);
+    const { data, error } = await this.supabase.from('solution_services').select(query).eq('solutionId', solutionId);
     if (error) {
       throw error;
     }
@@ -55,7 +55,7 @@ export class SolutionService {
   }
 
   public async addSolutionService(solutionService: SolutionServiceModel) {
-    const { data, error } = await this.supabase.from<SolutionServiceModel>('SolutionServices').insert([solutionService]);
+    const { data, error } = await this.supabase.from<SolutionServiceModel>('solution_services').insert([solutionService]);
 
     if (error) {
       throw error;
@@ -66,13 +66,13 @@ export class SolutionService {
 
 
   public async getSolution(solutionId: string) {
-    const { data, error } = await this.supabase.from<SolutionModel>('Solutions').select("*").eq('id', solutionId)
+    const { data, error } = await this.supabase.from<SolutionModel>('solution').select("*").eq('id', solutionId)
 
     return data[0];
   }
 
   public async createSolution(solution: any) {
-    const { data, error } = await this.supabase.from('Solutions').insert([solution]);
+    const { data, error } = await this.supabase.from('solution').insert([solution]);
 
     if (error) {
       throw error;
@@ -82,7 +82,7 @@ export class SolutionService {
   }
 
   public async updateSolution(solution: any, solutionId: string) {
-    const { data, error } = await this.supabase.from('Solutions').update(solution).eq('id', solutionId);
+    const { data, error } = await this.supabase.from('solution').update(solution).eq('id', solutionId);
 
     if (error) {
       throw error;
@@ -92,7 +92,7 @@ export class SolutionService {
   }
 
   public async deleteSolution(id: number) {
-    const { data, error } = await this.supabase.from('Solutions').delete().eq('id', id);
+    const { data, error } = await this.supabase.from('solution').delete().eq('id', id);
 
     if (error) {
       throw error;
@@ -103,7 +103,7 @@ export class SolutionService {
 
 
   public async uploadFile(path: string, file: File) {
-    const { data, error } = await this.supabase.storage.from('Solutions').upload(path, file);
+    const { data, error } = await this.supabase.storage.from('solution').upload(path, file);
     if (error) {
       throw error;
     }
@@ -112,7 +112,7 @@ export class SolutionService {
   }
 
   public async getFile(path: string) {
-    const { data, error } = await this.supabase.storage.from('Solutions').list();
+    const { data, error } = await this.supabase.storage.from('solution').list();
     if (error) {
       throw error;
     }

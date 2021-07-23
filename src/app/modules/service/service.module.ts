@@ -1,5 +1,6 @@
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { QuillModule } from 'ngx-quill';
 import { DocumentClassificationComponent } from './components/document-classification/document-classification.component';
+import { DynamicModule } from './components/dynamic';
 import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
 import { EmptyComponent } from './components/empty/empty.component';
 import { GermanQuestionAnsweringComponent } from './components/german-question-answering/german-question-answering.component';
@@ -85,6 +87,7 @@ import { serviceReducer } from './state/service.reducer';
         InputSelectComponent
     ],
     imports: [
+        CommonModule,
         SharedModule,
         HttpClientModule,
         RouterModule.forChild(routes),
@@ -131,7 +134,7 @@ import { serviceReducer } from './state/service.reducer';
         PdfViewerModule,
         QuillModule.forRoot(),
         MatSelectCountryModule,
-        
+
         DynamicModule.withComponents([InputTextComponent]),
     ],
 })

@@ -34,7 +34,7 @@ export function playerFactory() {
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     preloadingStrategy: PreloadAllModules,
-    enableTracing: true,
+    // enableTracing: true,
 };
 
 @NgModule({
