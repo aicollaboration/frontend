@@ -85,7 +85,7 @@ const routerConfig: ExtraOptions = {
 
         EditableModule,
 
-        LottieModule.forRoot({ player: playerFactory }),
+        LottieModule.forRoot({ player: playerFactory })
     ],
     bootstrap: [
         AppComponent,
