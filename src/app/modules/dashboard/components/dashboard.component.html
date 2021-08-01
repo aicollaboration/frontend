@@ -1,0 +1,26 @@
+<div layout="row" layout-xs="column">
+  <div flex>
+    <carousel>
+      <ng-container *ngFor="let item of items">
+        <ng-container *carouselItem>
+          <div class="item">{{ item.title }}</div>
+        </ng-container>
+      </ng-container>
+    </carousel>
+  </div>
+  <div flex>
+
+    <h2>
+      New Heading
+    </h2>
+    <div>
+      A layout child's flex directive can be given an integer value from 0-100. The element will stretch to the
+      percentage of available space matching the value. Currently, the flex directive value is restricted to multiples
+      of five, 33 or 66.
+      I'm below on mobile, and to the right on larger devices.
+
+      Yahh yooo
+    </div>
+
+  </div>
+</div>
