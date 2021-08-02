@@ -12,9 +12,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CarouselItemDirective } from './components/carousel/carousel-item.directive';
 import { CarouselItemElementDirective } from './components/carousel/carousel-item-element.directive';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 const routes: Routes = [{
@@ -30,6 +28,7 @@ const routes: Routes = [{
         RouterModule.forChild(routes),
 
         MatGridListModule,
+        MatTabsModule,
         MatButtonModule,
         MatExpansionModule,
         MatFormFieldModule,
