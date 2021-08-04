@@ -34,6 +34,7 @@ export function playerFactory() {
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     preloadingStrategy: PreloadAllModules,
+    anchorScrolling: 'enabled'
     // enableTracing: true,
 };
 
@@ -46,6 +47,7 @@ const routerConfig: ExtraOptions = {
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
+       
 
         // Treo & Treo Mock API
         TreoModule,

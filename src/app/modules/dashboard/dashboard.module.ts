@@ -14,11 +14,12 @@ import { CarouselItemDirective } from './components/carousel/carousel-item.direc
 import { CarouselItemElementDirective } from './components/carousel/carousel-item-element.directive';
 import {MatTabsModule} from '@angular/material/tabs';
 
-
 const routes: Routes = [{
     path: '',
     component: DashboardComponent,
-}];
+}
+];
+
 
 @NgModule({
     declarations: [ DashboardComponent, CarouselComponent, CarouselItemDirective, CarouselItemElementDirective ],

@@ -9,7 +9,7 @@ import { InitialDataResolver } from 'app/app.resolvers';
 export const appRoutes: Route[] = [
     {
         path: '',
-        pathMatch: 'full',
+        pathMatch: 'prefix',
         redirectTo: 'dashboard'
     },
     {

@@ -107,6 +107,7 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         type: 'basic',
         icon: 'emoji_objects',
         link: '/solutions',
+        fragment: ''
     },
     {
         id: 'services',
@@ -114,6 +115,31 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         type: 'basic',
         icon: 'code',
         link: '/services',
+        fragment: ''
+    },
+    {
+        id: 'vission',
+        title: 'Vission',
+        type: 'basic',
+        icon: 'emoji_objects',
+        link: '/dashboard',
+        fragment: 'vission'
+    },
+    {
+        id: 'mission',
+        title: 'Mission',
+        type: 'basic',
+        icon: 'emoji_objects',
+        link: '/dashboard',
+        fragment: 'mission'
+    },
+    {
+        id: 'whoweare',
+        title: 'Who We Are',
+        type: 'basic',
+        icon: 'emoji_objects',
+        link: '/dashboard',
+        fragment: 'whoweare'
     },
     /*
     {
