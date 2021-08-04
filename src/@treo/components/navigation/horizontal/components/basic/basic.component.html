@@ -55,11 +55,9 @@
     <!-- item with link & fragment -->
     <div class="treo-horizontal-navigation-item"
         *ngIf="item.link && !item.externalLink && !item.function && !item.disabled && item.fragment && item.fragment"
-         [ngClass]=" {'treo-horizontal-navigation-item-active-forced': item.active}" 
          [routerLink]='"."' 
          [fragment]="item.fragment"
-        [routerLinkActive]="'treo-horizontal-navigation-item-active'"
-        [routerLinkActiveOptions]="{exact: item.exactMatch || false}">
+        >
         <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
     </div>
 
