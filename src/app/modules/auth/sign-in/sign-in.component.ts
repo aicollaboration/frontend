@@ -51,6 +51,10 @@ export class AuthSignInComponent implements OnInit {
         try {
             const user = await this.authService.signIn(credentials.email, credentials.password);
 
+            const updatedUser = await this.authService.updateUser({ userType: 'BUSINESS', foo: 'bar' });
+
+            debugger
+
             if (this.route.snapshot.queryParamMap.has('redirectURL')) {
                 window.location.pathname = this.route.snapshot.queryParamMap.get('redirectURL');
             } else {

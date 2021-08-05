@@ -53,6 +53,15 @@ export class AuthService {
         return true;
     }
 
+    public async updateUser(data: any) {
+        const { user, error } = await this.supabase.auth.update({ data });
+        if (error) {
+            throw error;
+        }
+
+        return user;
+    }
+
     public check(): boolean {
         console.log(`authenticated: ${this.isAuthenticated}`);
         return this.isAuthenticated;

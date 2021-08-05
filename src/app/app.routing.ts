@@ -7,11 +7,13 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
+    /*
     {
         path: '',
         pathMatch: 'prefix',
         redirectTo: 'dashboard'
     },
+    */
     {
         path: 'signed-in-redirect',
         pathMatch: 'full',
