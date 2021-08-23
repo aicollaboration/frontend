@@ -32,10 +32,6 @@ export class ServiceDetailComponent implements OnInit {
                 
                 console.log(api.components.schemas.Input.properties, 'test');
                 this.responseApiTest = api.components.schemas.Input.properties;
-
-                // for (let [key, value] of Object.entries(api.paths)) {
-                //     console.log(`kv`, key, value);
-                // }
             }
         });
 

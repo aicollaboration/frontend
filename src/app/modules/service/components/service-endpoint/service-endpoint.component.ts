@@ -2,6 +2,8 @@ import { HttpClient, HttpEventType } from "@angular/common/http";
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { ServiceModel } from "../../models/service.model";
+import { ApiParserService } from "../../services/api-parser.service";
+
 
 @Component({
   selector: "service-endpoint",
@@ -11,36 +13,27 @@ import { ServiceModel } from "../../models/service.model";
 export class ServiceEndpointComponent implements OnInit {
   public response = "";
   public loading = false;
-  public responseApiTest;
+  public responseApi: string;
   public serverList = {};
   public pathList = {};
-  public path;
+  public path: string;
 
   public form = new FormGroup({
-    // server: new FormControl(),
-    // context: new FormControl(),
   });
 
   @Input()
   public service: ServiceModel;
-  public constructor(private http: HttpClient) { }
+  public constructor(
+    private apiParserService: ApiParserService,
+    private http: HttpClient
+  ) { }
 
   public ngOnInit(): void {
-
-    // SwaggerParser.validate(this.service.api, (err, _api) => {
-    //   if (err) {
-    //     console.error(err);
-    //   }
-    //   else {
-    //     console.log("API name: %s, Version: %s", _api.info.title, _api.info.version);
-    //   }
-    // });
-
-
-
     const api = JSON.parse(this.service.api);
 
-    this.responseApiTest = api.components.schemas.Input.properties;
+    this.apiParserService.parse(api);
+
+    this.responseApi = api.components.schemas.Input.properties;
 
     // tslint:disable-next-line:no-shadowed-variable
     const options = api.servers.map((server) => {

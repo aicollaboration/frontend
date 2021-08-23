@@ -11,4 +11,5 @@ export class SolutionModel {
   public description?: string;
   public category?: CategoryModel;
   public template: string;
+  public author: string;
 }

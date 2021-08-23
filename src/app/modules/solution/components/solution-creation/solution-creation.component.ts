@@ -25,6 +25,7 @@ export class SolutionCreationComponent implements OnInit {
         name: new FormControl(''),
         description: new FormControl(''),
         template: new FormControl(),
+        owner: new FormControl(),
     });
     public types = [
         {
@@ -38,6 +39,10 @@ export class SolutionCreationComponent implements OnInit {
             description: 'description',
         },
     ];
+    public owners = [{
+        id: 1,
+        name: 'Tobias Oberrauch'
+    }];
 
     public constructor(
         private router: Router,
@@ -62,7 +67,7 @@ export class SolutionCreationComponent implements OnInit {
 
         this.solutionService.createSolution(this.solutionForm.value).then(data => {
             this.snackBar.open(`You created a solution successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
-            this.router.navigate(['/solutions']);
+            this.router.navigate(['/solutions', 'detail', data.id]);
         }).catch(error => {
             this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });

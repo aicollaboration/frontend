@@ -21,6 +21,10 @@ export class SolutionService {
   public async getSolutions() {
     const { data, error } = await this.supabase.from<SolutionModel>('solution').select('*');
 
+    if (error.code === "401") {
+      this.supabase.auth.refreshSession();
+    }
+
     return data;
   }
 
@@ -55,6 +59,7 @@ export class SolutionService {
   }
 
   public async addSolutionService(solutionService: SolutionServiceModel) {
+    solutionService.author = this.supabase.auth.user().id;
     const { data, error } = await this.supabase.from<SolutionServiceModel>('solution_services').insert([solutionService]);
 
     if (error) {
@@ -71,7 +76,8 @@ export class SolutionService {
     return data[0];
   }
 
-  public async createSolution(solution: any) {
+  public async createSolution(solution: SolutionModel) {
+    solution.author = this.supabase.auth.user().id;
     const { data, error } = await this.supabase.from('solution').insert([solution]);
 
     if (error) {

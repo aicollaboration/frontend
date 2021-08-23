@@ -19,7 +19,8 @@ export class ServiceService {
     }
 
     public async getServices() {
-        const { data, error } = await this.supabase.from<ServiceModel>('service').select('*');
+        const query = `*`;
+        const { data, error } = await this.supabase.from<ServiceModel>('service').select(query);
 
         return data;
     }
@@ -37,7 +38,8 @@ export class ServiceService {
         return data[0];
     }
 
-    public async createService(service: any) {
+    public async createService(service: ServiceModel) {
+        service.author = this.supabase.auth.user().id;
         const { data, error } = await this.supabase.from<ServiceModel>('service').insert([service]);
 
         if (error) {

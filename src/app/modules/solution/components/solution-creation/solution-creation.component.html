@@ -14,17 +14,20 @@
             <p class="text-lg font-medium">Basic information</p>
             <p class="text-secondary mb-6"> Set your login preferences, help us personalize your experience and make big
                 account changes here </p>
+
             <mat-form-field>
-                <mat-label>Title</mat-label>
+                <mat-label>Owner</mat-label>
+                <mat-select formControlName="owner">
+                    <mat-option *ngFor="let owner of owners" [value]="owner.id">
+                        {{owner.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Service name</mat-label>
                 <input matInput formControlName="name" required maxlength="250" type="text">
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description" rows="3"></textarea>
-            </mat-form-field>
-            <br />
-            <!--
-
+            <br /><br />
             <p class="text-lg font-medium">Template</p>
             <p class="text-secondary mb-6"> Set your login preferences, help us personalize your experience and make big
                 account changes here </p>
@@ -38,7 +41,7 @@
                     [ngClass]="{ 'mb-6': true, 'active': this.solutionForm.value.template === template.id}"
                     *ngFor="let template of templates" (click)="selectTemplate(template)">
                     <img class="w-80 gt-sm:w-64 object-cover" src="assets/images/cards/11-512x512.jpg">
-                    <div class="flex flex-col flex-auto m-8 mb-4">
+                    <div class="flex flex-col flex-auto m-4 mb-4">
                         <div class="text-2xl font-semibold leading-tight">{{ template.name }}</div>
                         <div class="text-secondary font-medium text-md mt-1">Updated with 20 new locations</div>
                         <div class="mt-4">{{ template.description }}</div>
@@ -51,7 +54,6 @@
                 </treo-card>
                 <input type="hidden" formControlName="template" />
             </div>
-            -->
             <!--
             <ngx-dropzone (change)="onSelect($event)">
                 <ngx-dropzone-label>File upload</ngx-dropzone-label>

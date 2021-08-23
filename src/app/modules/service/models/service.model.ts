@@ -8,4 +8,5 @@ export class ServiceModel {
     public description?: string;
     public api?: string;
     public category?: CategoryModel;
+    public author: string;
 }

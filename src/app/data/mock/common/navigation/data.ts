@@ -117,9 +117,10 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         link: '/services',
         fragment: ''
     },
+    /*
     {
-        id: 'vission',
-        title: 'Vission',
+        id: 'vision',
+        title: 'Vision',
         type: 'basic',
         icon: 'emoji_objects',
         link: '/dashboard',
@@ -141,6 +142,7 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         link: '/dashboard',
         fragment: 'whoweare'
     },
+    */
     /*
     {
         title: 'Documentation',

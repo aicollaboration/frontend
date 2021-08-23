@@ -24,11 +24,13 @@ export class ServiceCreationComponent {
             id: '1',
             name: 'Text summarization',
             description: 'Text Summarization API provides professional text summarizer service which is based on advanced Natural Language Processing and Machine Learning technologies. It can be used to summarize short important text from the URL or document that user provided.',
+            author: '',
         },
         {
             id: '2',
             name: 'Question Answering',
             description: 'This service gives answers to queries in natural language.',
+            author: '',
         },
     ];
 
