@@ -1,4 +1,9 @@
 @import 'treo';
+@import './css/css-themes.scss';
+@import './css/css-themes2.scss';
+@import './css/css-banner.scss';
+@import './css/css-richtext.scss';
+@import './css/css-lottie.scss';
 
 landing-home {
 
@@ -10,3 +15,6 @@ landing-home {
 @include treo-theme {
 
 }
+
+
+
