@@ -21,3 +21,4 @@ spec:
           image: "{{ .Values.frontend.image }}:{{ .Values.tag }}"
           ports:
           - containerPort: 80
+
