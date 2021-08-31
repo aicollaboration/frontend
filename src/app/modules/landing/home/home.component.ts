@@ -13,6 +13,9 @@ import {
 })
 export class LandingHomeComponent implements OnInit {
   position;
+  section3;
+  section4;
+  section5;
 
   /**
    * Constructor
@@ -22,6 +25,9 @@ export class LandingHomeComponent implements OnInit {
   @HostListener("window:scroll", ["$event"])
   ngOnInit(): void {
     this.checkScroll();
+    this.section3 = false;
+    this.section4 = false;
+    this.section5 = false;
   }
 
   public checkScroll(): void {
@@ -54,7 +60,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
       console.log(top, "i 632");
-    } else if (top < 1672) {
+    } else if (top < 1372) {
       traslateElement.style.transform =
         "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
       console.log(top, "i top");
@@ -64,7 +70,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement3.style.opacity = "0";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 2572) {
+    } else if (top < 2172) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       console.log(top, "i 2572");
@@ -74,7 +80,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement3.style.opacity = "1";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 3572) {
+    } else if (top < 2772) {
       traslateElement.style.transform =
         "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
       console.log(top, "i 3572");
@@ -84,7 +90,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement3.style.transition = "opacity .2s ease-out";
       TraslateElement4.style.opacity = "1";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 4122) {
+    } else if (top < 3622) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       console.log(top, "i 4122");
@@ -94,7 +100,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement4.style.opacity = "0";
       TraslateElement4.style.transition = "opacity .2s ease-out";
       TraslateElement5.style.opacity = "1";
-    } else if (top < 5522) {
+    } else if (top < 4022) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       console.log(top, "i 4522");

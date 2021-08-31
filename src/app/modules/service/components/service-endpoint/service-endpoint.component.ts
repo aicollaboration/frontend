@@ -33,7 +33,15 @@ export class ServiceEndpointComponent implements OnInit {
 
     this.apiParserService.parse(api);
 
-    this.responseApi = api.components.schemas.Input.properties;
+    if(api.components.schemas.ref){
+      const refInput = api.components.schemas.ref.split("/");
+      console.log(refInput,"api.components[refInput]");
+      this.responseApi = api.components.schemas.Input.properties;
+    }else{
+      this.responseApi = api.components.Input.properties;
+
+    }
+
 
     // tslint:disable-next-line:no-shadowed-variable
     const options = api.servers.map((server) => {
@@ -82,21 +90,14 @@ export class ServiceEndpointComponent implements OnInit {
     this.path = values.path;
     const url = values.url + this.path;
 
-    // const url = `https://demos.deepset.ai/models/2/inference`;
+    console.log(values,"Values");
     const body = {
       input: [
         {
           questions: values.question,
           text: values.context,
         },
-      ],
-      language: "english",
-      model: {
-        id: 2,
-        language: "english",
-        name: "bert-english-qa-large",
-        prediction_type: "span_classification",
-      },
+      ]
     };
     const observable = this.http.post(url, body, { observe: "events" });
     observable.subscribe((uploadEvent) => {

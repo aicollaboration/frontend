@@ -26,6 +26,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { LottieModule } from 'ngx-lottie';
 import { MarkdownModule } from 'ngx-markdown';
 import { DynamicModule } from './modules/service/components/dynamic';
+import { GetStartedComponent } from './modules/landing/get-started/get-started.component';
 
 export function playerFactory() {
     return player;
@@ -41,6 +42,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
+        GetStartedComponent,
     ],
     imports: [
         CommonModule,
