@@ -48,7 +48,7 @@ export class ServiceEndpointComponent implements OnInit {
     const _api = JSON.parse(this.service.api);
     let refInput;
 
-    console.log(_api, 'api');
+    // console.log(_api, 'api');
 
     // tslint:disable-next-line:no-shadowed-variable
     const options = _api.servers.map(( server ) => {
@@ -83,7 +83,7 @@ export class ServiceEndpointComponent implements OnInit {
     this.inputProperties = await this.dig( _requestBodyObj, '$ref');
     this.outputProperties  = await this.dig( _responseBodyObj, '$ref');
 
-    console.log( this.inputProperties, 'api parse', this.outputProperties );
+    // console.log( this.inputProperties, 'api parse', this.outputProperties );
 
     // console.log('api.paths',api.paths['/models/2/inference'].post.requestBody.content['application/json'].schema['$ref']);
     // this.inputProperties = api.paths['/models/2/inference'].post.requestBody.content[
@@ -148,6 +148,8 @@ export class ServiceEndpointComponent implements OnInit {
     // else { this.responseApi = Objproperties.properties;}
   
     const _inputs = { ...values };
+    
+    // added for keys in the requesbody as text(context) and questions(question)
     _inputs.text = _inputs.context ? _inputs.context : '';
     _inputs.questions = _inputs.question ? _inputs.question : '';
     
