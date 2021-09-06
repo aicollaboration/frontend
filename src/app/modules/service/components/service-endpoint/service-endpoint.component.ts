@@ -28,17 +28,21 @@ export class ServiceEndpointComponent implements OnInit {
     private http: HttpClient
   ) { }
 
+
+
   public ngOnInit(): void {
     const api = JSON.parse(this.service.api);
 
-    this.apiParserService.parse(api);
+    console.log(api,"api");
+
+    // this.apiParserService.parse(api);
 
     if(api.components.schemas.ref){
       const refInput = api.components.schemas.ref.split("/");
       console.log(refInput,"api.components[refInput]");
       this.responseApi = api.components.schemas.Input.properties;
     }else{
-      this.responseApi = api.components.Input.properties;
+      this.responseApi = api.components.schemas.Input.properties;
 
     }
 
@@ -87,6 +91,10 @@ export class ServiceEndpointComponent implements OnInit {
     this.loading = true;
 
     const values = this.form.value;
+
+
+
+
     this.path = values.path;
     const url = values.url + this.path;
 

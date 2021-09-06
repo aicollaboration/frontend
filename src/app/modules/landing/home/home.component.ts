@@ -13,9 +13,11 @@ import {
 })
 export class LandingHomeComponent implements OnInit {
   position;
-  section3;
-  section4;
-  section5;
+  isIntergration;
+  isReviews;
+  isFooter;
+  isCompanyList;
+  
 
   /**
    * Constructor
@@ -25,9 +27,10 @@ export class LandingHomeComponent implements OnInit {
   @HostListener("window:scroll", ["$event"])
   ngOnInit(): void {
     this.checkScroll();
-    this.section3 = false;
-    this.section4 = false;
-    this.section5 = false;
+    this.isCompanyList = false;
+    this.isIntergration = false;
+    this.isReviews = false;
+    this.isFooter = false;
   }
 
   public checkScroll(): void {
@@ -51,7 +54,7 @@ export class LandingHomeComponent implements OnInit {
     const top = eleRect.top - targetRect.top;
     const bottom = targetRect.bottom - eleRect.bottom;
     // style="transform: translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg);"
-    if (top < 632) {
+    if (top < 432) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       TraslateElement1.style.opacity = "1";
@@ -60,7 +63,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
       console.log(top, "i 632");
-    } else if (top < 1372) {
+    } else if (top < 1272) {
       traslateElement.style.transform =
         "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
       console.log(top, "i top");
@@ -70,7 +73,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement3.style.opacity = "0";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 2172) {
+    } else if (top < 2072) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       console.log(top, "i 2572");
@@ -80,7 +83,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement3.style.opacity = "1";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 2772) {
+    } else if (top < 2672) {
       traslateElement.style.transform =
         "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
       console.log(top, "i 3572");
@@ -90,7 +93,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement3.style.transition = "opacity .2s ease-out";
       TraslateElement4.style.opacity = "1";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 3622) {
+    } else if (top < 3222) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       console.log(top, "i 4122");
@@ -100,7 +103,7 @@ export class LandingHomeComponent implements OnInit {
       TraslateElement4.style.opacity = "0";
       TraslateElement4.style.transition = "opacity .2s ease-out";
       TraslateElement5.style.opacity = "1";
-    } else if (top < 4022) {
+    } else if (top < 3922) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       console.log(top, "i 4522");
