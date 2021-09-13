@@ -1,6 +1,5 @@
 {
     "header": {
-        "id": 1,
         "panels": [
             {
                 "href": "/why-strapi",
