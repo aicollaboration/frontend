@@ -1,161 +1,39 @@
-<!doctype html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>AI Platform</title>
-    <base href="/">
-
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon-16x16.png">
-    <link rel="icon" type="image/png" href="favicon-32x32.png">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i,500,600,700&display=swap"
-        rel="stylesheet">
-
-    <link href="assets/fonts/inter/inter.css" rel="stylesheet">
-
-    <!-- Icon Fonts -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet">
-
-    <!-- Splash screen styles -->
-    <style>
-        body treo-splash-screen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #1A202E;
-            color: #FBFDFE;
-            z-index: 999999;
-            pointer-events: none;
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        body treo-splash-screen img {
-            width: 120px;
-            max-width: 120px;
-        }
-
-        body treo-splash-screen .spinner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 40px;
-            width: 56px;
-        }
-
-        body treo-splash-screen .spinner>div {
-            width: 12px;
-            height: 12px;
-            background-color: #1a0c66;
-            border-radius: 100%;
-            display: inline-block;
-            -webkit-animation: treo-bouncedelay 1s infinite ease-in-out both;
-            animation: treo-bouncedelay 1s infinite ease-in-out both;
-        }
-
-        body treo-splash-screen .spinner .bounce1 {
-            -webkit-animation-delay: -0.32s;
-            animation-delay: -0.32s;
-        }
-
-        body treo-splash-screen .spinner .bounce2 {
-            -webkit-animation-delay: -0.16s;
-            animation-delay: -0.16s;
-        }
-
-        @-webkit-keyframes treo-bouncedelay {
-
-            0%,
-            80%,
-            100% {
-                -webkit-transform: scale(0)
-            }
-
-            40% {
-                -webkit-transform: scale(1.0)
-            }
-        }
-
-        @keyframes treo-bouncedelay {
-
-            0%,
-            80%,
-            100% {
-                -webkit-transform: scale(0);
-                transform: scale(0);
-            }
-
-            40% {
-                -webkit-transform: scale(1.0);
-                transform: scale(1.0);
-            }
-        }
-
-        body:not(.treo-splash-screen-hidden) {
-            overflow: hidden;
-        }
-
-        body.treo-splash-screen-hidden treo-splash-screen {
-            visibility: hidden;
-            opacity: 0;
-        }
-    </style>
-
-</head>
-
-<body>
-
-    <!-- Splash screen -->
-    <treo-splash-screen>
-        <img src="assets/images/logo/logo.png" alt="Treo logo">
-        <div class="spinner">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
-        </div>
-    </treo-splash-screen>
-
-    <!-- App root -->
-    <app-root></app-root>
-
-</body>
-
-<!-- <script type="text/javascript">
 $(window).on("scroll", function () {
     if ($(window).scrollTop() > 50) {
         $(".styles_Desktop__OD8YW.styles_largeScreenNav__9kX06").addClass("dark hasScrolled");
         $(".styles_HeaderBackground__2J9Dv").addClass("styles_hasScrolled__3Lalv");
+
         $(".typography_Text__21fWd.styles_labelText__24uzo.typography_small__wcwpx").removeClass("themes_white__22kAN");
         $(".typography_Text__21fWd.styles_labelText__24uzo.typography_small__wcwpx").addClass("themes_bay-blue__339Mw");
+
     } else {
+        //remove the background property so it comes transparent again (defined in your css)
         $(".styles_Desktop__OD8YW.styles_largeScreenNav__9kX06").removeClass("dark hasScrolled");
         $(".styles_HeaderBackground__2J9Dv").removeClass("styles_hasScrolled__3Lalv");
         $(".typography_Text__21fWd.styles_labelText__24uzo.typography_small__wcwpx").removeClass("themes_bay-blue__339Mw");
         $(".typography_Text__21fWd.styles_labelText__24uzo.typography_small__wcwpx").addClass("themes_white__22kAN");
+
+
     }
 
     const aParent = document.getElementById('desktopSvgParent');
     const a = document.getElementById('desktopSvg');
     const traslateElement = document.getElementById('TraslateElement');
+
     const TraslateElement1 = document.getElementById('TraslateElement1');
     const TraslateElement2 = document.getElementById('TraslateElement2');
     const TraslateElement3 = document.getElementById('TraslateElement3');
     const TraslateElement4 = document.getElementById('TraslateElement4');
     const TraslateElement5 = document.getElementById('TraslateElement5');
+
+
+    // var offsets = a.getBoundingClientRect();
+
+    // var intElemScrollTop = a.scrollTop;
+
+
+    // console.log(offsets,"offsets position",intElemScrollTop);
 
     // Get the top, left coordinates of two elements
     const eleRect = a.getBoundingClientRect();
@@ -172,10 +50,10 @@ $(window).on("scroll", function () {
         TraslateElement3.style.opacity="0";
         TraslateElement4.style.opacity="0";
         TraslateElement5.style.opacity="0";
-        console.log(top,"i 632");
+        // console.log(top,"i 632");
     }else if(top < 1672){
         traslateElement.style.transform = "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
-        console.log(top,"i top");
+        // console.log(top,"i top");
         TraslateElement1.style.opacity="0";
         TraslateElement1.style.transition="opacity .2s ease-out";
         TraslateElement2.style.opacity="1";
@@ -185,7 +63,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 2572){
         traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-        console.log(top,"i 2572");
+        // console.log(top,"i 2572");
         TraslateElement1.style.opacity="0";
         TraslateElement2.style.opacity="0";
         TraslateElement2.style.transition="opacity .2s ease-out";
@@ -195,7 +73,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 3572){
         traslateElement.style.transform = "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
-        console.log(top,"i 3572");
+        // console.log(top,"i 3572");
         TraslateElement1.style.opacity="0";
         TraslateElement2.style.opacity="0";
         TraslateElement3.style.opacity="0";
@@ -205,7 +83,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 4122){
         traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-        console.log(top,"i 4122");
+        // console.log(top,"i 4122");
         TraslateElement1.style.opacity="0";
         TraslateElement2.style.opacity="0";
         TraslateElement3.style.opacity="0";
@@ -215,8 +93,11 @@ $(window).on("scroll", function () {
     }
     else if(top < 5522){
         traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-        console.log(top,"i 4522");
+        // console.log(top,"i 4522");
     }
+
+    // console.log(top, "offsets position", bottom);
+
+
+
 });
-</script> -->
-</html>

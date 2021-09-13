@@ -1,0 +1,84 @@
+.dark .styles_labelText__24uzo{
+    color:#000;
+}
+
+.styles_labelText__24uzo{
+    color:#fff;
+}
+
+.styles_NavigationLabel__2-3vO {
+    display: flex;
+    align-items: center;
+    height: 55px
+}
+
+.styles_NavigationLabel__2-3vO .styles_wrapper__CkRUr {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 0 5px;
+    text-decoration: none;
+    cursor: default;
+    height: 100%
+}
+
+.styles_NavigationLabel__2-3vO a.styles_wrapper__CkRUr {
+    cursor: pointer
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg {
+    position: relative;
+    transition: color .4s ease
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelText__24uzo {
+    height: 50px;
+    font-weight: 500;
+    transition: color .1s linear
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelText__24uzo span {
+    vertical-align: middle
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelText__24uzo .styles_arrow__Pmqoj {
+    margin-left: 6px;
+    border: solid;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg)
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelText__24uzo a {
+    text-decoration: none;
+    color: inherit
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelTextLine__X6MUx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background-color: #fff
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelTextLine__X6MUx.styles_dark__6UgmF {
+    background-color: #8c4bff
+}
+
+.styles_NavigationLabel__2-3vO .styles_label__2bilg .styles_labelTextLineContainer__bwzzx {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    overflow: hidden;
+    bottom: -5px
+}
+
+@media(min-width:992px) {
+    .styles_NavigationLabel__2-3vO {
+        padding: 0 9px
+    }
+}
