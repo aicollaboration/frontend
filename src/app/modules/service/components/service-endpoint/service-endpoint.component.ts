@@ -41,21 +41,17 @@ export class ServiceEndpointComponent implements OnInit {
 
 
       
-  // tslint:disable-next-line:typedef
-  public async ngOnInit() {
+  public async ngOnInit(): Promise<void>  {
 
     this.api = JSON.parse(this.service.api);
     const _api = JSON.parse(this.service.api);
     let refInput;
 
-    // console.log(_api, 'api');
-
-    // tslint:disable-next-line:no-shadowed-variable
-    const options = _api.servers.map(( server ) => {
+    const options = _api.servers.map((_server ) => {
       const a = {};
-      a['key'] = Object.keys(server)[0];
-      a['viewValue'] = Object.values(server)[0];
-      a['value'] = Object.values(server)[0];
+      a['key'] = Object.keys(_server)[0];
+      a['viewValue'] = Object.values(_server)[0];
+      a['value'] = Object.values(_server)[0];
       return a;
     });
     this.serverList['key'] = 'url';
@@ -77,22 +73,8 @@ export class ServiceEndpointComponent implements OnInit {
     const _requestBodyObj = await this.dig( _api, 'requestBody') ;
     const _responseBodyObj = await this.dig( _api, 'responses') ;
 
-    // api.paths['/models/2/inference'].post.requestBody;
-    // api.paths['/models/2/inference'].post.responses;
-
+   
     this.inputProperties = await this.dig( _requestBodyObj, '$ref');
-    this.outputProperties  = await this.dig( _responseBodyObj, '$ref');
-
-    // console.log( this.inputProperties, 'api parse', this.outputProperties );
-
-    // console.log('api.paths',api.paths['/models/2/inference'].post.requestBody.content['application/json'].schema['$ref']);
-    // this.inputProperties = api.paths['/models/2/inference'].post.requestBody.content[
-    //   'application/json'
-    // ].schema['$ref'];
-
-  // this.outputProperties = api.paths['/models/2/inference'].post.responses['200'].content[
-  //     'application/json'
-  //   ].schema['$ref'];
     
     if (!!this.inputProperties) {
       refInput = this.inputProperties.split('/');
@@ -104,8 +86,6 @@ export class ServiceEndpointComponent implements OnInit {
       const lastEleemnt = refInput[refInput.length - 1];
       const Objproperties = await this.dig ( _api, lastEleemnt );
       this.responseApi = Objproperties.properties;
-      // console.log(Objproperties, 'api', lastEleemnt);
-      // api[refInput[1]][refInput[2]][refInput[3]].properties;
     } else {
       this.responseApi = _api.components.schemas.Input.properties;
     }
@@ -136,8 +116,8 @@ export class ServiceEndpointComponent implements OnInit {
     let refOutput;
     const values = this.form.value;
 
-    if (!!this.outputProperties) {
-      refOutput = this.outputProperties.split('/');
+    if (!!this.inputProperties) {
+      refOutput = this.inputProperties.split('/');
       const Objproperties = await this.dig ( this.api , refOutput[refOutput.length - 1]);
       this.responseApi = Objproperties.properties;
     } else{
@@ -145,25 +125,23 @@ export class ServiceEndpointComponent implements OnInit {
     }
   
     console.log(this.responseApi, 'api response');
-    // else { this.responseApi = Objproperties.properties;}
   
     const _inputs = { ...values };
     
-    // added for keys in the requesbody as text(context) and questions(question)
+    // delete block added for keys in the requesbody as text(context) and questions(question)
     _inputs.text = _inputs.context ? _inputs.context : '';
     _inputs.questions = _inputs.question ? _inputs.question : '';
-    
-    delete _inputs.path;
     delete _inputs.question;
     delete _inputs.context;
+    // delete block
+
+    delete _inputs.path;
     delete _inputs.url;
 
-    console.log(_inputs, 'api');
 
     this.path = values.path;
     const url = values.url + this.path;
 
-    console.log(_inputs, 'Values');
     const body = {
       input: [
         {..._inputs}

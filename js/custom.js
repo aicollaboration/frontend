@@ -50,10 +50,10 @@ $(window).on("scroll", function () {
         TraslateElement3.style.opacity="0";
         TraslateElement4.style.opacity="0";
         TraslateElement5.style.opacity="0";
-        console.log(top,"i 632");
+        // console.log(top,"i 632");
     }else if(top < 1672){
         traslateElement.style.transform = "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
-        console.log(top,"i top");
+        // console.log(top,"i top");
         TraslateElement1.style.opacity="0";
         TraslateElement1.style.transition="opacity .2s ease-out";
         TraslateElement2.style.opacity="1";
@@ -63,7 +63,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 2572){
         traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-        console.log(top,"i 2572");
+        // console.log(top,"i 2572");
         TraslateElement1.style.opacity="0";
         TraslateElement2.style.opacity="0";
         TraslateElement2.style.transition="opacity .2s ease-out";
@@ -73,7 +73,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 3572){
         traslateElement.style.transform = "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
-        console.log(top,"i 3572");
+        // console.log(top,"i 3572");
         TraslateElement1.style.opacity="0";
         TraslateElement2.style.opacity="0";
         TraslateElement3.style.opacity="0";
@@ -83,7 +83,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 4122){
         traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-        console.log(top,"i 4122");
+        // console.log(top,"i 4122");
         TraslateElement1.style.opacity="0";
         TraslateElement2.style.opacity="0";
         TraslateElement3.style.opacity="0";
@@ -93,7 +93,7 @@ $(window).on("scroll", function () {
     }
     else if(top < 5522){
         traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-        console.log(top,"i 4522");
+        // console.log(top,"i 4522");
     }
 
     // console.log(top, "offsets position", bottom);
