@@ -10,7 +10,7 @@ import { ApiParserService } from '../../services/api-parser.service';
   styleUrls: ['./service-endpoint.component.scss'],
 })
 export class ServiceEndpointComponent implements OnInit {
-  public response = '';
+  public response ;
   public loading = false;
   public responseApi: string;
   public serverList = {};
@@ -129,10 +129,10 @@ export class ServiceEndpointComponent implements OnInit {
     const _inputs = { ...values };
     
     // delete block added for keys in the requesbody as text(context) and questions(question)
-    _inputs.text = _inputs.context ? _inputs.context : '';
-    _inputs.questions = _inputs.question ? _inputs.question : '';
-    delete _inputs.question;
-    delete _inputs.context;
+    // _inputs.text = _inputs.context ? _inputs.context : '';
+    // _inputs.questions = _inputs.question ? _inputs.question : '';
+    // delete _inputs.question;
+    // delete _inputs.context;
     // delete block
 
     delete _inputs.path;
@@ -143,19 +143,18 @@ export class ServiceEndpointComponent implements OnInit {
     const url = values.url + this.path;
 
     const body = {
-      input: [
-        {..._inputs}
-      ],
+        ..._inputs
     };
 
     const observable = this.http.post(url, body, { observe: 'events' });
     observable.subscribe((uploadEvent) => {
-      this.loading = false;
       switch (uploadEvent.type) {
         case HttpEventType.Sent:
+          this.loading = false;
           console.log('uploadEvent#sent ', uploadEvent);
           break;
         case HttpEventType.UploadProgress:
+          this.loading = false;
           console.log(
             'uploadEvent#uploadProgress: ',
             uploadEvent.loaded,
@@ -163,6 +162,7 @@ export class ServiceEndpointComponent implements OnInit {
           );
           break;
         case HttpEventType.User:
+          this.loading = false;
           console.log('uploadEvent#user ', uploadEvent);
           break;
         case HttpEventType.ResponseHeader:
@@ -173,14 +173,16 @@ export class ServiceEndpointComponent implements OnInit {
           break;
         case HttpEventType.Response:
           console.log('uploadEvent#response ', uploadEvent);
-          this.response = uploadEvent.body['predictions'][0]['answers'];
+
+          this.response = uploadEvent.body;
           // uploadEvent.body['predictions'][0]['answers'][0]['answer'];
           this.loading = false;
           break;
       }
+    }, (error) => {
+      console.log(error);
+      this.loading = false;
     });
   }
 }
-function server(server: any): any[] {
-  throw new Error('Function not implemented.');
-}
+
