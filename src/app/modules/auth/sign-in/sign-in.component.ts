@@ -1,54 +1,32 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
 import { TreoAnimations } from '@treo/animations';
 import { AuthService } from 'app/core/auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import Backendless from 'backendless';
-
-
 
 @Component({
     selector: 'auth-sign-in',
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     animations: TreoAnimations
 })
 export class AuthSignInComponent implements OnInit {
-    signInForm: FormGroup;
-    message: any;
+    public signInForm: FormGroup;
+    public message: any;
 
-    /**
-     * Constructor
-     *
-     * @param {ActivatedRoute} activatedRoute
-     * @param {AuthService} authService
-     * @param {FormBuilder} formBuilder
-     * @param {Router} router
-     */
     constructor(
-        private activatedRoute: ActivatedRoute,
         private authService: AuthService,
         private formBuilder: FormBuilder,
-        private router: Router
+        private route: ActivatedRoute,
     ) {
-        // Set the defaults
         this.message = null;
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
-    ngOnInit(): void {
+    public ngOnInit(): void {
         // Create the form
         this.signInForm = this.formBuilder.group({
-            email: ['tobias.oberrauch@cgi.com'],
-            password: ['yxcyxcyxc'],
-            rememberMe: ['']
+            email: [''],
+            password: [''],
         });
     }
 
@@ -59,7 +37,7 @@ export class AuthSignInComponent implements OnInit {
     /**
      * Sign in
      */
-    signIn(): void {
+    public async signIn() {
         // Disable the form
         this.signInForm.disable();
 
@@ -70,18 +48,26 @@ export class AuthSignInComponent implements OnInit {
         const credentials = this.signInForm.value;
 
         // Sign in
-        this.authService.signIn(credentials).then((loggedInUser) => {
-            this.router.navigateByUrl('/solutions');
-        }).catch((error) => {
+        try {
+            const user = await this.authService.signIn(credentials.email, credentials.password);
+
+            const updatedUser = await this.authService.updateUser({ userType: 'BUSINESS', foo: 'bar' });
+
+            if (this.route.snapshot.queryParamMap.has('redirectURL')) {
+                window.location.pathname = this.route.snapshot.queryParamMap.get('redirectURL');
+            } else {
+                window.location.pathname = '/dashboard';
+            }
+        } catch (error) {
             this.message = {
                 appearance: 'outline',
-                content: error,
+                content: error.message,
                 shake: true,
                 showIcon: false,
                 type: 'error'
             };
 
             this.signInForm.enable();
-        })
+        }
     }
 }

@@ -1,0 +1,103 @@
+@import 'treo';
+
+treo-message {
+	margin: 16px;
+}
+
+@include treo-theme {
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
+}
+
+service-editor {
+	.main {
+		display: flex;
+		flex-direction: row;
+		
+		form {
+			display: flex;
+			flex: 1 1 auto;
+			flex-direction: column;
+
+
+			.actions {
+				margin-top: 32px;
+
+				@include treo-breakpoint('lt-md') {
+					flex-direction: column;
+					align-items: flex-end;
+					margin-top: 16px;
+				}
+
+				.buttons {
+					button {
+						&.save-button {
+							margin-right: 16px;
+
+							@include treo-breakpoint('xs') {
+								span {
+									display: none;
+								}
+							}
+						}
+
+						.mat-icon {
+							@include treo-icon-size(20);
+							margin-right: 8px;
+
+							@include treo-breakpoint('xs') {
+								margin-right: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+				.container{
+					display: flex;
+					flex: 1 1 auto;
+					flex-direction: column;
+		
+				 
+				width:100%;
+			
+			.mat-header-row {
+				width: 100%;
+			}
+			
+			.mat-row {
+				width: 100%;
+			}
+	
+			.matColumnDef-id {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+			.mat-column-name {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+			.mat-column-description {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+			.mat-column-api {
+				flex: 0 0 25% !important;
+				min-width: 300px !important;
+			}
+				.th , td {
+					width:100px !important; 
+					border-collapse: collapse;
+					padding: 5px;
+				  }
+				}
+				
+		.helper {
+			width: 30%;
+		}
+	}
+}

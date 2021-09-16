@@ -10,26 +10,20 @@ export class ServiceEffects {
     public loadServices$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(loadServicesAction),
-            mergeMap(() => {
-                return this.serviceService.getServices().pipe(
-                    map(services => loadServicesSuccessAction({ services })),
-                    catchError(error => of(errorAction({ error })))
-                );
-            })
+            switchMap(action => this.serviceService.getServices()),
+            map(services => loadServicesSuccessAction({ services })),
+            catchError(error => of(errorAction({ error })))
         );
     });
-
+  
     public loadService$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(loadServiceAction),
-            switchMap((value, index) => {
-                return this.serviceService.getService(value.serviceId).pipe(
-                    map(service => loadServiceSuccessAction({ service })),
-                    catchError(error => of(errorAction({ error })))
+            switchMap(action => this.serviceService.getService(action.serviceId)),
+            map(service => loadServiceSuccessAction({ service })),
+            catchError(error => of(errorAction({ error })))
                 );
-            })
-        );
-    });
+      });
 
     constructor(private actions$: Actions, private serviceService: ServiceService) {
 

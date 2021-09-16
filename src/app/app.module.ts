@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
-import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { EditableModule } from '@ngneat/edit-in-place';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -21,14 +21,21 @@ import { CoreModule } from 'app/core/core.module';
 import { mockDataServices } from 'app/data/mock';
 import { LayoutModule } from 'app/layout/layout.module';
 import { environment } from 'environments/environment';
+import player from 'lottie-web';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { LottieModule } from 'ngx-lottie';
 import { MarkdownModule } from 'ngx-markdown';
-import { ProductEffects } from './modules/product/state/product.effects';
-import { productReducer } from './modules/product/state/product.reducer';
+import { DynamicModule } from './modules/service/components/dynamic';
+
+export function playerFactory() {
+    return player;
+}
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: PreloadAllModules,
+    anchorScrolling: 'enabled'
+    // enableTracing: true,
 };
 
 @NgModule({
@@ -40,6 +47,7 @@ const routerConfig: ExtraOptions = {
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
+       
 
         // Treo & Treo Mock API
         TreoModule,
@@ -57,16 +65,15 @@ const routerConfig: ExtraOptions = {
 
         // ngrx
         StoreModule.forRoot({}),
-        StoreModule.forFeature('products', productReducer),
         StoreDevtoolsModule.instrument({
             name: 'AI Platform',
             maxAge: 25,
             logOnly: environment.production
         }),
-        EffectsModule.forRoot([ProductEffects]),
+        EffectsModule.forRoot([]),
 
-        // amplify
-        AmplifyUIAngularModule,
+        // dynami
+        DynamicModule,
 
         // Forms
         MatDialogModule,
@@ -77,6 +84,10 @@ const routerConfig: ExtraOptions = {
 
         // dropzone
         NgxDropzoneModule,
+
+        EditableModule,
+
+        LottieModule.forRoot({ player: playerFactory })
     ],
     bootstrap: [
         AppComponent,

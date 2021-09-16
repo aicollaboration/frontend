@@ -1,0 +1,79 @@
+@import 'treo';
+
+.cards {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin: 0 -16px;
+}
+
+.card {
+	cursor: pointer;
+}
+
+treo-card {
+	margin: 16px;
+}
+
+treo-message {
+	margin: 16px;
+}
+
+@include treo-theme {
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$is-dark: map-get($theme, is-dark);
+}
+
+solution-editor {
+	.main {
+		form {
+			display: flex;
+			flex: 1 1 auto;
+			flex-direction: column;
+
+			.mat-table {
+				margin: 20px 0 20px 0;
+			}
+			.actions {
+				margin-top: 32px;
+
+				@include treo-breakpoint('lt-md') {
+					flex-direction: column;
+					align-items: flex-end;
+					margin-top: 16px;
+				}
+
+				.buttons {
+					button {
+						&.save-button {
+							margin-right: 16px;
+
+							@include treo-breakpoint('xs') {
+								span {
+									display: none;
+								}
+							}
+						}
+
+						.mat-icon {
+							@include treo-icon-size(20);
+							margin-right: 8px;
+
+							@include treo-breakpoint('xs') {
+								margin-right: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.helper {
+			width: 30%;
+		}
+	}
+}

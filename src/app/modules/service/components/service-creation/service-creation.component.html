@@ -1,1 +1,78 @@
-service-creation.component.html
+<div class="content-layout fullwidth-standard-normal-scroll">
+
+    <div class="header">
+        <div class="left">
+            <h1>Create Service</h1>
+            <h3>A service uses existing interfaces that provide the usage of algorithms.</h3>
+        </div>
+    </div>
+
+    <div class="main">
+        <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+            <h4>Basis information</h4>
+            <mat-form-field class="mb-6">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="name" maxlength="250" type="text" required>
+            </mat-form-field>
+            <mat-form-field class="mb-6">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="5"></textarea>
+            </mat-form-field>
+            <h4>API</h4>
+            <mat-tab-group [@.disabled]="true">
+                <mat-tab label="OpenAPI">
+                    <br />
+                    <br />
+                    <mat-form-field style="width: 100%">
+                        <textarea matInput formControlName="api" rows="30"
+                            style="font: 14px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace"
+                            required (ngModelChange)="changeApi(this)"></textarea>
+                    </mat-form-field>
+                </mat-tab>
+                <mat-tab label="Postman Collection" disabled>
+
+                </mat-tab>
+                <mat-tab label="Manual" disabled>
+                    
+                </mat-tab>
+            </mat-tab-group>
+
+            <!--
+            <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label>File upload</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
+            -->
+
+            <div class="actions">
+                <div class="buttons">
+                    <button class="save-button" mat-stroked-button type="submit">
+                        <mat-icon [svgIcon]="'save'"></mat-icon>
+                        <span>Create Service</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="helper ml-14 opacity-50">
+            <h4>Suggested services</h4>
+            <treo-card class="mb-6 card flex flex-col max-w-80 w-full" *ngFor="let service of suggestedServices">
+                <div class="m-4 mb-0">
+                    <div class="flex flex-col">
+                        <div class="text-2xl leading-tight">Name: {{ service.name }}</div>
+                    </div>
+                    <div class="mb-4">
+                        <hr class="border-b my-3">
+                        <div class="flex items-center text-md">
+                            Description: {{ service.description }}
+                        </div>
+                        <div class="flex items-center text-md" *ngIf="service.api">
+                            API: {{ service.api }}
+                        </div>
+                    </div>
+                </div>
+            </treo-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<form [formGroup]="form" class="flex flex-col overflow-hidden">
+
+    <mat-divider class="mt-4 mb-12"></mat-divider>
+    <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+        <div class="gt-xs:max-w-80 gt-xs:pr-12">
+            <p class="text-lg font-medium">Input</p>
+            <p class="text-secondary mb-6">
+                Define the context in which you want to search for the answer to your question
+            </p>
+        </div>
+        <div class="flex-auto min-w-64">
+            <div *ngIf="!!responseApi">
+                <app-dynamic-child [componentData]="responseApi" [form]="form">
+                </app-dynamic-child>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="flex flex-row mt-4">
+                <app-input-select class="flex-grow pr-4" [componentData]="serverList" [form]="form"> </app-input-select>
+                <app-input-select class="flex-grow pl-4" [componentData]="pathList" [form]="form"> </app-input-select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
+        <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [class.spinner]="loading"
+            [disabled]="loading" (click)="ask()">
+            Run
+        </button>
+    </div>
+    <mat-divider class="mt-4 mb-12"></mat-divider>
+
+    <div class="flex flex-col gt-xs:flex-row gt-xs:items-start">
+        <div class="gt-xs:max-w-80 gt-xs:pr-12">
+            <p class="text-lg font-medium">Output</p>
+            <p class="text-secondary mb-6">
+                The following answer was found in the context
+            </p>
+        </div>
+        <div class="flex-auto min-w-64">
+            <div class="flex text-3xl">
+
+                <!-- {{ response }} -->
+                <div *ngIf="!!response">
+                    <ngx-json-viewer [json]="response"></ngx-json-viewer>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</form>

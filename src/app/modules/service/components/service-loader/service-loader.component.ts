@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
 import { ServiceModel } from '../../models/service.model';
+import { PdfAnalyzerComponent } from '../pdf-analyzer/pdf-analyzer.component';
 import { ServiceLoaderDirective } from './service-loader.directive';
 
 @Component({
@@ -17,10 +18,8 @@ export class ServiceLoaderComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        /*
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(EmptyComponent);
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(PdfAnalyzerComponent);
         const viewContainerRef = this.serviceLoader.viewContainerRef;
         viewContainerRef.createComponent(componentFactory);
-        */
     }
 }

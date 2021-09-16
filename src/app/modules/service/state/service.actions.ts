@@ -27,6 +27,7 @@ export const loadServiceAction = createAction(
     ServiceActions.LOAD_SERVICE,
     props<{ serviceId: string }>()
 );
+
 export const loadServiceSuccessAction = createAction(
     ServiceActions.LAOD_SERVICE_SUCCESS,
     props<{ service: ServiceModel }>()

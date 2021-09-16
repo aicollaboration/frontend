@@ -20,36 +20,17 @@ export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad {
     ) {
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Private methods
-    // -----------------------------------------------------------------------------------------------------
+    private check(): boolean {
+        const authenticated = this.authService.check();
+        if (authenticated) {
+            this.router.navigate(['dashboard']);
 
-    /**
-     * Check the authenticated status
-     *
-     * @private
-     */
-    private check(): Observable<boolean> {
-        // Check the authentication status
-        return this.authService.check().pipe(switchMap((authenticated) => {
+            return false;
+        }
 
-            // If the user is authenticated...
-            if (authenticated) {
-                // Redirect to the root
-                this.router.navigate(['']);
-
-                // Prevent the access
-                return of(false);
-            }
-
-            // Allow the access
-            return of(true);
-        }));
+        // Allow the access
+        return true;
     }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
 
     /**
      * Can activate

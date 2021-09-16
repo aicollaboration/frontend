@@ -7,15 +7,36 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
+    /*
     {
         path: '',
-        pathMatch: 'full',
+        pathMatch: 'prefix',
         redirectTo: 'dashboard'
     },
+    */
     {
         path: 'signed-in-redirect',
         pathMatch: 'full',
         redirectTo: 'admin'
+    },
+
+    // Landing routes
+    {
+        path: '',
+        component: LayoutComponent,
+        data: {
+            layout: 'web'
+        },
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
+            },
+            {
+                path: 'get-started',
+                loadChildren: () => import('app/modules/landing/get-started/get-started.module').then(m => m.LandingGetStartedModule)
+            },
+        ]
     },
 
     // Auth routes (guest)
@@ -80,21 +101,6 @@ export const appRoutes: Route[] = [
         ]
     },
 
-    // Landing routes
-    {
-        path: '',
-        component: LayoutComponent,
-        data: {
-            layout: 'empty'
-        },
-        children: [
-            {
-                path: 'home',
-                loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.LandingHomeModule)
-            },
-        ]
-    },
-
     // Admin routes
     {
         path: '',
@@ -118,15 +124,7 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/admin/admin.module').then(m => m.AdminModule),
             },
             {
-                path: 'products',
-                loadChildren: () => import('app/modules/product/product.module').then(module => module.ProductModule),
-            },
-            {
                 path: 'solutions',
-                loadChildren: () => import('app/modules/solution/solution.module').then(module => module.SolutionModule),
-            },
-            {
-                path: 'problems',
                 loadChildren: () => import('app/modules/solution/solution.module').then(module => module.SolutionModule),
             },
             {
@@ -134,11 +132,7 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/service/service.module').then(module => module.ServiceModule),
             },
             {
-                path: 'use-cases',
-                loadChildren: () => import('app/modules/use-case/use-case.module').then(module => module.UseCaseModule),
-            },
-            {
-                path: 'documentations',
+                path: 'docs',
                 loadChildren: () => import('app/modules/documentation/documentation.module').then(module => module.DocumentationModule),
             },
             {

@@ -1,5 +1,9 @@
 @import 'treo';
 
+treo-message {
+	margin: 16px;
+}
+
 @include treo-theme {
 	$background: map-get($theme, background);
 	$foreground: map-get($theme, foreground);
@@ -13,6 +17,21 @@ solution-creation {
 	.main {
 		display: flex;
 		flex-direction: row;
+
+		.cards {
+			treo-card {
+				border: 5px solid #fff;
+				cursor: pointer;
+				transition: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+				&:hover {
+					border-color: #3c96fc;
+				}
+				&.active {
+					border-color:#050591;
+				}
+			}
+		}
 
 		form {
 			display: flex;

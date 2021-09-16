@@ -8,20 +8,28 @@ import { RouterModule, Routes } from '@angular/router';
 import { TreoMessageModule } from '@treo/components/message';
 import { SharedModule } from 'app/shared/shared.module';
 import { DashboardComponent } from './components/dashboard.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { CarouselItemDirective } from './components/carousel/carousel-item.directive';
+import { CarouselItemElementDirective } from './components/carousel/carousel-item-element.directive';
+import {MatTabsModule} from '@angular/material/tabs';
 
 const routes: Routes = [{
     path: '',
     component: DashboardComponent,
-}];
+}
+];
+
 
 @NgModule({
-    declarations: [
-        DashboardComponent,
-    ],
+    declarations: [ DashboardComponent, CarouselComponent, CarouselItemDirective, CarouselItemElementDirective ],
     imports: [
         SharedModule,
+
         RouterModule.forChild(routes),
 
+        MatGridListModule,
+        MatTabsModule,
         MatButtonModule,
         MatExpansionModule,
         MatFormFieldModule,
@@ -29,6 +37,7 @@ const routes: Routes = [{
         MatInputModule,
         TreoMessageModule,
     ],
+    bootstrap:    [ DashboardComponent ]
 })
 export class DashboardModule {
 

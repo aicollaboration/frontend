@@ -1,0 +1,16 @@
+  <div class="flex">
+  <mat-form-field class="flex-auto" [formGroup]='form'>
+
+<mat-label>{{ngmodelname}}</mat-label>
+<input
+ matInput
+ placeholder="test"
+[class]=""
+[(ngModel)]="modelValue"
+[name]="ngmodelname"
+formControlName="{{ngmodelname}}"
+(ngModelChange)="onChange(ngmodelname, $event, componentData)"
+       >
+  </mat-form-field>
+</div>
+

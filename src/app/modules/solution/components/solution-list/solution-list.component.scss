@@ -12,11 +12,12 @@
 	$is-dark: map-get($theme, is-dark);
 }
 
+.mat-select-panel {
+	width: 200px;
+}
+
 solutions {
 	.main {
-		background-color: #ddeef2;
-		padding-top: 0 !important;
-
 		.cards {
 			display: flex;
 			align-items: flex-start;
@@ -26,6 +27,11 @@ solutions {
 			treo-card {
 				margin: 16px;
 				cursor: pointer;
+				transition: 0.5s ease;
+
+				&:hover {
+					filter: brightness(95%);
+				}
 			}
 		}
 	}

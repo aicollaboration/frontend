@@ -1,0 +1,92 @@
+<div class="content-layout fullwidth-tabs-normal-scroll" *ngIf="solution$ | async as solution">
+    <div class="header">
+        <div class="left">
+            <div class="breadcrumb">
+                <span class="path">Solutions</span>
+                <span class="separator">/</span>
+            </div>
+            <h1>{{ solution.name }}</h1>
+        </div>
+
+        <div class="right">
+            <button mat-flat-button color="primary" [routerLink]="['/solutions', 'detail', solution.id]">
+                <mat-icon class="icon-size-18" svgIcon="close"></mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="main">
+        <mat-tab-group [@.disabled]="true">
+            <mat-tab label="Overview">
+                <form [formGroup]="solutionForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input matInput formControlName="name" required maxlength="250" type="text">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description" required rows="5"></textarea>
+                    </mat-form-field>
+                    
+                    <div class="actions">
+                        <div class="buttons">
+                            <button class="save-button" mat-stroked-button type="submit">
+                                <mat-icon [svgIcon]="'save'"></mat-icon>
+                                <span>Save solution</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </mat-tab>
+            <mat-tab label="Services">
+                <div class="actions">
+                    <div class="buttons">
+                        <button class="add-button" mat-stroked-button (click)="addService($event)">
+                            <mat-icon [svgIcon]="'add'"></mat-icon>
+                            <span>Add Service</span>
+                        </button>
+                    </div>
+                </div>
+
+                <br /><br />
+
+                <div class="cards">
+
+                    <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
+                        *ngFor="let solutionService of solutionServices"
+                        [routerLink]="['/solutions', 'detail', solutionService.Services.id]">
+                        <div class="relative">
+                            <div class="absolute flex flex-col top-0 right-0 p-3">
+                                <button mat-icon-button>
+                                    <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
+                                    </mat-icon>
+                                </button>
+                                <button mat-icon-button>
+                                    <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
+                                    </mat-icon>
+                                </button>
+                            </div>
+                            <!---  <img class="object-cover" [src]="solutionService.image" *ngIf="solutionService.image"> -->
+                        </div>
+                        <div class="m-8 mb-0">
+                            <div class="flex flex-col">
+                                <div class="text-2xl leading-tight">{{ solutionService.Services.name }}</div>
+                            </div>
+                            <div class="flex items-center text-md" *ngIf="solutionService.Services.description">
+                                <hr class="border-b my-6">
+                                {{ solutionService.Services.description }}
+                            </div>
+                            <div class="mt-6 -mx-8">
+                                <button
+                                    class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
+                                    mat-flat-button color="primary">Show</button>
+                            </div>
+                        </div>
+                    </treo-card>
+                </div>
+
+            </mat-tab>
+        </mat-tab-group>
+
+    </div>
+</div>

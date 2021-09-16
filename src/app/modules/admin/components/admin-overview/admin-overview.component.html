@@ -1,0 +1,28 @@
+<div class="content-layout fullwidth-tabs-normal-scroll">
+    <div class="header">
+        <div class="left">
+            <div class="breadcrumb">
+                <span class="path">Administration</span>
+                <span class="separator">/</span>
+            </div>
+            <h1>Overview</h1>
+        </div>
+
+        <div class="right">
+        </div>
+
+    </div>
+
+    <div class="main">
+        <nav mat-tab-nav-bar>
+            <a mat-tab-link routerLink="/admin/dashboard" routerLinkActive [active]="rla.isActive" #rla="routerLinkActive">Dashboard</a>
+            <a mat-tab-link routerLink="/admin/users" routerLinkActive [active]="rla.isActive" #rla="routerLinkActive">Users</a>
+            <a mat-tab-link routerLink="/admin/payment" routerLinkActive [active]="rla.isActive" #rla="routerLinkActive">Payment</a>
+        </nav>
+
+        <div class="p-6 sm:p-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+

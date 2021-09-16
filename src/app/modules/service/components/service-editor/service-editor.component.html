@@ -1,0 +1,52 @@
+<div class="content-layout fullwidth-standard-normal-scroll" *ngIf="service$ | async as service">
+
+    <div class="header">
+        <div class="left">
+            <h1>Edit Service: {{service.name}}</h1>
+        </div>
+
+        <div class="right">
+            <button mat-flat-button color="primary" [routerLink]="['/services', 'detail', service.id]">
+                <mat-icon class="icon-size-18" svgIcon="close"></mat-icon>
+            </button>
+        </div>
+    </div>
+  
+    <div class="main">
+        <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="name" required maxlength="250" type="text"> 
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" rows="3"></textarea> 
+            </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>API</mat-label>
+                <textarea matInput formControlName="api" rows="14"  style="font: 14px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace"></textarea> 
+            </mat-form-field>
+            
+            <!--
+            <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label>File upload</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+            </ngx-dropzone>
+            -->
+
+            <div class="actions">
+                <div class="buttons">
+                    <button class="save-button" mat-stroked-button type="submit">
+                        <mat-icon [svgIcon]="'save'"></mat-icon>
+                        <span>Update service</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="helper">
+            </div>
+    </div>
+</div>

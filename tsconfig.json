@@ -13,5 +13,16 @@
         {
             "path": "./tsconfig.spec.json"
         }
-    ]
+    ],
+    "paths": {
+        "stream": [
+            "node_modules/stream-browserify"
+        ],
+        "http": [
+            "node_modules/http-browserify"
+        ],
+        "https": [
+            "node_modules/https-browserify"
+        ]
+    }
 }

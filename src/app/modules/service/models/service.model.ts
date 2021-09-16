@@ -1,9 +1,12 @@
 import { CategoryModel } from './category.model';
 
 export class ServiceModel {
-    public objectId: string;
-    public title: string;
-    public image: string;
+    public id: string;
+    public name: string;
+    public image?: string;
+    public file?: string;
     public description?: string;
-    public category: CategoryModel;
+    public api?: string;
+    public category?: CategoryModel;
+    public author: string;
 }

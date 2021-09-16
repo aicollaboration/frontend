@@ -4,18 +4,38 @@
             <div class="breadcrumb">
                 <span class="path">Services</span>
                 <span class="separator">/</span>
-                <span class="path">{{ service.category.title }}</span>
             </div>
-            <h1>{{ service.title }}</h1>
-            <h3>{{ service.subtitle }}</h3>
+          
+            <h1>{{service.name}}</h1>
+            <h2 *ngIf="api.info && api.info.description">{{api.info.description}}</h2>
         </div>
 
         <div class="right">
-
+            <button mat-flat-button [routerLink]="['/services', 'edit', service.id]">
+                <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
+                <span class="ml-2">Edit</span>
+            </button>
         </div>
+
     </div>
 
     <div class="main">
-        <service-loader [service]="service"></service-loader>
+       
+        <mat-tab-group [@.disabled]="true">
+            <mat-tab label="Overview">
+                <service-detail-overview [service]="service"></service-detail-overview>
+            </mat-tab>
+            <mat-tab label="Endpoint">
+                <service-endpoint [service]="service"></service-endpoint>
+            </mat-tab>
+            <mat-tab label="Tutorials" disabled>
+            </mat-tab>
+            <mat-tab label="Discussions" disabled>
+            </mat-tab>
+            <mat-tab label="Pricing" disabled>
+            </mat-tab>
+            <mat-tab label="Specification" disabled>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>

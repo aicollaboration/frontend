@@ -9,6 +9,7 @@ export interface TreoNavigationItem
     disabled?: boolean;
     link?: string;
     externalLink?: boolean;
+    fragment?: string;
     exactMatch?: boolean;
     function?: (item: TreoNavigationItem) => void;
     classes?: string;

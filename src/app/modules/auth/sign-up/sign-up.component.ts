@@ -1,11 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
 import { TreoAnimations } from '@treo/animations';
 import { AuthService } from 'app/core/auth/auth.service';
-
-
-
+import { Subject } from 'rxjs';
 @Component({
     selector: 'auth-sign-up',
     templateUrl: './sign-up.component.html',
@@ -13,68 +10,47 @@ import { AuthService } from 'app/core/auth/auth.service';
     encapsulation: ViewEncapsulation.None,
     animations: TreoAnimations
 })
-
-
 export class AuthSignUpComponent implements OnInit, OnDestroy {
-    message: any;
-    signUpForm: FormGroup;
+    public message: any;
+    public signUpForm: FormGroup;
 
     // Private
-    private _unsubscribeAll: Subject<any>;
+    private unsubscribeAll: Subject<any>;
 
     /**
      * Constructor
      *
-     * @param {AuthService} _authService
-     * @param {FormBuilder} _formBuilder
+     * @param {AuthService} authService
+     * @param {FormBuilder} formBuilder
      */
     constructor(
-        private _authService: AuthService,
-        private _formBuilder: FormBuilder
+        private authService: AuthService,
+        private formBuilder: FormBuilder
     ) {
         // Set the defaults
         this.message = null;
 
         // Set the private defaults
-        this._unsubscribeAll = new Subject();
+        this.unsubscribeAll = new Subject();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
     ngOnInit(): void {
         // Create the form
-        this.signUpForm = this._formBuilder.group({
-            name: ['', Validators.required],
+        this.signUpForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
-            company: [''],
-            agreements: ['', Validators.requiredTrue]
-        }
-        );
+            confirmPassword: [''],
+            agreements: [true, Validators.requiredTrue]
+        }, { validators: this.checkPasswords });
     }
 
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Public methods
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * Sign up
-     */
-    signUp(): void {
+    public async signUp(): Promise<void> {
         // Do nothing if the form is invalid
         if (this.signUpForm.invalid) {
             return;
@@ -88,38 +64,34 @@ export class AuthSignUpComponent implements OnInit, OnDestroy {
 
 
         // Get the credentials
-        const credentials = this.signUpForm.value;
-
-        // Set the user login and password 
-        var user = new Backendless.User();
-        user.email = credentials.email;
-        user.password = credentials.password;
+        const user = this.signUpForm.value;
 
         // Sign up
-        Backendless.UserService.register(user)
-            .then((registeredUser) => {
-                debugger
+        try {
+            await this.authService.signUp(user);
 
-                // Re-enable the form
-                this.signUpForm.enable();
+            this.signUpForm.enable();
+            this.signUpForm.reset({});
+            // Show the message
+            this.message = {
+                appearance: 'outline',
+                content: 'Your account has been created and a confirmation mail has been sent to your email address.',
+                shake: false,
+                showIcon: false,
+                type: 'success'
+            };
+        } catch (error) {
+            console.log("error message - " + error.message);
+            console.log("error code - " + error.statusCode);
+        }
+    }
 
-                // Reset the form
-                this.signUpForm.reset({});
+    private checkPasswords(group: FormGroup) {
+        const password = group.get('password').value;
+        const confirmPassword = group.get('confirmPassword').value;
 
-                // Show the message
-                this.message = {
-                    appearance: 'outline',
-                    content: 'Your account has been created and a confirmation mail has been sent to your email address.',
-                    shake: false,
-                    showIcon: false,
-                    type: 'success'
-                };
+        console.log(`checkPasswords ${password} ${confirmPassword} ${password === confirmPassword}`);
 
-            })
-            .catch((err) => {
-                debugger
-                console.log("error message - " + err.message);
-                console.log("error code - " + err.statusCode);
-            });
+        return password === confirmPassword ? null : { notSame: true }
     }
 }

@@ -3,18 +3,18 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './core/auth/auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class InitialDataResolver implements Resolve<any>
-{
+export class InitialDataResolver implements Resolve<any> {
     /**
      * Constructor
      *
      * @param {HttpClient} httpClient
      */
-    constructor(private httpClient: HttpClient) {
+    constructor(private authService: AuthService, private httpClient: HttpClient) {
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -57,15 +57,6 @@ export class InitialDataResolver implements Resolve<any>
         return this.httpClient.get('api/common/shortcuts');
     }
 
-    /**
-     * Load user
-     *
-     * @private
-     */
-    private loadUser(): Observable<any> {
-        return this.httpClient.get('api/common/user');
-    }
-
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -90,9 +81,6 @@ export class InitialDataResolver implements Resolve<any>
 
             // Shortcuts
             this.loadShortcuts(),
-
-            // User
-            this.loadUser()
         ]).pipe(map((data) => {
             return {
                 messages: data[0].messages,
@@ -104,7 +92,7 @@ export class InitialDataResolver implements Resolve<any>
                 },
                 notifications: data[2].notifications,
                 shortcuts: data[3].shortcuts,
-                user: data[4].user
+                user: this.authService.user,
             };
         }));
     }
