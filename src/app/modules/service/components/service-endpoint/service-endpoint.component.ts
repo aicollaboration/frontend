@@ -2,7 +2,7 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ServiceModel } from '../../models/service.model';
-import { ApiParserService } from '../../services/api-parser.service';
+import { dig } from '../../services/utils';
 
 @Component({
   selector: 'service-endpoint',
@@ -26,19 +26,8 @@ export class ServiceEndpointComponent implements OnInit {
   @Input()
   public service: ServiceModel;
   public constructor(
-    private apiParserService: ApiParserService,
     private http: HttpClient
   ) {}
-
-
-  public dig = (obj, target) =>
-  target in obj
-    ? obj[target]
-    : Object.values(obj).reduce((acc, val) => {
-        if (acc !== undefined) { return acc; }
-        if (typeof val === 'object') { return this.dig(val, target); }
-      }, undefined)
-
 
       
   public async ngOnInit(): Promise<void>  {
@@ -70,26 +59,23 @@ export class ServiceEndpointComponent implements OnInit {
     this.pathList['label'] = 'path';
     this.pathList['options'] = pathOptions;
 
-    const _requestBodyObj = await this.dig( _api, 'requestBody') ;
-    const _responseBodyObj = await this.dig( _api, 'responses') ;
+    const _requestBodyObj = await dig( _api, 'requestBody') ;
+    // const _responseBodyObj = await dig( _api, 'responses') ;
 
    
-    this.inputProperties = await this.dig( _requestBodyObj, '$ref');
+    this.inputProperties = await dig( _requestBodyObj, '$ref');
     
     if (!!this.inputProperties) {
       refInput = this.inputProperties.split('/');
     }
 
-    // this.apiParserService.parse(api);
-
     if (refInput.length > 1) {
       const lastEleemnt = refInput[refInput.length - 1];
-      const Objproperties = await this.dig ( _api, lastEleemnt );
+      const Objproperties = await dig ( _api, lastEleemnt );
       this.responseApi = Objproperties.properties;
     } else {
       this.responseApi = _api.components.schemas.Input.properties;
     }
-
     
   }
 
@@ -118,22 +104,15 @@ export class ServiceEndpointComponent implements OnInit {
 
     if (!!this.inputProperties) {
       refOutput = this.inputProperties.split('/');
-      const Objproperties = await this.dig ( this.api , refOutput[refOutput.length - 1]);
+      const Objproperties = await dig ( this.api , refOutput[refOutput.length - 1]);
       this.responseApi = Objproperties.properties;
     } else{
-      this.responseApi = await this.dig ( this.api , 'Output');
+      this.responseApi = await dig ( this.api , 'Output');
     }
   
     console.log(this.responseApi, 'api response');
   
     const _inputs = { ...values };
-    
-    // delete block added for keys in the requesbody as text(context) and questions(question)
-    // _inputs.text = _inputs.context ? _inputs.context : '';
-    // _inputs.questions = _inputs.question ? _inputs.question : '';
-    // delete _inputs.question;
-    // delete _inputs.context;
-    // delete block
 
     delete _inputs.path;
     delete _inputs.url;
