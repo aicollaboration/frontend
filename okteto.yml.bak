@@ -1,7 +1,0 @@
-name: aicp-frontend
-image: okteto/aicp-frontend
-command: yarn start
-sync:
-  - .:/src
-persistentVolume:
-  enabled: false
