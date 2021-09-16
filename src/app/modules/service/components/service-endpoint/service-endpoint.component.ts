@@ -150,6 +150,7 @@ export class ServiceEndpointComponent implements OnInit {
 
     const observable = this.http.post(url, body, { observe: 'events' });
     observable.subscribe((uploadEvent) => {
+      this.loading = false;
       switch (uploadEvent.type) {
         case HttpEventType.Sent:
           console.log('uploadEvent#sent ', uploadEvent);
