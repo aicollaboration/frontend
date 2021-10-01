@@ -30,6 +30,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { QuillModule } from 'ngx-quill';
 import { ProblemSubmitterComponent } from './components/problem-submitter/problem-submitter.component';
 import { SolutionCreationComponent } from './components/solution-creation/solution-creation.component';
+import { SolutionDeletionComponent } from './components/solution-deletion/solution-deletion.component';
 import { SolutionDetailOverviewComponent } from './components/solution-detail-overview/solution-detail-overview.component';
 import { SolutionDetailComponent } from './components/solution-detail/solution-detail.component';
 import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
@@ -49,6 +50,7 @@ import { solutionReducer } from './state/solution.reducer';
         SolutionEditorComponent,
         SolutionServiceCreationComponent,
         SolutionServiceDetailComponent,
+        SolutionDeletionComponent,
         ProblemSubmitterComponent,
     ],
     schemas: [

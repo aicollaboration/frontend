@@ -9,6 +9,7 @@ import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 import { loadSolutionAction } from '../../state/solution.actions';
 import { getSolutionSelector, State } from '../../state/solution.reducer';
+import { SolutionDeletionComponent } from '../solution-deletion/solution-deletion.component';
 import { SolutionDeploymentComponent } from '../solution-deployment/solution-deployment.component';
 import { SolutionServiceCreationComponent } from '../solution-service-creation/solution-service-creation.component';
 
@@ -62,6 +63,10 @@ export class SolutionDetailComponent implements OnInit {
 
     public openCreationDialog(): void {
         const dialogRef = this.matDialog.open(SolutionDeploymentComponent);
+    }
+
+    public openDeletionDialog(): void {
+        const dialogRef = this.matDialog.open(SolutionDeletionComponent);
     }
 
     public async addService(event) {

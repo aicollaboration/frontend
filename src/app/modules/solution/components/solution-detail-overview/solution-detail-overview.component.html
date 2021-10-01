@@ -3,6 +3,7 @@
         <div class="w-2/3 pr-10">
             <div class="prose prose-sm max-w-3xl">
                 <h3>Description</h3>
+                
                 <editable class="editable" (save)="update()" (cancel)="cancel()">
                     <ng-template viewMode>
                         <div [innerHTML]="solution.description"></div>

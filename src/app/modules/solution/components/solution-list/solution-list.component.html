@@ -55,9 +55,10 @@
         <div class="cards">
             <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
                 *ngFor="let solution of solutions$ | async" [routerLink]="['/solutions', 'detail', solution.id]"
-                matRipple matRippleColor="white">
+                matRipple matRippleColor="white" role="link">
                 <div class="relative">
-                    <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg">
+                    <img class="object-cover" [src]="solution.file" *ngIf="solution.file">
+                    <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg" *ngIf="!solution.file">
                 </div>
                 <div class="m-4 mb-0">
                     <div class="flex flex-col">
@@ -70,17 +71,6 @@
                         </div>
                     </div>
                     <div class="my-2 w-full flex">
-                        <!--
-                        <div class="flex flex-col items-center">
-                            <mat-icon>verified_user</mat-icon>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <mat-icon>idea_2</mat-icon>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <mat-icon>update</mat-icon>
-                        </div>
-                        -->
                     </div>
                 </div>
             </treo-card>

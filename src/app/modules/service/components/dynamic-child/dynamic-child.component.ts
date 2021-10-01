@@ -26,17 +26,22 @@ export class DynamicChildComponent implements OnInit {
   }
 
 
-  public scanComponent(obj): any {
-    for (const [key, value] of Object.entries(obj)) {
-      console.log(`kv`, key, value);
-      const data = { key, value };
-      const cmpName = value ? value['type'] : 'string';
-      this.loadComponent(cmpName, data);
+  public scanComponent(element): any {
+    if (element.type === 'array') {
+
+    }
+    if (element.type === 'object') {
+      for (const [key, value] of Object.entries(element.properties)) {
+        console.log(`kv`, key, value);
+        const data = { key, value };
+        const cmpName = value ? value['type'] : 'string';
+        this.loadComponent(cmpName, data);
+      }
     }
 
   }
 
-  public loadComponent(cmpName, componentData): any {
+  public loadComponent(cmpName: string, componentData): any {
     const cmpNameC = this.cmpList[cmpName];
 
     const inputsDataObj = {

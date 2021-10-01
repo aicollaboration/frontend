@@ -17,12 +17,12 @@ export class LandingHomeComponent implements OnInit {
   isReviews;
   isFooter;
   isCompanyList;
-  
+
 
   /**
    * Constructor
    */
-  constructor(public el: ElementRef) {}
+  constructor(public el: ElementRef) { }
 
   @HostListener("window:scroll", ["$event"])
   ngOnInit(): void {
@@ -53,40 +53,40 @@ export class LandingHomeComponent implements OnInit {
     // Calculate the top and left positions
     const top = eleRect.top - targetRect.top;
     const bottom = targetRect.bottom - eleRect.bottom;
+    console.log(`top ${top}`);
     // style="transform: translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg);"
-    if (top < 432) {
-      traslateElement.style.transform =
-        "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
+    if (top < 800) {
+      traslateElement.style.transform = "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
       TraslateElement1.style.opacity = "1";
       TraslateElement2.style.opacity = "0";
       TraslateElement3.style.opacity = "0";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-      console.log(top, "i 632");
-    } else if (top < 1272) {
+      //console.log(top, "i 632");
+    } else if (top < 1700) {
       traslateElement.style.transform =
         "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
-      console.log(top, "i top");
+      //console.log(top, "i top");
       TraslateElement1.style.opacity = "0";
       TraslateElement1.style.transition = "opacity .2s ease-out";
       TraslateElement2.style.opacity = "1";
       TraslateElement3.style.opacity = "0";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 2072) {
+    } else if (top < 2700) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-      console.log(top, "i 2572");
+      //console.log(top, "i 2572");
       TraslateElement1.style.opacity = "0";
       TraslateElement2.style.opacity = "0";
       TraslateElement2.style.transition = "opacity .2s ease-out";
       TraslateElement3.style.opacity = "1";
       TraslateElement4.style.opacity = "0";
       TraslateElement5.style.opacity = "0";
-    } else if (top < 2672) {
+    } else if (top < 3640) {
       traslateElement.style.transform =
         "translate(90%, 0px) rotate(-4e-05deg) rotateY(-15deg) rotateX(9.99994deg)";
-      console.log(top, "i 3572");
+      //console.log(top, "i 3572");
       TraslateElement1.style.opacity = "0";
       TraslateElement2.style.opacity = "0";
       TraslateElement3.style.opacity = "0";
@@ -96,7 +96,7 @@ export class LandingHomeComponent implements OnInit {
     } else if (top < 3222) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-      console.log(top, "i 4122");
+     // console.log(top, "i 4122");
       TraslateElement1.style.opacity = "0";
       TraslateElement2.style.opacity = "0";
       TraslateElement3.style.opacity = "0";
@@ -106,7 +106,7 @@ export class LandingHomeComponent implements OnInit {
     } else if (top < 3922) {
       traslateElement.style.transform =
         "translate(0%, 0px) rotate(-4e-05deg) rotateY(15deg) rotateX(9.99994deg)";
-      console.log(top, "i 4522");
+     // console.log(top, "i 4522");
     }
   }
 }

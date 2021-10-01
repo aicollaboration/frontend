@@ -65,7 +65,7 @@ export class SolutionCreationComponent implements OnInit {
             solution.file = file.Key;
         }
 
-        this.solutionService.createSolution(this.solutionForm.value).then(data => {
+        this.solutionService.createSolution(solution).then(data => {
             this.snackBar.open(`You created a solution successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
             this.router.navigate(['/solutions', 'detail', data.id]);
         }).catch(error => {

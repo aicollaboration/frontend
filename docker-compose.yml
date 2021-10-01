@@ -1,11 +1,10 @@
 version: '3.0'
 services:
   aiplatform:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
+    build: .
     ports:
-      - 4000:4000
+      - 4000:80
+      - 4100:4100
 
   db:
     image: postgres:latest

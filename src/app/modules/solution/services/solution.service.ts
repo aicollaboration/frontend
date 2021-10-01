@@ -21,11 +21,22 @@ export class SolutionService {
   public async getSolutions() {
     const { data, error } = await this.supabase.from<SolutionModel>('solution').select('*');
 
-    if (error.code === "401") {
+    const solutions: SolutionModel[] = await Promise.all(data.map(async (solution: SolutionModel) => {
+      if (solution.file) {
+        const { data, error } = await this.supabase.storage.from('solution').createSignedUrl(solution.file, 60);
+
+        if (!error && data.signedURL) {
+          solution.file = data.signedURL;
+        }
+      }
+      return solution;
+    }));
+
+    if (error && error.code === "401") {
       this.supabase.auth.refreshSession();
     }
 
-    return data;
+    return solutions;
   }
 
   public async getSolutionService(solutionId: string, serviceId: string) {
@@ -36,11 +47,11 @@ export class SolutionService {
       service(*)
     `;
     const { data, error } = await this.supabase.from('solution_services').select(query).eq('solutionId', solutionId).eq('serviceId', serviceId);
-    
+
     if (error) {
       throw error;
     }
-    
+
     return data[0];
   }
 

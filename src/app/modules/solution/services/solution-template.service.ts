@@ -15,7 +15,8 @@ export class SolutionTemplateService {
     }
 
     public async getSolutionTemplates() {
-        const { data, error } = await this.supabase.from('SolutionTemplates').select('*')
+        const { data, error } = await this.supabase.from('solution_templates').select('*');
+        
         if (error) {
             throw error;
         }
