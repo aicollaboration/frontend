@@ -48,6 +48,8 @@ export class ServiceCreationComponent {
     ) { }
 
     public async onSubmit(): Promise<void>  {
+       
+        // this.onSubmitCreateService();
         const service: ServiceModel = {
             ...this.serviceForm.value,
         };
@@ -62,7 +64,32 @@ export class ServiceCreationComponent {
         const api = JSON.stringify(obj, null, 2);
         this.serviceForm.value.api = api;
 
-        this.apiCall2();
+        this.serviceService.createService(this.serviceForm.value).then(data => {
+            console.log(data);
+            this.snackBar.open(`You created a service successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+            this.router.navigate(['/services']);
+        }).catch(error => {
+            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
+        });
+        this.apiCallCreateRepo();
+
+    }
+
+    public async onSubmitCreateService(): Promise<void>  {
+        
+        const service: ServiceModel = {
+            ...this.serviceForm.value,
+        };
+
+        if (this.files.length > 0) {
+            const file = await this.serviceService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
+            service.file = file.Key;
+        }
+
+        const apiInput = this.serviceForm.value['api'];
+        const obj = load(apiInput);
+        const api = JSON.stringify(obj, null, 2);
+        this.serviceForm.value.api = api;
 
         this.serviceService.createService(this.serviceForm.value).then(data => {
             console.log(data);
@@ -71,22 +98,23 @@ export class ServiceCreationComponent {
         }).catch(error => {
             this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });
+
     }
+
 
     
 
-    public async apiCall2(): Promise<void>  {
+    public async apiCallCreateRepo(): Promise<void>  {
         const dtValue = this.serviceForm.value['name']; 
         
         try { 
-
             const url = 'https://api.github.com/repos/aicollaboration/service-template-python/generate';
 
             const xhr = new XMLHttpRequest();
             xhr.open('POST', url);
         
             xhr.setRequestHeader('Accept', 'application/json');
-            xhr.setRequestHeader('Authorization', 'Bearer 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');
+            xhr.setRequestHeader('Authorization', 'Bearer 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');
             xhr.setRequestHeader('Content-Type', 'application/json');
         
             xhr.onreadystatechange = () => {
@@ -101,17 +129,17 @@ export class ServiceCreationComponent {
             }`;
         
             xhr.send(data);
-            this.apiCall();
                 
         } catch (e) {
             console.log('error');
             } finally {
             //    alert("success");
+            this.apiCallCreateJob();
         }
     
     }
 
-    public async apiCall(): Promise<void>  {
+    public async apiCallCreateJob(): Promise<void>  {
         const dtValue = this.serviceForm.value['name']; 
         const URL =  'https://www.aipioneers.tech:8443/jenkins/job/Creating-New-API/buildWithParameters?token=11dccdd0813f43e23ae6fd112908c7d37c&New_Job_Name=' + dtValue;
         
