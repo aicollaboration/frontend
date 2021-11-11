@@ -36,6 +36,7 @@ export class ServiceCreationComponent {
 
     public serviceForm = new FormGroup({
         name: new FormControl(''),
+        repoName: new FormControl(''),
         description: new FormControl(''),
         api: new FormControl(''),
         file: new FormControl(''),
@@ -47,7 +48,7 @@ export class ServiceCreationComponent {
         private snackBar: MatSnackBar,
     ) { }
 
-    public async onSubmit() {
+    public async onSubmit(): Promise<void>  {
         const service: ServiceModel = {
             ...this.serviceForm.value,
         };
@@ -62,6 +63,8 @@ export class ServiceCreationComponent {
         const api = JSON.stringify(obj, null, 2);
         this.serviceForm.value.api = api;
 
+        this.apiCall();
+
         this.serviceService.createService(this.serviceForm.value).then(data => {
             console.log(data)
             this.snackBar.open(`You created a service successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
@@ -69,6 +72,64 @@ export class ServiceCreationComponent {
         }).catch(error => {
             this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });
+    }
+
+    public async apiCall(): Promise<void>  {
+        const dtValue = this.serviceForm.value['repoName']; 
+        const URL =  'https://www.aipioneers.tech:8443/jenkins/job/Creating-New-API/buildWithParameters?token=11dccdd0813f43e23ae6fd112908c7d37c&New_Job_Name=' + dtValue;
+        
+        try { 
+            fetch(URL, {
+                method: 'GET', 
+                mode: 'no-cors',
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + window.btoa('admin:aiadmin'),
+                }, } )
+            .then(response => { console.log(response); } )
+            .catch(error => { console.log(error); } );
+                
+        } catch (e) {
+            console.log('error');
+            } finally {
+            //    alert("success");
+        }
+    }
+
+    public async apiCall2(): Promise<void>  {
+        const dtValue = this.serviceForm.value['repoName']; 
+        
+        try { 
+        
+            const url = 'https://api.github.com/repos/aicollaboration/kiavip/generate';
+            
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+        
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Authorization', 'Bearer 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');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+        
+            xhr.onreadystatechange = () => {
+                                    if (xhr.readyState === 4) {
+                                    console.log(xhr.status);
+                                    console.log(xhr.responseText);
+                                }};
+        
+            const data = `{
+            "owner":"aicollaboration", 
+            "name": "${dtValue}"
+            }`;
+        
+            xhr.send(data);
+        
+                
+        } catch (e) {
+            console.log('error');
+            } finally {
+            //    alert("success");
+        }
+    
     }
 
     public onSelect(event): void {
@@ -81,6 +142,7 @@ export class ServiceCreationComponent {
         this.files.splice(this.files.indexOf(event), 1);
     }
 
+    // tslint:disable-next-line:typedef
     public changeApi(a: any) {
         const api = this.serviceForm.value.api;
         if (api.length > 0) {
@@ -89,6 +151,7 @@ export class ServiceCreationComponent {
         }
     }
 
+    // tslint:disable-next-line:typedef
     private detectLanguage(code: string) {
         try {
             JSON.parse(code);
