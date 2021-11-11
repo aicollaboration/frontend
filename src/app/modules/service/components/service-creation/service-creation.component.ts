@@ -36,7 +36,6 @@ export class ServiceCreationComponent {
 
     public serviceForm = new FormGroup({
         name: new FormControl(''),
-        repoName: new FormControl(''),
         description: new FormControl(''),
         api: new FormControl(''),
         file: new FormControl(''),
@@ -63,10 +62,10 @@ export class ServiceCreationComponent {
         const api = JSON.stringify(obj, null, 2);
         this.serviceForm.value.api = api;
 
-        this.apiCall();
+        this.apiCall2();
 
         this.serviceService.createService(this.serviceForm.value).then(data => {
-            console.log(data)
+            console.log(data);
             this.snackBar.open(`You created a service successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
             this.router.navigate(['/services']);
         }).catch(error => {
@@ -74,8 +73,46 @@ export class ServiceCreationComponent {
         });
     }
 
+    
+
+    public async apiCall2(): Promise<void>  {
+        const dtValue = this.serviceForm.value['name']; 
+        
+        try { 
+
+            const url = 'https://api.github.com/repos/aicollaboration/service-template-python/generate';
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+        
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Authorization', 'Bearer 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');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+        
+            xhr.onreadystatechange = () => {
+                                    if (xhr.readyState === 4) {
+                                    console.log(xhr.status);
+                                    console.log(xhr.responseText);
+                                }};
+        
+            const data = `{
+            "owner":"aicollaboration", 
+            "name": "${dtValue}"
+            }`;
+        
+            xhr.send(data);
+            this.apiCall();
+                
+        } catch (e) {
+            console.log('error');
+            } finally {
+            //    alert("success");
+        }
+    
+    }
+
     public async apiCall(): Promise<void>  {
-        const dtValue = this.serviceForm.value['repoName']; 
+        const dtValue = this.serviceForm.value['name']; 
         const URL =  'https://www.aipioneers.tech:8443/jenkins/job/Creating-New-API/buildWithParameters?token=11dccdd0813f43e23ae6fd112908c7d37c&New_Job_Name=' + dtValue;
         
         try { 
@@ -94,42 +131,6 @@ export class ServiceCreationComponent {
             } finally {
             //    alert("success");
         }
-    }
-
-    public async apiCall2(): Promise<void>  {
-        const dtValue = this.serviceForm.value['repoName']; 
-        
-        try { 
-        
-            const url = 'https://api.github.com/repos/aicollaboration/kiavip/generate';
-            
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', url);
-        
-            xhr.setRequestHeader('Accept', 'application/json');
-            xhr.setRequestHeader('Authorization', 'Bearer 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');
-            xhr.setRequestHeader('Content-Type', 'application/json');
-        
-            xhr.onreadystatechange = () => {
-                                    if (xhr.readyState === 4) {
-                                    console.log(xhr.status);
-                                    console.log(xhr.responseText);
-                                }};
-        
-            const data = `{
-            "owner":"aicollaboration", 
-            "name": "${dtValue}"
-            }`;
-        
-            xhr.send(data);
-        
-                
-        } catch (e) {
-            console.log('error');
-            } finally {
-            //    alert("success");
-        }
-    
     }
 
     public onSelect(event): void {
