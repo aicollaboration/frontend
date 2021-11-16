@@ -1,10 +1,17 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { load } from 'js-yaml';
 import { ServiceModel } from "../../models/service.model";
 import { ServiceService } from '../../services/service.service';
+
+import { loadServicesAction } from '../../state/service.actions';
+import { getErrorSelector, getServicesSelector, State } from '../../state/service.reducer';
+
+
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'service-creation',
@@ -15,10 +22,17 @@ import { ServiceService } from '../../services/service.service';
     encapsulation: ViewEncapsulation.None,
 })
 
-export class ServiceCreationComponent {
+export class ServiceCreationComponent implements OnInit {
+
+    public services$: Observable<ServiceModel[]>;
+  
     public service: ServiceModel;
     public serviceModel = new ServiceModel();
     public files: File[] = [];
+    public error$: Observable<string>;
+    public ServiceNames = [];
+    public allreadyPresent = "";
+     
     public suggestedServices: ServiceModel[] = [
         {
             id: '1',
@@ -39,17 +53,46 @@ export class ServiceCreationComponent {
         description: new FormControl(''),
         api: new FormControl(''),
         file: new FormControl(''),
+        checked: new FormControl(false),
     });
 
     public constructor(
         private router: Router,
         private serviceService: ServiceService,
         private snackBar: MatSnackBar,
+        private store: Store<State>
     ) { }
+
+    public ngOnInit(): void {
+        this.services$ = this.store.select(getServicesSelector);
+        this.error$ = this.store.select(getErrorSelector);
+
+        this.store.dispatch(loadServicesAction());
+        console.log(this.services$);
+
+        this.services$.subscribe((res) => {
+        this.ServiceNames = res.map(item => item.name);
+        console.log(this.ServiceNames );
+          }, (err) => {
+            console.log('error', err);
+          });
+    }
+
+    // tslint:disable-next-line:typedef
+    public onTypeChange(newName: string) {
+       const error = this.ServiceNames.includes(newName);
+       if(error){
+        this.allreadyPresent="Name already present";
+       }else{
+        this.allreadyPresent="";
+       }
+       console.log(error);
+      }
+
+// if repo selected only job and repo need to ccreate else only open api should create
 
     public async onSubmit(): Promise<void>  {
        
-        // this.onSubmitCreateService();
         const service: ServiceModel = {
             ...this.serviceForm.value,
         };
@@ -64,15 +107,28 @@ export class ServiceCreationComponent {
         const api = JSON.stringify(obj, null, 2);
         this.serviceForm.value.api = api;
 
-        this.serviceService.createService(this.serviceForm.value).then(data => {
+        const onlyService = this.serviceForm.value['checked'];
+
+        console.log(this.serviceForm.value);
+
+        const serviceTest: ServiceModel = {
+            ...this.serviceForm.value
+        };
+        delete serviceTest['checked'];
+
+        console.log(serviceTest);
+
+        this.serviceService.createService(serviceTest).then(data => {
             console.log(data);
             this.snackBar.open(`You created a service successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
             this.router.navigate(['/services']);
         }).catch(error => {
             this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
         });
-        this.apiCallCreateRepo();
 
+        if ( !onlyService ) {
+        this.apiCallCreateRepo(); }
+      
     }
 
     public async onSubmitCreateService(): Promise<void>  {
@@ -102,11 +158,8 @@ export class ServiceCreationComponent {
     }
 
 
-    
-
     public async apiCallCreateRepo(): Promise<void>  {
         const dtValue = this.serviceForm.value['name']; 
-        
         try { 
             const url = 'https://api.github.com/repos/aicollaboration/service-template-python/generate';
 
@@ -136,7 +189,6 @@ export class ServiceCreationComponent {
             //    alert("success");
             this.apiCallCreateJob();
         }
-    
     }
 
     public async apiCallCreateJob(): Promise<void>  {

@@ -25,6 +25,8 @@ export class ServiceListComponent implements OnInit {
         this.error$ = this.store.select(getErrorSelector);
 
         this.store.dispatch(loadServicesAction());
+
+       
     }
 
     public openCreationDialog(): void {
