@@ -84,7 +84,8 @@ import { serviceReducer } from './state/service.reducer';
         PdfAnalyzerComponent,
         EmptyComponent,
         InputTextComponent,
-        InputSelectComponent
+        InputSelectComponent,
+        MatDialogModule,
     ],
     imports: [
         CommonModule,

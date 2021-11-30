@@ -7,13 +7,17 @@
             </div>
           
             <h1>{{service.name}}</h1>
-            <h2 *ngIf="api.info && api.info.description">{{api.info.description}}</h2>
+            <h2 *ngIf="api && api.info && api.info.description">{{api.info.description}}</h2>
         </div>
 
         <div class="right">
             <button mat-flat-button [routerLink]="['/services', 'edit', service.id]">
                 <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
                 <span class="ml-2">Edit</span>
+            </button>
+            <button mat-flat-button (click)="openDeleteDialog()">
+                <mat-icon class="icon-size-18" svgIcon="delete"></mat-icon>
+                <span class="ml-2">Delete</span>
             </button>
         </div>
 
@@ -27,14 +31,6 @@
             </mat-tab>
             <mat-tab label="Endpoint">
                 <service-endpoint [service]="service"></service-endpoint>
-            </mat-tab>
-            <mat-tab label="Tutorials" disabled>
-            </mat-tab>
-            <mat-tab label="Discussions" disabled>
-            </mat-tab>
-            <mat-tab label="Pricing" disabled>
-            </mat-tab>
-            <mat-tab label="Specification" disabled>
             </mat-tab>
         </mat-tab-group>
     </div>

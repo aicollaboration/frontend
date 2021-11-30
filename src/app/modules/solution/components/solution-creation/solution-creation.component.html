@@ -15,6 +15,7 @@
             <p class="text-secondary mb-6"> Set your login preferences, help us personalize your experience and make big
                 account changes here </p>
 
+            <!--
             <mat-form-field>
                 <mat-label>Owner</mat-label>
                 <mat-select formControlName="owner">
@@ -23,10 +24,14 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            -->
+
             <mat-form-field>
-                <mat-label>Service name</mat-label>
+                <mat-label>Solution name</mat-label>
                 <input matInput formControlName="name" required maxlength="250" type="text">
             </mat-form-field>
+            
+            <!--
             <br /><br />
             <p class="text-lg font-medium">Template</p>
             <p class="text-secondary mb-6"> Set your login preferences, help us personalize your experience and make big
@@ -58,6 +63,7 @@
                     <ngx-dropzone-label>{{ file.name }} ({{file.type }})</ngx-dropzone-label>
                 </ngx-dropzone-preview>
             </ngx-dropzone>
+            -->
 
             <div class="actions">
                 <div class="buttons">

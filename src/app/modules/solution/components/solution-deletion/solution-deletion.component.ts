@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
 import { MatDialogRef } from "@angular/material/dialog";
-import { Router } from "@angular/router";
 
 @Component({
     selector: 'solution-deletion',
