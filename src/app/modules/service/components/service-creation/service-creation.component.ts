@@ -11,7 +11,6 @@ import { loadServicesAction } from '../../state/service.actions';
 import { getErrorSelector, getServicesSelector, State } from '../../state/service.reducer';
 
 
-
 @Component({
     selector: 'service-creation',
     templateUrl: './service-creation.component.html',
@@ -269,9 +268,11 @@ export class ServiceCreationComponent implements OnInit {
 
     public async createService(): Promise<void> {
         const serviceName = this.serviceForm.value['name'];
-        debugger
 
+        // const octokit = new Octokit({ auth: `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` });
+        debugger
         // Copy template
+
 
 
         // Replace variables
