@@ -36,6 +36,15 @@ const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
     anchorScrolling: 'enabled'
     // enableTracing: true,
+    ,
+    relativeLinkResolution: 'legacy'
+}{
+    scrollPositionRestoration: 'enabled',
+    preloadingStrategy: PreloadAllModules,
+    anchorScrolling: 'enabled'
+    // enableTracing: true,
+    ,
+    relativeLinkResolution: 'legacy'
 };
 
 @NgModule({
