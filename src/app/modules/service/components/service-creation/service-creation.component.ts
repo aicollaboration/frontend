@@ -341,7 +341,7 @@ export class ServiceCreationComponent implements OnInit {
             };
 
             const data = `{
-                "owner":"aicollaborationservice", 
+                "owner":"aicollaborationservices", 
                 "name": "${serviceName}"
             }`;
 

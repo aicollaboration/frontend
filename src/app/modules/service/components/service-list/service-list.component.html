@@ -13,6 +13,7 @@
         </div>
     </div>
     <div class="main">
+        PUBLIC AND PRIVATE SERVICES
         <div class="cards">
             <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
                 *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.id]" matRipple

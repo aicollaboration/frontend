@@ -67,6 +67,40 @@ export class SolutionCreationComponent implements OnInit {
 
         this.solutionService.createSolution(solution).then(data => {
             this.snackBar.open(`You created a solution successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+
+            try {
+                const url = 'https://api.github.com/repos/aicollaborationsolutions/solution/generate';
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', url);
+
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.setRequestHeader('Authorization', 'Bearer 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');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        console.log(xhr.status);
+                        console.log(xhr.responseText);
+                    }
+                };
+
+                const data = `{
+                    "owner":"aicollaborationsolutions", 
+                    "name": "tobias"
+                }`;
+
+                xhr.send(data);
+
+                debugger
+
+            } catch (e) {
+                console.log('error');
+            } finally {
+                //    alert("success");
+                //this.apiCallCreateJob();
+            }
+
             this.router.navigate(['/solutions', 'detail', data.id]);
         }).catch(error => {
             this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });

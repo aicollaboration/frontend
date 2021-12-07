@@ -1,0 +1,14 @@
+<button
+  class="icon-button"
+  mat-icon-button
+  [matMenuTriggerFor]="creationActions"
+>
+  <span class="avatar">
+    <mat-icon [svgIcon]="'add'"></mat-icon>
+  </span>
+</button>
+
+<mat-menu #creationActions>
+    <button mat-menu-item>New service</button>
+    <button mat-menu-item>Import service</button>
+</mat-menu>
