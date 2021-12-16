@@ -76,8 +76,7 @@
     "rrule": "2.6.4",
     "rxjs": "6.5.5",
     "svg-country-flags": "^1.2.9",
-    "tslib": "^2.0.0",
-    "zone.js": "~0.11.4"
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.0.3",
