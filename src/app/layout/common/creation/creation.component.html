@@ -9,6 +9,6 @@
 </button>
 
 <mat-menu #creationActions>
-    <button mat-menu-item>New service</button>
-    <button mat-menu-item>Import service</button>
+    <a [routerLink]="['services', 'create']" mat-menu-item>New service</a>
+    <a [routerLink]="['services', 'import']" mat-menu-item>Import service</a>
 </mat-menu>

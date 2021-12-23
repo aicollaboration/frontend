@@ -1,0 +1,34 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="header">
+      <div class="left">
+        <h1>Import service</h1>
+        <h3>
+          A service uses existing interfaces that provide the usage of algorithms.
+        </h3>
+      </div>
+    </div>
+  
+    <div class="main">
+      <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+
+        <h4>Repositories</h4>
+        <mat-form-field style="width: 400px;">
+          <mat-select placeholder="Select a repository" formControlName="repository">
+            <mat-option *ngFor="let repository of repositories" [value]="repository.id">
+              {{ repository.full_name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <div class="actions">
+          <div class="buttons">
+            <button class="save-button" mat-stroked-button type="submit">
+              <mat-icon [svgIcon]="'save'"></mat-icon>
+              <span>Import service</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

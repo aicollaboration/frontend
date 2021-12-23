@@ -44,6 +44,7 @@ import { ServiceDetailOverviewComponent } from './components/service-detail-over
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
 import { ServiceEndpointComponent } from './components/service-endpoint/service-endpoint.component';
+import { ServiceImportComponent } from './components/service-import/service-import.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { ServiceLoaderComponent } from './components/service-loader/service-loader.component';
 import { ServiceLoaderDirective } from './components/service-loader/service-loader.directive';
@@ -66,6 +67,7 @@ import { serviceReducer } from './state/service.reducer';
         ServiceLoaderComponent,
         ServiceCreationComponent,
         ServiceEndpointComponent,
+        ServiceImportComponent,
         PdfAnalyzerComponent,
         PdfTableOfContentsComponent,
         QuestionAnsweringComponent,

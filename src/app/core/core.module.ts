@@ -4,6 +4,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthInterceptor } from 'app/core/auth/auth.interceptor';
 import { AuthService } from 'app/core/auth/auth.service';
+import { GithubService } from './auth/github.service';
 
 @NgModule({
     imports: [
@@ -11,6 +12,7 @@ import { AuthService } from 'app/core/auth/auth.service';
     ],
     providers: [
         AuthService,
+        GithubService,
         /*
         {
             provide: HTTP_INTERCEPTORS,

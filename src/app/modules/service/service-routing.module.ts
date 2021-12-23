@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ServiceCreationComponent } from './components/service-creation/service-creation.component';
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
+import { ServiceImportComponent } from './components/service-import/service-import.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
 
 export const routes: Routes = [
@@ -17,6 +18,10 @@ export const routes: Routes = [
     {
         path: 'create',
         component: ServiceCreationComponent,
+    },
+    {
+        path: 'import',
+        component: ServiceImportComponent,
     },
     {
         path: 'edit/:id',
