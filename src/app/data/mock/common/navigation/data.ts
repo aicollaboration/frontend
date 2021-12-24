@@ -94,13 +94,14 @@ export const futuristicNavigation: TreoNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
-   /* {
-        id: 'products',
-        title: 'Products',
+    {
+        id: 'vision',
+        title: 'Vision',
         type: 'basic',
-        icon: 'category',
-        link: '/products'
-    }, */
+        icon: 'emoji_objects',
+        link: '/dashboard',
+        fragment: 'vision'
+    },
     {
         id: 'solutions',
         title: 'Solutions',
@@ -117,38 +118,11 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         link: '/services',
         fragment: ''
     },
-    /*
-    {
-        id: 'vision',
-        title: 'Vision',
-        type: 'basic',
-        icon: 'emoji_objects',
-        link: '/dashboard',
-        fragment: 'vission'
-    },
-    {
-        id: 'mission',
-        title: 'Mission',
-        type: 'basic',
-        icon: 'emoji_objects',
-        link: '/dashboard',
-        fragment: 'mission'
-    },
-    {
-        id: 'whoweare',
-        title: 'Who We Are',
-        type: 'basic',
-        icon: 'emoji_objects',
-        link: '/dashboard',
-        fragment: 'whoweare'
-    },
-    */
-    /*
     {
         title: 'Documentation',
         type: 'basic',
         icon: 'menu_book',
-        link: '/documentations'
+        link: '/docs'
     },
     {
         title: 'Learn',
@@ -156,11 +130,4 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         icon: 'school',
         link: '/learn'
     },
-    {
-        title: 'Events',
-        type: 'basic',
-        icon: 'group',
-        link: '/events'
-    },
-    */
 ];

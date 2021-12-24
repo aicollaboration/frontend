@@ -43,13 +43,7 @@
                     <!-- Password field -->
                     <mat-form-field>
                         <mat-label>Password</mat-label>
-                        <input id="password" matInput type="password" formControlName="password" #passwordField>
-                        <button mat-icon-button
-                            (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
-                            tabindex="-1" matSuffix>
-                            <mat-icon *ngIf="passwordField.type === 'password'" [svgIcon]="'visibility'"></mat-icon>
-                            <mat-icon *ngIf="passwordField.type === 'text'" [svgIcon]="'visibility_off'"></mat-icon>
-                        </button>
+                        <input id="password" matInput type="password" formControlName="password">
                         <mat-error>
                             Password is required
                         </mat-error>
@@ -82,6 +76,10 @@
                     </button>
 
                 </form>
+
+                <br><br>--- OR ---<br><br>
+
+                <social-login></social-login>
 
             </div>
 

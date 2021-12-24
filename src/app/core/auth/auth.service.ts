@@ -42,6 +42,17 @@ export class AuthService {
 
     }
 
+    public async signUpWithGithub(): Promise<User> {
+        const { user, error } = await this.supabase.auth.signIn({ provider: 'github' });
+        if (error) {
+            throw error;
+        }
+
+        this.isAuthenticated = true;
+
+        return user;
+    }
+
     public async signOut(): Promise<boolean> {
         const { error } = await this.supabase.auth.signOut();
         if (error) {

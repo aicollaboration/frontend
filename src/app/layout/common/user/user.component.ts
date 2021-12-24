@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { UserService } from 'app/layout/common/user/user.service';
+import { User } from 'app/layout/common/user/user.types';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { User } from 'app/layout/common/user/user.types';
-import { UserService } from 'app/layout/common/user/user.service';
 
 @Component({
     selector: 'user',
@@ -24,13 +23,9 @@ export class UserComponent implements OnInit, OnDestroy {
     /**
      * Constructor
      *
-     * @param {ChangeDetectorRef} changeDetectorRef
-     * @param {Router} router
      * @param {UserService} userService
      */
     constructor(
-        private changeDetectorRef: ChangeDetectorRef,
-        private router: Router,
         private userService: UserService
     ) {
         // Set the private defaults
@@ -82,15 +77,11 @@ export class UserComponent implements OnInit, OnDestroy {
      *
      * @param status
      */
-     public updateUserStatus(status): void {
+    public updateUserStatus(status): void {
         // Update the user data
         this.user.status = status;
 
         // Update the user on the server
         this.userService.update(this.user);
-    }
-
-    public navigate(commands: any[]): void {
-        this.router.navigate(commands);
     }
 }

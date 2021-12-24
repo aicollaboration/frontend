@@ -97,7 +97,7 @@ export const appRoutes: Route[] = [
             {
                 path: 'unlock-session',
                 loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule)
-            }
+            },
         ]
     },
 
@@ -140,12 +140,8 @@ export const appRoutes: Route[] = [
                 loadChildren: () => import('app/modules/learn/learn.module').then(module => module.LearnModule),
             },
             {
-                path: 'partners',
-                loadChildren: () => import('app/modules/partner/partner.module').then(module => module.PartnerModule),
-            },
-            {
-                path: 'events',
-                loadChildren: () => import('app/modules/event/event.module').then(module => module.EventModule),
+                path: 'user',
+                loadChildren: () => import('app/modules/auth/user/user.module').then(m => m.UserModule)
             },
 
             // 404 & Catch all

@@ -12,6 +12,7 @@ import { TreoMessageModule } from '@treo/components/message';
 import { AuthSignUpComponent } from 'app/modules/auth/sign-up/sign-up.component';
 import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
 import { SharedModule } from 'app/shared/shared.module';
+import { SocialLoginModule } from '../social-login/social-login.module';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { SharedModule } from 'app/shared/shared.module';
         MatProgressSpinnerModule,
         TreoCardModule,
         TreoMessageModule,
-        SharedModule
+        SharedModule,
+        SocialLoginModule,
     ]
 })
 export class AuthSignUpModule {
