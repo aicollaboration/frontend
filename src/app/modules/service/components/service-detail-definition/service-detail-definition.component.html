@@ -1,0 +1,101 @@
+<div class="flex max-w-4xl">
+
+
+
+  <div>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+      <div class="flex max-w-4xl">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>name</mat-label>
+          <input matInput formControlName="name" placeholder="Ex. pat@example.com">
+        </mat-form-field>
+      </div>
+      <div class="flex max-w-4xl">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" placeholder="Ex. pat@example.com">
+        </mat-form-field>
+      </div>
+      <div class="flex max-w-4xl">
+        <mat-form-field appearance="fill">
+          <mat-label>type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let method of methodtype" [value]="method.value">
+              {{method.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>endpoint</mat-label>
+          <input matInput formControlName="endpoint" placeholder="Ex. pat@example.com">
+        </mat-form-field>
+      </div>
+
+
+      <div class="flex max-w-4xl">
+        <mat-tab-group [@.disabled]="true">
+          <mat-tab label="Headers">
+
+            <!-- config -->
+            <service-detail-typeforms [formName]="checkoutForm" [dataType]="dataType" label="headers">
+            </service-detail-typeforms>
+
+
+          </mat-tab>
+          <mat-tab label="Query">
+
+            <service-detail-query [formName]="checkoutForm" [dataType]="dataType" label="query"></service-detail-query>
+
+            <!-- <service-detail-typeforms></service-detail-typeforms> -->
+
+          </mat-tab>
+          <mat-tab label="body">
+            <!-- Body -->
+            <!-- <div>
+              Body parameters and body modal is not permitted for GET method
+            </div> -->
+            {{checkoutForm.value.type}}
+            <div [ngSwitch]="checkoutForm.value.type">
+
+              <div *ngSwitchDefault>
+                Select the type </div>
+              <div *ngSwitchCase="'post'">
+                <service-detail-definition-body [formName]="checkoutForm" label="query" [mediaType]="mediaType">
+                </service-detail-definition-body>
+
+              </div>
+
+              <div *ngSwitchCase="'get'">
+                <div>
+                  Body parameters and body modal is not permitted for GET method
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'delete'">
+                <div>
+                  <!-- <service-detail-definition-body [formName]="checkoutForm" label="query">
+                  </service-detail-definition-body> -->
+                </div>
+              </div>
+
+            </div>
+
+
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+      <div class="flex max-w-4xl">
+      </div>
+      <div class="flex max-w-4xl">
+        <button mat-button color="primary">Cancel</button>
+        <button mat-button color="primary">Save</button>
+      </div>
+      <!-- <button mat-button color="primary">Create</button> -->
+
+    </form>
+  </div>
+
+</div>

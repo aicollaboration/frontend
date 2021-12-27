@@ -41,6 +41,10 @@ import { PdfTableOfContentsComponent } from './components/pdf-table-of-contents/
 import { QuestionAnsweringComponent } from './components/question-answering/question-answering.component';
 import { ServiceCreationComponent } from './components/service-creation/service-creation.component';
 import { ServiceDetailOverviewComponent } from './components/service-detail-overview/service-detail-overview.component';
+import { ServiceDetailDefinitionComponent } from './components/service-detail-definition/service-detail-definition.component';
+import { ServiceDetailTypeformsComponent } from './components/service-detail-typeforms/service-detail-typeforms.component';
+import { ServiceDetailQueryComponent } from './components/service-detail-query/service-detail-query.component';
+import { ServiceDetailDefinitionBodyComponent } from './components/service-detail-definition-body/service-detail-definition-body.component';
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
 import { ServiceEndpointComponent } from './components/service-endpoint/service-endpoint.component';
@@ -62,6 +66,10 @@ import { serviceReducer } from './state/service.reducer';
         ServiceListComponent,
         ServiceDetailComponent,
         ServiceDetailOverviewComponent,
+        ServiceDetailDefinitionComponent,
+        ServiceDetailTypeformsComponent,
+        ServiceDetailDefinitionBodyComponent,
+        ServiceDetailQueryComponent,
         ServiceEditorComponent,
         ServiceLoaderComponent,
         ServiceCreationComponent,

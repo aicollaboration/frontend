@@ -39,7 +39,7 @@ export class ServiceDetailComponent implements OnInit {
         });
     }
 
-    public openDeleteDialog() {
+    public openDeleteDialog(): void {
         const dialogRef = this.dialog.open(ServiceDeletionComponent);
         dialogRef.afterClosed().subscribe((confirmed: boolean) => {
             if (confirmed) {
