@@ -28,7 +28,7 @@ export class ServiceImportComponent implements OnInit {
 
         // request github api with apiUrl
         this.requestGithubApi(apiUrl);
-        debugger
+        
 
     }
 

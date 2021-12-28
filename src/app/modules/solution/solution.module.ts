@@ -27,16 +27,17 @@ import { TreoCardModule } from '@treo/components/card';
 import { TreoMessageModule } from '@treo/components/message';
 import { TreoNavigationModule } from '@treo/components/navigation';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { QuillModule } from 'ngx-quill';
-import { ProblemSubmitterComponent } from './components/problem-submitter/problem-submitter.component';
 import { SolutionCreationComponent } from './components/solution-creation/solution-creation.component';
 import { SolutionDeletionComponent } from './components/solution-deletion/solution-deletion.component';
-import { SolutionDetailOverviewComponent } from './components/solution-detail-overview/solution-detail-overview.component';
+import { SolutionDesignComponent } from './components/solution-design/solution-design.component';
+import { SolutionDetailHomeComponent } from './components/solution-detail-home/solution-detail-home.component';
 import { SolutionDetailComponent } from './components/solution-detail/solution-detail.component';
 import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
 import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
 import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
+import { SolutionServiceListComponent } from './components/solution-service-list/solution-service-list.component';
+import { SolutionUserListComponent } from './components/solution-users/solution-user-list.component';
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
@@ -45,13 +46,15 @@ import { solutionReducer } from './state/solution.reducer';
     declarations: [
         SolutionListComponent,
         SolutionDetailComponent,
-        SolutionDetailOverviewComponent,
         SolutionCreationComponent,
         SolutionEditorComponent,
         SolutionServiceCreationComponent,
         SolutionServiceDetailComponent,
+        SolutionServiceListComponent,
+        SolutionDetailHomeComponent,
         SolutionDeletionComponent,
-        ProblemSubmitterComponent,
+        SolutionUserListComponent,
+        SolutionDesignComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
@@ -98,7 +101,6 @@ import { solutionReducer } from './state/solution.reducer';
 
         // editable
         EditableModule,
-        QuillModule.forRoot(),
     ],
 })
 export class SolutionModule {

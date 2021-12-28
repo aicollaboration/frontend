@@ -2,7 +2,6 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionAnsweringService } from '../../services/question-answering.service';
-import { Country } from '@angular-material-extensions/select-country';
 
 @Component({
     selector: 'question-answering',
@@ -21,7 +20,7 @@ export class QuestionAnsweringComponent implements OnInit {
     public request = {};
     public response = [];
     public loading = false;
-    public country: Country = {
+    public country = {
         name: 'Deutschland',
         alpha2Code: 'DE',
         alpha3Code: 'DEU',
@@ -73,7 +72,4 @@ export class QuestionAnsweringComponent implements OnInit {
         });
     }
 
-    public onCountrySelected(country: Country): void {
-        console.log(country);
-    }
 }

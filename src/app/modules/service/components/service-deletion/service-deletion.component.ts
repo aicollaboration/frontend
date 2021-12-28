@@ -13,7 +13,6 @@ export class ServiceDeletionComponent implements OnInit {
     constructor(public matDialogRef: MatDialogRef<ServiceDeletionComponent>) { }
 
     public ngOnInit(): void {
-        debugger
     }
 
     public saveAndClose(): void {

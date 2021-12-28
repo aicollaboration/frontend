@@ -1,4 +1,3 @@
-import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,7 +29,6 @@ import { SharedModule } from 'app/shared/shared.module';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { QuillModule } from 'ngx-quill';
 import { DocumentClassificationComponent } from './components/document-classification/document-classification.component';
 import { DynamicModule } from './components/dynamic';
 import { DynamicChildComponent } from './components/dynamic-child/dynamic-child.component';
@@ -125,8 +123,6 @@ import { serviceReducer } from './state/service.reducer';
         MatDialogModule,
         ReactiveFormsModule,
         MatFormFieldModule,
-        MatSelectCountryModule,
-
         // dropzone
         NgxDropzoneModule,
         DragDropModule,
@@ -135,8 +131,6 @@ import { serviceReducer } from './state/service.reducer';
         EffectsModule.forFeature([ServiceEffects]),
 
         PdfViewerModule,
-        QuillModule.forRoot(),
-        MatSelectCountryModule,
 
         DynamicModule.withComponents([InputTextComponent]),
     ],

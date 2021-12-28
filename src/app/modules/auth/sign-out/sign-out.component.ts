@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/core/auth/auth.service';
 import { interval, Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { AuthService } from 'app/core/auth/auth.service';
 
 
 
@@ -80,12 +80,7 @@ export class AuthSignOutComponent implements OnInit, OnDestroy {
 
 
     signOut() {
-        // signing out with Backendless API
-        Backendless.UserService.logout()
-            .then(() => {
-            })
-            .catch((err) => {
-            });
+        this.authService.signOut();
 
     }
 }

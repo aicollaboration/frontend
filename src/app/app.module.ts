@@ -1,4 +1,3 @@
-import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,15 +20,8 @@ import { CoreModule } from 'app/core/core.module';
 import { mockDataServices } from 'app/data/mock';
 import { LayoutModule } from 'app/layout/layout.module';
 import { environment } from 'environments/environment';
-import player from 'lottie-web';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { LottieModule } from 'ngx-lottie';
-import { MarkdownModule } from 'ngx-markdown';
 import { DynamicModule } from './modules/service/components/dynamic';
-
-export function playerFactory() {
-    return player;
-}
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
@@ -60,9 +52,6 @@ const routerConfig: ExtraOptions = {
         // Layout
         LayoutModule,
 
-        // 3rd party modules
-        MarkdownModule.forRoot({}),
-
         // ngrx
         StoreModule.forRoot({}),
         StoreDevtoolsModule.instrument({
@@ -80,14 +69,10 @@ const routerConfig: ExtraOptions = {
         ReactiveFormsModule,
         MatFormFieldModule,
 
-        MatSelectCountryModule.forRoot('de'),
-
         // dropzone
         NgxDropzoneModule,
 
         EditableModule,
-
-        LottieModule.forRoot({ player: playerFactory })
     ],
     bootstrap: [
         AppComponent,

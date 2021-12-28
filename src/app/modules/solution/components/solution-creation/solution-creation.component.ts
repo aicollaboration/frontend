@@ -92,7 +92,7 @@ export class SolutionCreationComponent implements OnInit {
 
                 xhr.send(data);
 
-                debugger
+                
 
             } catch (e) {
                 console.log('error');

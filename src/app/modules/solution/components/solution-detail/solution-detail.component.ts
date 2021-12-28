@@ -4,13 +4,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TreoNavigationItem } from '@treo/components/navigation';
 import { Observable } from 'rxjs';
 import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 import { loadSolutionAction } from '../../state/solution.actions';
 import { getSolutionSelector, State } from '../../state/solution.reducer';
 import { SolutionDeletionComponent } from '../solution-deletion/solution-deletion.component';
-import { SolutionDeploymentComponent } from '../solution-deployment/solution-deployment.component';
 import { SolutionServiceCreationComponent } from '../solution-service-creation/solution-service-creation.component';
 
 @Component({
@@ -35,7 +35,8 @@ export class SolutionDetailComponent implements OnInit {
     ];
     public solutionServices = [];
     private solutionId: string;
-    
+    public menuData: TreoNavigationItem[];
+
     public solutionForm = new FormGroup({
         name: new FormControl(''),
         description: new FormControl(''),
@@ -48,6 +49,50 @@ export class SolutionDetailComponent implements OnInit {
         private solutionService: SolutionService,
         private store: Store<State>,
     ) {
+        this.menuData = [
+            {
+                title: 'Manage',
+                type: 'group',
+                children: [
+                    {
+                        title: 'Home',
+                        type: 'basic',
+                        icon: 'home',
+                        link: '.',
+                    },
+                    {
+                        title: 'Services',
+                        type: 'basic',
+                        icon: 'code',
+                        link: 'services',
+                    },
+                    {
+                        title: 'Users',
+                        type: 'basic',
+                        icon: 'people_alt',
+                        link: 'users',
+                    },
+                    {
+                        title: 'Design',
+                        type: 'basic',
+                        icon: 'dripicons:brush',
+                        link: 'design',
+                    },
+                ]
+            },
+            {
+                title: 'Settings',
+                type: 'group',
+                children: [
+                    {
+                        title: 'General',
+                        type: 'basic',
+                        icon: 'settings',
+                        link: 'settings',
+                    },
+                ]
+            },
+        ];
     }
 
     public ngOnInit(): void {
@@ -56,13 +101,9 @@ export class SolutionDetailComponent implements OnInit {
         this.route.params.subscribe(async params => {
             const solutionId = this.solutionId = params.solutionId;
             this.store.dispatch(loadSolutionAction({ solutionId }));
-            
+
             this.solutionServices = await this.solutionService.getSolutionServices(solutionId);
         });
-    }
-
-    public openCreationDialog(): void {
-        const dialogRef = this.matDialog.open(SolutionDeploymentComponent);
     }
 
     public openDeletionDialog(): void {

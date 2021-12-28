@@ -15,11 +15,9 @@ export class GithubService {
             redirectTo: 'http://localhost:4100/admin/dashboard',
             scopes: 'repo gist notifications'
         });
-        debugger
     }
     
     public async signOut() {
-        debugger
     }
 
     public isConnected(): boolean {

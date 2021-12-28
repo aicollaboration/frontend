@@ -95,12 +95,11 @@ export const futuristicNavigation: TreoNavigationItem[] = [
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
     {
-        id: 'vision',
-        title: 'Vision',
+        id: 'dashboard',
+        title: 'Dashboard',
         type: 'basic',
-        icon: 'emoji_objects',
+        icon: 'dashboard',
         link: '/dashboard',
-        fragment: 'vision'
     },
     {
         id: 'solutions',
@@ -108,7 +107,6 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         type: 'basic',
         icon: 'emoji_objects',
         link: '/solutions',
-        fragment: ''
     },
     {
         id: 'services',
@@ -116,8 +114,8 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         type: 'basic',
         icon: 'code',
         link: '/services',
-        fragment: ''
     },
+    /*
     {
         title: 'Documentation',
         type: 'basic',
@@ -130,4 +128,5 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         icon: 'school',
         link: '/learn'
     },
+    */
 ];

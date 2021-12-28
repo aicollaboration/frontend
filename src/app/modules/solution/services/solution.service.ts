@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import Backendless from 'backendless';
-import { from, Observable } from 'rxjs';
 import { SolutionServiceModel } from '../models/solution-service.model';
 import { SolutionModel } from '../models/solution.model';
 
@@ -57,12 +55,13 @@ export class SolutionService {
 
   public async getSolutionServices(solutionId: string) {
     const query = `
-    id,
-    config,
-    solution(*),
-    service(*)
+      id,
+      config,
+      solution(*),
+      service(*)
     `;
     const { data, error } = await this.supabase.from('solution_services').select(query).eq('solutionId', solutionId);
+
     if (error) {
       throw error;
     }

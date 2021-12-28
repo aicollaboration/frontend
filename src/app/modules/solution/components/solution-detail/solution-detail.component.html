@@ -1,4 +1,4 @@
-<div class="content-layout fullwidth-tabs-normal-scroll" *ngIf="solution$ | async as solution">
+<div class="content-layout left-sidebar-content-standard-normal-scroll" *ngIf="solution$ | async as solution">
     <div class="header">
         <div class="left">
             <div class="breadcrumb">
@@ -9,11 +9,11 @@
         </div>
 
         <div class="right">
+            <!--
             <button mat-flat-button [routerLink]="['/solutions', 'edit', solution.id]">
                 <mat-icon class="icon-size-18" svgIcon="edit"></mat-icon>
                 <span class="ml-2">Edit</span>
             </button>
-            <!--
             <button mat-flat-button (click)="openDeletionDialog()">
                 <mat-icon class="icon-size-18" svgIcon="delete"></mat-icon>
                 <span class="ml-2">Delete</span>
@@ -35,57 +35,15 @@
         </div>
     </div>
 
-    <div class="main">
-        <mat-tab-group [@.disabled]="true">
-            <mat-tab label="Overview">
-                <solution-overview [solution]="solution"></solution-overview>
-            </mat-tab>
-            <mat-tab label="Services">
-                <div class="actions">
-                    <div class="buttons">
-                        <button class="add-button" mat-stroked-button (click)="addService($event)">
-                            <mat-icon [svgIcon]="'add'"></mat-icon>
-                            <span>Add Service</span>
-                        </button>
-                    </div>
-                </div>
-
-                <br /><br />
-                <div class="cards">
-                    <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
-                        *ngFor="let solutionService of solutionServices"
-                        [routerLink]="['/solutions', 'detail', solutionService.solution.id, 'services', solutionService.service.id]">
-                        <div class="relative">
-                            <div class="absolute flex flex-col top-0 right-0 p-3">
-                                <button mat-icon-button>
-                                    <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
-                                    </mat-icon>
-                                </button>
-                                <button mat-icon-button>
-                                    <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
-                                    </mat-icon>
-                                </button>
-                            </div>
-                            <!---  <img class="object-cover" [src]="solutionService.image" *ngIf="solutionService.image"> -->
-                        </div>
-                        <div class="m-8 mb-0">
-                            <div class="flex flex-col">
-                                <div class="text-2xl leading-tight">{{ solutionService.service.name }}</div>
-                            </div>
-                            <div class="flex items-center text-md" *ngIf="solutionService.service.description">
-                                <hr class="border-b my-6">
-                                {{ solutionService.service.description }}
-                            </div>
-                            <div class="mt-6 -mx-8">
-                                <button
-                                    class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
-                                    mat-flat-button color="primary">Configure</button>
-                            </div>
-                        </div>
-                    </treo-card>
-                </div>
-            </mat-tab>
-        </mat-tab-group>
-    </div>
-
+    <mat-drawer-container>
+        <mat-drawer [autoFocus]="false" mode="side" [opened]="true" class="sidebar-content" #matDrawer>
+            <treo-vertical-navigation [navigation]="menuData" [inner]="true" [mode]="'side'"
+                [name]="'demo-sidebar-navigation'" [opened]="true"></treo-vertical-navigation>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div class="main">
+                <router-outlet *ngIf="true"></router-outlet>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
 </div>

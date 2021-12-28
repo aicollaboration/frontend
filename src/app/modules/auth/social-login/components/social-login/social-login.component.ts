@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { AuthService } from "app/core/auth/auth.service";
 
 @Component({
@@ -7,6 +7,8 @@ import { AuthService } from "app/core/auth/auth.service";
     styleUrls: ["./social-login.component.scss"]
 })
 export class SocialLoginComponent {
+    @Input()
+    public label: string;
 
     constructor(private authService: AuthService) { }
 
@@ -15,7 +17,6 @@ export class SocialLoginComponent {
 
         const user = await this.authService.signUpWithGithub();
         console.log(user);
-        debugger
     }
 
     public handleMouseEnter(event: Event): void {

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import Backendless from 'backendless';
-import { from, Observable, of } from 'rxjs';
 import { ServiceModel } from '../models/service.model';
 
 @Injectable({
