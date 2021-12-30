@@ -1,4 +1,4 @@
-<div class="flex max-w-4xl">
+<div class="flex max-w-6xl">
 
 
 
@@ -18,6 +18,7 @@
         </mat-form-field>
       </div>
       <div class="flex max-w-4xl">
+        <div class="grid grid-cols-6 gap-4">
         <mat-form-field appearance="fill">
           <mat-label>type</mat-label>
           <mat-select formControlName="type">
@@ -31,10 +32,10 @@
           <mat-label>endpoint</mat-label>
           <input matInput formControlName="endpoint" placeholder="Ex. pat@example.com">
         </mat-form-field>
-      </div>
+      </div> </div>
 
 
-      <div class="flex max-w-4xl">
+      <div class="flex max-w-6xl">
         <mat-tab-group [@.disabled]="true">
           <mat-tab label="Headers">
 
@@ -56,7 +57,6 @@
             <!-- <div>
               Body parameters and body modal is not permitted for GET method
             </div> -->
-            {{checkoutForm.value.type}}
             <div [ngSwitch]="checkoutForm.value.type">
 
               <div *ngSwitchDefault>
@@ -75,8 +75,17 @@
 
               <div *ngSwitchCase="'delete'">
                 <div>
-                  <!-- <service-detail-definition-body [formName]="checkoutForm" label="query">
-                  </service-detail-definition-body> -->
+                  <service-detail-definition-body [formName]="checkoutForm" label="query" [mediaType]="mediaType">
+                  </service-detail-definition-body>
+  
+                </div>
+              </div>
+
+              <div *ngSwitchCase="'put'">
+                <div>
+                  <service-detail-definition-body [formName]="checkoutForm" label="query" [mediaType]="mediaType">
+                  </service-detail-definition-body>
+  
                 </div>
               </div>
 

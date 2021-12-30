@@ -2,7 +2,7 @@
   <form [formGroup]="formName">
     <div formArrayName="items" *ngFor="let item of formName.get('items')['controls']; let i = index; let l=last;">
       <div [formGroupName]="i" class="parentForm">
-
+        <div class="grid grid-cols-4 gap-4">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>name</mat-label>
           <input matInput formControlName="name" placeholder="Ex. pat@example.com">
@@ -31,6 +31,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
   </form>
 
