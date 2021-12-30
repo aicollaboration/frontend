@@ -39,8 +39,6 @@ solution-creation {
 			flex-direction: column;
 
 			.actions {
-				margin-top: 32px;
-
 				@include treo-breakpoint('lt-md') {
 					flex-direction: column;
 					align-items: flex-end;

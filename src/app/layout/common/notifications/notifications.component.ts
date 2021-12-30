@@ -8,15 +8,14 @@ import { Notification } from 'app/layout/common/notifications/notifications.type
 import { NotificationsService } from 'app/layout/common/notifications/notifications.service';
 
 @Component({
-    selector       : 'notifications',
-    templateUrl    : './notifications.component.html',
-    styleUrls      : ['./notifications.component.scss'],
-    encapsulation  : ViewEncapsulation.None,
+    selector: 'notifications',
+    templateUrl: './notifications.component.html',
+    styleUrls: ['./notifications.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    exportAs       : 'notifications'
+    exportAs: 'notifications'
 })
-export class NotificationsComponent implements OnInit, OnDestroy
-{
+export class NotificationsComponent implements OnInit, OnDestroy {
     unreadCount: number;
 
     // Private
@@ -43,8 +42,7 @@ export class NotificationsComponent implements OnInit, OnDestroy
         private _notificationsService: NotificationsService,
         private _overlay: Overlay,
         private _viewContainerRef: ViewContainerRef
-    )
-    {
+    ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
 
@@ -60,14 +58,12 @@ export class NotificationsComponent implements OnInit, OnDestroy
      * Setter & getter for data
      */
     @Input()
-    set notifications(value: Notification[])
-    {
+    set notifications(value: Notification[]) {
         // Store the value
         this._notificationsService.store(value);
     }
 
-    get notifications(): Notification[]
-    {
+    get notifications(): Notification[] {
         return this._notifications;
     }
 
@@ -78,8 +74,7 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Subscribe to notification changes
         this._notificationsService.notifications$
             .pipe(takeUntil(this._unsubscribeAll))
@@ -99,15 +94,13 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * On destroy
      */
-    ngOnDestroy(): void
-    {
+    ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
 
         // Dispose the overlay if it's still on the DOM
-        if ( this._overlayRef )
-        {
+        if (this._overlayRef) {
             this._overlayRef.dispose();
         }
     }
@@ -121,12 +114,10 @@ export class NotificationsComponent implements OnInit, OnDestroy
      *
      * @private
      */
-    private _calculateUnreadCount(): void
-    {
+    private _calculateUnreadCount(): void {
         let count = 0;
 
-        if ( this.notifications && this.notifications.length )
-        {
+        if (this.notifications && this.notifications.length) {
             count = this.notifications.filter((notification) => notification.read === false).length;
         }
 
@@ -140,8 +131,7 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * Create route from given link
      */
-    createRouteFromLink(link): string[]
-    {
+    createRouteFromLink(link): string[] {
         // Split the link and add a leading slash
         const route = link.split('/');
         route.unshift('/');
@@ -153,44 +143,43 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * Open the notifications panel
      */
-    openPanel(): void
-    {
+    openPanel(): void {
         // Create the overlay
         this._overlayRef = this._overlay.create({
-            hasBackdrop     : true,
-            backdropClass   : '',
-            scrollStrategy  : this._overlay.scrollStrategies.block(),
+            hasBackdrop: true,
+            backdropClass: '',
+            scrollStrategy: this._overlay.scrollStrategies.block(),
             positionStrategy: this._overlay.position()
-                                  .flexibleConnectedTo(this._notificationsOrigin._elementRef.nativeElement)
-                                  .withFlexibleDimensions()
-                                  .withViewportMargin(16)
-                                  .withLockedPosition()
-                                  .withPositions([
-                                      {
-                                          originX : 'start',
-                                          originY : 'bottom',
-                                          overlayX: 'start',
-                                          overlayY: 'top'
-                                      },
-                                      {
-                                          originX : 'start',
-                                          originY : 'top',
-                                          overlayX: 'start',
-                                          overlayY: 'bottom'
-                                      },
-                                      {
-                                          originX : 'end',
-                                          originY : 'bottom',
-                                          overlayX: 'end',
-                                          overlayY: 'top'
-                                      },
-                                      {
-                                          originX : 'end',
-                                          originY : 'top',
-                                          overlayX: 'end',
-                                          overlayY: 'bottom'
-                                      }
-                                  ])
+                .flexibleConnectedTo(this._notificationsOrigin._elementRef.nativeElement)
+                .withFlexibleDimensions()
+                .withViewportMargin(16)
+                .withLockedPosition()
+                .withPositions([
+                    {
+                        originX: 'start',
+                        originY: 'bottom',
+                        overlayX: 'start',
+                        overlayY: 'top'
+                    },
+                    {
+                        originX: 'start',
+                        originY: 'top',
+                        overlayX: 'start',
+                        overlayY: 'bottom'
+                    },
+                    {
+                        originX: 'end',
+                        originY: 'bottom',
+                        overlayX: 'end',
+                        overlayY: 'top'
+                    },
+                    {
+                        originX: 'end',
+                        originY: 'top',
+                        overlayX: 'end',
+                        overlayY: 'bottom'
+                    }
+                ])
         });
 
         // Create a portal from the template
@@ -203,15 +192,13 @@ export class NotificationsComponent implements OnInit, OnDestroy
         this._overlayRef.backdropClick().subscribe(() => {
 
             // If overlay exists and attached...
-            if ( this._overlayRef && this._overlayRef.hasAttached() )
-            {
+            if (this._overlayRef && this._overlayRef.hasAttached()) {
                 // Detach it
                 this._overlayRef.detach();
             }
 
             // If template portal exists and attached...
-            if ( templatePortal && templatePortal.isAttached )
-            {
+            if (templatePortal && templatePortal.isAttached) {
                 // Detach it
                 templatePortal.detach();
             }
@@ -221,8 +208,7 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * Mark all notifications as read
      */
-    markAllAsRead(): void
-    {
+    markAllAsRead(): void {
         // Mark all as read
         this._notificationsService.markAllAsRead().subscribe();
     }
@@ -230,8 +216,7 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * Toggle read status of the given notification
      */
-    toggleRead(notification): void
-    {
+    toggleRead(notification): void {
         // Toggle the read status
         notification.read = !notification.read;
 
@@ -242,8 +227,7 @@ export class NotificationsComponent implements OnInit, OnDestroy
     /**
      * Delete the given notification
      */
-    delete(notification): void
-    {
+    delete(notification): void {
         // Delete the notification
         this._notificationsService.delete(notification.id).subscribe();
     }

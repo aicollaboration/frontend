@@ -1,6 +1,6 @@
 <div class="main">
     <div class="cards">
-        <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
+        <treo-card [class]="'card flex flex-col max-w-64 w-full filter-shopping'"
             *ngFor="let solutionService of solutionServices"
             [routerLink]="['/solutions', 'detail', solutionService.solution.id, 'services', solutionService.service.id]">
             <div class="relative">
@@ -14,7 +14,7 @@
                         </mat-icon>
                     </button>
                 </div>
-                <!---  <img class="object-cover" [src]="solutionService.image" *ngIf="solutionService.image"> -->
+                <img class="object-cover" [src]="solutionService.image" *ngIf="solutionService.image">
             </div>
             <div class="m-8 mb-0">
                 <div class="flex flex-col">
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </treo-card>
-        <treo-card class="card flex flex-col max-w-80 w-full filter-shopping">
+        <treo-card class="card flex flex-col max-w-64 w-full filter-shopping">
             <div class="m-8 mb-0">
                 <div class="mt-6 -mx-8">
                     <button

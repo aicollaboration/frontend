@@ -17,7 +17,6 @@ import { SolutionServiceCreationComponent } from '../solution-service-creation/s
     selector: 'solution',
     templateUrl: './solution-detail.component.html',
     styleUrls: ['./solution-detail.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default
 })
 export class SolutionDetailComponent implements OnInit {
     public solution$: Observable<SolutionModel>;
@@ -80,6 +79,7 @@ export class SolutionDetailComponent implements OnInit {
                     },
                 ]
             },
+            /*
             {
                 title: 'Settings',
                 type: 'group',
@@ -92,6 +92,7 @@ export class SolutionDetailComponent implements OnInit {
                     },
                 ]
             },
+            */
         ];
     }
 

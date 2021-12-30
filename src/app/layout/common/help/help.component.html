@@ -1,0 +1,13 @@
+<button class="icon-button" mat-icon-button (click)="toggleHelpContainer()">
+    <span class="avatar">
+        <mat-icon [svgIcon]="'help'"></mat-icon>
+    </span>
+</button>
+
+<div id="help-container" class="hidden" cdkDrag>
+    {{router.url}}
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dxrleEPFkwM" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</div>
