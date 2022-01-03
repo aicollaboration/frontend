@@ -94,20 +94,19 @@ export const futuristicNavigation: TreoNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
-   /* {
-        id: 'products',
-        title: 'Products',
+    {
+        id: 'dashboard',
+        title: 'Dashboard',
         type: 'basic',
-        icon: 'category',
-        link: '/products'
-    }, */
+        icon: 'dashboard',
+        link: '/dashboard',
+    },
     {
         id: 'solutions',
         title: 'Solutions',
         type: 'basic',
         icon: 'emoji_objects',
         link: '/solutions',
-        fragment: ''
     },
     {
         id: 'services',
@@ -115,52 +114,19 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         type: 'basic',
         icon: 'code',
         link: '/services',
-        fragment: ''
     },
-    /*
-    {
-        id: 'vision',
-        title: 'Vision',
-        type: 'basic',
-        icon: 'emoji_objects',
-        link: '/dashboard',
-        fragment: 'vission'
-    },
-    {
-        id: 'mission',
-        title: 'Mission',
-        type: 'basic',
-        icon: 'emoji_objects',
-        link: '/dashboard',
-        fragment: 'mission'
-    },
-    {
-        id: 'whoweare',
-        title: 'Who We Are',
-        type: 'basic',
-        icon: 'emoji_objects',
-        link: '/dashboard',
-        fragment: 'whoweare'
-    },
-    */
     /*
     {
         title: 'Documentation',
         type: 'basic',
         icon: 'menu_book',
-        link: '/documentations'
+        link: '/docs'
     },
     {
         title: 'Learn',
         type: 'basic',
         icon: 'school',
         link: '/learn'
-    },
-    {
-        title: 'Events',
-        type: 'basic',
-        icon: 'group',
-        link: '/events'
     },
     */
 ];

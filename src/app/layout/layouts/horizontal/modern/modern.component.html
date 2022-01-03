@@ -20,7 +20,7 @@
   <!-- Header -->
   <div class="header">
     <!-- Logo -->
-    <div class="logo" *ngIf="!isScreenSmall" [routerLink]="['/']">
+    <div class="logo" *ngIf="!isScreenSmall" [routerLink]="['/dashboard']">
       <img class="logo-text" src="assets/images/logo/logo-text.png" />
       <img
         class="logo-text-on-dark"
@@ -28,6 +28,7 @@
       />
       <img class="logo-base" src="assets/images/logo/logo.png" />
     </div>
+    <search></search>
 
     <!-- Horizontal navigation -->
     <treo-horizontal-navigation
@@ -48,14 +49,22 @@
 
     <div class="spacer"></div>
     <!--
-    <search [appearance]="'bar'"></search>
     <shortcuts [shortcuts]="data.shortcuts"></shortcuts>
     <messages [messages]="data.messages"></messages>
-    <notifications [notifications]="data.notifications"></notifications>
     -->
 
     <!-- Creation menu -->
     <creation></creation>
+
+    <!-- Search 
+    <search [appearance]="'bar'"></search>
+    -->
+
+    <!-- Notifications -->
+    <notifications [notifications]="data.notifications"></notifications>
+
+    <!-- help button -->
+    <help></help>
 
     <!-- User -->
     <user [user]="data.user"></user>

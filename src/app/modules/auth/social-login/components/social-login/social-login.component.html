@@ -1,0 +1,11 @@
+<button class="social-login" (click)="handleClick($event)" (mouseenter)="handleMouseEnter($event)" (mouseleave)="handleMouseLeave($event)"
+    (focus)="handleFocus($event)" (blur)="handleBlur($event)">
+    <div class="flex">
+        <div style="display: flex; justify-content: center;">
+            <github-login color="#000" width="30" height="30"></github-login>
+        </div>
+        <div class="divider"></div>
+        <div [ngStyle]="{ 'textAlign': 'align', 'width': '100%' }">{{label}}</div>
+    </div>
+
+</button>

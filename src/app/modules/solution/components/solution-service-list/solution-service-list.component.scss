@@ -1,0 +1,16 @@
+.cards {
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin: 0 -16px;
+
+    treo-card {
+        margin: 16px;
+        cursor: pointer;
+        transition: 0.5s ease;
+
+        &:hover {
+            filter: brightness(95%);
+        }
+    }
+}

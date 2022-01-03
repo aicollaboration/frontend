@@ -43,4 +43,9 @@ export class SolutionListComponent implements OnInit {
   public openCreationDialog(): void {
     const dialogRef = this.matDialog.open(SolutionCreationComponent);
   }
+  
+  public toggleHelpContainer(): void {
+      const helpContainer: HTMLElement = document.getElementById("help-container");
+      helpContainer.classList.toggle("hidden");
+  }
 }

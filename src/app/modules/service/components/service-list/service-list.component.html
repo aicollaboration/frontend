@@ -2,18 +2,20 @@
     <div class="header">
         <div class="left">
             <h1>Services</h1>
-            <h3>Find and Connect to thousands of services (ai models & algorithms)</h3>
+            <h6>Find and Connect to thousands of services (ai models & algorithms)</h6>
         </div>
-
         <div class="right">
-            <button class="mr-4" mat-flat-button color="primary" [routerLink]="['/services', 'create']">
+            <button class="mr-4" mat-button color="secondary" [routerLink]="['/services', 'import']">
+                <mat-icon class="icon-size-18" svgIcon="input"></mat-icon>
+                <span class="ml-2">Import service</span>
+            </button>
+            <button class="mr-4" mat-raised-button color="primary" [routerLink]="['/services', 'create']">
                 <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
-                <span class="ml-2">Create service</span>
+                <span class="ml-2">New service</span>
             </button>
         </div>
     </div>
     <div class="main">
-        PUBLIC AND PRIVATE SERVICES
         <div class="cards">
             <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
                 *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.id]" matRipple

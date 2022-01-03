@@ -270,7 +270,7 @@ export class ServiceCreationComponent implements OnInit {
         const serviceName = this.serviceForm.value['name'];
 
         // const octokit = new Octokit({ auth: `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` });
-        debugger
+        
         // Copy template
 
 

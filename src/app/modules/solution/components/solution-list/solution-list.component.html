@@ -1,14 +1,18 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
     <div class="header">
         <div class="left">
-            <h1>Solutions</h1>
-            <h3>Ready-made solutions including frontend, user management and preconfigured AI services</h3>
+            <h2>Solutions <button class="icon-button" mat-icon-button (click)="toggleHelpContainer()">
+                <span class="avatar">
+                    <mat-icon [svgIcon]="'help'"></mat-icon>
+                </span>
+            </button></h2>
+            <p>Ready-to-use solutions including frontend, user management & preconfigured AI services</p>
         </div>
 
         <div class="right">
             <button class="mr-4" mat-flat-button color="primary" [routerLink]="['/solutions', 'create']">
                 <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
-                <span class="ml-2">Create solution</span>
+                <span class="ml-2">New solution</span>
             </button>
             <!--
             <button mat-flat-button color="primary" [routerLink]="['/problems', 'submit']">

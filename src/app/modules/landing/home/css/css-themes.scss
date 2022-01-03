@@ -32,7 +32,6 @@
 }
 
 .typography_Title__15mGG {
-    font-family: Poppins, serif;
     font-size: 23px;
     font-weight: 700;
     line-height: 140%
@@ -84,7 +83,6 @@
 }
 
 .typography_Text__21fWd {
-    font-family: Poppins, serif;
     font-size: 17px;
     font-weight: 400;
     line-height: 28px
@@ -145,7 +143,6 @@
 }
 
 .typography_Label__1knAy {
-    font-family: Poppins, serif;
     font-size: 11px;
     line-height: 1;
     text-transform: uppercase;
@@ -165,7 +162,6 @@
 
 
 .typography_FooterLink__TNGH_ {
-    font-family: Poppins, serif;
     font-weight: 400;
     font-size: 13px;
     line-height: 1;
@@ -173,7 +169,6 @@
 }
 
 .typography_Button__3B09N {
-    font-family: Poppins, serif;
     font-size: 15px;
     font-weight: 500;
     line-height: 1
@@ -552,58 +547,6 @@
     }
 }
 
-.styles_Tetris__A7E2C {
-    display: block;
-    width: 60px;
-    height: 60px
-}
-
-@media(min-width:992px) {
-    .styles_Tetris__A7E2C {
-        width: 90px;
-        height: 90px
-    }
-}
-
-.styles_Tetris__A7E2C.styles_purple__esQYx [class$=tetris-dark-path] {
-    fill: #7c32ff
-}
-
-.styles_Tetris__A7E2C.styles_purple__esQYx [class$=tetris-light-path] {
-    fill: #8c4bff
-}
-
-.styles_Tetris__A7E2C.styles_yellow__2UAIU [class$=tetris-dark-path] {
-    fill: #fedd62
-}
-
-.styles_Tetris__A7E2C.styles_yellow__2UAIU [class$=tetris-light-path] {
-    fill: #fee895
-}
-
-.styles_Tetris__A7E2C.styles_blue__3GNt6 [class$=tetris-dark-path] {
-    fill: #00accd
-}
-
-.styles_Tetris__A7E2C.styles_blue__3GNt6 [class$=tetris-light-path] {
-    fill: #80ebff
-}
-
-.styles_Tetris__A7E2C.styles_green__3aVBV [class$=tetris-dark-path] {
-    fill: #0e8d54
-}
-
-.styles_Tetris__A7E2C.styles_green__3aVBV [class$=tetris-light-path] {
-    fill: #13bb70
-}
-
-.styles_Tetris__A7E2C.styles_white__15UW5 [class$=tetris-dark-path] {
-    fill: hsla(0, 0%, 100%, .5)
-}
-
-.styles_Tetris__A7E2C.styles_white__15UW5 [class$=tetris-light-path] {
-    fill: hsla(0, 0%, 100%, .8)
-}
 
 .styles_svg__uLEPr {
     width: 100%;
@@ -1078,7 +1021,6 @@
 }
 
 .styles_stepNumber__3Xz_3 {
-    font-family: Poppins, serif;
     font-weight: 500;
     color: #f6b73e
 }
@@ -2771,7 +2713,4 @@
 
 .styles_slice__3lIJ8 {
     margin-top: 84px
-}
-.styles_Tetris__A7E2C.styles_purple__esQYx [class$=tetris-light-path] {
-    fill: #8c4bff;
 }

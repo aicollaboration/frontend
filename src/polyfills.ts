@@ -51,8 +51,8 @@ import 'zone.js';  // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 // Currently, the newest versions of Angular (6+) do not include shims for ‘global’ or ‘process’ as provided in previous versions.
-(window as any).global = window;
-(window as any).process = require('process/browser');
+//(window as any).global = window;
+//(window as any).process = require('process/browser');
 
 import "core-js/stable";
 import "regenerator-runtime/runtime";

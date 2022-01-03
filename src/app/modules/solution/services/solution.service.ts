@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import Backendless from 'backendless';
-import { from, Observable } from 'rxjs';
+import { SupabaseClient } from '@supabase/supabase-js';
+import { AuthService } from 'app/core/auth/auth.service';
 import { SolutionServiceModel } from '../models/solution-service.model';
 import { SolutionModel } from '../models/solution.model';
 
@@ -11,11 +10,8 @@ import { SolutionModel } from '../models/solution.model';
 export class SolutionService {
   private supabase: SupabaseClient;
 
-  constructor() {
-    const supabaseUrl = 'https://exrcpfgiopxnpdbziykr.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNDIwMjQ5NiwiZXhwIjoxOTI5Nzc4NDk2fQ.Z6awBtD8HNl_FWJposOdSLcU8oE2wErlHqiJR4jZKPE';
-
-    this.supabase = createClient(supabaseUrl, supabaseKey);
+  constructor(private authService: AuthService) {
+    this.supabase = this.authService.getClient();
   }
 
   public async getSolutions() {
@@ -57,12 +53,13 @@ export class SolutionService {
 
   public async getSolutionServices(solutionId: string) {
     const query = `
-    id,
-    config,
-    solution(*),
-    service(*)
+      id,
+      config,
+      solution(*),
+      service(*)
     `;
     const { data, error } = await this.supabase.from('solution_services').select(query).eq('solutionId', solutionId);
+
     if (error) {
       throw error;
     }

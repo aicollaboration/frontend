@@ -8,11 +8,21 @@ export class AuthService {
     private supabase: SupabaseClient;
 
     constructor() {
-        this.supabase = createClient(
+        this.supabase = this.getClient();
+        this.isAuthenticated = this.supabase.auth.session() ? true : false;
+    }
+
+    public getClient() {
+        /*
+        return createClient(
+            'http://localhost:54321',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic2VydmljZV9yb2xlIn0.M2d2z4SFn5C7HlJlaSLfrzuYim9nbY_XI40uWFN3hEE'
+        );
+        */
+        return createClient(
             'https://exrcpfgiopxnpdbziykr.supabase.co',
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNDIwMjQ5NiwiZXhwIjoxOTI5Nzc4NDk2fQ.Z6awBtD8HNl_FWJposOdSLcU8oE2wErlHqiJR4jZKPE'
         );
-        this.isAuthenticated = this.supabase.auth.session() ? true : false;
     }
 
     public async signIn(email: string, password: string): Promise<User> {
@@ -42,6 +52,17 @@ export class AuthService {
 
     }
 
+    public async signUpWithGithub(): Promise<User> {
+        const { user, error } = await this.supabase.auth.signIn({ provider: 'github' });
+        if (error) {
+            throw error;
+        }
+
+        this.isAuthenticated = true;
+
+        return user;
+    }
+
     public async signOut(): Promise<boolean> {
         const { error } = await this.supabase.auth.signOut();
         if (error) {
@@ -63,17 +84,14 @@ export class AuthService {
     }
 
     public check(): boolean {
-        console.log(`authenticated: ${this.isAuthenticated}`);
         return this.isAuthenticated;
     }
 
     set isAuthenticated(authenticated: boolean) {
-        console.log(`set isAuthenticated: ${authenticated}`);
         this.authenticated = authenticated;
     }
 
     get isAuthenticated(): boolean {
-        console.log(`get isAuthenticated: ${this.authenticated}`);
         return this.authenticated;
     }
 

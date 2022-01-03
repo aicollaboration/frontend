@@ -1,0 +1,14 @@
+<h2>Github</h2>
+<div *ngIf="!connected">
+    <button (click)="signIn()" mat-button mat-stroked-button>
+      Connect with Github
+    </button>
+  </div>
+  <div *ngIf="connected">
+    <button (click)="signOut()" mat-button mat-stroked-button>
+      Close connection to Github
+    </button>
+  </div>
+
+<github-user [user]="userInfo"></github-user>
+<github-repositories [repositories]="repositories"></github-repositories>

@@ -2,10 +2,10 @@
     <div class="header">
         <div class="left">
             <div class="breadcrumb">
-                <span class="path">Solutions</span>
+                <a [routerLink]="['/solutions']" class="path">Solutions</a>
                 <span class="separator">/</span>
+                <h1>{{ solution.name }}</h1>
             </div>
-            <h1>{{ solution.name }}</h1>
         </div>
 
         <div class="right">

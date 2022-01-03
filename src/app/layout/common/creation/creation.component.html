@@ -1,14 +1,11 @@
-<button
-  class="icon-button"
-  mat-icon-button
-  [matMenuTriggerFor]="creationActions"
->
+<button class="icon-button" mat-icon-button [matMenuTriggerFor]="creationActions">
   <span class="avatar">
     <mat-icon [svgIcon]="'add'"></mat-icon>
   </span>
 </button>
 
 <mat-menu #creationActions>
-    <button mat-menu-item>New service</button>
-    <button mat-menu-item>Import service</button>
+  <a [routerLink]="['solutions', 'create']" mat-menu-item>New solution</a>
+  <a [routerLink]="['services', 'create']" mat-menu-item>New service</a>
+  <a [routerLink]="['services', 'import']" mat-menu-item>Import service</a>
 </mat-menu>

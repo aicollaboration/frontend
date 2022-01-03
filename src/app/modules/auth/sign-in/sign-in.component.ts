@@ -70,4 +70,10 @@ export class AuthSignInComponent implements OnInit {
             this.signInForm.enable();
         }
     }
+
+    public handleKeyUp(event: KeyboardEvent) {
+        if(event.key === 'Enter') {
+            this.signIn();
+         }
+    }
 }

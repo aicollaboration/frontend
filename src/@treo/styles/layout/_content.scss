@@ -5,7 +5,7 @@
 // Header
 %content-layout-header {
     display: flex;
-    padding: 40px;
+    padding: 20px 40px;
 
     @include treo-breakpoint('lt-md') {
         flex-direction: column;
@@ -68,7 +68,7 @@
 
         > .main {
             flex: 1 1 auto;
-            padding: 40px;
+            padding: 20px 40px;
 
             @include treo-breakpoint('xs') {
                 padding: 24px;
@@ -90,7 +90,7 @@
 
         > .main {
             flex: 1 1 auto;
-            padding: 40px;
+            padding: 20px 40px;
 
             @include treo-breakpoint('xs') {
                 padding: 24px;
@@ -109,7 +109,7 @@
 
         > .main {
             flex: 1 1 auto;
-            padding: 40px;
+            padding: 20px 40px;
 
             @include treo-breakpoint('xs') {
                 padding: 24px;
@@ -135,7 +135,7 @@
 
         > .main {
             flex: 1 1 auto;
-            padding: 40px;
+            padding: 20px 40px;
 
             @include treo-breakpoint('xs') {
                 padding: 24px;
@@ -3213,9 +3213,10 @@
 
             > .header {
                 @if (not $is-dark) {
-                    background: map-get($background, card);
+                    // background: map-get($background, card);
                 }
-                border-bottom: 1px solid map-get($foreground, divider);
+                //border-bottom: 1px solid map-get($foreground, divider);
+                border-top: 1px solid map-get($foreground, divider);
             }
         }
 
