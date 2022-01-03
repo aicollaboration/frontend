@@ -32,6 +32,7 @@ export class SolutionDetailComponent implements OnInit {
             label: 'label',
         },
     ];
+    
     public solutionServices = [];
     private solutionId: string;
     public menuData: TreoNavigationItem[];
