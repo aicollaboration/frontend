@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div >
+      <div *ngIf="typeOfForm==='delete'">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>payload name</mat-label>
           <input matInput formControlName="payloadName" placeholder="Ex. pat@example.com">
