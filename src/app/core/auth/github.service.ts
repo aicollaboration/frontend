@@ -1,22 +1,22 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { AuthService } from "../auth/auth.service";
 
 
 @Injectable()
 export class GithubService {
-    public constructor(private httpClient: HttpClient) {
+    public constructor(private authService: AuthService, private httpClient: HttpClient) {
     }
 
     public async signIn() {
-        const { user, session, error } = await this.getClient().auth.signIn({
+        const { user, session, error } = await this.authService.getClient().auth.signIn({
             provider: 'github',
         }, {
             redirectTo: 'http://localhost:4100/admin/dashboard',
             scopes: 'repo gist notifications'
         });
     }
-    
+
     public async signOut() {
     }
 
@@ -25,17 +25,10 @@ export class GithubService {
     }
 
     public getToken() {
-        const session = this.getClient().auth.session();
+        const session = this.authService.getClient().auth.session();
         const accessToken = session.provider_token;
 
         return accessToken;
-    }
-
-    protected getClient(): SupabaseClient {
-        const supabaseUrl = 'https://exrcpfgiopxnpdbziykr.supabase.co';
-        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNDIwMjQ5NiwiZXhwIjoxOTI5Nzc4NDk2fQ.Z6awBtD8HNl_FWJposOdSLcU8oE2wErlHqiJR4jZKPE';
-
-        return createClient(supabaseUrl, supabaseKey);
     }
 
     public async fetchUserInfo() {

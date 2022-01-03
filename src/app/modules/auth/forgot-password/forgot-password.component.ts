@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { SupabaseClient } from '@supabase/supabase-js';
 import { TreoAnimations } from '@treo/animations';
-import { SupabaseService } from 'app/core/auth/supabase.service';
+import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
     selector: 'auth-forgot-password',
@@ -16,14 +16,14 @@ export class AuthForgotPasswordComponent implements OnInit {
     public message: any;
     private supabase: SupabaseClient;
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(
+        private authService: AuthService,
+        private formBuilder: FormBuilder
+    ) {
         // Set the defaults
         this.message = null;
 
-        this.supabase = createClient(
-            'https://exrcpfgiopxnpdbziykr.supabase.co',
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYxNDIwMjQ5NiwiZXhwIjoxOTI5Nzc4NDk2fQ.Z6awBtD8HNl_FWJposOdSLcU8oE2wErlHqiJR4jZKPE'
-        );
+        this.supabase = this.authService.getClient();
     }
 
     // -----------------------------------------------------------------------------------------------------
