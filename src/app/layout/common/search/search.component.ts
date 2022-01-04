@@ -38,14 +38,14 @@ export class SearchComponent implements OnInit, OnDestroy {
     /**
      * Constructor
      *
-     * @param {ElementRef} _elementRef
-     * @param {HttpClient} _httpClient
-     * @param {Renderer2} _renderer2
+     * @param {ElementRef} elementRef
+     * @param {HttpClient} httpClient
+     * @param {Renderer2} renderer2
      */
     constructor(
-        private _elementRef: ElementRef,
-        private _httpClient: HttpClient,
-        private _renderer2: Renderer2
+        private elementRef: ElementRef,
+        private httpClient: HttpClient,
+        private renderer2: Renderer2
     ) {
         // Set the private defaults
         this._unsubscribeAll = new Subject();
@@ -83,14 +83,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
         // Remove the previous appearance class
         appearanceClassName = 'search-appearance-' + this.appearance;
-        this._renderer2.removeClass(this._elementRef.nativeElement, appearanceClassName);
+        this.renderer2.removeClass(this.elementRef.nativeElement, appearanceClassName);
 
         // Store the value
         this._appearance = value;
 
         // Add the new appearance class
         appearanceClassName = 'search-appearance-' + this.appearance;
-        this._renderer2.addClass(this._elementRef.nativeElement, appearanceClassName);
+        this.renderer2.addClass(this.elementRef.nativeElement, appearanceClassName);
     }
 
     get appearance(): 'basic' | 'bar' {
@@ -114,11 +114,11 @@ export class SearchComponent implements OnInit, OnDestroy {
         // If opened...
         if (value) {
             // Add opened class
-            this._renderer2.addClass(this._elementRef.nativeElement, 'search-opened');
+            this.renderer2.addClass(this.elementRef.nativeElement, 'search-opened');
         }
         else {
             // Remove opened class
-            this._renderer2.removeClass(this._elementRef.nativeElement, 'search-opened');
+            this.renderer2.removeClass(this.elementRef.nativeElement, 'search-opened');
         }
     }
 
@@ -183,7 +183,7 @@ export class SearchComponent implements OnInit, OnDestroy {
             })
         )
             .subscribe((value) => {
-                this._httpClient.post('api/common/search', { query: value })
+                this.httpClient.post('api/common/search', { query: value })
                     .subscribe((response: any) => {
                         this.results = response.results;
                     });
@@ -249,5 +249,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
         // Close the search
         this.opened = false;
+    }
+
+    public onSearchFocus() {
+        this.renderer2.addClass(this.elementRef.nativeElement, 'search-focus');
+    }
+
+    public onSearchBlur() {
+        this.renderer2.removeClass(this.elementRef.nativeElement, 'search-focus');
     }
 }

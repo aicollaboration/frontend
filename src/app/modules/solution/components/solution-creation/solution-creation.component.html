@@ -9,23 +9,35 @@
 
     <div class="main">
         <form [formGroup]="solutionForm" (ngSubmit)="onSubmit()" class="max-w-3xl">
+            <div class="flex">
+                <mat-form-field class="w-1/3 pr-4">
+                    <mat-label><b>Solution owner</b></mat-label>
+                    <mat-select placeholder="Select owner" formControlName="owner">
+                        <mat-option value="aicollaborationsolutions">aicollaborationsolutions</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="w-2/3 pl-4">
+                    <mat-label><b>Solution name</b></mat-label>
+                    <input matInput formControlName="name" required maxlength="250" type="text" [pattern]="namePattern" onkeypress="return new RegExp(namePattern).test(event.key)">
+                    <i>A-Z, a-z, 0-9 and -</i>
+                </mat-form-field>
+            </div>
             <mat-form-field>
-                <mat-label><b>Solution name</b></mat-label>
-                <input matInput formControlName="name" required maxlength="250" type="text">
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Description <span class="text-grey-600/25">(optional)</span></mat-label>
-              <textarea matInput formControlName="description" rows="5"></textarea>
+                <mat-label>Description <span class="text-grey-600/25">(optional)</span></mat-label>
+                <input matInput formControlName="description" maxlength="250">
             </mat-form-field>
             <hr />
             <mat-radio-group formControlName="visibility">
-                <mat-radio-button value="public" class="py-2"><b>Public</b><br>Anyone on the internet can see this solution. You choose who can access.</mat-radio-button><br>
-                <mat-radio-button value="private" class="py-2"><b>Private</b><br>You choose who can see and access this solution.</mat-radio-button>
+                <mat-radio-button value="public" class="py-2"><b>Public</b><br>Anyone on the internet can see this
+                    solution. You choose who can access.</mat-radio-button><br>
+                <mat-radio-button value="private" class="py-2"><b>Private</b><br>You choose who can see and access this
+                    solution.</mat-radio-button>
             </mat-radio-group>
             <hr />
             <div class="actions">
                 <div class="buttons">
-                    <button class="save-button" mat-flat-button color="primary" type="submit" [disabled]="!solutionForm.valid">
+                    <button class="save-button" mat-flat-button color="primary" type="submit"
+                        [disabled]="!solutionForm.valid">
                         <mat-icon [svgIcon]="'save'"></mat-icon>
                         <span>Create solution</span>
                     </button>

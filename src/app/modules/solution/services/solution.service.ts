@@ -84,9 +84,9 @@ export class SolutionService {
     return data[0];
   }
 
-  public async createSolution(solution: SolutionModel) {
+  public async createSolution(solution: SolutionModel): Promise<SolutionModel> {
     solution.author = this.supabase.auth.user().id;
-    const { data, error } = await this.supabase.from('solution').insert([solution]);
+    const { data, error } = await this.supabase.from('solution').insert(solution);
 
     if (error) {
       throw error;

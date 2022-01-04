@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -20,18 +20,6 @@ import { SolutionServiceCreationComponent } from '../solution-service-creation/s
 })
 export class SolutionDetailComponent implements OnInit {
     public solution$: Observable<SolutionModel>;
-    public types = [
-        {
-            value: 'value',
-            label: 'label',
-        },
-    ];
-    public statuses = [
-        {
-            value: 'value',
-            label: 'label',
-        },
-    ];
     public solutionServices = [];
     private solutionId: string;
     public menuData: TreoNavigationItem[];
@@ -79,20 +67,6 @@ export class SolutionDetailComponent implements OnInit {
                     },
                 ]
             },
-            /*
-            {
-                title: 'Settings',
-                type: 'group',
-                children: [
-                    {
-                        title: 'General',
-                        type: 'basic',
-                        icon: 'settings',
-                        link: 'settings',
-                    },
-                ]
-            },
-            */
         ];
     }
 

@@ -2,10 +2,10 @@
     <div class="header">
         <div class="left">
             <h2>Solutions <button class="icon-button" mat-icon-button (click)="toggleHelpContainer()">
-                <span class="avatar">
-                    <mat-icon [svgIcon]="'help'"></mat-icon>
-                </span>
-            </button></h2>
+                    <span class="avatar">
+                        <mat-icon [svgIcon]="'help'"></mat-icon>
+                    </span>
+                </button></h2>
             <p>Ready-to-use solutions including frontend, user management & preconfigured AI services</p>
         </div>
 
@@ -14,41 +14,8 @@
                 <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
                 <span class="ml-2">New solution</span>
             </button>
-            <!--
-            <button mat-flat-button color="primary" [routerLink]="['/problems', 'submit']">
-                <mat-icon class="icon-size-18" svgIcon="add"></mat-icon>
-                <span class="ml-2">Submit problem</span>
-            </button>
-            -->
         </div>
     </div>
-    <!--
-    <div class="header">
-        <div class="left">
-            <form [formGroup]="searchForm">
-                <div class="flex">
-                    <mat-form-field class="flex flex-column mr-4">
-                        <mat-label>Projects</mat-label>
-                        <mat-select multiple formControlName="projects">
-                            <mat-option>Project: all</mat-option>
-                            <mat-option value="1">Project: all</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field class="flex flex-column">
-                        <mat-label>Branches</mat-label>
-                        <mat-select value="1" multiple formControlName="branches">
-                            <mat-option value="1">Branch: all</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <div class="flex flex-column">
-                        <button type="submit" mat-button color="primary">Search</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="right"></div>
-    </div>
-    -->
     <div class="main">
         <div *ngIf="errors$ | async as errors">
             <ul *ngIf="errors.length > 0">
@@ -58,18 +25,22 @@
 
         <div class="cards">
             <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
-                *ngFor="let solution of solutions$ | async" [routerLink]="['/solutions', 'detail', solution.id]"
-                matRipple matRippleColor="white" role="link">
-                <div class="relative">
+                *ngFor="let solution of solutions$ | async">
+                <div class="relative" [routerLink]="['/solutions', 'detail', solution.id]" role="link">
                     <img class="object-cover" [src]="solution.file" *ngIf="solution.file">
                     <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg" *ngIf="!solution.file">
                 </div>
                 <div class="m-4 mb-0">
-                    <div class="flex flex-col">
+                    <div class="flex flex-col" [routerLink]="['/solutions', 'detail', solution.id]" role="link">
                         <div class="text-2xl leading-tight">{{ solution.name }}</div>
                     </div>
+                    <div>
+                        <hr class="border-b my-3">
+                        <a [href]="'https://'+solution.name+'.aiproduct.io'" target="_blank">https://{{ solution.name
+                            }}.aiproduct.io</a>
+                    </div>
                     <div *ngIf="solution.description">
-                        <hr class="bor  der-b my-3">
+                        <hr class="border-b my-3">
                         <div class="flex items-center text-md">
                             {{ solution.description }}
                         </div>

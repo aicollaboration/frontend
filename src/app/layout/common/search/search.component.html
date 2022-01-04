@@ -10,7 +10,7 @@
     <mat-form-field class="treo-mat-no-subscript search-input" #searchInput>
         <mat-icon matPrefix [svgIcon]="'search'"></mat-icon>
         <input matInput [formControl]="searchControl" [placeholder]="'Search or jump to...'"
-            [matAutocomplete]="matAutocomplete" (keydown)="onKeydown($event)">
+            [matAutocomplete]="matAutocomplete" (keydown)="onKeydown($event)" (focus)="onSearchFocus()" (blur)="onSearchBlur()">
     </mat-form-field>
 
     <mat-autocomplete [class]="'search-results search-results-appearance-' + appearance"

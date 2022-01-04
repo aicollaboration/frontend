@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,65 +17,59 @@ import { SolutionService } from '../../services/solution.service';
 })
 
 export class SolutionCreationComponent {
+    public namePattern: string = '^[a-zA-Z0-9\-]+';
     public solutionForm = new FormGroup({
-        name: new FormControl('', { validators: [Validators.required], updateOn: 'change' }),
+        owner: new FormControl('', Validators.required),
+        name: new FormControl('', { validators: [Validators.required, Validators.pattern(this.namePattern)], updateOn: 'change' }),
         description: new FormControl(''),
         visibility: new FormControl('public'),
     });
 
     public constructor(
+        private http: HttpClient,
         private router: Router,
         private snackBar: MatSnackBar,
         private solutionService: SolutionService
-    ) { }   
+    ) { }
 
     public async onSubmit() {
         const solution: SolutionModel = {
             ...this.solutionForm.value,
         };
 
-        this.solutionService.createSolution(solution).then(data => {
-            this.snackBar.open(`You created a solution successfully!`, 'Close', { duration: 2500, verticalPosition: 'top', horizontalPosition: 'center' });
+        debugger
 
-            /*
-            try {
-                const url = 'https://api.github.com/repos/aicollaborationsolutions/solution/generate';
+        // 1. Create repository
+        solution.repository = await this.createRepository(solution);
 
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', url);
+        // 2. Create database entry
+        const database = await this.insertSolutionInBackend(solution);
 
-                xhr.setRequestHeader('Accept', 'application/json');
-                xhr.setRequestHeader('Authorization', 'Bearer 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');
-                xhr.setRequestHeader('Content-Type', 'application/json');
+        // 3. Redirect to solution detail
+        this.router.navigate(['/solutions', 'detail', database.id]);
+    }
 
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        console.log(xhr.status);
-                        console.log(xhr.responseText);
-                    }
-                };
-
-                const data = `{
-                    "owner":"aicollaborationsolutions", 
-                    "name": "tobias"
-                }`;
-
-                xhr.send(data);
-
-
-
-            } catch (e) {
-                console.log('error');
-            } finally {
-                //    alert("success");
-                //this.apiCallCreateJob();
-            }
-            */
-
-            this.router.navigate(['/solutions', 'detail', data.id]);
-        }).catch(error => {
-            this.snackBar.open(error, 'Close', { verticalPosition: 'top', horizontalPosition: 'center' });
-        });
+    private async createRepository(solution: SolutionModel) {
+        const url = 'https://api.github.com/repos/aicollaboration/solution-template-react/generate';
+        const data = {
+            "owner": solution.owner,
+            "name": solution.name,
+        };
+        try {
+            const headers: HttpHeaders = new HttpHeaders({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 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',
+            });
+            return await this.http.post(url, data, { headers }).toPromise();
+        }
+        catch (error) {
+            console.log(error);
+            debugger
+        }
+    }
+    private async insertSolutionInBackend(solutionData: SolutionModel): Promise<SolutionModel> {
+        return await this.solutionService.createSolution(solutionData);
     }
 
 }
