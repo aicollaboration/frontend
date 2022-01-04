@@ -11,4 +11,5 @@ import { ServiceModel } from "../../models/service.model";
 export class ServiceDetailOverviewComponent {
     @Input()
     public service: ServiceModel;
+   
 }
