@@ -24,20 +24,23 @@
         </div>
 
         <div class="cards">
-            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
-                *ngFor="let solution of solutions$ | async">
-                <div class="relative" [routerLink]="['/solutions', 'detail', solution.id]" role="link">
+            <treo-card class="card flex flex-col max-w-80 w-full" *ngFor="let solution of solutions$ | async">
+                <div class="relative cursor-pointer" [routerLink]="['/solutions', 'detail', solution.id]" role="link">
                     <img class="object-cover" [src]="solution.file" *ngIf="solution.file">
                     <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg" *ngIf="!solution.file">
                 </div>
                 <div class="m-4 mb-0">
-                    <div class="flex flex-col" [routerLink]="['/solutions', 'detail', solution.id]" role="link">
-                        <div class="text-2xl leading-tight">{{ solution.name }}</div>
+                    <div class="flex flex-col">
+                        <div class="text-2xl leading-tight">
+                            <a [routerLink]="['/solutions', 'detail', solution.id]">
+                                {{ solution.name }}
+                            </a>
+                        </div>
                     </div>
                     <div>
                         <hr class="border-b my-3">
-                        <a [href]="'https://'+solution.name+'.aiproduct.io'" target="_blank">https://{{ solution.name
-                            }}.aiproduct.io</a>
+                        <a [href]="'https://'+solution.name+'.'+solution.owner+'.aiproduct.io'" target="_blank"
+                            class="ml-2">https://{{solution.name}}.{{solution.owner}}.aiproduct.io</a>
                     </div>
                     <div *ngIf="solution.description">
                         <hr class="border-b my-3">

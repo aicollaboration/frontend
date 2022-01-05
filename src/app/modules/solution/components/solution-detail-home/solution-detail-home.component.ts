@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { SolutionModel } from "../../models/solution.model";
 
 @Component({
     selector: "solution-detail-home",
@@ -7,9 +9,16 @@ import { Component } from "@angular/core";
         "./solution-detail-home.component.scss",
     ],
 })
-export class SolutionDetailHomeComponent {
+export class SolutionDetailHomeComponent implements OnInit {
+    public solution: SolutionModel;
 
-    constructor() {
+    constructor(private route: ActivatedRoute) {
+    }
+
+    public ngOnInit(): void {
+        this.route.parent.data.subscribe((data) => {
+            this.solution = data.solution;
+        });
     }
 
 }

@@ -19,17 +19,18 @@ import { SolutionService } from '../../services/solution.service';
 export class SolutionCreationComponent {
     public namePattern: string = '^[a-zA-Z0-9\-]+';
     public solutionForm = new FormGroup({
-        owner: new FormControl('', Validators.required),
+        owner: new FormControl('aicollaborationsolutions', Validators.required),
         name: new FormControl('', { validators: [Validators.required, Validators.pattern(this.namePattern)], updateOn: 'change' }),
         description: new FormControl(''),
         visibility: new FormControl('public'),
+        template: new FormControl('aicollaboration/solution-template-react-typescript'),
     });
 
     public constructor(
         private http: HttpClient,
         private router: Router,
         private snackBar: MatSnackBar,
-        private solutionService: SolutionService
+        private solutionService: SolutionService,
     ) { }
 
     public async onSubmit() {
@@ -37,37 +38,35 @@ export class SolutionCreationComponent {
             ...this.solutionForm.value,
         };
 
-        debugger
+        try {
+            // 1. Create repository
+            solution.repository = await this.createRepository(solution);
 
-        // 1. Create repository
-        solution.repository = await this.createRepository(solution);
+            // 2. Create database entry
+            const database = await this.insertSolutionInBackend(solution);
 
-        // 2. Create database entry
-        const database = await this.insertSolutionInBackend(solution);
-
-        // 3. Redirect to solution detail
-        this.router.navigate(['/solutions', 'detail', database.id]);
+            // 3. Redirect to solution detail
+            this.router.navigate(['/solutions', 'detail', database.id]);
+        }
+        catch (error) {
+            this.snackBar.open('Error while creating', 'Close', { duration: 3000 });
+        }
     }
 
-    private async createRepository(solution: SolutionModel) {
-        const url = 'https://api.github.com/repos/aicollaboration/solution-template-react/generate';
+    private async createRepository(solution: SolutionModel): Promise<Object> {
+        const url = `https://api.github.com/repos/${solution.template}/generate`;
         const data = {
             "owner": solution.owner,
             "name": solution.name,
         };
-        try {
-            const headers: HttpHeaders = new HttpHeaders({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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',
-            });
-            return await this.http.post(url, data, { headers }).toPromise();
-        }
-        catch (error) {
-            console.log(error);
-            debugger
-        }
+        const headers: HttpHeaders = new HttpHeaders({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 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',
+        });
+        return await this.http.post(url, data, { headers }).toPromise();
     }
+    
     private async insertSolutionInBackend(solutionData: SolutionModel): Promise<SolutionModel> {
         return await this.solutionService.createSolution(solutionData);
     }

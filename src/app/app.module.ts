@@ -39,7 +39,7 @@ const routerConfig: ExtraOptions = {
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes, routerConfig),
-       
+
 
         // Treo & Treo Mock API
         TreoModule,

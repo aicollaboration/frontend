@@ -1,4 +1,4 @@
-<div class="content-layout left-sidebar-content-standard-normal-scroll" *ngIf="solution$ | async as solution">
+<div class="content-layout left-sidebar-content-standard-normal-scroll" *ngIf="solution">
     <div class="header">
         <div class="left">
             <div class="breadcrumb">
@@ -9,9 +9,15 @@
         </div>
 
         <div class="right">
+            <button mat-flat-button class="add-button" color="secondary">
+                <mat-icon class="icon-size-18" svgIcon="launch"></mat-icon>
+                <a [href]="'https://github.com/'+solution.owner+'/'+solution.name" target="_blank" class="ml-2">Open
+                    repository</a>
+            </button>
             <button mat-flat-button class="add-button" color="primary">
                 <mat-icon class="icon-size-18" svgIcon="launch"></mat-icon>
-                <span class="ml-2">Open frontend</span>
+                <a [href]="'https://'+solution.name+'.'+solution.owner+'.aiproduct.io'" target="_blank"
+                    class="ml-2">Open frontend</a>
             </button>
         </div>
     </div>
@@ -24,6 +30,11 @@
         <mat-drawer-content>
             <div class="main">
                 <router-outlet *ngIf="true"></router-outlet>
+                <br /><br />
+                <!--
+                <b>Repository</b><br/>
+                {{solution.repository?.id||'not defined'}}
+                -->
             </div>
         </mat-drawer-content>
     </mat-drawer-container>

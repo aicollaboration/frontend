@@ -23,23 +23,19 @@ export class SolutionServiceDetailComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        debugger
         Promise.all([
             this.route.params.toPromise(),
             this.route.parent.params.toPromise(),
         ])
             .then(async ([params, parentParams]) => {
-                debugger
                 this.solutionId = parentParams.solutionId;
                 this.serviceId = params.serviceId;
 
                 const solutionService = await this.solutionService.getSolutionService(this.solutionId, this.serviceId);
             })
             .catch(error => {
-                debugger
             })
             .finally(() => {
-                debugger
             });
     }
 }

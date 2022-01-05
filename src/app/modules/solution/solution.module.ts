@@ -8,6 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatRippleModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -26,7 +27,9 @@ import { StoreModule } from '@ngrx/store';
 import { TreoCardModule } from '@treo/components/card';
 import { TreoMessageModule } from '@treo/components/message';
 import { TreoNavigationModule } from '@treo/components/navigation';
+import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ImageCropperModule } from 'ngx-image-cropper';
 import { SolutionCreationComponent } from './components/solution-creation/solution-creation.component';
 import { SolutionDeletionComponent } from './components/solution-deletion/solution-deletion.component';
 import { SolutionDesignComponent } from './components/solution-design/solution-design.component';
@@ -38,6 +41,7 @@ import { SolutionServiceCreationComponent } from './components/solution-service-
 import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 import { SolutionServiceListComponent } from './components/solution-service-list/solution-service-list.component';
 import { SolutionUserListComponent } from './components/solution-users/solution-user-list.component';
+import { SolutionResolver } from './resolvers/solution.resolver';
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
@@ -101,6 +105,10 @@ import { solutionReducer } from './state/solution.reducer';
 
         // editable
         EditableModule,
+
+        ImageCropperModule,
+        ColorPickerModule,
+        MatExpansionModule,
     ],
 })
 export class SolutionModule {

@@ -8,6 +8,7 @@ import { SolutionListComponent } from './components/solution-list/solution-list.
 import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 import { SolutionServiceListComponent } from './components/solution-service-list/solution-service-list.component';
 import { SolutionUserListComponent } from './components/solution-users/solution-user-list.component';
+import { SolutionResolver } from './resolvers/solution.resolver';
 
 export const routes: Route[] = [
     {
@@ -17,6 +18,9 @@ export const routes: Route[] = [
     {
         path: 'detail/:solutionId',
         component: SolutionDetailComponent,
+        resolve: {
+            solution: SolutionResolver,
+        },
         children: [
             {
                 path: '',

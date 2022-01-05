@@ -38,11 +38,11 @@ import { PdfAnalyzerComponent } from './components/pdf-analyzer/pdf-analyzer.com
 import { PdfTableOfContentsComponent } from './components/pdf-table-of-contents/pdf-table-of-contents.component';
 import { QuestionAnsweringComponent } from './components/question-answering/question-answering.component';
 import { ServiceCreationComponent } from './components/service-creation/service-creation.component';
-import { ServiceDetailOverviewComponent } from './components/service-detail-overview/service-detail-overview.component';
-import { ServiceDetailDefinitionComponent } from './components/service-detail-definition/service-detail-definition.component';
-import { ServiceDetailTypeformsComponent } from './components/service-detail-typeforms/service-detail-typeforms.component';
-import { ServiceDetailQueryComponent } from './components/service-detail-query/service-detail-query.component';
 import { ServiceDetailDefinitionBodyComponent } from './components/service-detail-definition-body/service-detail-definition-body.component';
+import { ServiceDetailDefinitionComponent } from './components/service-detail-definition/service-detail-definition.component';
+import { ServiceDetailOverviewComponent } from './components/service-detail-overview/service-detail-overview.component';
+import { ServiceDetailQueryComponent } from './components/service-detail-query/service-detail-query.component';
+import { ServiceDetailTypeformsComponent } from './components/service-detail-typeforms/service-detail-typeforms.component';
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
 import { ServiceEndpointComponent } from './components/service-endpoint/service-endpoint.component';
@@ -57,8 +57,6 @@ import { InputTextComponent } from './forms/input-text/input-text.component';
 import { routes } from './service-routing.module';
 import { ServiceEffects } from './state/service.effects';
 import { serviceReducer } from './state/service.reducer';
-
-
 
 @NgModule({
     declarations: [
@@ -99,7 +97,6 @@ import { serviceReducer } from './state/service.reducer';
         CommonModule,
         SharedModule,
         HttpClientModule,
-        RouterModule.forChild(routes),
 
         // Treo
         TreoCardModule,
@@ -135,6 +132,7 @@ import { serviceReducer } from './state/service.reducer';
         NgxDropzoneModule,
         DragDropModule,
 
+        RouterModule.forChild(routes),
         StoreModule.forFeature('services', serviceReducer),
         EffectsModule.forFeature([ServiceEffects]),
 

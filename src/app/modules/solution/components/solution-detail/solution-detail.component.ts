@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TreoNavigationItem } from '@treo/components/navigation';
-import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 import { loadSolutionAction } from '../../state/solution.actions';
@@ -19,7 +19,7 @@ import { SolutionServiceCreationComponent } from '../solution-service-creation/s
     styleUrls: ['./solution-detail.component.scss'],
 })
 export class SolutionDetailComponent implements OnInit {
-    public solution$: Observable<SolutionModel>;
+    public solution: SolutionModel;
     public solutionServices = [];
     private solutionId: string;
     public menuData: TreoNavigationItem[];
@@ -70,8 +70,8 @@ export class SolutionDetailComponent implements OnInit {
         ];
     }
 
-    public ngOnInit(): void {
-        this.solution$ = this.store.select(getSolutionSelector);
+    public async ngOnInit(): Promise<void> {
+        this.solution = await this.store.select(getSolutionSelector).pipe(take(1)).toPromise();
 
         this.route.params.subscribe(async params => {
             const solutionId = this.solutionId = params.solutionId;

@@ -5759,12 +5759,26 @@ ng2-pdf-viewer@^6.3.2:
     pdfjs-dist "~2.5.207"
     tslib "^1.10.0"
 
+ngx-color-picker@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-color-picker/-/ngx-color-picker-11.0.0.tgz#c1e5468505953bc579bf21014a135808820ea753"
+  integrity sha512-HyiFNPYLrCyYbFpLvZJaHC43RhjfDdFDij4pnvk9R46iH1scVtO6f2ibBgxRwBKKsT94KYvOH8wF8OrvztWdEw==
+  dependencies:
+    tslib "^2.0.0"
+
 ngx-dropzone@^2.3.0:
   version "2.5.0"
   resolved "https://registry.npmjs.org/ngx-dropzone/-/ngx-dropzone-2.5.0.tgz"
   integrity sha512-Q6F+veHVvGwJmQlgLA9p7P2GHtzY4kC8xJ2NWlke1YAt0utICC9jSXg8QZD6n1iFBYX1xOooPmd6X6Fo405C0g==
   dependencies:
     tslib "^1.9.0"
+
+ngx-image-cropper@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-image-cropper/-/ngx-image-cropper-5.0.1.tgz#b25650c43c49c67819fb02c053819e1a117683d0"
+  integrity sha512-WGfDJsYizOq3VE82JJkqjSjfvp+o2xrzsOwwm2rVtqNO64SvNJ8/PHP7ctkIjZmEkfjBfFE+eNZR82lLJJ+47w==
+  dependencies:
+    tslib "^2.0.0"
 
 ngx-json-viewer@^3.0.2:
   version "3.0.2"
