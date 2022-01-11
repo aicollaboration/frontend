@@ -1,21 +1,13 @@
-# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM node:alpine as build-stage
-ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
-
+FROM trion/ng-cli as builder
 WORKDIR /app
-COPY package*.json /app/
-RUN npm install
-COPY ./ /app/
-ARG configuration=production
-RUN npm run build:prod -- --output-path=./dist/out --configuration $configuration
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+RUN npm ci  --debug 
+COPY . .
+RUN ng build --prod
 
-# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
-FROM nginx:1.15
-#Copy ci-dashboard-dist
-COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
-#Copy default nginx configuration
-COPY ./deployment/configs/nginx-custom.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
+FROM nginx:1.17.5
+COPY ./deployment/configs/default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY ./deployment/configs/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder  /app/dist/my-first-app /usr/share/nginx/html 
+CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
