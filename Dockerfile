@@ -1,5 +1,6 @@
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
-FROM sitapati/docker-alpine-python-node as build-stage
+FROM node:alpine as build-stage
+RUN apt-get update || : && apt-get install python -y
 WORKDIR /app
 COPY package*.json /app/
 RUN npm install
