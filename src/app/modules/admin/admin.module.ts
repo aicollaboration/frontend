@@ -8,10 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'app/shared/shared.module';
-import { NgxPayPalModule } from 'ngx-paypal';
 import { routes } from './admin-routing.module';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminOverviewComponent } from './components/admin-overview/admin-overview.component';
@@ -20,6 +18,8 @@ import { AdminUserManagementComponent } from './components/admin-user-management
 import { GithubRepositoriesComponent } from './components/github-repositories/github-repositories.component';
 import { GithubUserComponent } from './components/github-user/github-user.component';
 import { ProjectSelectorComponent } from './components/project-selector/project-selector.component';
+import { NgxStripeModule } from 'ngx-stripe';
+
 @NgModule({
     declarations: [
         AdminDashboardComponent,
@@ -44,7 +44,7 @@ import { ProjectSelectorComponent } from './components/project-selector/project-
         MatTableModule,
         MatButtonModule,
 
-        NgxPayPalModule,
+        NgxStripeModule.forChild('pk_test_uu6rP8kI9MfqqcntVYYbndvG00jaTtZbmD'),
     ],
 })
 export class AdminModule {

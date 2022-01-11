@@ -1,31 +1,7 @@
-<div #paypal></div>
-<!--
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
--->
-<a class="btn"
-    href="https://www.paypal.com/signin/authorize?client_id=AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg&response_type=code&scope=openid+email&redirect_uri=http://localhost:4100/auth/paypal">
-    Login old
-</a>
-<a class="btn"
-    href="https://www.sandbox.paypal.com/connect?flowEntry=static&client_id=AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg&scope=openid,profile,emailadress&redirect_uri=http://localhost:4100/auth/paypal">Login
-    with Paypal</a>
-<br /><br />
-<span id='paypalButton'></span>
-<script>
-    paypal.use(['login'], function (login) {
-        login.render({
-            "appid": "AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg",
-            "authend": "sandbox",
-            "scopes": "openidprofileemailadress",
-            "containerid": "paypalButton",
-            "responseType": "code id_Token",
-            "locale": "de-de",
-            "theme": "neutral",
-            "buttonType": "LWP",
-            "buttonShape": "rectangle",
-            "buttonSize": "lg",
-            "fullPage": "true",
-            "returnurl": "http://localhost:4100/auth/paypal"
-        });
-    });
-</script>
+<form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+    <input type="text" formControlName="name" placeholder="Jane Doe">
+    <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+    <button type="submit">
+        CREATE TOKEN
+    </button>
+</form>

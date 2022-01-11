@@ -66,21 +66,12 @@ export class SolutionEditorComponent implements OnInit {
 
     public async loadSolution(solutionModel: SolutionModel) {
         this.solutionForm.patchValue(solutionModel);
-
-        if (solutionModel.file) {
-            const foo = await this.solutionService.getFile(solutionModel.file);
-        }
     }
 
     public async onSubmit() {
         const solution: SolutionModel = {
             ...this.solutionForm.value,
         };
-
-        if (this.files.length > 0) {
-            const file = await this.solutionService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
-            solution.file = file.Key;
-        }
 
         this.solutionService.updateSolution(solution, this.solutionId).then(data => {
             this.store.dispatch(loadSolutionAction({ solutionId: this.solutionId }));

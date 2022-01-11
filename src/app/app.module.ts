@@ -21,6 +21,7 @@ import { mockDataServices } from 'app/data/mock';
 import { LayoutModule } from 'app/layout/layout.module';
 import { environment } from 'environments/environment';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgxStripeModule } from 'ngx-stripe';
 import { DynamicModule } from './modules/service/components/dynamic';
 
 const routerConfig: ExtraOptions = {
@@ -73,6 +74,8 @@ const routerConfig: ExtraOptions = {
         NgxDropzoneModule,
 
         EditableModule,
+
+        NgxStripeModule.forRoot('pk_test_uu6rP8kI9MfqqcntVYYbndvG00jaTtZbmD'),
     ],
     bootstrap: [
         AppComponent,

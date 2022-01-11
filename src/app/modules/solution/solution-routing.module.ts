@@ -7,6 +7,7 @@ import { SolutionEditorComponent } from './components/solution-editor/solution-e
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
 import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 import { SolutionServiceListComponent } from './components/solution-service-list/solution-service-list.component';
+import { SolutionSettingsComponent } from './components/solution-settings/solution-settings.component';
 import { SolutionUserListComponent } from './components/solution-users/solution-user-list.component';
 import { SolutionResolver } from './resolvers/solution.resolver';
 
@@ -41,7 +42,11 @@ export const routes: Route[] = [
             {
                 path: 'design',
                 component: SolutionDesignComponent,
-            }
+            },
+            {
+                path: 'settings',
+                component: SolutionSettingsComponent,
+            },
         ]
     },
     {

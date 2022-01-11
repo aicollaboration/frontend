@@ -20,6 +20,7 @@ class UserDataSource extends DataSource<UserModel> {
     ],
 })
 export class SolutionUserListComponent implements OnInit {
+    public displayedColumns = ['id'];
     public dataSource: UserDataSource | null;
 
     public ngOnInit(): void {

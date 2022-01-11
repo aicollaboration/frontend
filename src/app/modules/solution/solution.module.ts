@@ -40,8 +40,8 @@ import { SolutionListComponent } from './components/solution-list/solution-list.
 import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
 import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 import { SolutionServiceListComponent } from './components/solution-service-list/solution-service-list.component';
+import { SolutionSettingsComponent } from './components/solution-settings/solution-settings.component';
 import { SolutionUserListComponent } from './components/solution-users/solution-user-list.component';
-import { SolutionResolver } from './resolvers/solution.resolver';
 import { routes } from './solution-routing.module';
 import { SolutionEffects } from './state/solution.effects';
 import { solutionReducer } from './state/solution.reducer';
@@ -59,6 +59,7 @@ import { solutionReducer } from './state/solution.reducer';
         SolutionDeletionComponent,
         SolutionUserListComponent,
         SolutionDesignComponent,
+        SolutionSettingsComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

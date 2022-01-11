@@ -106,6 +106,8 @@ export class SolutionService {
   }
 
   public async deleteSolution(id: number) {
+    await this.supabase.from<SolutionServiceModel>('solution_services').delete().eq('solutionId', id.toString());
+
     const { data, error } = await this.supabase.from('solution').delete().eq('id', id);
 
     if (error) {
@@ -115,18 +117,9 @@ export class SolutionService {
     return data;
   }
 
+  public async findSolutions(query: string): Promise<Array<SolutionModel>> {
+    const { data, error } = await this.supabase.from<SolutionModel>('solution').select("*").like('name', `%${query}%`);
 
-  public async uploadFile(path: string, file: File) {
-    const { data, error } = await this.supabase.storage.from('solution').upload(path, file);
-    if (error) {
-      throw error;
-    }
-
-    return data;
-  }
-
-  public async getFile(path: string) {
-    const { data, error } = await this.supabase.storage.from('solution').list();
     if (error) {
       throw error;
     }

@@ -63,17 +63,9 @@ export class ServiceService {
         return data;
     }
 
-    public async uploadFile(path: string, file: File) {
-        const { data, error } = await this.supabase.storage.from('service').upload(path, file);
-        if (error) {
-            throw error;
-        }
+    public async findServices(query: string): Promise<Array<ServiceModel>> {
+        const { data, error } = await this.supabase.from<ServiceModel>('service').select("*").like('name', `%${query}%`);
 
-        return data;
-    }
-
-    public async getFile(path: string) {
-        const { data, error } = await this.supabase.storage.from('service').list();
         if (error) {
             throw error;
         }

@@ -13,12 +13,13 @@ export class GithubService {
             provider: 'github',
         }, {
             redirectTo: 'http://localhost:4100/admin/dashboard',
-            scopes: 'repo gist notifications'
+            scopes: 'repo user',
         });
     }
 
     public async signOut() {
-    }
+        const { error } = await this.authService.getClient().auth.signOut()
+    }   
 
     public isConnected(): boolean {
         return !!this.getToken();
@@ -45,5 +46,21 @@ export class GithubService {
         const user = 'tobiasoberrauch';
 
         return this.httpClient.get<any[]>(`https://api.github.com/users/${user}/repos`, { headers }).toPromise();
+    }
+
+    public async fetchUserOrganizations(): Promise<any[]> {
+        const headers = {
+            "Authorization": `Bearer ${this.getToken()}`,
+        };
+        const user = 'tobiasoberrauch';
+
+        return this.httpClient.get<any[]>(`https://api.github.com/users/${user}/orgs`, { headers }).toPromise();
+    }
+
+    public async fetchOrganizations(): Promise<any[]> {
+        const headers = {
+            "Authorization": `Bearer ${this.getToken()}`,
+        };
+        return this.httpClient.get<any[]>(`https://api.github.com/organizations`, { headers }).toPromise();
     }
 }

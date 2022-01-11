@@ -31,6 +31,22 @@
                 </div>
             </div>
 
+            <div class="result page-result" *ngIf="result.resultType === 'solution'">
+                <div class="badge">Solution</div>
+                <div class="title">
+                    <span [innerHTML]="result.title"></span>
+                    <span class="link" [routerLink]="result.link">{{result.link}}</span>
+                </div>
+            </div>
+
+            <div class="result page-result" *ngIf="result.resultType === 'service'">
+                <div class="badge">Service</div>
+                <div class="title">
+                    <span [innerHTML]="result.title"></span>
+                    <span class="link" [routerLink]="result.link">{{result.link}}</span>
+                </div>
+            </div>
+
             <!-- Contact result -->
             <div class="result contact-result" *ngIf="result.resultType === 'contact'">
                 <div class="badge">Contact</div>

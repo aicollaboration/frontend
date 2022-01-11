@@ -18,7 +18,7 @@
                 </mat-form-field>
                 <mat-form-field class="w-2/3 pl-4">
                     <mat-label><b>Solution name</b></mat-label>
-                    <input matInput formControlName="name" required maxlength="250" type="text" [pattern]="namePattern" onkeypress="return new RegExp(this.namePattern).test(event.key)">
+                    <input matInput formControlName="name" required maxlength="250" type="text" [pattern]="namePattern" onkeypress="return new RegExp(this.namePattern).test(event.key)" >
                     <i>A-Z, a-z, 0-9 and -</i>
                 </mat-form-field>
             </div>

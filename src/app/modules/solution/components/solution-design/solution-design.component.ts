@@ -18,31 +18,28 @@ export class SolutionDesignComponent {
         solutionLogo: new FormControl(),
     });
 
-    public imageChangedEvent: any = '';
-    public croppedImage: any = '';
-
-    constructor() {
-    }
+    public companyLogo: any = '';
+    public companyLogoChangeEvent: any = '';
+    public solutionLogo: any = '';
+    public solutionLogoChangeEvent: any = '';
 
     public async onSubmit() {
-
+        debugger
     }
 
-
-    fileChangeEvent(event: any): void {
-        this.imageChangedEvent = event;
-    }
-    imageCropped(event) {
-        this.croppedImage = event.base64;
-    }
-    imageLoaded() {
-        /* show cropper */
-    }
-    cropperReady() {
-        /* cropper ready */
-    }
-    loadImageFailed() {
-        /* show message */
+    public onCompanyLogoCropped(event: any) {
+        this.companyLogo = event.base64;
     }
 
+    public onSolutionLogoCropped(event: any) {
+        this.solutionLogo = event.base64;
+    }
+
+    public onCompanyLogoChange(event: any) {
+        this.companyLogoChangeEvent = event;
+    }
+
+    public onSolutionLogoChange(event: any) {
+        this.solutionLogoChangeEvent = event;
+    }
 }

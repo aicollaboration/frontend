@@ -5,12 +5,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TreoNavigationItem } from '@treo/components/navigation';
-import { take } from 'rxjs/operators';
 import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 import { loadSolutionAction } from '../../state/solution.actions';
-import { getSolutionSelector, State } from '../../state/solution.reducer';
-import { SolutionDeletionComponent } from '../solution-deletion/solution-deletion.component';
+import { State } from '../../state/solution.reducer';
 import { SolutionServiceCreationComponent } from '../solution-service-creation/solution-service-creation.component';
 
 @Component({
@@ -67,22 +65,31 @@ export class SolutionDetailComponent implements OnInit {
                     },
                 ]
             },
+            {
+                title: 'Settings',
+                type: 'group',
+                children: [
+                    {
+                        title: 'General',
+                        type: 'basic',
+                        icon: 'settings',
+                        link: 'settings',
+                    },
+                ]
+            }
         ];
     }
 
     public async ngOnInit(): Promise<void> {
-        this.solution = await this.store.select(getSolutionSelector).pipe(take(1)).toPromise();
+        this.route.data.subscribe(data => {
+            this.solution = data.solution;
+        });
 
         this.route.params.subscribe(async params => {
             const solutionId = this.solutionId = params.solutionId;
-            this.store.dispatch(loadSolutionAction({ solutionId }));
 
             this.solutionServices = await this.solutionService.getSolutionServices(solutionId);
         });
-    }
-
-    public openDeletionDialog(): void {
-        const dialogRef = this.matDialog.open(SolutionDeletionComponent);
     }
 
     public async addService(event) {

@@ -9,7 +9,7 @@ import { GithubService } from 'app/core/auth/github.service';
 })
 export class AdminDashboardComponent implements OnInit {
     public connected: boolean = false;
-    public userInfo: any;
+    public userInfo: string;
     public repositories: any[] = [];
 
     constructor(private githubService: GithubService) {}
@@ -23,7 +23,7 @@ export class AdminDashboardComponent implements OnInit {
     }
 
     private async fetchGithubData() {
-        this.userInfo = await this.githubService.fetchUserInfo();
+        this.userInfo = JSON.stringify(await this.githubService.fetchUserInfo(), null, 4);
         this.repositories = await this.githubService.fetchUserRepositories();
     }
 

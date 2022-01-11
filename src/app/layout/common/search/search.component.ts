@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { MatFormField } from '@angular/material/form-field';
+import { TreoAnimations } from '@treo/animations/public-api';
+import { ServiceService } from 'app/modules/service/services/service.service';
+import { SolutionService } from 'app/modules/solution/services/solution.service';
 import { Subject } from 'rxjs';
 import { debounceTime, filter, map, takeUntil } from 'rxjs/operators';
-import { TreoAnimations } from '@treo/animations/public-api';
 
 @Component({
     selector: 'search',
@@ -15,40 +17,34 @@ import { TreoAnimations } from '@treo/animations/public-api';
     animations: TreoAnimations
 })
 export class SearchComponent implements OnInit, OnDestroy {
-    results: any[] | null;
-    searchControl: FormControl;
+    public results: any[] | null;
+    public searchControl: FormControl;
 
     // Debounce
     @Input()
-    debounce: number;
+    public debounce: number;
 
     // Min. length
     @Input()
-    minLength: number;
+    public minLength: number;
 
     // Search
     @Output()
-    search: EventEmitter<any>;
+    public search: EventEmitter<any>;
 
     // Private
     private _appearance: 'basic' | 'bar';
     private _opened: boolean;
-    private _unsubscribeAll: Subject<any>;
+    private unsubscribeAll: Subject<any>;
 
-    /**
-     * Constructor
-     *
-     * @param {ElementRef} elementRef
-     * @param {HttpClient} httpClient
-     * @param {Renderer2} renderer2
-     */
     constructor(
         private elementRef: ElementRef,
-        private httpClient: HttpClient,
-        private renderer2: Renderer2
+        private renderer2: Renderer2,
+        private serviceService: ServiceService,
+        private solutionService: SolutionService,
     ) {
         // Set the private defaults
-        this._unsubscribeAll = new Subject();
+        this.unsubscribeAll = new Subject();
 
         // Set the defaults
         this.appearance = 'basic';
@@ -162,7 +158,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         // Subscribe to the search field value changes
         this.searchControl.valueChanges.pipe(
             debounceTime(this.debounce),
-            takeUntil(this._unsubscribeAll),
+            takeUntil(this.unsubscribeAll),
             map((value) => {
 
                 // Set the search results to null if there is no value or
@@ -181,13 +177,29 @@ export class SearchComponent implements OnInit, OnDestroy {
                 // filter out the values that are smaller than minLength
                 return value && value.length >= this.minLength;
             })
-        )
-            .subscribe((value) => {
-                this.httpClient.post('api/common/search', { query: value })
-                    .subscribe((response: any) => {
-                        this.results = response.results;
-                    });
-            });
+        ).subscribe(async (query) => {
+            const solutionResults = await this.solutionService.findSolutions(query);
+            const serviceResults = await this.serviceService.findServices(query);
+            const re = new RegExp('(' + query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ')', 'ig');
+
+            this.results = [
+                ...solutionResults.map((result) => {
+                    return {
+                        title: result.name.replace(re, '<mark>$1</mark>'),
+                        resultType: 'solution',
+                        link: `/solutions/detail/${result.id}`,
+                    }
+                }),
+                ...serviceResults.map((result) => {
+                    return {
+                        title: result.name.replace(re, '<mark>$1</mark>'),
+                        resultType: 'service',
+                        link: `/services/detail/${result.id}`,
+                    }
+                })
+            ]
+
+        });
     }
 
     /**
@@ -195,8 +207,8 @@ export class SearchComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
-        this._unsubscribeAll.next();
-        this._unsubscribeAll.complete();
+        this.unsubscribeAll.next();
+        this.unsubscribeAll.complete();
     }
 
     // -----------------------------------------------------------------------------------------------------

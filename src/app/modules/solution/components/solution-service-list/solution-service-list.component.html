@@ -1,19 +1,8 @@
 <div class="main">
     <div class="cards">
-        <treo-card [class]="'card flex flex-col max-w-64 w-full filter-shopping'"
-            *ngFor="let solutionService of solutionServices"
+        <treo-card class="card flex flex-col max-w-64 w-full" *ngFor="let solutionService of solutionServices"
             [routerLink]="['/solutions', 'detail', solutionService.solution.id, 'services', solutionService.service.id]">
             <div class="relative">
-                <div class="absolute flex flex-col top-0 right-0 p-3">
-                    <button mat-icon-button>
-                        <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:favorite_border'">
-                        </mat-icon>
-                    </button>
-                    <button mat-icon-button>
-                        <mat-icon class="icon-size-20 text-white" [svgIcon]="'mat_outline:compare_arrows'">
-                        </mat-icon>
-                    </button>
-                </div>
                 <img class="object-cover" [src]="solutionService.image" *ngIf="solutionService.image">
             </div>
             <div class="m-8 mb-0">
@@ -26,18 +15,16 @@
                 </div>
                 <div class="mt-6 -mx-8">
                     <button
-                        class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
-                        mat-flat-button color="primary">Configure</button>
+                        class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base "
+                        mat-flat-button color="secondary">Configure</button>
                 </div>
             </div>
         </treo-card>
         <treo-card class="card flex flex-col max-w-64 w-full filter-shopping">
-            <div class="m-8 mb-0">
-                <div class="mt-6 -mx-8">
-                    <button
-                        class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base mat-primary"
-                        mat-flat-button color="primary" (click)="addService($event)">Add service to solution</button>
-                </div>
+            <div class="-mx-8">
+                <button
+                    class="w-full rounded-t-none mat-focus-indicator w-full rounded-t-none mat-flat-button mat-button-base"
+                    mat-flat-button color="secondary" (click)="addService($event)">Add service to solution</button>
             </div>
         </treo-card>
     </div>

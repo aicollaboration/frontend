@@ -15,8 +15,8 @@ export class SolutionDetailHomeComponent implements OnInit {
     constructor(private route: ActivatedRoute) {
     }
 
-    public ngOnInit(): void {
-        this.route.parent.data.subscribe((data) => {
+    public async ngOnInit(): Promise<void> {
+        this.route.parent.data.subscribe(async data => {
             this.solution = data.solution;
         });
     }

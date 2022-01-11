@@ -205,11 +205,6 @@ export class ServiceCreationComponent implements OnInit {
             ...this.serviceForm.value,
         };
 
-        if (this.files.length > 0) {
-            const file = await this.serviceService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
-            service.file = file.Key;
-        }
-
         const apiInput = this.serviceForm.value['api'];
         const obj = load(apiInput);
         const api = JSON.stringify(obj, null, 2);
@@ -244,11 +239,6 @@ export class ServiceCreationComponent implements OnInit {
         const service: ServiceModel = {
             ...this.serviceForm.value,
         };
-
-        if (this.files.length > 0) {
-            const file = await this.serviceService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
-            service.file = file.Key;
-        }
 
         const apiInput = this.serviceForm.value['api'];
         const obj = load(apiInput);

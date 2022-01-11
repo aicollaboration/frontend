@@ -1,34 +1,32 @@
 import { Injectable } from '@angular/core';
-import { cloneDeep } from 'lodash-es';
 import { TreoNavigationItem, TreoNavigationService } from '@treo/components/navigation';
 import { TreoMockApi } from '@treo/lib/mock-api/mock-api.interfaces';
 import { TreoMockApiService } from '@treo/lib/mock-api/mock-api.service';
-import { defaultNavigation } from 'app/data/mock/common/navigation/data';
 import { contacts } from 'app/data/mock/apps/contacts/data';
+import { defaultNavigation } from 'app/data/mock/common/navigation/data';
+import { cloneDeep } from 'lodash-es';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SearchMockApi implements TreoMockApi
-{
+export class SearchMockApi implements TreoMockApi {
     // Private Readonly
-    private readonly _defaultNavigation: TreoNavigationItem[] = defaultNavigation;
-    private readonly _contacts: any[] = contacts;
+    private readonly defaultNavigation: TreoNavigationItem[] = defaultNavigation;
+    private readonly contacts: any[] = contacts;
 
     /**
      * Constructor
      *
-     * @param _treoNavigationService
-     * @param _treoMockApiService
+     * @param treoNavigationService
+     * @param treoMockApiService
      */
     constructor(
-        private _treoNavigationService: TreoNavigationService,
-        private _treoMockApiService: TreoMockApiService
-    )
-    {
+        private treoNavigationService: TreoNavigationService,
+        private treoMockApiService: TreoMockApiService
+    ) {
         // Set the data
-        this._defaultNavigation = defaultNavigation;
-        this._contacts = contacts;
+        this.defaultNavigation = defaultNavigation;
+        this.contacts = contacts;
 
         // Register the API endpoints
         this.register();
@@ -41,15 +39,14 @@ export class SearchMockApi implements TreoMockApi
     /**
      * Register
      */
-    register(): void
-    {
+    register(): void {
         // Get the flat navigation and store it
-        const flatNavigation = this._treoNavigationService.getFlatNavigation(this._defaultNavigation);
+        const flatNavigation = this.treoNavigationService.getFlatNavigation(this.defaultNavigation);
 
         // -----------------------------------------------------------------------------------------------------
         // @ Search results - GET
         // -----------------------------------------------------------------------------------------------------
-        this._treoMockApiService
+        this.treoMockApiService
             .onPost('api/common/search')
             .reply((request) => {
 
@@ -58,9 +55,8 @@ export class SearchMockApi implements TreoMockApi
 
                 // If the search query is an empty string,
                 // return an empty array
-                if ( query === '' )
-                {
-                    return [200, {results: []}];
+                if (query === '') {
+                    return [200, { results: [] }];
                 }
 
                 // Filter the navigation
@@ -69,7 +65,7 @@ export class SearchMockApi implements TreoMockApi
                 });
 
                 // Filter the contacts
-                const contactsResults = cloneDeep(this._contacts).filter((user) => {
+                const contactsResults = cloneDeep(this.contacts).filter((user) => {
                     return user.name.toLowerCase().includes(query);
                 });
 
@@ -77,8 +73,7 @@ export class SearchMockApi implements TreoMockApi
                 const results = [];
 
                 // If there are navigation results...
-                if ( navigationResults.length > 0 )
-                {
+                if (navigationResults.length > 0) {
                     // Normalize the results while marking the found chars
                     navigationResults.forEach((result) => {
 
@@ -96,8 +91,7 @@ export class SearchMockApi implements TreoMockApi
                 }
 
                 // If there are contacts results...
-                if ( contactsResults.length > 0 )
-                {
+                if (contactsResults.length > 0) {
                     // Normalize the results while marking the found chars
                     contactsResults.forEach((result) => {
 
@@ -118,7 +112,7 @@ export class SearchMockApi implements TreoMockApi
                 }
 
                 // Return the results
-                return [200, {results}];
+                return [200, { results }];
             });
     }
 }

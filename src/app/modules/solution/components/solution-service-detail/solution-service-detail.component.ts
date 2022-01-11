@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
-import { SolutionModel } from "../../models/solution.model";
+import { combineLatest } from "rxjs";
+import { SolutionServiceModel } from "../../models/solution-service.model";
 import { SolutionService } from "../../services/solution.service";
 
 @Component({
@@ -12,9 +12,7 @@ import { SolutionService } from "../../services/solution.service";
     ],
 })
 export class SolutionServiceDetailComponent implements OnInit {
-    public solution$: Observable<SolutionModel>;
-    private solutionId: string;
-    private serviceId: string;
+    public solutionServiceModel: SolutionServiceModel;
 
     public constructor(
         private route: ActivatedRoute,
@@ -23,19 +21,13 @@ export class SolutionServiceDetailComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        Promise.all([
-            this.route.params.toPromise(),
-            this.route.parent.params.toPromise(),
-        ])
-            .then(async ([params, parentParams]) => {
-                this.solutionId = parentParams.solutionId;
-                this.serviceId = params.serviceId;
-
-                const solutionService = await this.solutionService.getSolutionService(this.solutionId, this.serviceId);
-            })
-            .catch(error => {
-            })
-            .finally(() => {
-            });
+        combineLatest([
+            this.route.params,
+            this.route.parent.params,
+        ]).subscribe(async ([params, parentParams]) => {
+            this.solutionServiceModel = await this.solutionService.getSolutionService(parentParams.solutionId, params.serviceId);
+        }, (error) => {
+            console.error(error);
+        });
     }
 }

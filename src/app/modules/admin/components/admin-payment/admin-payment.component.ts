@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { ICreateOrderRequest, IPayPalConfig } from "ngx-paypal";
-
-declare const paypal;
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StripeCardElementOptions, StripeElementsOptions } from '@stripe/stripe-js';
+import { StripeCardComponent, StripeService } from 'ngx-stripe';
 
 @Component({
     selector: 'admin-payment',
@@ -9,74 +9,50 @@ declare const paypal;
     styleUrls: ['./admin-payment.component.scss'],
 })
 export class AdminPaymentComponent implements OnInit {
-    public payPalConfig?: IPayPalConfig;
+    @ViewChild(StripeCardComponent)
+    public card: StripeCardComponent;
 
-    @ViewChild('paypal', { static: true })
-    public paypalElement: ElementRef;
+    public cardOptions: StripeCardElementOptions = {
+        style: {
+            base: {
+                iconColor: '#666EE8',
+                color: '#31325F',
+                fontWeight: '300',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '18px',
+                '::placeholder': {
+                    color: '#CFD7E0'
+                }
+            }
+        }
+    };
 
+    public elementsOptions: StripeElementsOptions = {
+        locale: 'de'
+    };
+
+    public stripeTest: FormGroup;
+
+    constructor(private formBuilder: FormBuilder, private stripeService: StripeService) { }
 
     public ngOnInit(): void {
-        paypal.Buttons().render();
-
-        this.initConfig();
+        this.stripeTest = this.formBuilder.group({
+            name: ['', [Validators.required]]
+        });
     }
 
-    private initConfig(): void {
-        this.payPalConfig = {
-            currency: 'EUR',
-            clientId: 'AW2knlF9Yu_sx7-pEUznxA3246h-RvDdbLnIHi8RxJG_QA91blJ56KDSRK81c9RhDsbHaebmLWULRUtg',
-            createOrderOnClient: (data) => <ICreateOrderRequest>{
-                intent: 'CAPTURE',
-                purchase_units: [{
-                    amount: {
-                        currency_code: 'EUR',
-                        value: '9.99',
-                        breakdown: {
-                            item_total: {
-                                currency_code: 'EUR',
-                                value: '9.99'
-                            }
-                        }
-                    },
-                    items: [{
-                        name: 'Enterprise Subscription',
-                        quantity: '1',
-                        category: 'DIGITAL_GOODS',
-                        unit_amount: {
-                            currency_code: 'EUR',
-                            value: '9.99',
-                        },
-                    }]
-                }]
-            },
-            advanced: {
-                commit: 'true'
-            },
-            style: {
-                label: 'paypal',
-                layout: 'vertical'
-            },
-            onApprove: (data, actions) => {
-                console.log('onApprove - transaction was approved, but not authorized', data, actions);
-                actions.order.get().then(details => {
-                    console.log('onApprove - you can get full order details inside onApprove: ', details);
-                });
-
-            },
-            onClientAuthorization: (data) => {
-                console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-
-            },
-            onCancel: (data, actions) => {
-                console.log('OnCancel', data, actions);
-
-            },
-            onError: err => {
-                console.log('OnError', err);
-            },
-            onClick: (data, actions) => {
-                console.log('onClick', data, actions);
-            }
-        };
+    public createToken(): void {
+        const name = this.stripeTest.get('name').value;
+        this.stripeService
+            .createToken(this.card.element, { name })
+            .subscribe((result) => {
+                if (result.token) {
+                    // Use the token
+                    console.log(result.token.id);
+                } else if (result.error) {
+                    // Error creating the token
+                    console.log(result.error.message);
+                }
+            });
     }
 }

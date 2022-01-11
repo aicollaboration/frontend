@@ -1,61 +1,37 @@
 <form [formGroup]="designForm" (ngSubmit)="onSubmit()" class="max-w-3xl">
-    <mat-accordion>
-        <h2>Brand</h2>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Company Logo</mat-panel-title>
-                <mat-panel-description>Change the logo of your company</mat-panel-description>
-            </mat-expansion-panel-header>
-            <input type="file" (change)="fileChangeEvent($event)" formControlName="companyLogo" />
-            <div class="flex">
-                <div class="w-1/2 pr-4">
-                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                        [aspectRatio]="4 / 4" [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)"
-                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
-                        (loadImageFailed)="loadImageFailed()"></image-cropper>
-                </div>
-                <div class="w-1/2 pl-4">
-                    <img [src]="croppedImage" />
-                </div>
-            </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Solution Logo</mat-panel-title>
-                <mat-panel-description>Change the logo of your solution</mat-panel-description>
-            </mat-expansion-panel-header>
-            <input type="file" (change)="fileChangeEvent($event)" formControlName="solutionLogo" />
-            <div class="flex">
-                <div class="w-1/2 pr-4">
-                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
-                        [aspectRatio]="4 / 4" [resizeToWidth]="256" format="png" (imageCropped)="imageCropped($event)"
-                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
-                        (loadImageFailed)="loadImageFailed()"></image-cropper>
-                </div>
-                <div class="w-1/2 pl-4">
-                    <img [src]="croppedImage" />
-                </div>
-            </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>Colors</mat-panel-title>
-                <mat-panel-description>Change the colors of your solution</mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-form-field>
-                <mat-label>Primary color</mat-label>
-                <input matInput [(colorPicker)]="primaryColor" [style.background]="primaryColor"
-                    formControlName="primaryColor" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Secondary color</mat-label>
-                <input matInput [(colorPicker)]="secondaryColor" [style.background]="secondaryColor"
-                    formControlName="secondaryColor" />
-            </mat-form-field>
-        </mat-expansion-panel>
-    </mat-accordion>
+    <h2>Company Logo</h2>
+    <input type="file" (change)="onCompanyLogoChange($event)" formControlName="companyLogo" />
+    <div class="flex">
+        <div class="w-1/2 pr-4">
+            <image-cropper [imageChangedEvent]="companyLogoChangeEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" format="png" (imageCropped)="onCompanyLogoCropped($event)"></image-cropper>
+        </div>
+        <div class="w-1/2 pl-4">
+            <img [src]="companyLogo" />
+        </div>
+    </div>
 
+    <h2>Solution Logo</h2>
+    <input type="file" (change)="onSolutionLogoChange($event)" formControlName="solutionLogo" />
+    <div class="flex">
+        <div class="w-1/2 pr-4">
+            <image-cropper [imageChangedEvent]="solutionLogoChangeEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+                [resizeToWidth]="256" format="png" (imageCropped)="onSolutionLogoCropped($event)"></image-cropper>
+        </div>
+        <div class="w-1/2 pl-4">
+            <img [src]="solutionLogo" />
+        </div>
+    </div>
 
-
-    
+    <h2>Colors</h2>
+    <mat-form-field>
+        <mat-label>Primary color</mat-label>
+        <input matInput [(colorPicker)]="primaryColor" [style.background]="primaryColor"
+            formControlName="primaryColor" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Secondary color</mat-label>
+        <input matInput [(colorPicker)]="secondaryColor" [style.background]="secondaryColor"
+            formControlName="secondaryColor" />
+    </mat-form-field>
 </form>

@@ -56,22 +56,12 @@ export class ServiceEditorComponent implements OnInit {
 
     public async loadService(serviceModel: ServiceModel) {
         this.serviceForm.patchValue(serviceModel);
-
-        if (serviceModel.file) {
-            const foo = await this.serviceService.getFile(serviceModel.file);
-        }
-        
     }
 
     public async onSubmit() {
         const service: ServiceModel = {
             ...this.serviceForm.value,
         };
-
-        if (this.files.length > 0) {
-            const file = await this.serviceService.uploadFile(Math.random().toString(36).substring(7), this.files[0]);
-            service.file = file.Key;
-        }
       
         const apiInput = this.serviceForm.value['api'];
         const obj = yaml.load(apiInput);

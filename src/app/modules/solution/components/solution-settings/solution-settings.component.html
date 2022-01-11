@@ -1,0 +1,47 @@
+<h2>Solution details</h2>
+<div class="flex" *ngIf="solution">
+    <div class="w-1/2">
+        <div class="mb-5">
+            <div class="text-grey font-bold">Solution name</div>
+            <div>{{ solution.name }} </div>
+        </div>
+        <div class="mb-5">
+            <div class="text-grey font-bold">Source repository</div>
+            <div *ngIf="solution.repository">{{ solution.repository.clone_url }}</div>
+        </div>
+        <div class="mb-5">
+            <div class="text-grey font-bold">Solution URL</div>
+            <div>https://{{ solution.name }}.{{ solution.owner }}.aiproduct.io</div>
+        </div>
+    </div>
+    <div class="w-1/2">
+
+    </div>
+</div>
+
+<h2>Domain</h2>
+<button mat-flat-button color="primary" (click)="openDomainDialog()">Add domain</button>
+
+<h2>Danger Zone</h2>
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Change repository visibility</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>TThis solution is currently public.</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Transfer ownership</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Transfer this solution to another user or to an organization where you have the ability to create
+            repositories.</p>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Delete this solution</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Once you delete a solution, there is no going back. Please be certain.</p>
+        <button (click)="openDeleteDialog()" mat-flat-button color="warn">Delete solution</button>
+    </mat-expansion-panel>
+</mat-accordion>

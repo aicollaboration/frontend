@@ -4,12 +4,15 @@
 
 <form (ngSubmit)="saveAndClose()">
     <div class="actions">
+        <mat-checkbox formControlName="deleteService">Delete service on kubernetes</mat-checkbox>
+        <mat-checkbox formControlName="deleteRepository">Delete repository</mat-checkbox>
+
         <div class="buttons">
-            <button class="save-button" mat-raised-button type="reset">
+            <button mat-raised-button type="reset" (click)="close()">
                 <mat-icon [svgIcon]="'reset'"></mat-icon>
                 <span>No</span>
             </button>
-            <button class="save-button" mat-raised-button type="submit">
+            <button mat-raised-button color="warn" type="submit">
                 <mat-icon [svgIcon]="'save'"></mat-icon>
                 <span>Yes, delete</span>
             </button>
