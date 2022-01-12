@@ -28,7 +28,7 @@ jobs:
           release: nginx
           namespace: default
           chart: charts/values.yaml
-          version: ${{ github.sha }}
+          
 	  
           
           
