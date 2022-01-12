@@ -22,8 +22,10 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
-      - name: k8s deployment
-        run: |
-          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
-          helm list
+      - name: Helm Deploy Action
+        uses: elseu/sdu-helm-deploy-action@0.0.8
+        with:
+          release: aiplatform-frontend
+          namespace: default
+          chart: charts
           
