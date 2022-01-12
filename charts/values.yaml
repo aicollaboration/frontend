@@ -1,3 +1,5 @@
+tag: latest
+
 frontend:
     replicaCount: 1
-    image: ghcr.io/aicollaboration/frontend:<latest>
+    image: ghcr.io/aicollaboration/frontend
