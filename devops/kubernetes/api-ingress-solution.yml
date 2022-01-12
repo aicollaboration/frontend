@@ -14,7 +14,7 @@ spec:
     - aiproduct.io
     secretName: tls-latest-aiproduct.io
   rules:
-   - host: aicollaboration.net
+  - host: aicollaboration.net
     http:
       paths:
       - path: /
