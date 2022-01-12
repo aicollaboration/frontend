@@ -12,25 +12,18 @@ jobs:
   deploy:
      runs-on: ubuntu-latest
     
+    
      steps:
       - name: Checkout
         uses: actions/checkout@v2
-	  
+         
       - name: Set kubernetes secrets
         uses: azure/k8s-set-context@v2
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
-	  
-	  
+
       - name: k8s deployment
         run: |
-          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml
+          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
           helm list
-          
-	  
-          
-          
-	 
-         
-          
