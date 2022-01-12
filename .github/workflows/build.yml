@@ -29,6 +29,7 @@ jobs:
           namespace: default
           chart: charts/values.yaml
           version: ${{ github.sha }}
+	  
           
           
 	 
