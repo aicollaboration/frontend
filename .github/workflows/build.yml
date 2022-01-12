@@ -23,9 +23,14 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Helm Deploy Action
-        uses: elseu/sdu-helm-deploy-action@0.0.8
+        uses: deliverybot/helm@v1
         with:
-          release: aiplatform-frontend
+          release: nginx
           namespace: default
-          chart: charts
+          chart: charts/values.yaml
+          version: ${{ github.sha }}
+          
+          
+	 
+         
           
