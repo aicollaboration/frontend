@@ -22,6 +22,10 @@ jobs:
         with:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
+      
+      - name: Shell
+        run: |
+          sed -i "s/<latest>/${{ github.sha }}/g" charts/values.yaml
 
       - name: k8s deployment
         run: |
