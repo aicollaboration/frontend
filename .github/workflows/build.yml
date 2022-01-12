@@ -25,9 +25,11 @@ jobs:
       
       - name: Shell
         run: |
-          sed -i "s/<latest>/${{ github.sha }}/g" charts/values.yaml
+          sed -i "s/<VERSION>/${{ github.sha }}/g" devops/kubernetes/deployment-solution.yml
 
       - name: k8s deployment
         run: |
-          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml
-          helm list
+          kubectl apply -f devops/kubernetes/api-ingress-solution.yml
+          kubectl apply -f devops/kubernetes/deployment-solution.yml
+          kubectl apply -f devops/kubernetes/service-solution.yml
+          kubectl apply -f devops/kubernetes/certificate.yml
