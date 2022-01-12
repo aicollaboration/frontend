@@ -15,11 +15,6 @@ jobs:
      steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: Shell
-        run: |
-	  pwd
-	  sed -i "s/<latest>/${{ github.sha }}/g" charts/values.yaml
 	  
       - name: Set kubernetes secrets
         uses: azure/k8s-set-context@v2
