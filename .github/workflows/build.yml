@@ -25,5 +25,5 @@ jobs:
       
       - name: k8s deployment
         run: |
-          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
+          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=4f270729a9f92cbeb2e7dff088b5c292b3593611
           helm list
