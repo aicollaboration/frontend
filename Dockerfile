@@ -12,5 +12,5 @@ FROM nginx:1.17.5
 #Copy ci-dashboard-dist
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
 #Copy default nginx configuration
-COPY ./deployment/configs/nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY ./deployment/configs/nginx.conf /etc/nginx/nginx.conf
 EXPOSE 80
