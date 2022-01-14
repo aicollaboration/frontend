@@ -24,6 +24,9 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
       
       - name: k8s deployment
-        run: |
-          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=4f270729a9f92cbeb2e7dff088b5c292b3593611
-          helm list
+        uses: 'deliverybot/helm@master'
+        with:
+           token: '${{ github.token }}'
+           chart: 'charts'
+        env:
+           KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
