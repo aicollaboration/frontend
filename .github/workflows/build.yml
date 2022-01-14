@@ -24,12 +24,8 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
       
       - name: k8s deployment
-        uses: vimeda/helm@v1.6.7
-        with:
-          release: aiplatform-frontend
-          namespace: default
-          chart: charts
-          values: values.yaml
-          tag: ${{ github.sha }}
+        run: |
+          helm install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
+          helm list
           
           
