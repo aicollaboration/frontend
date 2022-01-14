@@ -23,13 +23,7 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
       
-      - name: Shell
-        run: |
-          sed -i "s/<VERSION>/${{ github.sha }}/g" devops/kubernetes/deployment-solution.yml
-
       - name: k8s deployment
         run: |
-          kubectl apply -f devops/kubernetes/api-ingress-solution.yml
-          kubectl apply -f devops/kubernetes/deployment-solution.yml
-          kubectl apply -f devops/kubernetes/service-solution.yml
-          kubectl apply -f devops/kubernetes/certificate.yml
+          helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
+          helm list
