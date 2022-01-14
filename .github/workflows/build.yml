@@ -25,5 +25,5 @@ jobs:
       
       - name: k8s deployment
         run: |
-          helm upgrade charts/values.yaml --set tag=${{ github.sha }}
+          helm upgrade --install charts -f charts/values.yaml --set tag=${{ github.sha }}
           helm list
