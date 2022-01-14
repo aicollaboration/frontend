@@ -1,13 +1,12 @@
-FROM trion/ng-cli as builder
-WORKDIR /app
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-RUN npm ci  --debug 
+### STAGE 1: Build ###
+FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-RUN npm run build:prod:mem -- --output-path=./dist/out --configuration production
+RUN npm run build
 
-FROM nginx:1.17.5
-COPY ./deployment/configs/default.conf.template /etc/nginx/conf.d/default.conf.template
-COPY ./deployment/configs/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder  /app/dist/out /usr/share/nginx/html 
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/aston-villa-app /usr/share/nginx/html
