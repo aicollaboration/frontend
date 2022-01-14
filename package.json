@@ -72,7 +72,8 @@
     "perfect-scrollbar": "^1.5.3",
     "rrule": "2.6.4",
     "rxjs": "6.5.5",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "zone.js": "^0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.0.3",
