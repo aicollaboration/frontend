@@ -9,7 +9,7 @@ RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm install --build-from-resource
 COPY . .
 RUN npm run build
 
