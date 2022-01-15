@@ -2,6 +2,7 @@
 FROM node:12.20-alpine AS build
 WORKDIR /usr/src/app
 
+RUN apk add --update alpine-sdk
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
@@ -15,5 +16,6 @@ RUN npm run build
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
+RUN apk add --update alpine-sdk
 COPY ./deployment/configs/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/treo /usr/share/nginx/html
