@@ -7,10 +7,6 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt
     kubernetes.io/tls-acme: "true"
 spec:
-  tls:
-  - hosts:
-    - aicollaboration.com
-    secretName: tls-latest-aicollaboration.com
   rules:
   - host: aicollaboration.com
     http:
