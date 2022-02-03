@@ -9,7 +9,13 @@ export class AuthService {
 
     constructor() {
         this.supabase = this.getClient();
-        this.isAuthenticated = this.supabase.auth.session() ? true : false;
+        this.supabase.auth.onAuthStateChange(event => {
+            if (event === 'SIGNED_IN') {
+                this.isAuthenticated = true;
+            } else if (event === 'SIGNED_OUT') {
+                this.isAuthenticated = false;
+            }
+        })
     }
 
     public getClient() {
@@ -30,7 +36,8 @@ export class AuthService {
             throw new Error('User is already logged in.');
         }
 
-        const { user, error, session } = await this.supabase.auth.signIn({ email, password });
+        const redirectTo = `//${window.location.host}/admin/dashboard`;
+        const { user, error, session } = await this.supabase.auth.signIn({ email, password }, { redirectTo });
 
         if (error) {
             throw error;
@@ -53,7 +60,8 @@ export class AuthService {
     }
 
     public async signUpWithGithub(): Promise<User> {
-        const { user, error } = await this.supabase.auth.signIn({ provider: 'github' });
+        const redirectTo = `${window.location.protocol}//${window.location.host}/dashboard`;
+        const { user, error } = await this.supabase.auth.signIn({ provider: 'github' }, { redirectTo });
         if (error) {
             throw error;
         }
@@ -84,14 +92,17 @@ export class AuthService {
     }
 
     public check(): boolean {
+        //console.log(`check ${this.isAuthenticated}`);
         return this.isAuthenticated;
     }
 
     set isAuthenticated(authenticated: boolean) {
+        //console.log(`set isAuthenticated ${authenticated}`);
         this.authenticated = authenticated;
     }
 
     get isAuthenticated(): boolean {
+        //console.log(`get isAuthenticated ${this.authenticated}`);
         return this.authenticated;
     }
 

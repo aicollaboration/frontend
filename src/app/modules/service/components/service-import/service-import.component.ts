@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { GithubService } from "app/core/auth/github.service";
+import { GithubService } from "app/shared/services/github/github.service";
 
 @Component({
     selector: "service-import",

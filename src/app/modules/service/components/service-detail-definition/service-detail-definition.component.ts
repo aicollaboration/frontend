@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ServiceModel } from '../../models/service.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ServiceModel } from '../../models/service.model';
 
 interface MethodType {
   value: string;
@@ -16,38 +16,47 @@ export class ServiceDetailDefinitionComponent {
   @Input()
   public service: ServiceModel;
 
-  methodtype: MethodType[] = [
-    { value: 'get', viewValue: 'get' },
-    { value: 'post', viewValue: 'post' },
-    { value: 'delete', viewValue: 'delete' },
-    { value: 'put', viewValue: 'put' },
-    { value: 'patch', viewValue: 'patch' },
+  public methodTypes: MethodType[] = [
+    { value: 'get', viewValue: 'GET' },
+    { value: 'post', viewValue: 'POST' },
+    { value: 'delete', viewValue: 'DELETE' },
+    { value: 'put', viewValue: 'PUT' },
+    { value: 'patch', viewValue: 'PATCH' },
   ];
 
-  dataType: MethodType[] = [
+  public dataTypes: MethodType[] = [
     { value: 'string', viewValue: 'string' },
     { value: 'number', viewValue: 'number' },
     { value: 'array', viewValue: 'array' },
     { value: 'object', viewValue: 'object' }
   ];
 
-  mediaType: MethodType[] = [
+  public mediaTypes: MethodType[] = [
     { value: 'applicationjson', viewValue: 'application/json' },
     { value: 'formdata', viewValue: 'form-data' }
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) { }
 
-  checkoutForm = this.formBuilder.group({
-    name: '',
-    description: '',
-    endpoint: '',
-    type: '',
-  });
+  public checkoutForm = this.formBuilder.array([this.createItem()]);
 
-  onSubmit(): void {
+  public onSubmit(): void {
+    debugger
     // Process checkout data here
     console.warn('Your order has been submitted', this.checkoutForm.value);
     this.checkoutForm.reset();
+  }
+
+  public createItem(): FormGroup {
+    return this.formBuilder.group({
+      name: '',
+      description: '',
+      endpoint: '',
+      type: 'get',
+    });
+  }
+
+  public addItem(): void {
+    this.checkoutForm.push(this.createItem());
   }
 }

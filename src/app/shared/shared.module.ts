@@ -15,11 +15,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TreoCardModule } from '@treo/components/card';
 import { TreoNavigationModule } from '@treo/components/navigation';
+import { GithubService } from './services/github/github.service';
+import { GitlabService } from './services/gitlab/gitlab.service';
+import { KubernetesService } from './services/kubernetes/kubernetes.service';
 
 @NgModule({
-    declarations: [
-
-    ],
     imports: [
         CommonModule,
         FormsModule,
@@ -46,10 +46,15 @@ import { TreoNavigationModule } from '@treo/components/navigation';
         ReactiveFormsModule,
         MatFormFieldModule,
     ],
+    providers: [
+        GitlabService,
+        GithubService,
+        KubernetesService,
+    ],
     exports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ]
 })
 export class SharedModule {

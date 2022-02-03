@@ -1,14 +1,33 @@
-<h2>Github</h2>
-<div>
-    <button (click)="signIn()" mat-button mat-stroked-button>
-      Connect with Github
-    </button>
-  </div>
-  <div>
-    <button (click)="signOut()" mat-button mat-stroked-button>
-      Close connection to Github
-    </button>
-  </div>
+Gitlab {{gitlabIsConnected ? 'Yes' : 'No'}}
+<button (click)="signInWithGitlab()" mat-button mat-stroked-button>
+  Connect with Gitlab
+</button>
+<button (click)="signOutGitlab()" mat-button mat-stroked-button>
+  Close connection to Gitlab
+</button>
+
+Github {{githubIsConnected ? 'Yes' : 'No'}}
+<button (click)="signInWithGithub()" mat-button mat-stroked-button>
+  Connect with Github
+</button>
+<button (click)="signOutGithub()" mat-button mat-stroked-button>
+  Close connection to Github
+</button>
+
+<h2>Groups</h2>
+<ul>
+  <li *ngFor="let group of groups">
+    <a href="{{group.html_url}}">{{group.name}}</a>
+
+    <ul>
+      <li *ngFor="let repo of group.repositories">
+        <a href="{{repo.html_url}}">{{repo.name}}</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
 
 <github-user [user]="userInfo"></github-user>
 <github-repositories [repositories]="repositories"></github-repositories>

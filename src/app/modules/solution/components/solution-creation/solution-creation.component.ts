@@ -1,11 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { GithubService } from 'app/core/auth/github.service';
-import { Observable } from 'rxjs';
-import { RepositoryModel } from '../../models/repository.model';
+import { GithubService } from 'app/shared/services/github/github.service';
 import { SolutionModel } from '../../models/solution.model';
 import { SolutionService } from '../../services/solution.service';
 
@@ -20,6 +16,7 @@ import { SolutionService } from '../../services/solution.service';
 })
 
 export class SolutionCreationComponent implements OnInit {
+    public owners: any[] = [];
     public namePattern: string = '^[a-zA-Z0-9\-]+';
     public solutionForm = new FormGroup({
         owner: new FormControl('aicollaborationsolutions', Validators.required),
@@ -28,55 +25,52 @@ export class SolutionCreationComponent implements OnInit {
         visibility: new FormControl('public'),
         template: new FormControl('aicollaboration/solution-template-react-typescript'),
     });
+    public isLoading = false;
+    public loadingMessages = [];
 
     public constructor(
         private githubService: GithubService,
-        private http: HttpClient,
         private router: Router,
-        private snackBar: MatSnackBar,
         private solutionService: SolutionService,
     ) { }
 
     public async ngOnInit(): Promise<void> {
-        const userOrganizations = await this.githubService.fetchUserOrganizations();
-        debugger
-
+        this.githubService.fetchUserInfo().then(userInfo => {
+            this.owners = [{
+                id: 'aicollaborationsolutions',
+                name: 'aicollaborationsolutions',
+            }, {
+                id: userInfo['login'],
+                name: userInfo['login'],
+            }];
+        });
     }
 
     public async onSubmit() {
+        this.isLoading = true;
+
         const solution: SolutionModel = {
             ...this.solutionForm.value,
         };
+        this.loadingMessages.push('Create repository');
 
         try {
-            // 1. Create repository
-            solution.repository = await this.createRepository(solution);
+            solution.repository = await this.githubService.createRepository(solution.owner, solution.name, solution.template);
+            this.loadingMessages.push(`Repository created: https://github.com/${this.solutionForm.value.owner}/${this.solutionForm.value.name}`);
         }
         finally {
+            // 1. Create certificate in github repository by read file and commit changes
+            this.loadingMessages.push('Create certificate');
+            await this.githubService.createCertificate(solution.owner, solution.name);
+            this.loadingMessages.push(`Certificate created: https://${this.solutionForm.value.name}.${this.solutionForm.value.owner}.aiproduct.io`);
+
             // 2. Create database entry
-            const database = await this.insertSolutionInBackend(solution);
+            this.loadingMessages.push('Store in database');
+            const database = await this.solutionService.createSolution(solution);
+            this.loadingMessages.push(`Stored in database`);
 
             // 3. Redirect to solution detail
             this.router.navigate(['/solutions', 'detail', database.id]);
         }
     }
-
-    private async createRepository(solution: SolutionModel): Promise<RepositoryModel> {
-        const url = `https://api.github.com/repos/${solution.template}/generate`;
-        const data = {
-            "owner": solution.owner,
-            "name": solution.name,
-        };
-        const headers: HttpHeaders = new HttpHeaders({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `token ${this.githubService.getToken()}`,
-        });
-        return await this.http.post<RepositoryModel>(url, data, { headers }).toPromise();
-    }
-    
-    private async insertSolutionInBackend(solutionData: SolutionModel): Promise<SolutionModel> {
-        return await this.solutionService.createSolution(solutionData);
-    }
-
 }

@@ -8,25 +8,31 @@
     </div>
 
     <div class="main">
-        <form [formGroup]="solutionForm" (ngSubmit)="onSubmit()" class="max-w-3xl">
+        <ul *ngIf="isLoading">
+            <li *ngFor="let message of loadingMessages">{{message}}</li>
+        </ul>
+        <form [formGroup]="solutionForm" (ngSubmit)="onSubmit()" class="max-w-3xl" *ngIf="!isLoading">
             <div class="flex">
                 <mat-form-field class="w-1/3 pr-4">
                     <mat-label><b>Solution owner</b></mat-label>
                     <mat-select placeholder="Select owner" formControlName="owner">
-                        <mat-option value="aicollaborationsolutions" >aicollaborationsolutions</mat-option>
+                        <mat-option [value]="owner.id" *ngFor="let owner of owners">{{owner.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field class="w-2/3 pl-4">
                     <mat-label><b>Solution name</b></mat-label>
-                    <input matInput formControlName="name" required maxlength="250" type="text" [pattern]="namePattern" onkeypress="return new RegExp(this.namePattern).test(event.key)" >
+                    <input matInput formControlName="name" required maxlength="250" type="text" [pattern]="namePattern"
+                        onkeypress="return new RegExp(this.namePattern).test(event.key)">
                     <i>A-Z, a-z, 0-9 and -</i>
                 </mat-form-field>
             </div>
             <mat-form-field>
                 <mat-label><b>Solution template</b></mat-label>
                 <mat-select placeholder="Choose from a template" formControlName="template">
-                    <mat-option value="aicollaboration/solution-template-react">aicollaboration/solution-template-react</mat-option>
-                    <mat-option value="aicollaboration/solution-template-react-typescript">aicollaboration/solution-template-react-typescript</mat-option>
+                    <mat-option value="aicollaboration/solution-template-react">aicollaboration/solution-template-react
+                    </mat-option>
+                    <mat-option value="aicollaboration/solution-template-react-typescript">
+                        aicollaboration/solution-template-react-typescript</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
@@ -41,8 +47,19 @@
                     solution.</mat-radio-button>
             </mat-radio-group>
             <hr />
-            Frontend: https://{{solutionForm.value.name||'[name]'}}.{{solutionForm.value.owner||'[owner]'}}.aiproduct.io with {{solutionForm.value.visibility}} access<br />
-            Source code: https://github.com/{{solutionForm.value.owner||'[owner]'}}/{{solutionForm.value.name||'[name]'}}<br /><br />
+
+            <div class="flex">
+                <div class="pr-4 mb-4">
+                    <mat-icon style="font-size: 70px;">find_in_page</mat-icon>
+                </div>
+                <div class="pl-4">
+                    Frontend:
+                    https://{{solutionForm.value.name||'[name]'}}.{{solutionForm.value.owner||'[owner]'}}.aiproduct.io
+                    with {{solutionForm.value.visibility}} access<br />
+                    Source code:
+                    https://github.com/{{solutionForm.value.owner||'[owner]'}}/{{solutionForm.value.name||'[name]'}}<br /><br />
+                </div>
+            </div>
             <div class="actions">
                 <div class="buttons">
                     <button class="save-button" mat-flat-button color="primary" type="submit"

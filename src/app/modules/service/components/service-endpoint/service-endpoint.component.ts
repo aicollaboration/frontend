@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ServiceModel } from '../../models/service.model';
 import { OpenApiParserService } from '../../services/openapi-parser.service';
 
@@ -20,26 +21,19 @@ export class ServiceEndpointComponent implements OnInit {
   public selectedServer: string;
   public selectedPath: string;
 
-  @Input()
   public service: ServiceModel;
 
   public constructor(
     private http: HttpClient,
     private apiParser: OpenApiParserService,
+    private route: ActivatedRoute,
   ) { }
 
 
-  public async ngOnInit(): Promise<void> {
-    if (this.service.api) {
-      this.api = await this.apiParser.parse(JSON.parse(this.service.api));
-
-      this.configForm = new FormGroup({
-        server: new FormControl(this.api.servers[0].url),
-        path: new FormControl(Object.keys(this.api.schemas)[0]),
-      });
-
-      this.request = this.api.schemas[this.configForm.value.path].schema;
-    }
+  public ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.service = data.service;
+    });
   }
 
   public predict(): void {
@@ -62,6 +56,6 @@ export class ServiceEndpointComponent implements OnInit {
   }
 
   public loadExample(): void {
-    
+
   }
 }

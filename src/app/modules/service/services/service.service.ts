@@ -22,9 +22,6 @@ export class ServiceService {
     public async getService(serviceId: string) {
         const { data, error } = await this.supabase.from<ServiceModel>('service').select("*").eq('id', serviceId);
 
-        const service = data[0];
-        const api = JSON.parse(service.api);
-
         if (error) {
             throw error;
         }

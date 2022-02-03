@@ -1,4 +1,4 @@
-<div class="content-layout fullwidth-tabs-normal-scroll" *ngIf="service$ | async as service">
+<div class="content-layout left-sidebar-content-standard-normal-scroll" *ngIf="service">
     <div class="header">
         <div class="left">
             <div class="breadcrumb">
@@ -18,11 +18,22 @@
                 <span class="ml-2">Delete</span>
             </button>
         </div>
-
     </div>
 
+    <mat-drawer-container>
+        <mat-drawer [autoFocus]="false" mode="side" [opened]="true" class="sidebar-content" #matDrawer>
+            <treo-vertical-navigation [navigation]="menuData" [inner]="true" [mode]="'side'"
+                [name]="'demo-sidebar-navigation'" [opened]="true"></treo-vertical-navigation>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div class="main">
+                <router-outlet *ngIf="true"></router-outlet>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+
+    <!--
     <div class="main">
-       
         <mat-tab-group [@.disabled]="true">
             <mat-tab label="Overview">
                 <service-detail-overview [service]="service"></service-detail-overview>
@@ -37,4 +48,5 @@
             </mat-tab>
         </mat-tab-group>
     </div>
+    -->
 </div>

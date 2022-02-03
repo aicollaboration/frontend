@@ -24,7 +24,7 @@ export class SolutionDesignComponent {
     public solutionLogoChangeEvent: any = '';
 
     public async onSubmit() {
-        debugger
+        
     }
 
     public onCompanyLogoCropped(event: any) {

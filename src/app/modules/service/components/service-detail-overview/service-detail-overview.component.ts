@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { ServiceModel } from "../../models/service.model";
 
 @Component({
@@ -8,8 +9,16 @@ import { ServiceModel } from "../../models/service.model";
         './service-detail-overview.component.scss',
     ],
 })
-export class ServiceDetailOverviewComponent {
-    @Input()
+export class ServiceDetailOverviewComponent implements OnInit {
     public service: ServiceModel;
-   
+
+    constructor(private route: ActivatedRoute) {
+
+    }
+    public ngOnInit(): void {
+        this.route.data.subscribe(data => {
+            this.service = data.service;
+        });
+    }
+
 }
