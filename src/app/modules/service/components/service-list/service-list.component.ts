@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { ServiceModel } from '../../models/service.model';
-import { loadServicesAction } from '../../state/service.actions';
-import { getErrorSelector, getServicesSelector, State } from '../../state/service.reducer';
 
 @Component({
     selector: 'services',
@@ -13,24 +10,17 @@ import { getErrorSelector, getServicesSelector, State } from '../../state/servic
     ]
 })
 export class ServiceListComponent implements OnInit {
-    public services$: Observable<ServiceModel[]>;
-    public error$: Observable<string>;
+    public services: ServiceModel[];
 
-    public constructor(private store: Store<State>) {
-
+    public constructor(private route: ActivatedRoute) {
     }
 
     public ngOnInit(): void {
-        this.services$ = this.store.select(getServicesSelector);
-        this.error$ = this.store.select(getErrorSelector);
-
-        this.store.dispatch(loadServicesAction());
-
-       
+        this.route.data.subscribe(data => {
+            this.services = data.services;
+        });
     }
 
     public openCreationDialog(): void {
-
     }
-
 }

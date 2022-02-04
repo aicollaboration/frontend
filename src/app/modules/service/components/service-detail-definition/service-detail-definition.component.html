@@ -1,88 +1,83 @@
-<div class="flex max-w-6xl">
-
-  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-    <div *ngFor="let item of checkoutForm.controls; let i = index;">
-
-      <div class="flex max-w-4xl">
-        <mat-form-field class="example-full-width" appearance="fill">
+<form [formGroup]="definitionForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="items"
+    *ngFor="let item of definitionForm.get('items')['controls']; let index = index; let count = count">
+    <div [formGroupName]="index">
+      <div class="flex flex-row">
+        <mat-form-field class="w-full basis-3/4">
           <mat-label>Name</mat-label>
-          <input matInput formControlName="item.name" placeholder="Ex. pat@example.com">
+          <input matInput formControlName="name" placeholder="Type name of endpoint">
         </mat-form-field>
-      </div>
-      <div class="flex max-w-4xl">
-        <div class="grid grid-cols-6 gap-4">
-          <mat-form-field>
-            <mat-label>Method</mat-label>
-            <mat-select formControlName="item.controls.type" matPrefix>
-              <mat-option *ngFor="let method of methodTypes" [value]="method.value">
-                {{method.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>URL</mat-label>
-            <input matInput formControlName="item.controls.endpoint">
-          </mat-form-field>
+
+        <div class="flex items-center justify-end basis-1/4">
+          <button type="button" (click)="removeItem(index)" mat-button [disabled]="count < 2">
+            <mat-icon>delete</mat-icon> Delete item
+          </button>
         </div>
       </div>
-
-
-      <div class="flex max-w-6xl">
-        <mat-tab-group [@.disabled]="true">
-          <mat-tab label="Headers">
-            <service-detail-typeforms [formName]="checkoutForm" [dataType]="dataTypes" label="headers">
-            </service-detail-typeforms>
-          </mat-tab>
-          <mat-tab label="Query">
-            <service-detail-query [formName]="checkoutForm" [dataType]="dataTypes" label="query"></service-detail-query>
-            <!-- <service-detail-typeforms></service-detail-typeforms> -->
-          </mat-tab>
-          <mat-tab label="body">
-            <!-- Body -->
-            <!-- <div>
-                Body parameters and body modal is not permitted for GET method
-              </div> -->
-            <div [ngSwitch]="checkoutForm.value.type">
-
-              <div *ngSwitchDefault>Select the type </div>
-              <div *ngSwitchCase="'post'">
-                <service-detail-definition-body [formName]="checkoutForm" label="query" [mediaType]="mediaTypes">
-                </service-detail-definition-body>
-              </div>
-
-              <div *ngSwitchCase="'get'">
-                <div>
-                  Body parameters and body modal is not permitted for GET method
-                </div>
-              </div>
-
-              <div *ngSwitchCase="'delete'">
-                <div>
-                  <service-detail-definition-body [formName]="checkoutForm" label="query" [mediaType]="mediaTypes">
-                  </service-detail-definition-body>
-                </div>
-              </div>
-
-              <div *ngSwitchCase="'put'">
-                <div>
-                  <service-detail-definition-body [formName]="checkoutForm" label="query" [mediaType]="mediaTypes">
-                  </service-detail-definition-body>
-                </div>
-              </div>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
+      <div class="flex flex-row">
+        <mat-form-field class="basis-1/4">
+          <mat-label>Method</mat-label>
+          <mat-select formControlName="type" matPrefix>
+            <mat-option *ngFor="let method of methodTypes" [value]="method.value">
+              {{method.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex basis-3/4">
+          <mat-label>URL</mat-label>
+          <input matInput formControlName="endpoint" placeholder="Enter request URL">
+        </mat-form-field>
       </div>
 
+      <mat-tab-group [@.disabled]="true">
+        <mat-tab label="Params">
+          <service-detail-definition-params [formGroup]="item" [dataType]="dataTypes" label="Query">
+          </service-detail-definition-params>
+        </mat-tab>
+        <mat-tab label="Headers">
+          <service-detail-definition-headers [formGroup]="item" [dataType]="dataTypes" label="Headers">
+          </service-detail-definition-headers>
+        </mat-tab>
+        <mat-tab label="Body">
+          <div [ngSwitch]="item.get('type').value">
+            <div *ngSwitchDefault>Select the type </div>
+            <div *ngSwitchCase="'post'">
+              <service-detail-definition-body [formGroup]="item" label="query" [mediaType]="mediaTypes">
+              </service-detail-definition-body>
+            </div>
+
+            <div *ngSwitchCase="'get'">
+              <div>
+                Body parameters and body modal is not permitted for GET method
+              </div>
+            </div>
+
+            <div *ngSwitchCase="'delete'">
+              <div>
+                <service-detail-definition-body [formGroup]="item" label="query" [mediaType]="mediaTypes">
+                </service-detail-definition-body>
+              </div>
+            </div>
+
+            <div *ngSwitchCase="'put'">
+              <div>
+                <service-detail-definition-body [formGroup]="item" label="query" [mediaType]="mediaTypes">
+                </service-detail-definition-body>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
+    <hr />
+  </div>
+  <button type="button" (click)="addItem()" mat-button>
+    <mat-icon>add</mat-icon> Add item
+  </button>
+  <br /><br /><br />
 
+  <div class="flex max-w-4xl align-right">
+    <button mat-button mat-flat-button color="primary" type="submit">Update definition</button>
+  </div>
 
-
-    <div class="flex max-w-4xl">
-      <button mat-button color="primary" type="reset">Cancel</button>
-      <button mat-button color="primary" type="submit">Service erstellen</button>
-    </div>
-
-  </form>
-
-</div>
+</form>

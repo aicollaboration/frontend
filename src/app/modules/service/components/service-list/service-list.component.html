@@ -17,11 +17,10 @@
     </div>
     <div class="main">
         <div class="cards">
-            <treo-card [class]="'card flex flex-col max-w-80 w-full filter-shopping'"
-                *ngFor="let service of services$ | async" [routerLink]="['/services', 'detail', service.id]" matRipple
-                matRippleColor="white">
-                <div class="relative">
-                    <img class="object-cover" [src]="service.image" *ngIf="service.image">
+            <treo-card [class]="'card flex flex-col max-w-80 w-full'" *ngFor="let service of services"
+                [routerLink]="['/services', 'detail', service.id]">
+                <div class="relative" *ngIf="service.image">
+                    <img class="object-cover" [src]="service.image">
                 </div>
                 <div class="m-4 mb-0">
                     <div class="flex flex-col">

@@ -25,6 +25,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
      */
     private check(redirectURL: string): boolean {
         // Check the authentication status
+        console.log('AuthGuard: check');
         const authenticated = this.authService.check();
 
         if (!authenticated) {

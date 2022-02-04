@@ -53,7 +53,6 @@ export class AdminDashboardComponent implements OnInit {
         this.userInfo = JSON.stringify(await this.githubService.fetchUserInfo(), null, 4);
         
         const orgs = await this.githubService.fetchUserOrganizations();
-        debugger
     }
 
     public async signInWithGitlab() {

@@ -24,7 +24,7 @@
         </div>
 
         <div class="cards">
-            <treo-card class="card flex flex-col max-w-80 w-full" *ngFor="let solution of solutions$ | async">
+            <treo-card class="card flex flex-col max-w-80 w-full" *ngFor="let solution of solutions">
                 <div class="relative cursor-pointer" [routerLink]="['/solutions', 'detail', solution.id]" role="link">
                     <img class="object-cover" [src]="solution.file" *ngIf="solution.file">
                     <img class="object-cover" src="/assets/images/cases/churn_analytics.jpg" *ngIf="!solution.file">

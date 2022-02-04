@@ -40,14 +40,14 @@ export class ServiceService {
         return data[0];
     }
 
-    public async updateService(service: any, serviceId: string) {
-        const { data, error } = await this.supabase.from('service').update(service).eq('id', serviceId);
+    public async updateService(service: ServiceModel, serviceId: string): Promise<ServiceModel> {
+        const { data, error } = await this.supabase.from<ServiceModel>('service').update(service).eq('id', serviceId);
 
         if (error) {
             throw error;
         }
 
-        return data;
+        return data[0];
     }
 
     public async deleteService(id: number) {

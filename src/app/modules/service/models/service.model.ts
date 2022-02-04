@@ -9,6 +9,7 @@ export class ServiceModel {
     public file?: string;
     public description?: string;
     public api?: string;
+    public definition: any;
     public category?: CategoryModel;
     public repository: RepositoryModel;
     public author: string;

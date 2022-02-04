@@ -48,12 +48,14 @@ export class ServiceDetailComponent implements OnInit {
                         icon: 'people_alt',
                         link: 'testing',
                     },
+                    /*
                     {
                         title: 'Analytics',
                         type: 'basic',
                         icon: 'dripicons:brush',
                         link: 'analytics',
                     },
+                    */
                 ]
             },
         ];

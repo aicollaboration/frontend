@@ -4,7 +4,6 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { Store } from '@ngrx/store';
 import { GithubService } from 'app/shared/services/github/github.service';
-import { load } from 'js-yaml';
 import { Observable } from 'rxjs';
 import { ServiceModel } from "../../models/service.model";
 import { ServiceService } from '../../services/service.service';
@@ -82,23 +81,23 @@ export class ServiceCreationComponent implements OnInit {
     public async onSubmit(): Promise<void> {
         this.isLoading = true;
 
-        const service: ServiceModel = {
+        this.service = {
             ...this.serviceForm.value,
         };
         this.loadingMessages.push('Create repository');
 
         try {
-            service.repository = await this.githubService.createRepository(service.owner, service.name, service.template);
+            this.service.repository = await this.githubService.createRepository(this.service.owner, this.service.name, this.service.template);
         }
         finally {
             // 1. Create certificate in github repository by read file and commit changes
             this.loadingMessages.push('Create certificate');
-            await this.githubService.createCertificate(service.owner, service.name);
+            await this.githubService.createCertificate(this.service.owner, this.service.name);
             this.loadingMessages.push(`Certificate created: https://${this.serviceForm.value.name}.${this.serviceForm.value.owner}.aiproduct.io`);
 
             // 2. Create database entry
             this.loadingMessages.push('Store in database');
-            const database = await this.serviceService.createService(service);
+            const database = await this.serviceService.createService(this.service);
             this.loadingMessages.push(`Stored in database`);
 
             // 3. Redirect to solution detail

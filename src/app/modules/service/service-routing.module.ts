@@ -11,11 +11,15 @@ import { ServiceEndpointComponent } from './components/service-endpoint/service-
 import { ServiceImportComponent } from './components/service-import/service-import.component';
 import { ServiceListComponent } from './components/service-list/service-list.component';
 import { ServiceResolver } from './resolvers/service.resolver';
+import { ServicesResolver } from './resolvers/services.resolver';
 
 export const routes: Routes = [
     {
         path: '',
         component: ServiceListComponent,
+        resolve: {
+            services: ServicesResolver,
+        }
     },
     {
         path: 'detail/:id',

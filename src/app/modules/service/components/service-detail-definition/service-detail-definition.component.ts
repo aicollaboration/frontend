@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ServiceModel } from '../../models/service.model';
+import { ServiceService } from '../../services/service.service';
 
 interface MethodType {
   value: string;
@@ -12,9 +14,12 @@ interface MethodType {
   templateUrl: './service-detail-definition.component.html',
   styleUrls: ['./service-detail-definition.component.scss'],
 })
-export class ServiceDetailDefinitionComponent {
+export class ServiceDetailDefinitionComponent implements OnInit {
   @Input()
   public service: ServiceModel;
+
+  public definitionForm: FormGroup;
+  public items: FormArray;
 
   public methodTypes: MethodType[] = [
     { value: 'get', viewValue: 'GET' },
@@ -36,15 +41,27 @@ export class ServiceDetailDefinitionComponent {
     { value: 'formdata', viewValue: 'form-data' }
   ];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private serviceService: ServiceService,
+    ) { }
 
-  public checkoutForm = this.formBuilder.array([this.createItem()]);
+  public ngOnInit(): void {
+    this.definitionForm = this.formBuilder.group({
+      items: this.formBuilder.array([this.createItem()])
+    });
 
-  public onSubmit(): void {
+    this.route.parent.data.subscribe(data => {
+      this.service = data.service;
+      this.definitionForm.patchValue(this.service.definition);
+    });
+  }
+
+  public async onSubmit(): Promise<void> {
+    this.service.definition = this.definitionForm.value;
+    const result = await this.serviceService.updateService(this.service, this.service.id);
     debugger
-    // Process checkout data here
-    console.warn('Your order has been submitted', this.checkoutForm.value);
-    this.checkoutForm.reset();
   }
 
   public createItem(): FormGroup {
@@ -53,10 +70,17 @@ export class ServiceDetailDefinitionComponent {
       description: '',
       endpoint: '',
       type: 'get',
+      params: []
     });
   }
 
   public addItem(): void {
-    this.checkoutForm.push(this.createItem());
+    this.items = this.definitionForm.get('items') as FormArray;
+    this.items.push(this.createItem());
+  }
+
+  public removeItem(index: number): void {
+    this.items = this.definitionForm.get('items') as FormArray;
+    this.items.removeAt(index);
   }
 }

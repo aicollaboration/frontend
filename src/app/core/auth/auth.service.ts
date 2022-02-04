@@ -1,21 +1,36 @@
 import { Injectable } from '@angular/core';
 import { User } from '@supabase/gotrue-js';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { AuthChangeEvent, createClient, SupabaseClient, Session } from '@supabase/supabase-js';
 
 @Injectable()
 export class AuthService {
-    private authenticated: boolean;
     private supabase: SupabaseClient;
+    private authenticated: boolean;
 
     constructor() {
         this.supabase = this.getClient();
-        this.supabase.auth.onAuthStateChange(event => {
+        this.supabase.auth.onAuthStateChange((event: AuthChangeEvent, session: Session) => {
             if (event === 'SIGNED_IN') {
-                this.isAuthenticated = true;
+                this.authenticated = true;
+                this.supabase.auth.setAuth(session.access_token);
             } else if (event === 'SIGNED_OUT') {
-                this.isAuthenticated = false;
+                this.authenticated = false;
             }
         })
+    }
+
+    public onAuthStateChange(): Promise<User> {
+
+        return new Promise((resolve, reject) => {
+            this.supabase.auth.onAuthStateChange(event => {
+                if (event === 'SIGNED_IN') {
+                    const user =  this.supabase.auth.user();
+                    resolve(user);
+                } else if (event === 'SIGNED_OUT') {
+                    reject();
+                }
+            })
+        });
     }
 
     public getClient() {
@@ -42,7 +57,6 @@ export class AuthService {
         if (error) {
             throw error;
         }
-        this.isAuthenticated = true;
 
         return user;
     }
@@ -52,8 +66,6 @@ export class AuthService {
         if (error) {
             throw error;
         }
-
-        this.isAuthenticated = true;
 
         return user;
 
@@ -66,8 +78,6 @@ export class AuthService {
             throw error;
         }
 
-        this.isAuthenticated = true;
-
         return user;
     }
 
@@ -76,8 +86,6 @@ export class AuthService {
         if (error) {
             throw error;
         }
-
-        this.isAuthenticated = false;
 
         return true;
     }
@@ -91,23 +99,33 @@ export class AuthService {
         return user;
     }
 
-    public check(): boolean {
-        //console.log(`check ${this.isAuthenticated}`);
-        return this.isAuthenticated;
-    }
-
-    set isAuthenticated(authenticated: boolean) {
-        //console.log(`set isAuthenticated ${authenticated}`);
-        this.authenticated = authenticated;
+    public async check(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.supabase.auth.onAuthStateChange(event => {
+                if (event === 'SIGNED_IN') {
+                    resolve();
+                } else if (event === 'SIGNED_OUT') {
+                    reject();
+                }
+            })
+        });
     }
 
     get isAuthenticated(): boolean {
-        //console.log(`get isAuthenticated ${this.authenticated}`);
         return this.authenticated;
     }
+
+    set isAuthenticated(isAuthenticated: boolean) {
+        this.authenticated = isAuthenticated;
+    }
+
 
     get user() {
         const user = this.supabase.auth.user();
         return user;
+    }
+
+    public async getSession(): Promise<{ data: Session, error: Error }> {
+        return await this.supabase.auth.getSessionFromUrl();
     }
 }

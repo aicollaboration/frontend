@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, AfterViewInit } from "@angular/core";
-import { ServiceModel } from "../../models/service.model";
-import { FormBuilder, FormGroup, FormArray, FormControl } from "@angular/forms";
+import { AfterViewInit, Component, Input, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "service-detail-definition-body",
@@ -8,10 +7,9 @@ import { FormBuilder, FormGroup, FormArray, FormControl } from "@angular/forms";
   styleUrls: ["./service-detail-definition-body.component.scss"],
 })
 export class ServiceDetailDefinitionBodyComponent
-  implements OnInit, AfterViewInit
-{
+  implements OnInit, AfterViewInit {
   @Input()
-  public formName: FormGroup;
+  public formGroup: FormGroup;
   @Input()
   public label;
   @Input()
@@ -21,21 +19,20 @@ export class ServiceDetailDefinitionBodyComponent
 
   body: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) { }
 
   // @input form;
 
   public ngOnInit(): void {
-    this.formName.addControl("body", this.formBuilder.group({
+    this.formGroup.addControl("body", this.formBuilder.group({
       type: "",
-      payloadName: "",
-      payloadDesc: "",
-      payloadBody: "",
+      name: "",
+      body: "",
     }));
   }
 
   ngAfterViewInit(): void {
-    this.formName.valueChanges.subscribe((value) => {
+    this.formGroup.valueChanges.subscribe((value) => {
       this.typeOfForm = value.type;
     });
   }

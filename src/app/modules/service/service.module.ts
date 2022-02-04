@@ -42,9 +42,9 @@ import { ServiceDetailAnalyticsComponent } from './components/service-detail-ana
 import { ServiceDetailDefinitionBodyComponent } from './components/service-detail-definition-body/service-detail-definition-body.component';
 import { ServiceDetailDefinitionComponent } from './components/service-detail-definition/service-detail-definition.component';
 import { ServiceDetailOverviewComponent } from './components/service-detail-overview/service-detail-overview.component';
-import { ServiceDetailQueryComponent } from './components/service-detail-query/service-detail-query.component';
+import { ServiceDetailDefinitionParamsComponent } from './components/service-detail-definition-params/service-detail-definition-params.component';
 import { ServiceDetailTestingComponent } from './components/service-detail-testing-component/service-detail-testing-component.component';
-import { ServiceDetailTypeformsComponent } from './components/service-detail-typeforms/service-detail-typeforms.component';
+import { ServiceDetailDefinitionHedaersComponent } from './components/service-detail-definition-headers/service-detail-definition-headers.component';
 import { ServiceDetailComponent } from './components/service-detail/service-detail.component';
 import { ServiceEditorComponent } from './components/service-editor/service-editor.component';
 import { ServiceEndpointComponent } from './components/service-endpoint/service-endpoint.component';
@@ -66,9 +66,9 @@ import { serviceReducer } from './state/service.reducer';
         ServiceDetailComponent,
         ServiceDetailOverviewComponent,
         ServiceDetailDefinitionComponent,
-        ServiceDetailTypeformsComponent,
+        ServiceDetailDefinitionHedaersComponent,
         ServiceDetailDefinitionBodyComponent,
-        ServiceDetailQueryComponent,
+        ServiceDetailDefinitionParamsComponent,
         ServiceEditorComponent,
         ServiceLoaderComponent,
         ServiceCreationComponent,

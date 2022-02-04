@@ -1,4 +1,4 @@
-<div class="content-layout left-sidebar-content-standard-normal-scroll" *ngIf="service">
+<div class="content-layout left-sidebar-content-standard-inner-scroll" *ngIf="service">
     <div class="header">
         <div class="left">
             <div class="breadcrumb">
@@ -31,22 +31,4 @@
             </div>
         </mat-drawer-content>
     </mat-drawer-container>
-
-    <!--
-    <div class="main">
-        <mat-tab-group [@.disabled]="true">
-            <mat-tab label="Overview">
-                <service-detail-overview [service]="service"></service-detail-overview>
-            </mat-tab>
-            <mat-tab label="Definition">
-                <service-detail-definition [service]="service"></service-detail-definition>
-            </mat-tab>
-            <mat-tab label="Testing">
-                <service-endpoint [service]="service"></service-endpoint>
-            </mat-tab>
-            <mat-tab label="Analytics">
-            </mat-tab>
-        </mat-tab-group>
-    </div>
-    -->
 </div>

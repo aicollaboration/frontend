@@ -7,13 +7,6 @@ import { InitialDataResolver } from 'app/app.resolvers';
 // @formatter:off
 // tslint:disable:max-line-length
 export const appRoutes: Route[] = [
-    /*
-    {
-        path: '',
-        pathMatch: 'prefix',
-        redirectTo: 'dashboard'
-    },
-    */
     {
         path: 'signed-in-redirect',
         pathMatch: 'full',
@@ -43,10 +36,10 @@ export const appRoutes: Route[] = [
     {
         path: '',
         canActivate: [
-            NoAuthGuard,
+            //NoAuthGuard,
         ],
         canActivateChild: [
-            NoAuthGuard,
+            //NoAuthGuard,
         ],
         component: LayoutComponent,
         data: {
@@ -72,7 +65,7 @@ export const appRoutes: Route[] = [
             {
                 path: 'sign-up',
                 loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule)
-            }
+            },
         ]
     },
 

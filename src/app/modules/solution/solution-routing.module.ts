@@ -10,11 +10,15 @@ import { SolutionServiceListComponent } from './components/solution-service-list
 import { SolutionSettingsComponent } from './components/solution-settings/solution-settings.component';
 import { SolutionUserListComponent } from './components/solution-users/solution-user-list.component';
 import { SolutionResolver } from './resolvers/solution.resolver';
+import { SolutionsResolver } from './resolvers/solutions.resolver';
 
 export const routes: Route[] = [
     {
         path: '',
         component: SolutionListComponent,
+        resolve: {
+            solutions: SolutionsResolver,
+        }
     },
     {
         path: 'detail/:solutionId',
