@@ -18,7 +18,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
-      - name: Set up Docker Buildx
+      - name: Set- up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
       - name: Configure Git
@@ -59,3 +59,17 @@ jobs:
         run: |
           helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
           helm list
+  slack-notification:
+       runs-on: ubuntu-latest
+       needs: [build,deploy]
+       steps:
+        - name: Report Status
+          if: always()
+          uses: ravsamhq/notify-slack-action@master
+          with:
+            status: ${{ job.status }}
+          env:
+            SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+            channel_name: github-job-notification
+          
+      
