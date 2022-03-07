@@ -11,11 +11,11 @@ export class GithubService {
     public constructor(private authService: AuthService, private httpClient: HttpClient) {
     }
 
-    public async signIn() {
+    public async signIn(redirectTo: string = 'http://localhost:4100/dashboard') {
         const { user, session, error } = await this.authService.getClient().auth.signIn({
             provider: 'github',
         }, {
-            redirectTo: 'http://localhost:4100/dashboard',
+            redirectTo,
             scopes: 'repo user admin:repo_hook read:org',
         });
     }
@@ -33,8 +33,19 @@ export class GithubService {
     }
 
     public getToken() {
+        if (!this.authService.isAuthenticated) {
+            this.authService.signOut();
+
+            // redirect
+            return null;
+        }
+
         const session = this.authService.getClient().auth.session();
+        if (!('provider_token' in session)) {
+            this.signIn(window.location.href);
+        }
         const accessToken = session.provider_token;
+
 
         return accessToken;
     }

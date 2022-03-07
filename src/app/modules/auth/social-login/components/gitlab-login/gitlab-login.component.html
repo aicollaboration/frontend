@@ -1,0 +1,7 @@
+<button class="social-login" (click)="handleClick($event)" (mouseenter)="handleMouseEnter($event)" (mouseleave)="handleMouseLeave($event)"
+    (focus)="handleFocus($event)" (blur)="handleBlur($event)">
+    <div class="flex">
+        <div [ngStyle]="{ 'textAlign': 'align', 'width': '100%' }">{{label}}</div>
+    </div>
+
+</button>

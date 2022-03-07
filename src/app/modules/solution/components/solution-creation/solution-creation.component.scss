@@ -75,3 +75,8 @@ solution-creation {
 		}
 	}
 }
+
+.mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option {
+	height: auto !important;
+	padding: 20px;
+}

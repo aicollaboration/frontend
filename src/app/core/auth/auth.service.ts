@@ -5,7 +5,7 @@ import { AuthChangeEvent, createClient, SupabaseClient, Session } from '@supabas
 @Injectable()
 export class AuthService {
     private supabase: SupabaseClient;
-    private authenticated: boolean;
+    private authenticated: boolean = false;
 
     constructor() {
         this.supabase = this.getClient();
@@ -68,7 +68,6 @@ export class AuthService {
         }
 
         return user;
-
     }
 
     public async signUpWithGithub(): Promise<User> {

@@ -1,34 +1,54 @@
 <div class="content-layout fullwidth-standard-normal-scroll">
-    <div class="header">
-      <div class="left">
-        <h1>Import service</h1>
-        <h3>
-          A service uses existing interfaces that provide the usage of algorithms.
-        </h3>
-      </div>
-    </div>
-  
-    <div class="main">
-      <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
-
-        <h4>Repositories</h4>
-        <mat-form-field style="width: 400px;">
-          <mat-select placeholder="Select a repository" formControlName="repository">
-            <mat-option *ngFor="let repository of repositories" [value]="repository.id">
-              {{ repository.full_name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-  
-        <div class="actions">
-          <div class="buttons">
-            <button class="save-button" mat-stroked-button type="submit">
-              <mat-icon [svgIcon]="'save'"></mat-icon>
-              <span>Import service</span>
-            </button>
-          </div>
-        </div>
-      </form>
+  <div class="header">
+    <div class="left">
+      <h1>Import service</h1>
+      <p>A service uses existing interfaces that provide the usage of algorithms.</p>
     </div>
   </div>
-  
+
+  <div class="main">
+    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+      <mat-button-toggle-group name="sourrce" aria-label="Font Style" formControlName="from">
+        <mat-button-toggle value="repository">Repository</mat-button-toggle>
+        <mat-button-toggle value="docker">Docker</mat-button-toggle>
+        <mat-button-toggle value="compose">Docker Compose</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <div [ngSwitch]="serviceForm.get('from').value">
+        <div *ngSwitchCase="'repository'">
+          <h4>From repository</h4>
+          <mat-form-field style="width: 400px;">
+            <mat-select placeholder="Select a repository" formControlName="repository">
+              <mat-option *ngFor="let repository of repositories" [value]="repository.id">
+                {{ repository.full_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngSwitchCase="'docker'">
+          <h4>From docker</h4>
+
+          <mat-form-field style="width: 400px;">
+            <mat-label>Command</mat-label>
+            <input matInput placeholder="Service name" formControlName="command" placeholder="docker run -p 3001:3001 axarev/parsr">
+          </mat-form-field>
+          
+        </div>
+
+        <div *ngSwitchCase="'compose'">
+          <h4>From docker compose</h4>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="buttons">
+          <button class="save-button" mat-stroked-button type="submit">
+            <mat-icon [svgIcon]="'save'"></mat-icon>
+            <span>Import service</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

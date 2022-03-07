@@ -1,17 +1,16 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'app/core/auth/auth.service';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    /**
-     * Constructor
-     *
-     * @param {AuthService} authService
-     */
-    constructor(private authService: AuthService) {
+    constructor(
+        private authService: AuthService,
+        private router: Router
+        ) {
     }
 
     /**
@@ -38,11 +37,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
             // Catch "401 Unauthorized" responses
             if (error instanceof HttpErrorResponse && error.status === 401) {
+
+                if (error.url.indexOf('gitlab.aipioneers.tech') === -1) {
+
                 // Sign out
                 this.authService.signOut();
 
-                // Reload the app
-                location.reload();
+                this.router.navigate(['/sign-in']);
+                }
+
             }
 
             return throwError(error);

@@ -10,8 +10,10 @@ import { GithubService } from "app/shared/services/github/github.service";
 })
 export class ServiceImportComponent implements OnInit {
     public serviceForm = new FormGroup({
+        from: new FormControl("repository"),
         url: new FormControl(''),
         repository: new FormControl(''),
+        command: new FormControl(''),
     });
     public repositories: any[] = [];
 

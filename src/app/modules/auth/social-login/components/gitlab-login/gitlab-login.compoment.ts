@@ -2,10 +2,10 @@ import { Component, Input } from "@angular/core";
 import { AuthService } from "app/core/auth/auth.service";
 
 @Component({
-    selector: "github-login",
-    templateUrl: "./github-login.component.html",
+    selector: "gitlab-login",
+    templateUrl: "./gitlab-login.component.html",
 })
-export class GithubLoginComponent {
+export class GitlabLoginComponent {
     @Input()
     public color: any;
 

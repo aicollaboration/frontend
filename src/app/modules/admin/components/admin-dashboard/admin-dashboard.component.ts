@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from 'app/shared/services/github/github.service';
 import { GitlabService } from 'app/shared/services/gitlab/gitlab.service';
@@ -19,7 +20,8 @@ export class AdminDashboardComponent implements OnInit {
     constructor(
         private githubService: GithubService,
         private gitlabService: GitlabService,
-        private kubernetesService: KubernetesService
+        private kubernetesService: KubernetesService,
+        private httpClient: HttpClient,
     ) { }
 
     async ngOnInit(): Promise<void> {
@@ -32,8 +34,24 @@ export class AdminDashboardComponent implements OnInit {
         if (this.githubIsConnected) {
             this.fetchGithubData();
         }
+    }
 
-        const nodes = await this.kubernetesService.getNodes();
+    public async createProject() {
+        this.httpClient.post(`https://gitlab.aipioneers.tech/api/v4/projects`, {
+            name: 'test',
+            description: 'test',
+            visibility: 'public',
+            namespace_id: 5,
+            
+        }, {
+            headers: {
+                'PRIVATE-TOKEN': 'BpnqqSPMgKWJdX6B-WcH',
+            }
+        }).subscribe((data) => {
+            debugger
+            console.log(data);
+        });
+
     }
 
     private async fetchGitlabData() {
@@ -51,8 +69,8 @@ export class AdminDashboardComponent implements OnInit {
 
     private async fetchGithubData() {
         this.userInfo = JSON.stringify(await this.githubService.fetchUserInfo(), null, 4);
-        
-        const orgs = await this.githubService.fetchUserOrganizations();
+
+        this.repositories = await this.githubService.fetchUserRepositories();
     }
 
     public async signInWithGitlab() {
