@@ -11,7 +11,7 @@ spec:
   - hosts:
     - aicollaboration.com
     - aicollaboration.net
-    secretName: tls-latest-aiproduct.io
+    secretName: tls-latest-certificate
   rules:
   - host: aicollaboration.com
     http:
