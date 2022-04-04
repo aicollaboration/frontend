@@ -93,7 +93,7 @@ export class ServiceCreationComponent implements OnInit {
             // 1. Create certificate in github repository by read file and commit changes
             this.loadingMessages.push('Create certificate');
             await this.githubService.createCertificate(this.service.owner, this.service.name);
-            this.loadingMessages.push(`Certificate created: https://${this.serviceForm.value.name}.${this.serviceForm.value.owner}.aiproduct.io`);
+            this.loadingMessages.push(`Certificate created: https://${this.serviceForm.value.name}.${this.serviceForm.value.owner}.aicollaboration.net`);
 
             // 2. Create database entry
             this.loadingMessages.push('Store in database');

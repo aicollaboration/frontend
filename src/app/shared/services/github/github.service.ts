@@ -88,21 +88,18 @@ export class GithubService {
             owner,
             name,
         };
-        const headers: HttpHeaders = new HttpHeaders({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.getToken()}`,
-        });
+        const headers = this.getHeaders();
         return await this.httpClient.post<RepositoryModel>(url, data, { headers }).toPromise();
     }
 
     public async createCertificate(owner: string, name: string): Promise<boolean> {
         const url = `https://api.github.com/repos/aicollaboration/certificates/contents/certificate.yaml`;
 
-        const response = await this.httpClient.get(url).toPromise();
+        const headers = this.getHeaders();
+        const response = await this.httpClient.get(url, { headers }).toPromise();
         const content = atob(response['content']);
         const certificate = yaml.load(content);
-        const domain = `${name}.${owner}.aiproduct.io`;
+        const domain = `${name}.${owner}.aicollaboration.net`;
 
         if (certificate['spec'].dnsNames.indexOf(domain) > -1) {
             return true;
@@ -110,17 +107,22 @@ export class GithubService {
         certificate['spec'].dnsNames.push(domain);
 
         const data = {
-            "message": `Add ${name}.${owner}.aiproduct.io to certificate`,
+            "message": `Add ${name}.${owner}.aicollaboration.net to certificate`,
             "content": btoa(yaml.dump(certificate)),
             "sha": response['sha'],
         };
-        const headers: HttpHeaders = new HttpHeaders({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${this.getToken()}`,
-        });
         const updateResponse = await this.httpClient.put(url, data, { headers }).toPromise();
 
+        debugger
+
         return true;
+    }
+
+    private getHeaders(): HttpHeaders {
+        return new HttpHeaders({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer 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`,
+        });
     }
 }
