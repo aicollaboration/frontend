@@ -63,8 +63,10 @@ jobs:
 
       - name: k8s deployment
         run: |
-         helm upgrade --install aiplatform-frontend charts -f charts/values.yaml --set tag=${{ github.sha }}
-         helm list
+           kubectl apply -f devops/kubernetes/api-ingress-solution.yml
+           kubectl apply -f devops/kubernetes/deployment-solution.yml
+           kubectl apply -f devops/kubernetes/service-solution.yml
+           
   slack-notification:
        runs-on: ubuntu-latest
        needs: [build,deploy]
