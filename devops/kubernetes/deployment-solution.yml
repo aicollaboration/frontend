@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/aicollaboration/frontend:<VERSION>
+          image: "ghcr.io/aicollaboration/frontend:<VERSION>"
           imagePullPolicy: Always
           env:
           - name: PYTHONUNBUFFERED
