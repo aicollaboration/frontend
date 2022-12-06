@@ -1,17 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: extensions/v1
 kind: Ingress
 metadata:
   name: aicollaboration.com
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: letsencrypt
-    kubernetes.io/tls-acme: "true"
 spec:
   tls:
   - hosts:
     - aicollaboration.com
+    - '*.aicollaboration.com'
+    secretName: aicollaboration-com-tls
+  - hosts:
     - aicollaboration.net
-    secretName: tls-latest-certificate
+    - '*.aicollaboration.net'
+    secretName: aicollaboration-net-tls
   rules:
   - host: aicollaboration.com
     http:
