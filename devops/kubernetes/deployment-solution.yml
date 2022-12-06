@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: "aicollaboration/frontend"
+          image: "aicollaboration/frontend:latest"
           imagePullPolicy: Always
           env:
           - name: PYTHONUNBUFFERED
