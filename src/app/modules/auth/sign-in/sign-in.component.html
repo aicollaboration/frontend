@@ -46,7 +46,6 @@
                         <a class="link" [routerLink]="['/forgot-password']">Forgot password?</a>
                     </div>
 
-                    <!-- Submit button -->
                     <button class="submit-button treo-mat-button-large" mat-flat-button type="button"
                         [color]="'primary'" [disabled]="signInForm.disabled" (click)="signIn()">
                         <span *ngIf="!signInForm.disabled">
@@ -56,10 +55,10 @@
                         </mat-progress-spinner>
                     </button>
 
-                    <br><br>--- OR ---<br><br>
+                    <hr />
     
                     <github-login label="Sign in with Github"></github-login>
-                    <gitlab-login label="Sign in with Gitlab"></gitlab-login>
+                    <!--<gitlab-login label="Sign in with Gitlab"></gitlab-login>-->
 
                     <!-- Single sign-on 
                     <div class="sso">

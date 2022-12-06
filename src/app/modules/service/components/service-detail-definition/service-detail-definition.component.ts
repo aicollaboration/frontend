@@ -45,7 +45,7 @@ export class ServiceDetailDefinitionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private serviceService: ServiceService,
-    ) { }
+  ) { }
 
   public ngOnInit(): void {
     this.definitionForm = this.formBuilder.group({
@@ -53,6 +53,7 @@ export class ServiceDetailDefinitionComponent implements OnInit {
     });
 
     this.route.parent.data.subscribe(data => {
+      debugger
       this.service = data.service;
       this.definitionForm.patchValue(this.service.definition);
     });
@@ -61,7 +62,6 @@ export class ServiceDetailDefinitionComponent implements OnInit {
   public async onSubmit(): Promise<void> {
     this.service.definition = this.definitionForm.value;
     const result = await this.serviceService.updateService(this.service, this.service.id);
-    debugger
   }
 
   public createItem(): FormGroup {

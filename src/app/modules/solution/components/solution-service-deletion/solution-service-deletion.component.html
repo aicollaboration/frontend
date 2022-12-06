@@ -1,0 +1,18 @@
+<div class="header">
+    <div class="title">Delete solution?</div>
+</div>
+
+<form (ngSubmit)="saveAndClose()">
+    <div class="actions">
+        <div class="buttons">
+            <button mat-raised-button type="reset" (click)="close()">
+                <mat-icon [svgIcon]="'reset'"></mat-icon>
+                <span>No</span>
+            </button>
+            <button mat-raised-button color="warn" type="submit">
+                <mat-icon [svgIcon]="'save'"></mat-icon>
+                <span>Yes, delete</span>
+            </button>
+        </div>
+    </div>
+</form>

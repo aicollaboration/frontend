@@ -94,6 +94,7 @@ export const futuristicNavigation: TreoNavigationItem[] = [
     }
 ];
 export const horizontalNavigation: TreoNavigationItem[] = [
+    /*
     {
         id: 'dashboard',
         title: 'Dashboard',
@@ -101,6 +102,7 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         icon: 'dashboard',
         link: '/dashboard',
     },
+    */
     {
         id: 'solutions',
         title: 'Solutions',
@@ -115,12 +117,14 @@ export const horizontalNavigation: TreoNavigationItem[] = [
         icon: 'code',
         link: '/services',
     },
+    /*
     {
         title: 'Docs',
         type: 'basic',
         icon: 'menu_book',
         link: '/docs'
     }, 
+    */
     /*
     {
         title: 'Learn',

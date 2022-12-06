@@ -10,9 +10,10 @@ export class ServiceResolver implements Resolve<ServiceModel> {
     constructor(private serviceService: ServiceService) {
     }
 
-    public resolve(route: ActivatedRouteSnapshot): Promise<ServiceModel> {
+    public async resolve(route: ActivatedRouteSnapshot): Promise<ServiceModel> {
         const serviceId = route.params.id;
+        const service = this.serviceService.getService(serviceId);
 
-        return this.serviceService.getService(serviceId);
+        return service;
     }
 }

@@ -28,7 +28,7 @@ export const routes: Route[] = [
         },
         children: [
             {
-                path: '',
+                path: 'home',
                 component: SolutionDetailHomeComponent,
             },
             {

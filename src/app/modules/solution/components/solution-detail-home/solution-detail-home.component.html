@@ -1,18 +1,32 @@
-<div class="flex">
-  <div class="flex-auto">
-    <h1>01</h1>
-    <a [routerLink]="['services']" class="path">Add service to solution</a>
-  </div>
-  <div class="flex-auto">
-    <h1>02</h1>
-    <a [routerLink]="['design']" class="path">Customize design</a>
-  </div>
-  <div class="flex-auto">
-    <h1>03</h1>
-    <a [routerLink]="['users']" class="path">Add users to solution</a>
-  </div>
-  <div class="flex-auto">
-    <h1>04</h1>
-    <a [routerLink]="['']" class="path">Open customized solution</a>
+<div class="content-layout fullwidth-standard-normal-scroll">
+  <div class="main">
+    <div class="w-20">
+      <img [src]="solution.logo" width="100" height="100" />
+    </div>
+
+    <h2>Next steps</h2>
+    <div class="flex">
+      <div class="flex-auto">
+        <h1>01&nbsp;<mat-icon style="color: green">check</mat-icon>
+        </h1>
+        <a [routerLink]="['services']" class="path">Add service to solution</a>
+      </div>
+      <div class="flex-auto">
+        <h1>02&nbsp;<mat-icon style="color: green">check</mat-icon>
+        </h1>
+        <a [routerLink]="['design']" class="path">Customize design</a>
+      </div>
+      <div class="flex-auto">
+        <h1>03&nbsp;<mat-icon style="color: green">check</mat-icon>
+        </h1>
+        <a [routerLink]="['users']" class="path">Add users to solution</a>
+      </div>
+      <div class="flex-auto">
+        <h1>04&nbsp;<mat-icon style="color: green">check</mat-icon>
+        </h1>
+        <a [routerLink]="['']" class="path">Open customized solution</a>
+      </div>
+    </div>
+
   </div>
 </div>

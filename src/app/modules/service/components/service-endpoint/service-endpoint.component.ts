@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ServiceModel } from '../../models/service.model';
@@ -8,7 +8,7 @@ import { OpenApiParserService } from '../../services/openapi-parser.service';
 @Component({
   selector: 'service-endpoint',
   templateUrl: './service-endpoint.component.html',
-  styleUrls: ['./service-endpoint.component.scss'],
+  styleUrls: ['./service-endpoint.component.scss']
 })
 export class ServiceEndpointComponent implements OnInit {
   public request: string;
@@ -31,8 +31,17 @@ export class ServiceEndpointComponent implements OnInit {
 
 
   public ngOnInit(): void {
-    this.route.data.subscribe(data => {
+    this.route.parent.data.subscribe(async data => {
+      debugger
       this.service = data.service;
+
+      let apiDefinition = data.service.api;
+      if (typeof apiDefinition === 'string') {
+        apiDefinition = JSON.parse(apiDefinition);
+      }
+
+      this.api = await this.apiParser.parse(apiDefinition);
+      this.request = this.api.schemas['predict'].schema;
     });
   }
 
@@ -44,15 +53,12 @@ export class ServiceEndpointComponent implements OnInit {
     const path = this.api.schemas[this.selectedPath].path;
     const url = `${this.selectedServer}${path}`;
 
-    this.http.post(url, values).subscribe(
-      (response) => {
-        this.response = JSON.stringify(response);
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-      }
-    );
+    this.http.post(url, values).subscribe((response) => {
+      this.response = JSON.stringify(response);
+      this.loading = false;
+    }, (error) => {
+      this.loading = false;
+    });
   }
 
   public loadExample(): void {

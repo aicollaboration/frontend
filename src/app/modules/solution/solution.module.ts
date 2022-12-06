@@ -38,6 +38,7 @@ import { SolutionDetailComponent } from './components/solution-detail/solution-d
 import { SolutionEditorComponent } from './components/solution-editor/solution-editor.component';
 import { SolutionListComponent } from './components/solution-list/solution-list.component';
 import { SolutionServiceCreationComponent } from './components/solution-service-creation/solution-service-creation.component';
+import { SolutionServiceDeletionComponent } from './components/solution-service-deletion/solution-service-deletion.component';
 import { SolutionServiceDetailComponent } from './components/solution-service-detail/solution-service-detail.component';
 import { SolutionServiceListComponent } from './components/solution-service-list/solution-service-list.component';
 import { SolutionSettingsComponent } from './components/solution-settings/solution-settings.component';
@@ -60,6 +61,7 @@ import { solutionReducer } from './state/solution.reducer';
         SolutionUserListComponent,
         SolutionDesignComponent,
         SolutionSettingsComponent,
+        SolutionServiceDeletionComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

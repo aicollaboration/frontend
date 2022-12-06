@@ -24,7 +24,7 @@ export class AuthService {
         return new Promise((resolve, reject) => {
             this.supabase.auth.onAuthStateChange(event => {
                 if (event === 'SIGNED_IN') {
-                    const user =  this.supabase.auth.user();
+                    const user = this.supabase.auth.user();
                     resolve(user);
                 } else if (event === 'SIGNED_OUT') {
                     reject();
@@ -124,7 +124,10 @@ export class AuthService {
         return user;
     }
 
-    public async getSession(): Promise<{ data: Session, error: Error }> {
-        return await this.supabase.auth.getSessionFromUrl();
+    public async getSession(): Promise<{ data: Session, user: User, error: Error }> {
+        const currentSession = this.supabase.auth.session();
+
+        const session = await this.supabase.auth.refreshSession();
+        return session;
     }
 }

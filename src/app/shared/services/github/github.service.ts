@@ -113,8 +113,6 @@ export class GithubService {
         };
         const updateResponse = await this.httpClient.put(url, data, { headers }).toPromise();
 
-        debugger
-
         return true;
     }
 

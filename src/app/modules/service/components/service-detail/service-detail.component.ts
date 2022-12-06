@@ -48,15 +48,49 @@ export class ServiceDetailComponent implements OnInit {
                         icon: 'people_alt',
                         link: 'testing',
                     },
-                    /*
+                ],
+            },
+            {
+                title: 'Analytics',
+                type: 'group',
+                children: [
                     {
-                        title: 'Analytics',
+                        title: 'Costs',
                         type: 'basic',
-                        icon: 'dripicons:brush',
-                        link: 'analytics',
+                        icon: 'bar_chart',
+                        link: 'costs',
                     },
-                    */
-                ]
+                    {
+                        title: 'Revenue',
+                        type: 'basic',
+                        icon: 'attach_money',
+                        link: 'revenue',
+                    },
+                    {
+                        title: 'Traffic',
+                        type: 'basic',
+                        icon: 'trending_up',
+                        link: 'traffic',
+                    },
+                    {
+                        title: 'Users',
+                        type: 'basic',
+                        icon: 'people_alt',
+                        link: 'traffic',
+                    },
+                    {
+                        title: 'Logs',
+                        type: 'basic',
+                        icon: 'list',
+                        link: 'traffic',
+                    },
+                    {
+                        title: 'Alerts',
+                        type: 'basic',
+                        icon: 'notifications',
+                        link: 'traffic',
+                    },
+                ],
             },
         ];
     }

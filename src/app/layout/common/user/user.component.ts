@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
     public async ngOnInit(): Promise<void> {
         const session = await this.authService.getSession();
 
-        this.user = session.data.user;
+        if (session && 'user' in session) {
+            this.user = session.user;
+        }
     }
 }

@@ -11,4 +11,7 @@ export class SolutionModel {
   public author: string;
   public visiblity: string;
   public repository: RepositoryModel;
+  public primaryColor: string;
+  public secondaryColor: string;
+  public logo: string;
 }

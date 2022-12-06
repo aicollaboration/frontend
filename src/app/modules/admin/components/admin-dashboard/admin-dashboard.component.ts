@@ -48,7 +48,6 @@ export class AdminDashboardComponent implements OnInit {
                 'PRIVATE-TOKEN': 'BpnqqSPMgKWJdX6B-WcH',
             }
         }).subscribe((data) => {
-            debugger
             console.log(data);
         });
 

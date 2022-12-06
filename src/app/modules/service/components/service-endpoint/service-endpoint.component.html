@@ -8,30 +8,16 @@
     </div>
     <div class="flex-auto min-w-64">
       <form [formGroup]="configForm" class="flex flex-row mt-4">
-        <mat-form-field
-          style="width: 50%; padding-right: 10px"
-          *ngIf="api && api.servers"
-        >
+        <mat-form-field style="width: 50%; padding-right: 10px" *ngIf="api && api.servers">
           <mat-label>Servers</mat-label>
           <mat-select matNativeControl [(value)]="selectedServer">
-            <mat-option
-              *ngFor="let server of api.servers"
-              [value]="server.url"
-              >{{ server.url }}</mat-option
-            >
+            <mat-option *ngFor="let server of api.servers" [value]="server.url">{{ server.url }}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field
-          style="width: 50%; padding-left: 10px"
-          *ngIf="api && api.paths"
-        >
+        <mat-form-field style="width: 50%; padding-left: 10px" *ngIf="api && api.paths">
           <mat-label>Paths</mat-label>
           <mat-select matNativeControl [(value)]="selectedPath">
-            <mat-option
-              *ngFor="let path of api.paths"
-              [value]="path.operationId"
-              >{{ path.path }}</mat-option
-            >
+            <mat-option *ngFor="let path of api.paths" [value]="path.operationId">{{ path.path }}</mat-option>
           </mat-select>
         </mat-form-field>
       </form>
@@ -47,7 +33,6 @@
         Define the context in which you want to search for the answer to your
         question
       </p>
-      <p (click)="loadExample()">Load example</p>
     </div>
     <div class="flex-auto min-w-64">
       <div *ngIf="!!request">
@@ -60,14 +45,7 @@
   </div>
 
   <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5">
-    <button
-      class="px-6 ml-3 text-lg"
-      mat-flat-button
-      [color]="'primary'"
-      [class.spinner]="loading"
-      [disabled]="loading"
-      (click)="predict()"
-    >
+    <button class="px-6 ml-3 text-lg" mat-flat-button [color]="'primary'" [disabled]="!!loading" (click)="predict()">
       Run
     </button>
   </div>
@@ -82,7 +60,8 @@
     </div>
     <div class="flex-auto min-w-64">
       <div class="flex text-3xl">
-        <div *ngIf="!!response">
+        <div>
+          {{response}}
           <ngx-json-viewer [json]="response"></ngx-json-viewer>
         </div>
       </div>
@@ -90,5 +69,6 @@
   </div>
 </div>
 <div *ngIf="!api">
-  Api is not defined. Please define by <u><a [routerLink]="['/services', 'edit', service.id]">editing</a></u> this service
+  Api is not defined. Please define by <u><a [routerLink]="['/services', 'edit', service.id]">editing</a></u> this
+  service
 </div>

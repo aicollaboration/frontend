@@ -38,12 +38,13 @@ export class SolutionDetailComponent implements OnInit {
             {
                 title: 'Manage',
                 type: 'group',
+                active: true,
                 children: [
                     {
                         title: 'Home',
                         type: 'basic',
                         icon: 'home',
-                        link: '.',
+                        link: 'home',
                     },
                     {
                         title: 'Services',
@@ -52,10 +53,10 @@ export class SolutionDetailComponent implements OnInit {
                         link: 'services',
                     },
                     {
-                        title: 'Users',
+                        title: 'Content',
                         type: 'basic',
-                        icon: 'people_alt',
-                        link: 'users',
+                        icon: 'list',
+                        link: 'content',
                     },
                     {
                         title: 'Design',
@@ -75,8 +76,56 @@ export class SolutionDetailComponent implements OnInit {
                         icon: 'settings',
                         link: 'settings',
                     },
-                ]
-            }
+                    {
+                        title: 'Users',
+                        type: 'basic',
+                        icon: 'people_alt',
+                        link: 'users',
+                    },
+                ],
+            },
+            {
+                title: 'Analytics',
+                type: 'group',
+                children: [
+                    {
+                        title: 'Costs',
+                        type: 'basic',
+                        icon: 'bar_chart',
+                        link: 'costs',
+                    },
+                    {
+                        title: 'Revenue',
+                        type: 'basic',
+                        icon: 'attach_money',
+                        link: 'revenue',
+                    },
+                    {
+                        title: 'Traffic',
+                        type: 'basic',
+                        icon: 'trending_up',
+                        link: 'traffic',
+                    },
+                    {
+                        title: 'Users',
+                        type: 'basic',
+                        icon: 'people_alt',
+                        link: 'traffic',
+                    },
+                    {
+                        title: 'Logs',
+                        type: 'basic',
+                        icon: 'list',
+                        link: 'traffic',
+                    },
+                    {
+                        title: 'Alerts',
+                        type: 'basic',
+                        icon: 'notifications',
+                        link: 'traffic',
+                    },
+                ],
+            },
         ];
     }
 

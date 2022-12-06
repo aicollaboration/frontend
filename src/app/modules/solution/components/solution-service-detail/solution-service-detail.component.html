@@ -1,0 +1,44 @@
+<div *ngIf="solutionServiceModel">
+    <h3>{{ solutionServiceModel.service.name }}</h3>
+    <p>{{ solutionServiceModel.service.description }}</p>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="w-full">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" class="form-control" id="name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Description</mat-label>
+        <textarea matInput type="text" class="form-control" id="description" formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Public</mat-label>
+        <mat-select id="public" formControlName="public">
+            <mat-option value="true">Yes</mat-option>
+            <mat-option value="false">No</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button class="add-button" mat-stroked-button tabindex="1" type="submit">
+        <mat-icon [svgIcon]="'add'"></mat-icon>
+        <span>Update</span>
+    </button>
+</form>
+
+
+<br />
+<br />
+<br />
+<br />
+<h4>Danger Zone</h4>
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Delete this solution service</mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Once you delete a solution, there is no going back. Please be certain.</p>
+        <!-- Icon Button to delete solution service -->
+        <button (click)="openDeleteDialog()" mat-flat-button color="warn">Delete solution service</button>
+    </mat-expansion-panel>
+</mat-accordion>

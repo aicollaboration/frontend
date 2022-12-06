@@ -18,6 +18,7 @@ export class SolutionService {
     const { data, error } = await this.supabase.from<SolutionModel>('solution').select('*');
 
     const solutions: SolutionModel[] = await Promise.all(data.map(async (solution: SolutionModel) => {
+      /*
       if (solution.file) {
         const { data, error } = await this.supabase.storage.from('solution').createSignedUrl(solution.file, 60);
 
@@ -25,6 +26,7 @@ export class SolutionService {
           solution.file = data.signedURL;
         }
       }
+      */
       return solution;
     }));
 
@@ -38,11 +40,15 @@ export class SolutionService {
   public async getSolutionService(solutionId: string, serviceId: string) {
     const query = `
       id,
+      name,
+      description,
       config,
       solution(*),
       service(*)
     `;
     const { data, error } = await this.supabase.from('solution_services').select(query).eq('solutionId', solutionId).eq('serviceId', serviceId);
+
+    debugger
 
     if (error) {
       throw error;
@@ -54,6 +60,7 @@ export class SolutionService {
   public async getSolutionServices(solutionId: string) {
     const query = `
       id,
+      name,
       config,
       solution(*),
       service(*)
@@ -68,7 +75,20 @@ export class SolutionService {
 
   public async addSolutionService(solutionService: SolutionServiceModel) {
     solutionService.author = this.supabase.auth.user().id;
+    solutionService.public = true;
     const { data, error } = await this.supabase.from<SolutionServiceModel>('solution_services').insert([solutionService]);
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  }
+
+  public async updateSolutionService(solutionService: SolutionServiceModel) {
+    solutionService.author = this.supabase.auth.user().id;
+
+    const { data, error } = await this.supabase.from<SolutionServiceModel>('solution_services').update(solutionService).eq('id', solutionService.id);
 
     if (error) {
       throw error;
@@ -109,6 +129,16 @@ export class SolutionService {
     await this.supabase.from<SolutionServiceModel>('solution_services').delete().eq('solutionId', id.toString());
 
     const { data, error } = await this.supabase.from('solution').delete().eq('id', id);
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  }
+
+  public async deleteSolutionService(id: string) {
+    const { data, error } = await this.supabase.from<SolutionServiceModel>('solution_services').delete().eq('id', id.toString());
 
     if (error) {
       throw error;

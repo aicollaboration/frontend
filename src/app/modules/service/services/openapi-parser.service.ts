@@ -22,27 +22,39 @@ export class OpenApiParserService {
             paths: [],
         };
         for (const [path, pathConfig] of Object.entries(api.paths)) {
-            
-            for (const [method, methodConfig] of Object.entries(pathConfig)) {
-                const request = methodConfig.requestBody;
 
-                for (const [contentType, content] of Object.entries(request.content)) {
-                    let schema = content['schema'];
-                    if ('$ref' in schema) {
-                        schema = this.resolveReference(api, schema.$ref);
-                    }
-    
+            for (const [method, methodConfig] of Object.entries(pathConfig)) {
+                if (method === 'get') {
                     result.schemas[methodConfig.operationId] = {
-                        schema,
                         path,
                         method,
-                        contentType,
                     };
                     result.paths.push({
                         operationId: methodConfig.operationId,
                         path,
                     });
+                } else {
+                    const request = methodConfig.requestBody;
+
+                    for (const [contentType, content] of Object.entries(request.content)) {
+                        let schema = content['schema'];
+                        if ('$ref' in schema) {
+                            schema = this.resolveReference(api, schema.$ref);
+                        }
+
+                        result.schemas[methodConfig.operationId] = {
+                            schema,
+                            path,
+                            method,
+                            contentType,
+                        };
+                        result.paths.push({
+                            operationId: methodConfig.operationId,
+                            path,
+                        });
+                    }
                 }
+
             }
         }
         return result;
