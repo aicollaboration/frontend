@@ -48,12 +48,10 @@ jobs:
      steps:
       - name: Checkout
         uses: actions/checkout@v2
-         
-      - name: Set kubernetes secrets
-        uses: azure/k8s-set-context@v2
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.KUBECONFIG1 }}
+        
+      - name: Get tag name
+        id: tagName
+        uses: olegtarasov/get-tag@v2
           
       - name: Set up kubectl
         uses: matootie/dokube@v1.4.0
@@ -61,12 +59,24 @@ jobs:
           personalAccessToken: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
           clusterName: k8s-1-24-4-do-0-fra1-1669239908785
 
+      - name: Shell
+        run: |
+          pwd
+          ls -ltr
+          sed -i "s/<VERSION>/${{ steps.tagName.outputs.tag }}/g" devops/kubernetes/deployment-solution.yml
+      
+      - name: Debug
+        run: cat devops/kubernetes/deployment-solution.yml
+      
       - name: k8s deployment
         run: |
            kubectl apply -f devops/kubernetes/api-ingress-solution.yml
            kubectl apply -f devops/kubernetes/deployment-solution.yml
            kubectl apply -f devops/kubernetes/service-solution.yml
-           
+       
+      - name: Get nodes
+        run: kubectl get all
+        
   slack-notification:
        runs-on: ubuntu-latest
        needs: [build,deploy]
