@@ -7,10 +7,16 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($host = 'www.aicollaboration.com' ) {
+        rewrite ^/(.*)$ https://aicollaboration.com/$1 permanent;
+      }
 spec:
   tls:
     - hosts:
         - aicollaboration.com
+        - www.aicollaboration.com
       secretName: tls-latest-aiproduct.io
   rules:
     - host: aicollaboration.com
