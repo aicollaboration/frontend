@@ -2,9 +2,9 @@ name: Frontend
 
 on:
   push:
-    branches: [master]
+    branches: [vishnutesting]
   pull_request:
-    branches: [master]
+    branches: [vishnutesting]
   workflow_dispatch:
 
 jobs:
